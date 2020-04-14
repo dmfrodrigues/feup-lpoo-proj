@@ -1,6 +1,8 @@
 # LPOO-2020-G60
 ## Descrição do jogo
-- O jogo possui vários inimigos
+- O jogo possui vários inimigos, sendo que há 2 tipos principais:
+    - Ranged
+    - Melee
 - Personagem e inimigos com vida
 - Permite guardar o estado e retomar
 - **Objetivo:** apanhar moedar e matar monstros
