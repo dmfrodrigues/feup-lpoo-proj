@@ -1,3 +1,5 @@
+import javafx.geometry.Pos;
+
 public class Position {
     private Integer x,y;
 
@@ -20,5 +22,16 @@ public class Position {
 
     public void setY(Integer y) {
         this.y = y;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (obj == this) return true;
+        if (obj.getClass() != this.getClass()) return false;
+
+        Position pos = (Position) obj;
+
+        return pos.x == this.x && pos.y == this.y;
     }
 }
