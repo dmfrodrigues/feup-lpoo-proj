@@ -36,7 +36,7 @@ public class LanternaGUI implements TerminalGUI {
     }
 
     @Override
-    public void refresh() {
+    public void refresh() throws IOException {
         screen.refresh();
     }
 }
