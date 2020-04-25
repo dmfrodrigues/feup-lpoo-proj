@@ -1,2 +1,5 @@
-public class RangedEnemy implements Enemy {
+public class RangedEnemy extends Enemy {
+    public RangedEnemy(Position pos) {
+        super(pos);
+    }
 }
