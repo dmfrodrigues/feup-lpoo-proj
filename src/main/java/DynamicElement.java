@@ -1,4 +1,4 @@
-public abstract class DynamicElement extends Element {
+public  class DynamicElement extends Element {
 
     protected Direction direction;
 
