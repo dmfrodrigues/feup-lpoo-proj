@@ -1,4 +1,5 @@
 public abstract class DynamicElement extends Element {
+
     protected Direction direction;
 
     public DynamicElement(Position position)

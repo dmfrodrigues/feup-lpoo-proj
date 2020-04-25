@@ -1,5 +1,7 @@
 public class Wall extends StaticElement {
-    public Wall(Position position) {
-        super(position);
+
+    public Wall(Position pos){
+        super(pos);
+
     }
 }
