@@ -2,10 +2,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ArenaModel {
+    private int W, H;
     private List<StaticElement> listStaticElements;
     private List<DynamicElement> listDynamicElements;
 
-    public ArenaModel(){
+    public ArenaModel(int W, int H){
         listStaticElements = new ArrayList<>();
         listDynamicElements = new ArrayList<>();
     }

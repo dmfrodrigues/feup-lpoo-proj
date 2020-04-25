@@ -1,11 +1,11 @@
 public class Game {
-    private ArenaModel arena;
+    private ArenaModel arenaModel;
     private ArenaView arenaView;
     private ArenaController arenaController;
-    public Game(ArenaView arenaView){
-        this.arena = new ArenaModel();
+    public Game(ArenaModel arenaModel, ArenaView arenaView){
+        this.arenaModel = arenaModel;
         this.arenaView = arenaView;
-        this.arenaController = new ArenaController(arena, arenaView);
+        this.arenaController = new ArenaController(arenaModel, arenaView);
     }
     public void run(){
         arenaController.run();

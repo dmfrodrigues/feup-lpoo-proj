@@ -1,2 +1,5 @@
-public interface DynamicElement extends Element {
+public abstract class DynamicElement extends Element {
+    public DynamicElement(Position pos){
+        super(pos);
+    }
 }

@@ -1,2 +1,5 @@
-public interface StaticElement extends Element{
+public abstract class StaticElement extends Element{
+    public StaticElement(Position pos){
+        super(pos);
+    }
 }
