@@ -18,7 +18,7 @@ public class EastDirection implements Direction {
 
     @Override
     public Position forward() {
-        Position currentPos = dynamicElement.getPosition();
+        Position currentPos = dynamicElement.getPos();
         Integer currentX = currentPos.getX();
         Integer currentY = currentPos.getY();
         Position newPos = new Position(currentX, ++currentY);
