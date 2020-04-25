@@ -4,7 +4,7 @@ public abstract class Element{
 
     public void setPos(Position position)
     {
-        this.position = position;
+        this.pos = position;
     }
 
 
