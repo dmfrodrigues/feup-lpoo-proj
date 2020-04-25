@@ -12,4 +12,10 @@ public abstract class DynamicElement extends Element {
     {
         this.direction = direction;
     }
+
+    public void rotateRight() { this.direction.rotateRight();}
+
+    public void rotateLeft() {this.direction.rotateLeft();}
+
+    public Position forward() {return this.direction.forward();}
 }
