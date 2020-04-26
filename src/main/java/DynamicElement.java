@@ -4,7 +4,7 @@ public abstract class DynamicElement extends Element {
         super(pos);
         dir = Direction.RIGHT;
     }
-    public void setPos(Position pos){ this.pos = pos; }
+
     public void moveUp(){
         Position pos = getPos();
         pos.setY(pos.getY()-1);
