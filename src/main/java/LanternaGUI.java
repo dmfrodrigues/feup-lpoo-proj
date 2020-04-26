@@ -1,5 +1,7 @@
+import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
@@ -12,7 +14,9 @@ public class LanternaGUI implements TerminalGUI {
     public LanternaGUI(){
         // Initialize screen
         try{
-            Terminal terminal = new DefaultTerminalFactory().createTerminal();
+            DefaultTerminalFactory factory = new DefaultTerminalFactory();
+            factory.setInitialTerminalSize(new TerminalSize(233, 57));
+            Terminal terminal = factory.createTerminal();
             screen = new TerminalScreen(terminal);
             screen.setCursorPosition(null);
             screen.startScreen();
@@ -32,11 +36,22 @@ public class LanternaGUI implements TerminalGUI {
 
     @Override
     public void clear(){
+        screen.doResizeIfNecessary();
         screen.clear();
     }
 
     @Override
     public void refresh() throws IOException {
         screen.refresh();
+    }
+
+    @Override
+    public KeyStroke pollKey() throws IOException{
+        return screen.pollInput();
+    }
+
+    @Override
+    public void close() throws IOException{
+        screen.close();
     }
 }
