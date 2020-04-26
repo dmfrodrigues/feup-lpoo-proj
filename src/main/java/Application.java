@@ -23,5 +23,5 @@ public class Application {
             System.err.println("IOException");
         }
     }
+    enum Direction {UP,DOWN,LEFT,RIGHT}
 }
-enum Direction {UP,DOWN,LEFT,RIGHT}
