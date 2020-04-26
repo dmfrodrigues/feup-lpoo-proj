@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 public class Game {
     private ArenaModel arenaModel;
     private ArenaView arenaView;
@@ -7,7 +9,7 @@ public class Game {
         this.arenaView = arenaView;
         this.arenaController = new ArenaController(arenaModel, arenaView);
     }
-    public void run(){
+    public void run() throws IOException {
         arenaController.run();
     }
 }
