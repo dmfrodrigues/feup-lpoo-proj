@@ -5,6 +5,16 @@ import static org.junit.Assert.*;
 public class ElementTest {
     public class NotAWall extends StaticElement{
         public NotAWall(Position pos){ super(pos); }
+
+        @Override
+        public boolean isObstacle() {
+            return true;
+        }
+
+        @Override
+        public boolean isEnemy() {
+            return false;
+        }
     }
     @Test
     public void wallOrNotAWall(){

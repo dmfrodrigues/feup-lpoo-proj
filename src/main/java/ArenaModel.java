@@ -23,6 +23,11 @@ public class ArenaModel {
 
     public void addDynamicElement(DynamicElement dynamicElement){ listDynamicElements.add(dynamicElement); }
 
+    public List<DynamicElement> getDynamicElements()
+    {
+        return this.listDynamicElements;
+    }
+
     public ArrayList<Element> getElements(){
         ArrayList<Element> res = new ArrayList<>();
         res.addAll(listStaticElements);
@@ -30,8 +35,17 @@ public class ArenaModel {
         return res;
     }
 
-    public Hero getHero() { return hero; }
 
+    public int getW() {
+        return W;
+    }
+
+    public int getH() {
+        return H;
+    }
+
+    public Hero getHero() { return hero; }
+    
     public interface Loader {
         public ArenaModel getArenaModel();
     }
