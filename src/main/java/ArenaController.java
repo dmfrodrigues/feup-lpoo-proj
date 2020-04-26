@@ -12,6 +12,7 @@ public class ArenaController {
     public ArenaController(ArenaModel arenaModel, ArenaView arenaView){
         this.arenaModel = arenaModel;
         this.arenaView = arenaView;
+        arenaMatrix = new Node[arenaModel.getH()][arenaModel.getW()];
     }
     public void run() throws IOException {
         boolean good = true;
