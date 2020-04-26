@@ -25,3 +25,4 @@ public class Application {
     }
     enum Direction {UP,DOWN,LEFT,RIGHT}
 }
+
