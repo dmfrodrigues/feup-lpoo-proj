@@ -1,5 +1,8 @@
 import java.io.IOException;
 
 public interface ArenaView {
-    public void draw(ArenaModel arena) throws IOException;
+    enum COMMAND {UP, DOWN, LEFT, RIGHT, ATTACK, EXIT}
+    void draw(ArenaModel arena) throws IOException;
+    COMMAND pollCommand() throws IOException;
+    void close() throws IOException;
 }

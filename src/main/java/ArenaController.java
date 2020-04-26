@@ -8,8 +8,27 @@ public class ArenaController {
         this.arenaView = arenaView;
     }
     public void run() throws IOException {
-        while(true){
+        boolean good = true;
+        while(good){
+            System.out.println("L13");
+            ArenaView.COMMAND cmd = arenaView.pollCommand();
+            if(!(cmd == null)) {
+                switch (cmd) {
+                    case EXIT:
+                        good = false;
+                        break;
+                    case UP:
+                        arenaModel.getHero().moveUp(); break;
+                    case DOWN:
+                        arenaModel.getHero().moveDown(); break;
+                    case LEFT:
+                        arenaModel.getHero().moveLeft(); break;
+                    case RIGHT:
+                        arenaModel.getHero().moveRight(); break;
+                }
+            }
             arenaView.draw(arenaModel);
         }
+        arenaView.close();
     }
 }

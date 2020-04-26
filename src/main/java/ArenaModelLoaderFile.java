@@ -6,8 +6,8 @@ public class ArenaModelLoaderFile implements ArenaModelLoader {
     public ArenaModelLoaderFile(InputStream inputStream) {
         Scanner scanner = new Scanner(inputStream);
         String firstLine = scanner.nextLine();
-        int W = Integer.parseInt(firstLine.split(" ")[0]);
-        int H = Integer.parseInt(firstLine.split(" ")[1]);
+        Integer W = Integer.parseInt(firstLine.split(" ")[0]);
+        Integer H = Integer.parseInt(firstLine.split(" ")[1]);
         arenaModel = new ArenaModel(W, H);
         Position pos;
         for(Integer y = 0; y < H; ++y){
@@ -15,6 +15,7 @@ public class ArenaModelLoaderFile implements ArenaModelLoader {
             for(Integer x = 0; x < W; ++x){
                 switch(line.charAt(x)){
                     case 'W': arenaModel.addStaticElement(new Wall(new Position(x, y))); break;
+                    case 'H': arenaModel.addHero(new Hero(new Position(x, y))); break;
                     case ' ': break;
                     default: throw new IllegalArgumentException("Unknown character");
                 }

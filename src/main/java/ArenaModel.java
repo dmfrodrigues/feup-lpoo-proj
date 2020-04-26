@@ -3,6 +3,7 @@ import java.util.List;
 
 public class ArenaModel {
     private int W, H;
+    private Hero hero = null;
     private List<StaticElement> listStaticElements;
     private List<DynamicElement> listDynamicElements;
 
@@ -11,9 +12,16 @@ public class ArenaModel {
         listDynamicElements = new ArrayList<>();
     }
 
+    public void addHero(Hero hero){
+        this.hero = hero;
+        addDynamicElement(hero);
+    }
+
     public void addStaticElement(StaticElement staticElement){
         listStaticElements.add(staticElement);
     }
+
+    public void addDynamicElement(DynamicElement dynamicElement){ listDynamicElements.add(dynamicElement); }
 
     public ArrayList<Element> getElements(){
         ArrayList<Element> res = new ArrayList<>();
@@ -21,4 +29,6 @@ public class ArenaModel {
         res.addAll(listDynamicElements);
         return res;
     }
+
+    public Hero getHero() { return hero; }
 }

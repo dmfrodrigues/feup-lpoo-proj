@@ -1,6 +1,7 @@
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
@@ -42,5 +43,15 @@ public class LanternaGUI implements TerminalGUI {
     @Override
     public void refresh() throws IOException {
         screen.refresh();
+    }
+
+    @Override
+    public KeyStroke pollKey() throws IOException{
+        return screen.pollInput();
+    }
+
+    @Override
+    public void close() throws IOException{
+        screen.close();
     }
 }
