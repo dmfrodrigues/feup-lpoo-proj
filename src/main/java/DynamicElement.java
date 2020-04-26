@@ -1,39 +1,38 @@
 public abstract class DynamicElement extends Element {
-    protected Direction dir;
+    protected Application.Direction dir;
     public DynamicElement(Position pos){
         super(pos);
-        dir = Direction.RIGHT;
+        dir = Application.Direction.RIGHT;
     }
 
     public void moveUp(){
         Position pos = getPos();
         pos.setY(pos.getY()-1);
         setPos(pos);
-        dir = Direction.UP;
+        dir = Application.Direction.UP;
     }
     public void moveDown(){
         Position pos = getPos();
         pos.setY(pos.getY()+1);
         setPos(pos);
-        dir = Direction.DOWN;
+        dir = Application.Direction.DOWN;
     }
     public void moveLeft(){
         Position pos = getPos();
         pos.setX(pos.getX()-1);
         setPos(pos);
-        dir = Direction.LEFT;
+        dir = Application.Direction.LEFT;
     }
     public void moveRight(){
         Position pos = getPos();
         pos.setX(pos.getX()+1);
         setPos(pos);
-        dir = Direction.RIGHT;
+        dir = Application.Direction.RIGHT;
 
     }
+
+    public Application.Direction getDirection() { return dir; }
     
-    public Direction getDirection() { return dir; }
-
-
     public void updatePos(Position newPos)
     {
         Position currentPos = this.pos;
@@ -43,12 +42,12 @@ public abstract class DynamicElement extends Element {
         int newY = newPos.getY();
 
         int diffY = newY - currentY;
-        if (diffY == 1) this.dir = Direction.DOWN;
-        else if (diffY == -1 ) this.dir = Direction.UP;
+        if (diffY == 1) this.dir = Application.Direction.DOWN;
+        else if (diffY == -1 ) this.dir = Application.Direction.UP;
 
         int diffX = newX - currentX;
-        if (diffX == 1) this.dir = Direction.RIGHT;
-        else if (diffX == -1) this.dir = Direction.LEFT;
+        if (diffX == 1) this.dir = Application.Direction.RIGHT;
+        else if (diffX == -1) this.dir = Application.Direction.LEFT;
 
         this.pos = newPos;
     }

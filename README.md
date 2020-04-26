@@ -38,3 +38,9 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
 ### UML
 
 The UML class diagram of the project is available [here](https://drive.google.com/file/d/1Ql_kmMo6nBzLH933LEEZQvu8vgUm2lDC/view?usp=sharing).
+
+### State of the Art
+
+<p align="center">
+  <img src="https://drive.google.com/uc?id=1WstrLPkEo1YTzjKws6ZUzi35vcV6Ieky">
+</p>
