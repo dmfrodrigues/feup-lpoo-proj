@@ -9,6 +9,14 @@ public class Node {
     private Integer dist;
     private Position position;
 
+    public Node()
+    {
+        this.position = new Position(0,0);
+        this.cellType = CellType.FREE;
+        this.dist = Integer.MAX_VALUE;
+        this.path = null;
+    }
+
     public Node(CellType cellType, Node path, Integer dist, Position position)
     {
         this.cellType = cellType;

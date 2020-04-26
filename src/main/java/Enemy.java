@@ -29,7 +29,14 @@ public abstract class Enemy extends DynamicElement {
             matrix[currentY][currentX] = new Node(currentValue,null,Integer.MAX_VALUE, new Position(currentX,currentY));
         }
 
-        //TODO positions that aren't held by elements need to be FREE
+
+        for (int i = 0; i < model.getH(); i++)
+        {
+            for (int i2 = 0; i2 < model.getW(); i2++)
+            {
+                matrix[i][i2].setPosition(new Position(i,i2));
+            }
+        }
 
         Position heroPos = model.getHero().getPos();
         int heroX = heroPos.getX();
