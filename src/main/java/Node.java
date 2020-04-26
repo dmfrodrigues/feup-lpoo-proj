@@ -1,7 +1,7 @@
 public class Node {
     public enum CellType
     {
-        FREE,OBSTACLE,HERO
+        FREE,OBSTACLE,ENEMY
     }
 
     private CellType cellType;

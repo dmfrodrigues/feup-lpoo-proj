@@ -8,6 +8,10 @@ public abstract class Element {
         return new Position(pos);
     }
 
+    public void setPos(Position pos) {
+        this.pos = pos;
+    }
+
     /**
      * Override of equals. Also checks if they are the same class.
      * @param obj   Object to compare with
@@ -20,4 +24,6 @@ public abstract class Element {
     }
 
     public abstract boolean isObstacle();
+
+    public abstract boolean isEnemy();
 }

@@ -29,4 +29,23 @@ public abstract class DynamicElement extends Element {
         setPos(pos);
         dir = new EastDirection();
     }
+
+    public void updatePos(Position newPos)
+    {
+        Position currentPos = this.pos;
+        int currentX = currentPos.getX();
+        int currentY = currentPos.getY();
+        int newX = newPos.getX();
+        int newY = newPos.getY();
+
+        int diffY = newY - currentY;
+        if (diffY == 1) this.dir = new SouthDirection();
+        else if (diffY == -1 ) this.dir = new NorthDirection();
+
+        int diffX = newX - currentX;
+        if (diffX == 1) this.dir = new EastDirection();
+        else if (diffX == -1) this.dir = new WestDirection();
+
+        this.pos = newPos;
+    }
 }

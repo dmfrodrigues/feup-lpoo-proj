@@ -23,6 +23,11 @@ public class ArenaModel {
 
     public void addDynamicElement(DynamicElement dynamicElement){ listDynamicElements.add(dynamicElement); }
 
+    public List<DynamicElement> getDynamicElements()
+    {
+        return this.listDynamicElements;
+    }
+
     public ArrayList<Element> getElements(){
         ArrayList<Element> res = new ArrayList<>();
         res.addAll(listStaticElements);
