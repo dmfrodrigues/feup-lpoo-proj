@@ -10,7 +10,6 @@ public class ArenaController {
     public void run() throws IOException {
         boolean good = true;
         while(good){
-            System.out.println("L13");
             ArenaView.COMMAND cmd = arenaView.pollCommand();
             if(!(cmd == null)) {
                 switch (cmd) {

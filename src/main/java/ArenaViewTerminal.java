@@ -37,11 +37,19 @@ public class ArenaViewTerminal implements ArenaView {
         public class WallDraw extends StaticElementDraw{
             private final Color ge = new Color(90, 90, 90);
             private final Color or = new Color(232, 126, 61);
+            /*
             private final char[][] chars = {
                     "╦╩╦╩╦╩╦╩".toCharArray(),
                     "╩╦╩╦╩╦╩╦".toCharArray(),
                     "╦╩╦╩╦╩╦╩".toCharArray(),
                     "╩╦╩╦╩╦╩╦".toCharArray()
+            };
+             */
+            private final char[][] chars = {
+                "┳┻┳┻┳┻┳┻".toCharArray(),
+                "┻┳┻┳┻┳┻┳".toCharArray(),
+                "┳┻┳┻┳┻┳┻".toCharArray(),
+                "┻┳┻┳┻┳┻┳".toCharArray()
             };
             private final Color[][] fore = {
                     {ge, ge, ge, ge, ge, ge, ge, ge},
@@ -84,26 +92,38 @@ public class ArenaViewTerminal implements ArenaView {
         }
 
         public class HeroDraw extends DynamicElementDraw {
-            private final Color wh = new Color(240, 240, 240);
-            private final Color bl = new Color(0, 0, 0);
-            private final Color br = new Color(150, 75, 0);
-            private final Color gr = new Color(150, 150, 150);
+            private final Color wh = new Color(240, 240, 240); //(Almost) white
+            private final Color bl = new Color(0, 0, 0); //Black
+            private final Color br = new Color(150, 75, 0); //Brown
+            private final Color dg = new Color(100, 100, 100); //Dark grey
+            private final Color gr = new Color(150, 150, 150); //Grey
+            private final Color lg = new Color(200, 200, 200); //Light grey
+            private final Color gl = new Color(255, 215, 0); //Gold
+            private final Color rd = new Color(200, 50, 50); //Red
+            /*
             private final char[][] chars = {
-                "▗▄▄▄▄▖╻ ".toCharArray(),
+                " ▄▄▄▄▖╻ ".toCharArray(),
                 "▐█▬█▬▌┣█".toCharArray(),
                 "▐█▛▜█▌┃ ".toCharArray(),
                 "▝▀▘▝▀▘╹ ".toCharArray()
             };
+             */
+            private final char[][] chars = {
+                    " ▄▄▄▄▖╻ ".toCharArray(),
+                    "▐█▬█▬▌┣█".toCharArray(),
+                    "▐█▛▜█▚▚ ".toCharArray(),
+                    "▝▀▘▝▀▝▘ ".toCharArray()
+            };
             private final Color[][] fore = {
-                { gr, gr, gr, gr, gr, gr, gr, gr},
-                { gr, gr, bl, gr, bl, gr, gr, gr},
-                { wh, wh, wh, wh, wh, wh, gr, gr},
-                { br, br, br, br, br, br, gr, gr}
+                { gr, gr, gr, gr, gr, gr, dg, dg},
+                { gr, gr, bl, gr, bl, gr, dg, dg},
+                { wh, wh, wh, wh, wh, lg, lg, dg},
+                { br, br, br, br, br, rd, lg, dg}
             };
             private final Color[][] back = {
                 { bl, bl, bl, bl, bl, bl, bl, bl},
                 { bl, bl, gr, bl, gr, bl, bl, bl},
-                { bl, bl, bl, bl, bl, bl, bl, bl},
+                { bl, bl, bl, bl, bl, rd, rd, bl},
                 { bl, bl, bl, bl, bl, bl, bl, bl}
             };
 
