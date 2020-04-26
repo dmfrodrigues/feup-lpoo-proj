@@ -31,5 +31,6 @@ public abstract class DynamicElement extends Element {
 
     }
 
+    public Direction getDirection() { return dir; }
 
 }

@@ -42,7 +42,7 @@ public class ArenaModelLoaderFileTest {
         }
 
         InputStream inputStream = new ByteArrayInputStream(string.getBytes());
-        ArenaModelLoader arenaModelLoader = new ArenaModelLoaderFile(inputStream);
+        ArenaModel.Loader arenaModelLoader = new ArenaModelLoaderFile(inputStream);
         ArenaModel arenaModel = arenaModelLoader.getArenaModel();
         List<Element> listElements = arenaModel.getElements();
 

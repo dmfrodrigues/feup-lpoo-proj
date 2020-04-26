@@ -1,7 +1,7 @@
 import java.io.InputStream;
 import java.util.Scanner;
 
-public class ArenaModelLoaderFile implements ArenaModelLoader {
+public class ArenaModelLoaderFile implements ArenaModel.Loader {
     private ArenaModel arenaModel;
     public ArenaModelLoaderFile(InputStream inputStream) {
         Scanner scanner = new Scanner(inputStream);

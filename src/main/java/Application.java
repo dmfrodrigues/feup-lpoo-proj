@@ -5,8 +5,8 @@ public class Application {
         // arenaModel
         ArenaModel arenaModel;
         try{
-            InputStream inputStream = new FileInputStream("maps/map1.map");
-            ArenaModelLoader arenaModelLoader = new ArenaModelLoaderFile(inputStream);
+            InputStream inputStream = new FileInputStream("src/main/resources/maps/map1.map");
+            ArenaModel.Loader arenaModelLoader = new ArenaModelLoaderFile(inputStream);
             arenaModel = arenaModelLoader.getArenaModel();
         } catch(FileNotFoundException e) {
             System.err.println("File not found");
