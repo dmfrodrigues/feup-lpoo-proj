@@ -24,10 +24,10 @@ public class ArenaViewTerminal implements ArenaView {
         try {
             TerminalSprite.Loader loader;
             TerminalSpriteOrientable spriteOrientable;
-            
+            //Wall
             loader = new TerminalSpriteLoaderFile(new FileInputStream("src/main/resources/lanterna-sprites/wall-8-4.lan"));
             spriteMap.put("class Wall", loader.getTerminalSprite());
-            
+            //Hero
             loader = new TerminalSpriteLoaderFile(new FileInputStream("src/main/resources/lanterna-sprites/hero-8-4-right.lan"));
             spriteOrientable = new TerminalSpriteOrientable(loader.getTerminalSprite());
             loader = new TerminalSpriteLoaderFile(new FileInputStream("src/main/resources/lanterna-sprites/hero-8-4-left.lan"));
@@ -37,6 +37,12 @@ public class ArenaViewTerminal implements ArenaView {
             loader = new TerminalSpriteLoaderFile(new FileInputStream("src/main/resources/lanterna-sprites/hero-8-4-down.lan"));
             spriteOrientable.setSpriteDown(loader.getTerminalSprite());
             spriteOrientableMap.put("class Hero", spriteOrientable);
+            //Ghost
+            loader = new TerminalSpriteLoaderFile(new FileInputStream("src/main/resources/lanterna-sprites/ghost-8-4-right.lan"));
+            spriteOrientable = new TerminalSpriteOrientable(loader.getTerminalSprite());
+            loader = new TerminalSpriteLoaderFile(new FileInputStream("src/main/resources/lanterna-sprites/ghost-8-4-left.lan"));
+            spriteOrientable.setSpriteLeft(loader.getTerminalSprite());
+            spriteOrientableMap.put("class Ghost", spriteOrientable);
         } catch(FileNotFoundException e){
             System.err.println("Failed to find file");
         }
@@ -171,38 +177,27 @@ public class ArenaViewTerminal implements ArenaView {
         }
 
         public void draw(Element e){
-            HeroDraw heroDraw = new HeroDraw();
+            Position pos = e.getPos();
+            TerminalSprite sprite;
 
             if(e instanceof Wall){
-                Position pos = e.getPos();
-                TerminalSprite sprite = spriteMap.get(e.getClass().toString());
-                int W = sprite.getW();
-                int H = sprite.getH();
-                int x0 = pos.getX()*W;
-                int y0 = pos.getY()*H;
-                for(int x = 0; x < Wscreen; ++x) {
-                    for (int y = 0; y < Hscreen; ++y) {
-                        terminalGUI.drawCharacter(x0 + x, y0 + y,
-                                sprite.getChar(x, y),
-                                sprite.getForegroundColor(x, y),
-                                sprite.getBackgroundColor(x, y));
-                    }
-                }
-            }
-            else if(e instanceof Hero) {
-                Position pos = e.getPos();
-                TerminalSprite sprite = spriteOrientableMap.get(e.getClass().toString()).getSprite(((DynamicElement)e).getDirection());
-                int W = sprite.getW();
-                int H = sprite.getH();
-                int x0 = pos.getX()*W;
-                int y0 = pos.getY()*H;
-                for(int x = 0; x < Wscreen; ++x) {
-                    for (int y = 0; y < Hscreen; ++y) {
-                        terminalGUI.drawCharacter(x0 + x, y0 + y,
-                                sprite.getChar(x, y),
-                                sprite.getForegroundColor(x, y),
-                                sprite.getBackgroundColor(x, y));
-                    }
+                sprite = spriteMap.get(e.getClass().toString());
+            } else if(e instanceof Hero) {
+                sprite = spriteOrientableMap.get(e.getClass().toString()).getSprite(((DynamicElement) e).getDirection());
+            }else if(e instanceof Ghost){
+                sprite = spriteOrientableMap.get(e.getClass().toString()).getSprite(((DynamicElement) e).getDirection());
+            } else return;
+
+            int W = sprite.getW();
+            int H = sprite.getH();
+            int x0 = pos.getX()*W;
+            int y0 = pos.getY()*H;
+            for(int x = 0; x < Wscreen; ++x) {
+                for (int y = 0; y < Hscreen; ++y) {
+                    terminalGUI.drawCharacter(x0 + x, y0 + y,
+                            sprite.getChar(x, y),
+                            sprite.getForegroundColor(x, y),
+                            sprite.getBackgroundColor(x, y));
                 }
             }
         }
