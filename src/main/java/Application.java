@@ -1,5 +1,7 @@
 public class Application {
     public static void main(String[] argv){
+        //Direction enum definition
+
         // arenaModel
         ArenaModel arenaModel = new ArenaModel(150, 50);
         // arenaView
@@ -10,3 +12,5 @@ public class Application {
         game.run();
     }
 }
+
+public enum Direction {UP,DOWN,LEFT,RIGHT}
