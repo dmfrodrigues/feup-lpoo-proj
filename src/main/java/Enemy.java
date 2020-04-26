@@ -1,12 +1,9 @@
 public abstract class Enemy extends DynamicElement {
     protected Effect effect;
-    protected ArenaModel model;
-    protected Node[][] matrix;
 
-    public Enemy(Position pos, ArenaModel model) {
+    public Enemy(Position pos, Effect effect) {
         super(pos);
-        this.model = model;
-        matrix = new Node[model.getH()][model.getW()];
+       this.effect = effect;
     }
 
     @Override
