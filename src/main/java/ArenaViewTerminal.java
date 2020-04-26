@@ -1,13 +1,46 @@
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
+import com.googlecode.lanterna.terminal.Terminal;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ArenaViewTerminal implements ArenaView {
     private TerminalGUI terminalGUI;
+
+    private Map<String, TerminalSprite> spriteMap;
+    private Map<String, TerminalSpriteOrientable> spriteOrientableMap;
+
     public ArenaViewTerminal(TerminalGUI terminalGUI){
         this.terminalGUI = terminalGUI;
+        spriteMap = new HashMap<>();
+        spriteOrientableMap = new HashMap<>();
+
+        try {
+            TerminalSprite.Loader loader;
+            TerminalSpriteOrientable spriteOrientable;
+            
+            loader = new TerminalSpriteLoaderFile(new FileInputStream("src/main/resources/lanterna-sprites/wall-8-4.lan"));
+            spriteMap.put("class Wall", loader.getTerminalSprite());
+            
+            loader = new TerminalSpriteLoaderFile(new FileInputStream("src/main/resources/lanterna-sprites/hero-8-4-right.lan"));
+            spriteOrientable = new TerminalSpriteOrientable(loader.getTerminalSprite());
+            loader = new TerminalSpriteLoaderFile(new FileInputStream("src/main/resources/lanterna-sprites/hero-8-4-left.lan"));
+            spriteOrientable.setSpriteLeft(loader.getTerminalSprite());
+            loader = new TerminalSpriteLoaderFile(new FileInputStream("src/main/resources/lanterna-sprites/hero-8-4-up.lan"));
+            spriteOrientable.setSpriteUp(loader.getTerminalSprite());
+            loader = new TerminalSpriteLoaderFile(new FileInputStream("src/main/resources/lanterna-sprites/hero-8-4-down.lan"));
+            spriteOrientable.setSpriteDown(loader.getTerminalSprite());
+            spriteOrientableMap.put("class Hero", spriteOrientable);
+        } catch(FileNotFoundException e){
+            System.err.println("Failed to find file");
+        }
+
     }
 
     public class ElementView {
@@ -138,11 +171,40 @@ public class ArenaViewTerminal implements ArenaView {
         }
 
         public void draw(Element e){
-            WallDraw wallDraw = new WallDraw();
             HeroDraw heroDraw = new HeroDraw();
 
-            if(e instanceof Wall) wallDraw.draw((StaticElement) e);
-            else if(e instanceof Hero) heroDraw.draw((DynamicElement)e);
+            if(e instanceof Wall){
+                Position pos = e.getPos();
+                TerminalSprite sprite = spriteMap.get(e.getClass().toString());
+                int W = sprite.getW();
+                int H = sprite.getH();
+                int x0 = pos.getX()*W;
+                int y0 = pos.getY()*H;
+                for(int x = 0; x < Wscreen; ++x) {
+                    for (int y = 0; y < Hscreen; ++y) {
+                        terminalGUI.drawCharacter(x0 + x, y0 + y,
+                                sprite.getChar(x, y),
+                                sprite.getForegroundColor(x, y),
+                                sprite.getBackgroundColor(x, y));
+                    }
+                }
+            }
+            else if(e instanceof Hero) {
+                Position pos = e.getPos();
+                TerminalSprite sprite = spriteOrientableMap.get(e.getClass().toString()).getSprite(((DynamicElement)e).getDirection());
+                int W = sprite.getW();
+                int H = sprite.getH();
+                int x0 = pos.getX()*W;
+                int y0 = pos.getY()*H;
+                for(int x = 0; x < Wscreen; ++x) {
+                    for (int y = 0; y < Hscreen; ++y) {
+                        terminalGUI.drawCharacter(x0 + x, y0 + y,
+                                sprite.getChar(x, y),
+                                sprite.getForegroundColor(x, y),
+                                sprite.getBackgroundColor(x, y));
+                    }
+                }
+            }
         }
 
     }

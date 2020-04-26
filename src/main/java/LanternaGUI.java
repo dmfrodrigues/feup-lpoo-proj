@@ -6,16 +6,24 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
+import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class LanternaGUI implements TerminalGUI {
     private Screen screen;
+    private static final String LANTERNA_FONT = "Monospaced";
+    private static final int LANTERNA_FONT_SIZE = 10;
     public LanternaGUI(){
         // Initialize screen
         try{
+            Font font = new Font(LANTERNA_FONT, Font.PLAIN, LANTERNA_FONT_SIZE);
+            SwingTerminalFontConfiguration cfg = SwingTerminalFontConfiguration.newInstance(font);
+
             DefaultTerminalFactory factory = new DefaultTerminalFactory();
             factory.setInitialTerminalSize(new TerminalSize(233, 57));
+            factory.setTerminalEmulatorFontConfiguration(cfg);
             Terminal terminal = factory.createTerminal();
             screen = new TerminalScreen(terminal);
             screen.setCursorPosition(null);

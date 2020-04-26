@@ -31,4 +31,8 @@ public class ArenaModel {
     }
 
     public Hero getHero() { return hero; }
+
+    public interface Loader {
+        public ArenaModel getArenaModel();
+    }
 }
