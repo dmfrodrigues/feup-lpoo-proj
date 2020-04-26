@@ -1,5 +1,6 @@
-public interface Direction {
-    public void rotateRight();
-    public void rotateLeft();
-    public Position forward();
+public class Direction {
+    private enum Dir
+    {
+        UP,DOWN,LEFT,RIGHT
+    }
 }
