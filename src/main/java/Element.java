@@ -1,4 +1,6 @@
+
 public abstract class Element {
+
     protected Position pos;
     public Element(Position pos){
         this.pos = pos;
@@ -8,9 +10,7 @@ public abstract class Element {
         return new Position(pos);
     }
 
-    public void setPos(Position pos) {
-        this.pos = pos;
-    }
+    public void setPos(Position position) { this.pos = position; }
 
     /**
      * Override of equals. Also checks if they are the same class.
