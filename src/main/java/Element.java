@@ -1,5 +1,5 @@
 public abstract class Element {
-    private Position pos;
+    protected Position pos;
     public Element(Position pos){
         this.pos = pos;
     }

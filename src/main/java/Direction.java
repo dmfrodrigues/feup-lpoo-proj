@@ -1,5 +1,5 @@
 public interface Direction {
-    public void rotateRight();
-    public void rotateLeft();
-    public Position forward();
+    Direction rotateRight();
+    Direction rotateLeft();
+    Position forward();
 }

@@ -1,13 +1,9 @@
 public class EastDirection implements Direction {
     @Override
-    public void rotateRight() {
-
-    }
+    public Direction rotateRight() { return new SouthDirection(); }
 
     @Override
-    public void rotateLeft() {
-
-    }
+    public Direction rotateLeft() { return new NorthDirection(); }
 
     @Override
     public Position forward() {

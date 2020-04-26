@@ -1,6 +1,8 @@
 import java.io.IOException;
 
 public interface GUI {
-    public void clear();
-    public void refresh() throws IOException;
+    void clear();
+    void refresh() throws IOException;
+
+    void close() throws IOException;
 }
