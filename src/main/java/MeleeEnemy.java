@@ -1,6 +1,6 @@
 public class MeleeEnemy extends Enemy {
 
-    public MeleeEnemy(Position pos) {
-        super(pos);
+    public MeleeEnemy(Position pos, ArenaModel model) {
+        super(pos,model);
     }
 }

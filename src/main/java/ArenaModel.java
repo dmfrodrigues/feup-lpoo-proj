@@ -21,4 +21,12 @@ public class ArenaModel {
         res.addAll(listDynamicElements);
         return res;
     }
+
+    public int getW() {
+        return W;
+    }
+
+    public int getH() {
+        return H;
+    }
 }

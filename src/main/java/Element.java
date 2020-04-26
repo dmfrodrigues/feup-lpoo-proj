@@ -18,4 +18,6 @@ public abstract class Element {
         return (getClass().equals(obj.getClass()) &&
                 pos.equals(((Element)obj).pos));
     }
+
+    public abstract int getMatrixValue();
 }
