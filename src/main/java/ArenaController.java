@@ -1,4 +1,4 @@
-import java.util.List;
+import java.io.IOException;
 
 public class ArenaController {
     ArenaModel arenaModel;
@@ -7,11 +7,9 @@ public class ArenaController {
         this.arenaModel = arenaModel;
         this.arenaView = arenaView;
     }
-    public void run(){
-        System.out.println("Running game");
-        List<Element> listElements = arenaModel.getElements();
-        for(final Element e: listElements){
-            System.out.println(e.getClass().toString());
+    public void run() throws IOException {
+        while(true){
+            arenaView.draw(arenaModel);
         }
     }
 }

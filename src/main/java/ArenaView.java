@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 public interface ArenaView {
-    public void draw(ArenaModel arena);
+    public void draw(ArenaModel arena) throws IOException;
 }
