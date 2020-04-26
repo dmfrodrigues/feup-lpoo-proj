@@ -19,5 +19,5 @@ public abstract class Element {
                 pos.equals(((Element)obj).pos));
     }
 
-    public abstract int getMatrixValue();
+    public abstract boolean isObstacle();
 }

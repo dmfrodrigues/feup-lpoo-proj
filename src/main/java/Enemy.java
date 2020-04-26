@@ -17,12 +17,16 @@ public abstract class Enemy extends DynamicElement {
 
         for (Element element : elements)
         {
-            int currentValue = element.getMatrixValue();
+            int currentValue;
+            if (element.isObstacle()) currentValue = 1;
+            else currentValue = 0;
             Position currentPos = element.getPos();
             int currentX = currentPos.getX();
             int currentY = currentPos.getY();
             matrix[currentY][currentX] = currentValue;
         }
+
+
     }
 
     public Position calculatePath()
