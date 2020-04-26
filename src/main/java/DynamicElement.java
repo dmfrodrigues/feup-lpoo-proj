@@ -29,4 +29,6 @@ public abstract class DynamicElement extends Element {
         setPos(pos);
         dir = new EastDirection();
     }
+
+    public Direction getDirection() { return dir; }
 }
