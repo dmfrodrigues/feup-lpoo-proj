@@ -3,13 +3,5 @@ public class Wall extends StaticElement {
         super(pos);
     }
 
-    @Override
-    public boolean isObstacle() {
-        return true;
-    }
 
-    @Override
-    public boolean isEnemy() {
-        return false;
-    }
 }
