@@ -7,7 +7,7 @@ import java.util.Queue;
 public class ArenaController {
     ArenaModel arenaModel;
     ArenaView arenaView;
-    private Node[][] arenaMatrix;
+    Node[][] arenaMatrix;
 
     public ArenaController(ArenaModel arenaModel, ArenaView arenaView){
         this.arenaModel = arenaModel;
@@ -38,7 +38,7 @@ public class ArenaController {
         arenaView.close();
     }
 
-    private void generateMatrix()
+    public void generateMatrix()
     {
         List<Element> elements = arenaModel.getElements();
 
@@ -59,13 +59,13 @@ public class ArenaController {
         {
             for (int i2 = 0; i2 < arenaModel.getW(); i2++)
             {
-                arenaMatrix[i][i2].setPosition(new Position(i,i2));
+                arenaMatrix[i][i2].setPosition(new Position(i2,i));
             }
         }
 
     }
 
-    private void shortestPaths()
+    public void shortestPaths()
     {
         generateMatrix();
 
