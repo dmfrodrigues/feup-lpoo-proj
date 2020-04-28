@@ -1,5 +1,5 @@
 import java.util.List;
 
 public interface Graph {
-    List<Node> getNodes();
+    List<? extends Node> getNodes();
 }

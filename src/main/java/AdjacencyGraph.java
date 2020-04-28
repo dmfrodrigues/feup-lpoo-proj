@@ -1,10 +1,11 @@
 import java.util.List;
 
 public class AdjacencyGraph implements Graph {
-    private List<Node> nodes;
+    private List<AdjacencyNode> nodes;
+
 
     @Override
-    public List<Node> getNodes() {
+    public List<? extends Node> getNodes() {
         return nodes;
     }
 }

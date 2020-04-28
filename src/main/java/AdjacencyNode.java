@@ -48,31 +48,37 @@ public class AdjacencyNode implements Node {
         this.position = position;
     }
 
-    public List<AdjacencyNode> getAdj()
-    {
-        return adj;
+    @Override
+    public void setPath(Node path) {
+        this.path = (AdjacencyNode) path;
     }
 
-    public Integer getDist() {
-        return dist;
+    @Override
+    public Node getPath() {
+        return path;
     }
 
+    @Override
     public void setDist(Integer dist) {
         this.dist = dist;
     }
 
-    public void setPath(AdjacencyNode path)
-    {
-        this.path = path;
+    @Override
+    public Integer getDist() {
+        return dist;
     }
 
-    public AdjacencyNode getPath() {
-        return path;
+    @Override
+    public void setAdj(List<? extends Node> adj) {
+        this.adj = (List<AdjacencyNode>) adj;
     }
 
-    public void setPath(AdjacencyNode path) {
-        this.path = path;
+    @Override
+    public List<? extends Node> getAdj() {
+        return adj;
     }
+
+
 
     @Override
     public boolean equals(Object o)

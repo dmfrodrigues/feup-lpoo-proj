@@ -5,7 +5,7 @@ import java.util.Queue;
 public class BFSshortestPath implements ShortestPath {
     @Override
     public void calcPath(Graph graph, Node start) {
-        List<Node> nodes = graph.getNodes();
+        List<Node> nodes = (List<Node>) graph.getNodes();
 
         for (Node node : nodes)
         {
@@ -19,7 +19,7 @@ public class BFSshortestPath implements ShortestPath {
         while (!queue.isEmpty())
         {
             Node currentNode = queue.poll();
-            List<Node> adjacent = currentNode.getAdj();
+            List<Node> adjacent = (List<Node>) currentNode.getAdj();
             for (Node adjNode : adjacent)
             {
                 if (adjNode.getDist() == Integer.MAX_VALUE)

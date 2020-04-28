@@ -5,5 +5,6 @@ public interface Node {
     Node getPath();
     void setDist(Integer dist);
     Integer getDist();
-    List<Node> getAdj();
+    void setAdj(List<? extends Node> adj);
+    List<? extends Node> getAdj();
 }
