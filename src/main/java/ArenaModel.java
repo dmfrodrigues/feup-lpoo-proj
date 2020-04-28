@@ -8,6 +8,8 @@ public class ArenaModel {
     private List<DynamicElement> listDynamicElements;
 
     public ArenaModel(int W, int H){
+        this.W = W;
+        this.H = H;
         listStaticElements = new ArrayList<>();
         listDynamicElements = new ArrayList<>();
     }
