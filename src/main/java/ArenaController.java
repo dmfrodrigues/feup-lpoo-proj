@@ -16,19 +16,31 @@ public class ArenaController {
     }
     public void run() throws IOException {
         boolean good = true;
+        int i = 0;
         while(good){
-            Graph<Position> G = arenaModel.getGraph();
-            ShortestPath<Position> shortestPath = new BFSshortestPath<Position>();
-            shortestPath.setGraph(G);
-            shortestPath.calcPaths(arenaModel.getHero().getPos());
-            List<Element> elements = arenaModel.getElements();
-            for (final Element element : elements)
-            {
-                if (element instanceof Ghost)
-                {
-                    element.setPos(shortestPath.getPrev(element.getPos()));
-                }
+            
+            try {
+                Thread.sleep(10);
+            } catch(InterruptedException e){
+                
             }
+            
+            if(i%10 == 0) {
+                Graph<Position> G = arenaModel.getGraph();
+                ShortestPath<Position> shortestPath = new BFSshortestPath<Position>();
+                shortestPath.setGraph(G);
+                shortestPath.calcPaths(arenaModel.getHero().getPos());
+                List<Element> elements = arenaModel.getElements();
+                for (final Element element : elements) {
+                    if (element instanceof Ghost) {
+                        Position newPos = shortestPath.getPrev(element.getPos());
+                        if (newPos != null) element.setPos(newPos);
+                    }
+                }
+                i = 1;
+            }
+            ++i;
+            
             ArenaView.COMMAND cmd = arenaView.pollCommand();
             if(!(cmd == null)) {
                 switch (cmd) {

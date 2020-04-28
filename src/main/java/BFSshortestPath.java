@@ -23,9 +23,11 @@ public class BFSshortestPath<T> implements ShortestPath<T> {
         }
 
         Queue<T> queue = new LinkedList<>();
-        dist.put(source,0);
-        prev.put(source,source);
-        queue.add(source);
+        if(nodes.contains(source)) {
+            dist.put(source, 0);
+            prev.put(source, source);
+            queue.add(source);
+        }
 
         while (!queue.isEmpty())
         {
