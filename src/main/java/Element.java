@@ -9,7 +9,9 @@ public abstract class Element {
     public Position getPos(){
         return new Position(pos);
     }
+
     public void setPos(Position position) { this.pos = position; }
+
     /**
      * Override of equals. Also checks if they are the same class.
      * @param obj   Object to compare with
@@ -20,4 +22,5 @@ public abstract class Element {
         return (getClass().equals(obj.getClass()) &&
                 pos.equals(((Element)obj).pos));
     }
+
 }

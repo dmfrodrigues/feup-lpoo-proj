@@ -16,6 +16,7 @@ public class ArenaModelLoaderFile implements ArenaModel.Loader {
                 switch(line.charAt(x)){
                     case 'W': arenaModel.addStaticElement(new Wall(new Position(x, y))); break;
                     case 'H': arenaModel.addHero(new Hero(new Position(x, y))); break;
+                    case 'G': arenaModel.addDynamicElement(new Ghost(new Position(x, y))); break;
                     case ' ': break;
                     default: throw new IllegalArgumentException("Unknown character");
                 }

@@ -41,6 +41,8 @@ public class PositionTest {
         Position position = new Position(10,10);
         Position position2 = new Position(5,5);
         assertNotEquals(position,position2);
+        Position position3 = new Position(10,10);
+        assertEquals(position, position3);
     }
 
     @Test
