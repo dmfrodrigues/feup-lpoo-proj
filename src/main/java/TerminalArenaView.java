@@ -50,8 +50,13 @@ public class TerminalArenaView implements ArenaView {
     }
 
     public class ElementView {
-        private final static int Wscreen = 8;
-        private final static int Hscreen = 4;
+        private final static int Wtile = 8;
+        private final static int Htile = 4;
+        private final Position heroPos;
+        
+        public ElementView(Position heroPos){
+            this.heroPos = heroPos;
+        }
 
         public void draw(Element e){
             Position pos = e.getPos();
@@ -62,13 +67,11 @@ public class TerminalArenaView implements ArenaView {
             } else if(e instanceof DynamicElement) {
                 sprite = spriteOrientableMap.get(e.getClass().toString()).getSprite(((DynamicElement) e).getDirection());
             } else return;
-
-            int W = sprite.getW();
-            int H = sprite.getH();
-            int x0 = pos.getX()*W;
-            int y0 = pos.getY()*H;
-            for(int x = 0; x < Wscreen; ++x) {
-                for (int y = 0; y < Hscreen; ++y) {
+            
+            int x0 = (pos.getX()-heroPos.getX())*Wtile + terminalGUI.getW()/2;
+            int y0 = (pos.getY()-heroPos.getY())*Htile + terminalGUI.getH()/2;
+            for(int x = 0; x < sprite.getW(); ++x) {
+                for (int y = 0; y < sprite.getH(); ++y) {
                     terminalGUI.drawCharacter(x0 + x, y0 + y,
                             sprite.getChar(x, y),
                             sprite.getForegroundColor(x, y),
@@ -83,7 +86,7 @@ public class TerminalArenaView implements ArenaView {
     public void draw(ArenaModel arena) throws IOException {
         terminalGUI.clear();
         List<Element> listElements = arena.getElements();
-        ElementView elementViewTerminal = new ElementView();
+        ElementView elementViewTerminal = new ElementView(arena.getHero().getPos());
         for(final Element e : listElements){
             elementViewTerminal.draw(e);
         }
