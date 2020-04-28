@@ -1,3 +1,7 @@
+package View;
+
+import Model.ArenaModel;
+
 import java.io.IOException;
 
 public interface ArenaView {

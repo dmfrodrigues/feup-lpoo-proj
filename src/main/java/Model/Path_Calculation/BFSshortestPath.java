@@ -1,3 +1,5 @@
+package Model.Path_Calculation;
+
 import java.util.*;
 
 public class BFSshortestPath<T> implements ShortestPath<T> {

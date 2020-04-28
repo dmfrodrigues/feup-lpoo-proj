@@ -1,3 +1,8 @@
+package Model;
+import Model.Terminal.TerminalFactory;
+import Model.Terminal.TerminalGUI;
+import View.ViewFactory;
+
 import java.io.*;
 
 public class Application {
@@ -24,6 +29,6 @@ public class Application {
             System.err.println("IOException");
         }
     }
-    enum Direction {UP,DOWN,LEFT,RIGHT}
+    public enum Direction {UP,DOWN,LEFT,RIGHT}
 }
 

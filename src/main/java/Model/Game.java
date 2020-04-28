@@ -1,5 +1,11 @@
+package Model;
+
+import Controller.ArenaController;
+
 import javax.swing.text.View;
 import java.io.IOException;
+import View.ArenaView;
+import View.ViewFactory;
 
 public class Game {
     private ArenaModel arenaModel;

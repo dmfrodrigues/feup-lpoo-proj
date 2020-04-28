@@ -1,3 +1,5 @@
+package Model;
+
 public class Position {
     private Integer x,y;
 

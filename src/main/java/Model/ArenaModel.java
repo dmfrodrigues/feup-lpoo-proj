@@ -1,3 +1,11 @@
+package Model;
+
+import Model.Elements.DynamicElement;
+import Model.Elements.Element;
+import Model.Elements.StaticElement;
+import Model.Path_Calculation.AdjacencyGraph;
+import Model.Path_Calculation.Graph;
+
 import java.util.ArrayList;
 import java.util.List;
 

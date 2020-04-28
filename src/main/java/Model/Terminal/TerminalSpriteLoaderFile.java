@@ -1,3 +1,7 @@
+package Model.Terminal;
+
+import Model.Color;
+
 import java.io.InputStream;
 import java.util.Scanner;
 

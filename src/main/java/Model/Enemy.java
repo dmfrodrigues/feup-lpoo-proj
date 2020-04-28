@@ -1,3 +1,8 @@
+package Model;
+
+import Model.Elements.DynamicElement;
+import Model.Effect.Effect;
+
 public abstract class Enemy extends DynamicElement {
     protected Effect effect;
 

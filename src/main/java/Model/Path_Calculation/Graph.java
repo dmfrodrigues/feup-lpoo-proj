@@ -1,3 +1,5 @@
+package Model.Path_Calculation;
+
 import java.util.List;
 
 public interface Graph<T> {

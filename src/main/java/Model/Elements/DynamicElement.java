@@ -1,3 +1,8 @@
+package Model.Elements;
+
+import Model.Application;
+import Model.Position;
+
 public abstract class DynamicElement extends Element {
     protected Application.Direction dir;
     public DynamicElement(Position pos){

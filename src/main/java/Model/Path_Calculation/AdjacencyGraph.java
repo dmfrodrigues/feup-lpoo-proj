@@ -1,3 +1,5 @@
+package Model.Path_Calculation;
+
 import java.util.*;
 
 public class AdjacencyGraph<T> implements Graph<T> {

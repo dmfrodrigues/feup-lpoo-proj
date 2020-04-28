@@ -1,3 +1,7 @@
+package Model.Terminal;
+
+import Model.Application;
+
 import java.io.InputStream;
 
 public class TerminalSpriteOrientable{

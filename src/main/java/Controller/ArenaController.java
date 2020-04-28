@@ -1,4 +1,13 @@
+package Controller;
 
+import Model.ArenaModel;
+import Model.Elements.Element;
+import Model.Ghost;
+import Model.Path_Calculation.BFSshortestPath;
+import Model.Path_Calculation.Graph;
+import Model.Path_Calculation.ShortestPath;
+import Model.Position;
+import View.ArenaView;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -1,3 +1,6 @@
+package Model.Elements;
+
+import Model.Position;
 
 public abstract class Element {
 

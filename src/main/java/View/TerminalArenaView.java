@@ -1,3 +1,14 @@
+package View;
+
+import Model.ArenaModel;
+import Model.Elements.DynamicElement;
+import Model.Elements.Element;
+import Model.Elements.StaticElement;
+import Model.Position;
+import Model.Terminal.TerminalGUI;
+import Model.Terminal.TerminalSprite;
+import Model.Terminal.TerminalSpriteLoaderFile;
+import Model.Terminal.TerminalSpriteOrientable;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.terminal.Terminal;
