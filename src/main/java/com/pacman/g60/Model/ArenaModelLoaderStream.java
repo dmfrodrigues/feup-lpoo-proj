@@ -16,9 +16,9 @@ public class ArenaModelLoaderStream implements ArenaModel.Loader {
             String line = scanner.nextLine();
             for(Integer x = 0; x < W; ++x){
                 switch(line.charAt(x)){
-                    case 'W': arenaModel.addStaticElement(new Wall(new Position(x, y))); break;
-                    case 'H': arenaModel.addHero(new Hero(new Position(x, y))); break;
-                    case 'G': arenaModel.addDynamicElement(new Ghost(new Position(x, y))); break;
+                    case 'W': arenaModel.addElement(new Wall(new Position(x, y))); break;
+                    case 'H': arenaModel.addElement(new Hero(new Position(x, y))); break;
+                    case 'G': arenaModel.addElement(new Ghost(new Position(x, y))); break;
                     case ' ': break;
                     default: throw new IllegalArgumentException("Unknown character");
                 }
