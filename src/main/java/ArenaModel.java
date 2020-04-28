@@ -6,7 +6,6 @@ public class ArenaModel {
     private Hero hero = null;
     private List<StaticElement> listStaticElements;
     private List<DynamicElement> listDynamicElements;
-    private Graph<Position> G;
 
     public ArenaModel(int W, int H){
         this.W = W;
@@ -22,7 +21,6 @@ public class ArenaModel {
 
     public void addStaticElement(StaticElement staticElement){
         listStaticElements.add(staticElement);
-        this.G = getGraph();
     }
 
     public void addDynamicElement(DynamicElement dynamicElement){ listDynamicElements.add(dynamicElement); }

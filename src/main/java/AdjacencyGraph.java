@@ -15,7 +15,8 @@ public class AdjacencyGraph<T> implements Graph<T> {
 
     @Override
     public void addEdge(T source, T dest) throws IllegalArgumentException {
-        if  (!adj.containsKey(source) || !adj.containsKey(dest)) throw new IllegalArgumentException("Node does not exist.\n");
+        if  (!adj.containsKey(source)) throw new IllegalArgumentException("Node " + source.toString() + " does not exist.\n");
+        if  (!adj.containsKey(dest)) throw new IllegalArgumentException("Node " + dest.toString() + " does not exist.\n");
         adj.get(source).add(dest);
         adj.get(dest).add(source);
     }

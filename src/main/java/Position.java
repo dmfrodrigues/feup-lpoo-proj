@@ -35,6 +35,16 @@ public class Position {
 
         Position pos = (Position) obj;
 
-        return pos.x == this.x && pos.y == this.y;
+        return x.equals(pos.x) && y.equals(pos.y);
+    }
+
+    @Override
+    public int hashCode() {
+        return x.hashCode() + y.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "(" + x + ", " + y + ")";
     }
 }
