@@ -44,7 +44,7 @@ public class LanternaGUI implements TerminalGUI {
 
     @Override
     public void clear(){
-        //screen.doResizeIfNecessary();
+        screen.doResizeIfNecessary();
         screen.clear();
     }
 
@@ -62,4 +62,10 @@ public class LanternaGUI implements TerminalGUI {
     public void close() throws IOException{
         screen.close();
     }
+
+    @Override
+    public Integer getW() { return screen.getTerminalSize().getColumns(); }
+
+    @Override
+    public Integer getH() { return screen.getTerminalSize().getRows(); }
 }
