@@ -44,7 +44,7 @@ public class LanternaGUI implements TerminalGUI {
 
     @Override
     public void clear(){
-        screen.doResizeIfNecessary();
+        //screen.doResizeIfNecessary();
         screen.clear();
     }
 
