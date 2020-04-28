@@ -28,7 +28,7 @@ public class AdjacencyGraph implements Graph {
                 int diffX = firstX - secondX;
                 int diffY = firstY - secondY;
 
-                boolean isAdjacent = ((Math.abs(diffX) == 1) || (Math.abs(diffY) == 1));
+                boolean isAdjacent = ((Math.abs(diffX) == 1) && (Math.abs(diffY) == 1));
 
                 if (isAdjacent) adj.add(node2);
             }

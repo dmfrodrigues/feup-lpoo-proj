@@ -37,7 +37,7 @@ public class AdjacencyNode implements Node {
     }
 
     @Override
-    public Node getPath() {
+    public AdjacencyNode getPath() {
         return path;
     }
 

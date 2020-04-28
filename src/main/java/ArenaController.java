@@ -68,20 +68,30 @@ public class ArenaController {
     }
 
 
-    public void updateEnemyLocations(AdjacencyGraph graph)
+    public void updateEnemyLocations()
     {
+        AdjacencyGraph graph = new AdjacencyGraph(generateMatrix());
+        List<AdjacencyNode> nodes = (List<AdjacencyNode>) graph.getNodes();
+        Position heroPos = arenaModel.getHero().getPos();
+        AdjacencyNode start = new AdjacencyNode();
 
+        for (AdjacencyNode node : nodes) {
+            if (node.getPosition().equals(heroPos)) start = node;
+            break;
+        }
 
-        for (DynamicElement element : arenaModel.getDynamicElements())
+        BFSshortestPath shortestPath = new BFSshortestPath();
+        shortestPath.calcPath(graph,start);
+
+        List<AdjacencyNode> updatedNodes = (List<AdjacencyNode>) graph.getNodes();
+
+        for (AdjacencyNode node : updatedNodes)
         {
-            if (element.getClass() != Hero.class)
+            Position currentNodePos = node.getPosition();
+            for (DynamicElement element : arenaModel.getDynamicElements())
             {
-                Position currentEnemyPos = element.getPos();
-                int currentEnemyX = currentEnemyPos.getX();
-                int currentEnemyY = currentEnemyPos.getY();
-                Node currentEnemy = arenaMatrix[currentEnemyY][currentEnemyX];
-                Position newEnemyPos = currentEnemy.getPath().getPosition();
-                element.updatePos(newEnemyPos);
+                Position currentElementPos = element.getPos();
+                if (element instanceof Enemy && currentNodePos.equals(currentElementPos)) element.setPos(node.getPath().getPosition());
             }
         }
     }
