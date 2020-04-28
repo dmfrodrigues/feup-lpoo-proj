@@ -58,6 +58,7 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
 
 ## Features
 
+- [ ] Collisions
 - [ ] Main menu
     - [ ] Scoreboard
     - [ ] Level selector
@@ -80,6 +81,10 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
     - [ ] Ghost
     - [ ] Spider
     - [ ] Mummy
+- [ ] Collectables
+    - [ ] Coin
+    - [ ] Sword
+    - [ ] Bullet
 - [ ] Swing compatibility
 
 ## UML
