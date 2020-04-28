@@ -8,12 +8,11 @@ import java.util.List;
 public class ArenaController {
     ArenaModel arenaModel;
     ArenaView arenaView;
-    boolean[][] isObstacle;
+
 
     public ArenaController(ArenaModel arenaModel, ArenaView arenaView){
         this.arenaModel = arenaModel;
         this.arenaView = arenaView;
-        this.isObstacle = new boolean[arenaModel.getH()][arenaModel.getW()];
     }
     public void run() throws IOException {
         boolean good = true;
@@ -50,17 +49,7 @@ public class ArenaController {
         }
     }
 
-    private void setMatrixValues(List<Element> elements)
-    {
-        for (Element element : elements)
-        {
-            Position currentPos = element.getPos();
-            int currentX = currentPos.getX();
-            int currentY = currentPos.getY();
 
-            if (element instanceof StaticElement) isObstacle[currentY][currentX] = true;
-        }
-    }
 
 
 

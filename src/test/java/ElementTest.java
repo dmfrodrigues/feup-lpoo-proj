@@ -5,8 +5,6 @@ import static org.junit.Assert.*;
 public class ElementTest {
     public class NotAWall extends StaticElement{
         public NotAWall(Position pos){ super(pos); }
-
-
     }
     @Test
     public void wallOrNotAWall(){
