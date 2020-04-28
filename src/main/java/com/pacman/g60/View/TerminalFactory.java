@@ -1,7 +1,4 @@
-package com.pacman.g60.Model.Terminal;
-
-import com.pacman.g60.View.TerminalArenaView;
-import com.pacman.g60.View.ViewFactory;
+package com.pacman.g60.View;
 
 public class TerminalFactory implements ViewFactory {
     private TerminalGUI terminalGUI;

@@ -8,10 +8,6 @@ import com.pacman.g60.Model.Elements.DynamicElement;
 import com.pacman.g60.Model.Elements.Element;
 import com.pacman.g60.Model.Elements.StaticElement;
 import com.pacman.g60.Model.Position;
-import com.pacman.g60.Model.Terminal.TerminalGUI;
-import com.pacman.g60.Model.Terminal.TerminalSprite;
-import com.pacman.g60.Model.Terminal.TerminalSpriteLoaderFile;
-import com.pacman.g60.Model.Terminal.TerminalSpriteOrientable;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

@@ -1,12 +1,10 @@
 import com.pacman.g60.Model.Color;
-import com.pacman.g60.Model.Terminal.TerminalSprite;
-import com.pacman.g60.Model.Terminal.TerminalSpriteLoaderFile;
+import com.pacman.g60.View.TerminalSprite;
+import com.pacman.g60.View.TerminalSpriteLoaderFile;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
-import java.io.FileInputStream;
 import java.io.InputStream;
-import java.io.StringBufferInputStream;
 
 import static org.junit.Assert.assertEquals;
 

@@ -1,4 +1,4 @@
-package com.pacman.g60.Model.Terminal;
+package com.pacman.g60.View;
 
 
 import com.googlecode.lanterna.input.KeyStroke;

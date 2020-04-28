@@ -1,9 +1,7 @@
-package com.pacman.g60.Model.Terminal;
+package com.pacman.g60.View;
 
 
 import com.pacman.g60.Application;
-
-import java.io.InputStream;
 
 public class TerminalSpriteOrientable{
     private TerminalSprite spriteRight, spriteLeft, spriteUp, spriteDown;

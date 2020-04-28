@@ -10,7 +10,7 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
-import com.pacman.g60.Model.Terminal.TerminalGUI;
+import com.pacman.g60.View.TerminalGUI;
 
 import java.awt.*;
 import java.io.IOException;
