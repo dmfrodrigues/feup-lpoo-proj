@@ -47,9 +47,6 @@ public class ArenaController {
             int currentX = currentPos.getX();
             int currentY = currentPos.getY();
 
-            System.out.println(isObstacle.length);
-            System.out.println(isObstacle[0].length);
-
             if (element instanceof StaticElement) isObstacle[currentY][currentX] = true;
         }
     }

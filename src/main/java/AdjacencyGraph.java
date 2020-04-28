@@ -1,43 +1,30 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class AdjacencyGraph implements Graph {
-    private List<AdjacencyNode> nodes;
+public class AdjacencyGraph<T> implements Graph<T> {
+    Map<T,List<T>> adj;
 
-    public AdjacencyGraph(List<AdjacencyNode> nodes)
+    public AdjacencyGraph()
     {
-        this.nodes = nodes;
-        findAdjacents();
-    }
-
-    private void findAdjacents()
-    {
-        for (AdjacencyNode node : nodes)
-        {
-            Position firstPos = node.getPosition();
-            int firstX = firstPos.getX();
-            int firstY = firstPos.getY();
-
-            List<AdjacencyNode> adj = new ArrayList<>();
-            for (AdjacencyNode node2 : nodes)
-            {
-                Position secondPos = node2.getPosition();
-                int secondX = secondPos.getX();
-                int secondY = secondPos.getY();
-
-                int diffX = firstX - secondX;
-                int diffY = firstY - secondY;
-
-                boolean isAdjacent = ((Math.abs(diffX) == 1) && (Math.abs(diffY) == 1));
-
-                if (isAdjacent) adj.add(node2);
-            }
-            node.setAdj(adj);
-        }
+        this.adj = new HashMap<>();
     }
 
     @Override
-    public List<? extends Node> getNodes() {
-        return nodes;
+    public void addNode(T node) {
+        adj.put(node,new ArrayList<>());
+    }
+
+    @Override
+    public void addEdge(T source, T dest) throws IllegalArgumentException {
+        if  (!adj.containsKey(source) || !adj.containsKey(dest)) throw new IllegalArgumentException("Node does not exist.\n");
+        adj.get(source).add(dest);
+        adj.get(dest).add(source);
+    }
+
+    @Override
+    public List getAdj(T node) {
+        return adj.get(node);
     }
 }

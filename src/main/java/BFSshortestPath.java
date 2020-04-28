@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.Queue;
 
 public class BFSshortestPath implements ShortestPath {
+
     @Override
     public void calcPath(Graph graph, Node start) {
         List<Node> nodes = (List<Node>) graph.getNodes();

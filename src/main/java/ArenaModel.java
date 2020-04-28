@@ -6,6 +6,7 @@ public class ArenaModel {
     private Hero hero = null;
     private List<StaticElement> listStaticElements;
     private List<DynamicElement> listDynamicElements;
+    private Graph<Position> G;
 
     public ArenaModel(int W, int H){
         this.W = W;
@@ -21,6 +22,7 @@ public class ArenaModel {
 
     public void addStaticElement(StaticElement staticElement){
         listStaticElements.add(staticElement);
+        this.G = getGraph();
     }
 
     public void addDynamicElement(DynamicElement dynamicElement){ listDynamicElements.add(dynamicElement); }
@@ -35,6 +37,36 @@ public class ArenaModel {
         res.addAll(listStaticElements);
         res.addAll(listDynamicElements);
         return res;
+    }
+
+    public Graph<Position> getGraph()
+    {
+        boolean[][] obstacle = new boolean[W][H];
+        for (final StaticElement e : listStaticElements)
+        {
+            if (e instanceof Wall) obstacle[e.getPos().getX()][e.getPos().getY()] = true;
+        }
+
+        Graph<Position> G = new AdjacencyGraph<>();
+        for (int x = 0; x < W; ++x)
+        {
+            for (int y = 0; y < H; ++y)
+            {
+                if (!obstacle[x][y]) G.addNode(new Position(x,y));
+            }
+        }
+        for (int x = 0; x < W; ++x)
+        {
+            for (int y = 0; y < H; ++y)
+            {
+                if (obstacle[x][y]) continue;
+                if (x > 0 && !obstacle[x-1][y]) G.addEdge(new Position(x,y),new Position(x-1,y));
+                if (y > 0 && !obstacle[x][y-1]) G.addEdge(new Position(x,y),new Position(x,y-y));
+                if (x < W-1 && !obstacle[x+1][y]) G.addEdge(new Position(x,y),new Position(x+1,y));
+                if (y < H-1 && !obstacle[x][y+1]) G.addEdge(new Position(x,y),new Position(x,y+1));
+            }
+        }
+        return G;
     }
 
 
