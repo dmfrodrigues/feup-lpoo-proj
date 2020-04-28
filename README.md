@@ -124,7 +124,7 @@ We will also use the [Composite](https://refactoring.guru/design-patterns/compos
 - Compose commands as chains of other commands.
 - Encapsulate commands and lists of commands from whoever has contact with them.
 
-## Movement strategies (Strategy)
+### Movement strategies (Strategy)
 We might decide to implement a different strategy for moving our followers: instead of going all straight horizontally and then vertically, we might want followers to describe a sort of a diagonal, such that if the tile above and to the left are the same distance from the destination we might want to choose that which makes the movement resemble more of a diagonal (i.e., the one that minimizes the distance in a straight line).
 
 For that we will use the [Strategy](https://refactoring.guru/design-patterns/strategy) pattern, allowing us to:
