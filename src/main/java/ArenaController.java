@@ -38,10 +38,8 @@ public class ArenaController {
         }
     }
 
-    private void setMatrixValues()
+    private void setMatrixValues(List<Element> elements)
     {
-        List<Element> elements = arenaModel.getElements();
-
         for (Element element : elements)
         {
             Position currentPos = element.getPos();
@@ -52,25 +50,18 @@ public class ArenaController {
         }
     }
 
-    public List<AdjacencyNode> generateMatrix()
+    public List<AdjacencyNode> generateGraph()
     {
         List<AdjacencyNode> result = new ArrayList<>();
-
-        List<Element> elements = arenaModel.getElements();
 
         int height = arenaModel.getH();
         int width = arenaModel.getW();
 
         boolean[][] isObstacle = new boolean[height][width];
 
-        for (Element element : elements)
-        {
-            Position currentPos = element.getPos();
-            int currentX = currentPos.getX();
-            int currentY = currentPos.getY();
+        List<Element> elements = arenaModel.getElements();
 
-            if (element instanceof StaticElement) isObstacle[currentY][currentX] = true;
-        }
+        setMatrixValues(elements);
 
         for (int i = 0; i < height; i++)
         {
@@ -83,12 +74,8 @@ public class ArenaController {
         return result;
     }
 
-
-
-
-    public void updateEnemyLocations()
+    private void calculatePath(AdjacencyGraph graph)
     {
-        AdjacencyGraph graph = new AdjacencyGraph(generateMatrix());
         List<AdjacencyNode> nodes = (List<AdjacencyNode>) graph.getNodes();
         Position heroPos = arenaModel.getHero().getPos();
         AdjacencyNode start = new AdjacencyNode();
@@ -100,6 +87,14 @@ public class ArenaController {
 
         BFSshortestPath shortestPath = new BFSshortestPath();
         shortestPath.calcPath(graph,start);
+    }
+
+
+    public void updateEnemyLocations()
+    {
+        AdjacencyGraph graph = new AdjacencyGraph(generateGraph());
+
+        calculatePath(graph);
 
         List<AdjacencyNode> updatedNodes = (List<AdjacencyNode>) graph.getNodes();
 
@@ -109,7 +104,9 @@ public class ArenaController {
             for (DynamicElement element : arenaModel.getDynamicElements())
             {
                 Position currentElementPos = element.getPos();
-                if (element instanceof Enemy && currentNodePos.equals(currentElementPos)) element.setPos(node.getPath().getPosition());
+                boolean nodeMatchesElem = currentNodePos.equals(currentElementPos);
+                boolean elemIsEnemy = (element instanceof Enemy);
+                if (elemIsEnemy && nodeMatchesElem) element.setPos(node.getPath().getPosition());
             }
         }
     }
