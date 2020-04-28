@@ -12,13 +12,14 @@ public class Application {
             System.err.println("File not found");
             arenaModel = new ArenaModel(150, 50);
         }
-        // arenaView
+        // ViewFactory
         TerminalGUI terminalGUI = new LanternaGUI();
-        ArenaViewTerminal arenaViewTerminal = new ArenaViewTerminal(terminalGUI);
+        ViewFactory viewFactory = new TerminalFactory(terminalGUI);
         // game
-        Game game = new Game(arenaModel, arenaViewTerminal);
+        Game game = new Game(arenaModel, viewFactory);
         try {
             game.run();
+            terminalGUI.close();
         } catch(IOException e){
             System.err.println("IOException");
         }
