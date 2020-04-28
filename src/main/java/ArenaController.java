@@ -18,6 +18,7 @@ public class ArenaController {
     public void run() throws IOException {
         boolean good = true;
         while(good){
+            updateEnemyLocations();
             ArenaView.COMMAND cmd = arenaView.pollCommand();
             if(!(cmd == null)) {
                 switch (cmd) {
@@ -45,6 +46,9 @@ public class ArenaController {
             Position currentPos = element.getPos();
             int currentX = currentPos.getX();
             int currentY = currentPos.getY();
+
+            System.out.println(isObstacle.length);
+            System.out.println(isObstacle[0].length);
 
             if (element instanceof StaticElement) isObstacle[currentY][currentX] = true;
         }

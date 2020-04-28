@@ -6,13 +6,4 @@ public abstract class StaticElement extends Element{
 
     }
 
-    @Override
-    public boolean isObstacle() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnemy() {
-        return false;
-    }
 }
