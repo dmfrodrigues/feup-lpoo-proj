@@ -35,7 +35,6 @@ public class ArenaController {
             }
             arenaView.draw(arenaModel);
         }
-        arenaView.close();
     }
 
     private void generateMatrix()

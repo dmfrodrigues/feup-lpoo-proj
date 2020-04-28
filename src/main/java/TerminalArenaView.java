@@ -10,13 +10,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ArenaViewTerminal implements ArenaView {
+public class TerminalArenaView implements ArenaView {
     private TerminalGUI terminalGUI;
 
     private Map<String, TerminalSprite> spriteMap;
     private Map<String, TerminalSpriteOrientable> spriteOrientableMap;
 
-    public ArenaViewTerminal(TerminalGUI terminalGUI){
+    public TerminalArenaView(TerminalGUI terminalGUI){
         this.terminalGUI = terminalGUI;
         spriteMap = new HashMap<>();
         spriteOrientableMap = new HashMap<>();
@@ -100,10 +100,5 @@ public class ArenaViewTerminal implements ArenaView {
         if(key.getKeyType() == KeyType.ArrowRight) return COMMAND.RIGHT;
         if(key.getKeyType() == KeyType.Escape    ) return COMMAND.EXIT;
         return null;
-    }
-
-    @Override
-    public void close() throws IOException{
-        terminalGUI.close();
     }
 }
