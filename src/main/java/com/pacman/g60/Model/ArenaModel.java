@@ -1,10 +1,5 @@
 package com.pacman.g60.Model;
 
-
-
-
-
-
 import com.pacman.g60.Model.Elements.DynamicElement;
 import com.pacman.g60.Model.Elements.Element;
 import com.pacman.g60.Model.Elements.StaticElement;
@@ -17,43 +12,27 @@ import java.util.List;
 public class ArenaModel {
     private int W, H;
     private Hero hero = null;
-    private List<StaticElement> listStaticElements;
-    private List<DynamicElement> listDynamicElements;
+    private ArrayList<Element> listElements;
 
     public ArenaModel(int W, int H){
         this.W = W;
         this.H = H;
-        listStaticElements = new ArrayList<>();
-        listDynamicElements = new ArrayList<>();
+        listElements = new ArrayList<>();
     }
 
-    public void addHero(Hero hero){
-        this.hero = hero;
-        addDynamicElement(hero);
-    }
-
-    public void addStaticElement(StaticElement staticElement){
-        listStaticElements.add(staticElement);
-    }
-
-    public void addDynamicElement(DynamicElement dynamicElement){ listDynamicElements.add(dynamicElement); }
-
-    public List<DynamicElement> getDynamicElements()
-    {
-        return this.listDynamicElements;
+    public void addElement(Element element){
+        listElements.add(element);
+        if(element instanceof Hero) hero = (Hero)element;
     }
 
     public ArrayList<Element> getElements(){
-        ArrayList<Element> res = new ArrayList<>();
-        res.addAll(listStaticElements);
-        res.addAll(listDynamicElements);
-        return res;
+        return listElements;
     }
 
     public Graph<Position> getGraph()
     {
         boolean[][] obstacle = new boolean[W][H];
-        for (final StaticElement e : listStaticElements)
+        for (final Element e : listElements)
         {
             if (e instanceof Wall) obstacle[e.getPos().getX()][e.getPos().getY()] = true;
         }
@@ -79,7 +58,6 @@ public class ArenaModel {
         }
         return G;
     }
-
 
     public int getW() {
         return W;
