@@ -31,22 +31,22 @@ public class TerminalArenaView implements ArenaView {
             TerminalSprite.Loader loader;
             TerminalSpriteOrientable spriteOrientable;
             //Wall
-            loader = new TerminalSpriteLoaderFile(new FileInputStream("src/main/resources/lanterna-sprites/wall-8-4.lan"));
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/wall-8-4.lan"));
             spriteMap.put("class com.pacman.g60.Model.Wall", loader.getTerminalSprite());
             //Hero
-            loader = new TerminalSpriteLoaderFile(new FileInputStream("src/main/resources/lanterna-sprites/hero-8-4-right.lan"));
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/hero-8-4-right.lan"));
             spriteOrientable = new TerminalSpriteOrientable(loader.getTerminalSprite());
-            loader = new TerminalSpriteLoaderFile(new FileInputStream("src/main/resources/lanterna-sprites/hero-8-4-left.lan"));
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/hero-8-4-left.lan"));
             spriteOrientable.setSpriteLeft(loader.getTerminalSprite());
-            loader = new TerminalSpriteLoaderFile(new FileInputStream("src/main/resources/lanterna-sprites/hero-8-4-up.lan"));
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/hero-8-4-up.lan"));
             spriteOrientable.setSpriteUp(loader.getTerminalSprite());
-            loader = new TerminalSpriteLoaderFile(new FileInputStream("src/main/resources/lanterna-sprites/hero-8-4-down.lan"));
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/hero-8-4-down.lan"));
             spriteOrientable.setSpriteDown(loader.getTerminalSprite());
             spriteOrientableMap.put("class com.pacman.g60.Model.Hero", spriteOrientable);
             //Ghost
-            loader = new TerminalSpriteLoaderFile(new FileInputStream("src/main/resources/lanterna-sprites/ghost-8-4-right.lan"));
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/ghost-8-4-right.lan"));
             spriteOrientable = new TerminalSpriteOrientable(loader.getTerminalSprite());
-            loader = new TerminalSpriteLoaderFile(new FileInputStream("src/main/resources/lanterna-sprites/ghost-8-4-left.lan"));
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/ghost-8-4-left.lan"));
             spriteOrientable.setSpriteLeft(loader.getTerminalSprite());
             spriteOrientableMap.put("class com.pacman.g60.Model.Ghost", spriteOrientable);
         } catch(FileNotFoundException e){

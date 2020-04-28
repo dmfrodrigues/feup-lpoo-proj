@@ -6,9 +6,9 @@ import com.pacman.g60.Model.Color;
 import java.io.InputStream;
 import java.util.Scanner;
 
-public class TerminalSpriteLoaderFile implements TerminalSprite.Loader{
+public class TerminalSpriteLoaderStream implements TerminalSprite.Loader{
     private TerminalSprite terminalSprite;
-    public TerminalSpriteLoaderFile(InputStream inputStream){
+    public TerminalSpriteLoaderStream(InputStream inputStream){
         Scanner scanner = new Scanner(inputStream);
         String firstLine = scanner.nextLine();
         Integer W = Integer.parseInt(firstLine.split(" ")[0]);

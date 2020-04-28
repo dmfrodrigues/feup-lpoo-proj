@@ -3,9 +3,9 @@ package com.pacman.g60.Model;
 import java.io.InputStream;
 import java.util.Scanner;
 
-public class ArenaModelLoaderFile implements ArenaModel.Loader {
+public class ArenaModelLoaderStream implements ArenaModel.Loader {
     private ArenaModel arenaModel;
-    public ArenaModelLoaderFile(InputStream inputStream) {
+    public ArenaModelLoaderStream(InputStream inputStream) {
         Scanner scanner = new Scanner(inputStream);
         String firstLine = scanner.nextLine();
         Integer W = Integer.parseInt(firstLine.split(" ")[0]);

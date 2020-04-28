@@ -1,7 +1,7 @@
 package com.pacman.g60;
 
 import com.pacman.g60.Model.ArenaModel;
-import com.pacman.g60.Model.ArenaModelLoaderFile;
+import com.pacman.g60.Model.ArenaModelLoaderStream;
 import com.pacman.g60.Model.Game;
 import com.pacman.g60.Model.LanternaGUI;
 import com.pacman.g60.View.TerminalFactory;
@@ -16,7 +16,7 @@ public class Application {
         ArenaModel arenaModel;
         try{
             InputStream inputStream = new FileInputStream("src/main/resources/maps/map1.map");
-            ArenaModel.Loader arenaModelLoader = new ArenaModelLoaderFile(inputStream);
+            ArenaModel.Loader arenaModelLoader = new ArenaModelLoaderStream(inputStream);
             arenaModel = arenaModelLoader.getArenaModel();
         } catch(FileNotFoundException e) {
             System.err.println("File not found");
