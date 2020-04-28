@@ -32,7 +32,7 @@ public class TerminalArenaView implements ArenaView {
             TerminalSpriteOrientable spriteOrientable;
             //Wall
             loader = new TerminalSpriteLoaderFile(new FileInputStream("src/main/resources/lanterna-sprites/wall-8-4.lan"));
-            spriteMap.put("class Wall", loader.getTerminalSprite());
+            spriteMap.put("class com.pacman.g60.Model.Wall", loader.getTerminalSprite());
             //Hero
             loader = new TerminalSpriteLoaderFile(new FileInputStream("src/main/resources/lanterna-sprites/hero-8-4-right.lan"));
             spriteOrientable = new TerminalSpriteOrientable(loader.getTerminalSprite());
@@ -42,13 +42,13 @@ public class TerminalArenaView implements ArenaView {
             spriteOrientable.setSpriteUp(loader.getTerminalSprite());
             loader = new TerminalSpriteLoaderFile(new FileInputStream("src/main/resources/lanterna-sprites/hero-8-4-down.lan"));
             spriteOrientable.setSpriteDown(loader.getTerminalSprite());
-            spriteOrientableMap.put("class Hero", spriteOrientable);
+            spriteOrientableMap.put("class com.pacman.g60.Model.Hero", spriteOrientable);
             //Ghost
             loader = new TerminalSpriteLoaderFile(new FileInputStream("src/main/resources/lanterna-sprites/ghost-8-4-right.lan"));
             spriteOrientable = new TerminalSpriteOrientable(loader.getTerminalSprite());
             loader = new TerminalSpriteLoaderFile(new FileInputStream("src/main/resources/lanterna-sprites/ghost-8-4-left.lan"));
             spriteOrientable.setSpriteLeft(loader.getTerminalSprite());
-            spriteOrientableMap.put("class Ghost", spriteOrientable);
+            spriteOrientableMap.put("class com.pacman.g60.Model.Ghost", spriteOrientable);
         } catch(FileNotFoundException e){
             System.err.println("Failed to find file");
         }
@@ -67,7 +67,7 @@ public class TerminalArenaView implements ArenaView {
         public void draw(Element e){
             Position pos = e.getPos();
             TerminalSprite sprite;
-
+            
             if(e instanceof StaticElement){
                 sprite = spriteMap.get(e.getClass().toString());
             } else if(e instanceof DynamicElement) {
