@@ -1,35 +1,50 @@
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
-public class BFSshortestPath implements ShortestPath {
+public class BFSshortestPath<T> implements ShortestPath<T> {
+    private Graph<T> G;
+    private Map<T,T> prev;
 
     @Override
-    public void calcPath(Graph graph, Node start) {
-        List<Node> nodes = (List<Node>) graph.getNodes();
+    public void setGraph(Graph G) {
+        this.G = G;
+    }
 
-        for (Node node : nodes)
+    @Override
+    public void calcPaths(T source) {
+        prev = new HashMap<>();
+        Map<T,Integer> dist = new HashMap<>();
+
+        List<T> nodes = G.getNodes();
+
+        for (final T u : nodes)
         {
-            node.setDist(Integer.MAX_VALUE);
-            node.setPath(null);
+            prev.put(u,null);
+            dist.put(u,Integer.MAX_VALUE);
         }
 
-        start.setDist(0);
-        Queue<Node> queue = new LinkedList<>();
-        queue.add(start);
+        Queue<T> queue = new LinkedList<>();
+        dist.put(source,0);
+        prev.put(source,source);
+        queue.add(source);
+
         while (!queue.isEmpty())
         {
-            Node currentNode = queue.poll();
-            List<Node> adjacent = (List<Node>) currentNode.getAdj();
-            for (Node adjNode : adjacent)
+            T u = queue.poll();
+            List<T> adj = G.getAdj(u);
+            for (T v : adj)
             {
-                if (adjNode.getDist() == Integer.MAX_VALUE)
+                if (dist.get(v) == Integer.MAX_VALUE)
                 {
-                    queue.add(adjNode);
-                    adjNode.setDist(currentNode.getDist() + 1);
-                    adjNode.setPath(currentNode);
+                    dist.put(v,dist.get(u) + 1);
+                    prev.put(v,u);
+                    queue.add(v);
                 }
             }
         }
+    }
+
+    @Override
+    public T getPrev(T u) {
+        return prev.get(u);
     }
 }

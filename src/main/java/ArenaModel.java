@@ -61,7 +61,7 @@ public class ArenaModel {
             {
                 if (obstacle[x][y]) continue;
                 if (x > 0 && !obstacle[x-1][y]) G.addEdge(new Position(x,y),new Position(x-1,y));
-                if (y > 0 && !obstacle[x][y-1]) G.addEdge(new Position(x,y),new Position(x,y-y));
+                if (y > 0 && !obstacle[x][y-1]) G.addEdge(new Position(x,y),new Position(x,y-1));
                 if (x < W-1 && !obstacle[x+1][y]) G.addEdge(new Position(x,y),new Position(x+1,y));
                 if (y < H-1 && !obstacle[x][y+1]) G.addEdge(new Position(x,y),new Position(x,y+1));
             }

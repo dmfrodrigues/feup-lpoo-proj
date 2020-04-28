@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class AdjacencyGraph<T> implements Graph<T> {
     Map<T,List<T>> adj;
@@ -26,5 +23,19 @@ public class AdjacencyGraph<T> implements Graph<T> {
     @Override
     public List getAdj(T node) {
         return adj.get(node);
+    }
+
+    @Override
+    public List<T> getNodes() {
+        List<T> res = new ArrayList<>();
+
+        Iterator it = adj.entrySet().iterator();
+
+        while (it.hasNext())
+        {
+            Map.Entry pair = (Map.Entry) it.next();
+            res.add((T) pair.getKey());
+        }
+        return res;
     }
 }

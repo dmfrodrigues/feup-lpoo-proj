@@ -40,7 +40,7 @@ public class ArenaControllerTest {
         Mockito.when(arenaModel.getElements()).thenReturn(elements);
     }
 
-    
+    /*
     @Test
     public void generateMatrix()
     {
@@ -85,5 +85,5 @@ public class ArenaControllerTest {
         arenaController.generateMatrix();
         assertEquals(expected,arenaController.arenaMatrix);
 
-    }
+    }*/
 }
