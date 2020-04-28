@@ -17,11 +17,41 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
 - **Q: How do I leave the catacombs?** A: You may take a rest or leave at any time, but your mission is only over once you cleanse all the catacombs of the city.
 - **Q: What if I die?** A: Her Majesty has been personally appointed by God, if you die on duty He will give you a second chance. 
 
-### State of the Art
+### Media
 
-<p align="center">
-  <img src="https://drive.google.com/uc?id=1WstrLPkEo1YTzjKws6ZUzi35vcV6Ieky">
-</p>
+#### Gallery
+
+<div align="center">
+    <table>
+        <tr>
+            <th>
+                2020-04-26
+               </th>
+        </tr>
+        <tr>
+            <td>
+                <img src="https://drive.google.com/uc?id=1WstrLPkEo1YTzjKws6ZUzi35vcV6Ieky" width="400">
+            </td>
+        </tr>
+    </table>
+</div>
+
+#### Gifs
+
+<div align="center">
+    <table>
+        <tr>
+            <th>
+                2020-04-28
+               </th>
+        </tr>
+        <tr>
+            <td>
+                <img src="https://drive.google.com/uc?id=1WBvDyLVMg_c_SImkldvtyFeTQkHBOX_E" width="400">
+            </td>
+        </tr>
+    </table>
+</div>
 
 ## Specifications
 
