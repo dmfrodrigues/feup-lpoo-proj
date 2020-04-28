@@ -50,7 +50,7 @@ public class LanternaGUI implements TerminalGUI {
 
     @Override
     public void refresh() throws IOException {
-        screen.refresh();
+        screen.refresh(Screen.RefreshType.DELTA);
     }
 
     @Override
