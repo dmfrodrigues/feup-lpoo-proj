@@ -1,3 +1,6 @@
+import com.pacman.g60.Model.Color;
+import com.pacman.g60.Model.Terminal.TerminalSprite;
+import com.pacman.g60.Model.Terminal.TerminalSpriteLoaderFile;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;

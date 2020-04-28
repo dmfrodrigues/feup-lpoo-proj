@@ -1,3 +1,8 @@
+import com.pacman.g60.Model.ArenaModel;
+import com.pacman.g60.Model.ArenaModelLoaderFile;
+import com.pacman.g60.Model.Elements.Element;
+import com.pacman.g60.Model.Position;
+import com.pacman.g60.Model.Wall;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;

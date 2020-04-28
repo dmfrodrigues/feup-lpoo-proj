@@ -135,9 +135,9 @@ The above note will allow us to further organize our code.
 We want our interface between game and framework (our `ArenaView`) to actually support several frameworks, not just a dull terminal.
 
 To this end, we use the [Abstract Factory](https://refactoring.guru/design-patterns/abstract-factory) pattern, which will allow us to:
-- Generally ignore how *products* are made (where a product might be a `View` for a specific `Element`)
+- Generally ignore how *products* are made (where a product might be a `com.pacman.g60.View` for a specific `Element`)
 - Have several families of products (e.g., one for a Lanterna terminal and another for a Swing window)
-- Make `View`s from the same family work in tight cooperation if needed.
+- Make `com.pacman.g60.View`s from the same family work in tight cooperation if needed.
 
 For instance, we can name our abstract factory `ViewFactory` (produces `MenuView` and `GameView`), and a concrete factory `LanternaFactory` (produces `LanternaMenuView implements MenuView` and `LanternaGameView implements GameView`). 
 

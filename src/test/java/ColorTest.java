@@ -1,3 +1,4 @@
+import com.pacman.g60.Model.Color;
 import org.junit.Test;
 import org.mockito.internal.util.StringUtil;
 

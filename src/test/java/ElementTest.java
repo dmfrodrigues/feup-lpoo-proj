@@ -1,9 +1,12 @@
+import com.pacman.g60.Model.Elements.StaticElement;
+import com.pacman.g60.Model.Position;
+import com.pacman.g60.Model.Wall;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class ElementTest {
-    public class NotAWall extends StaticElement{
+    public class NotAWall extends StaticElement {
         public NotAWall(Position pos){ super(pos); }
     }
     @Test

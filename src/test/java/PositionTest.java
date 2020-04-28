@@ -1,3 +1,4 @@
+import com.pacman.g60.Model.Position;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

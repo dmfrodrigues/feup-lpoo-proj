@@ -1,3 +1,6 @@
+import com.pacman.g60.Model.Path_Calculation.AdjacencyGraph;
+import com.pacman.g60.Model.Path_Calculation.Graph;
+import com.pacman.g60.Model.Position;
 import org.junit.Test;
 
 import java.util.ArrayList;

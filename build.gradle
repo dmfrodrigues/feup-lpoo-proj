@@ -4,7 +4,7 @@ plugins {
 }
 
 application {
-    mainClassName = 'com.pacman.g60.Model.Application'
+    mainClassName = 'com.pacman.g60.Application'
 }
 
 group 'org.example'
