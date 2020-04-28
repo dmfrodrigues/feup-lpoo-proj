@@ -23,7 +23,4 @@ public abstract class Element {
                 pos.equals(((Element)obj).pos));
     }
 
-    public abstract boolean isObstacle();
-
-    public abstract boolean isEnemy();
 }

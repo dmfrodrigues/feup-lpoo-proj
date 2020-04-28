@@ -2,12 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdjacencyNode implements Node {
-    public enum CellType
-    {
-        FREE,OBSTACLE,ENEMY
-    }
-
-    private CellType cellType;
     private AdjacencyNode path;
     private Integer dist;
     private Position position;
@@ -16,28 +10,17 @@ public class AdjacencyNode implements Node {
     public AdjacencyNode()
     {
         this.position = new Position(0,0);
-        this.cellType = CellType.FREE;
         this.dist = Integer.MAX_VALUE;
         this.path = null;
         this.adj = new ArrayList<>();
     }
 
-    public AdjacencyNode(CellType cellType, AdjacencyNode path, Integer dist, Position position)
+    public AdjacencyNode(AdjacencyNode path, Integer dist, Position position)
     {
-        this.cellType = cellType;
         this.path = path;
         this.dist = dist;
         this.position = position;
         this.adj = new ArrayList<>();
-    }
-
-
-    public CellType getCellType() {
-        return cellType;
-    }
-
-    public void setCellType(CellType cellType) {
-        this.cellType = cellType;
     }
 
     public Position getPosition() {
@@ -89,6 +72,6 @@ public class AdjacencyNode implements Node {
 
         AdjacencyNode comp = (AdjacencyNode) o;
 
-        return comp.path == this.path && comp.dist == this.dist && comp.cellType == this.cellType && comp.position == this.position;
+        return comp.path == this.path && comp.dist == this.dist && comp.position == this.position && comp.adj == this.adj;
     }
 }
