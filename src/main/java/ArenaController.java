@@ -107,7 +107,7 @@ public class ArenaController {
         }
     }
 
-    public void updateEnemyLocations()
+    public void updateEnemyLocations(Graph graph)
     {
         shortestPaths();
 
