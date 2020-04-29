@@ -1,4 +1,4 @@
-import com.pacman.g60.Model.Color;
+import com.pacman.g60.View.Color;
 import com.pacman.g60.View.TerminalSprite;
 import com.pacman.g60.View.TerminalSpriteLoaderStream;
 import org.junit.Test;

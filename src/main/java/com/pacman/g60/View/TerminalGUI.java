@@ -2,8 +2,6 @@ package com.pacman.g60.View;
 
 
 import com.googlecode.lanterna.input.KeyStroke;
-import com.pacman.g60.Model.Color;
-import com.pacman.g60.Model.GUI;
 
 import java.io.IOException;
 

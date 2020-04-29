@@ -1,6 +1,9 @@
 package com.pacman.g60.Model;
 
 import com.pacman.g60.Model.Elements.Element;
+import com.pacman.g60.Model.Elements.Ghost;
+import com.pacman.g60.Model.Elements.Hero;
+import com.pacman.g60.Model.Elements.Wall;
 
 import java.io.InputStream;
 import java.util.Scanner;

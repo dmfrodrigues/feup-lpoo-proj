@@ -1,4 +1,4 @@
-package com.pacman.g60.Model;
+package com.pacman.g60.View;
 
 import java.io.IOException;
 

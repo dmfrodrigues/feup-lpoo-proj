@@ -1,8 +1,6 @@
 package com.pacman.g60.View;
 
 
-import com.pacman.g60.Model.Color;
-
 import java.io.InputStream;
 import java.util.Scanner;
 

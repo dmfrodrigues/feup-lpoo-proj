@@ -2,8 +2,8 @@ package com.pacman.g60;
 
 import com.pacman.g60.Model.ArenaModel;
 import com.pacman.g60.Model.ArenaModelLoaderStream;
-import com.pacman.g60.Model.Game;
-import com.pacman.g60.Model.LanternaGUI;
+import com.pacman.g60.Controller.Game;
+import com.pacman.g60.View.LanternaGUI;
 import com.pacman.g60.View.TerminalFactory;
 import com.pacman.g60.View.TerminalGUI;
 import com.pacman.g60.View.ViewFactory;

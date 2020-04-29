@@ -1,8 +1,6 @@
 package com.pacman.g60.View;
 
 
-import com.pacman.g60.Model.Color;
-
 public class TerminalSprite {
     private final Integer W, H;
     private char[][] chars = null;
