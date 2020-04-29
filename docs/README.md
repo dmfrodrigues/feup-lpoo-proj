@@ -28,7 +28,7 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
 
 #### Gallery
 
-<div align="center">
+<div>
     <table>
         <tr>
             <th>
@@ -37,7 +37,7 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
         </tr>
         <tr>
             <td>
-                <img src="https://i.postimg.cc/nzTSXGd3/2020-04-26-21-31-01.png" width="400">
+                <img src="https://i.postimg.cc/nzTSXGd3/2020-04-26-21-31-01.png" alt="2020-04-26-img" width="400" />
             </td>
         </tr>
     </table>
@@ -45,7 +45,7 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
 
 #### Animations
 
-<div align="center">
+<div>
     <table>
         <tr>
             <th>
@@ -54,7 +54,7 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
         </tr>
         <tr>
             <td>
-                <img src="https://i.postimg.cc/R0BgGDyP/pacman-20200428-202310.gif" width="400">
+                <img src="https://i.postimg.cc/R0BgGDyP/pacman-20200428-202310.gif" alt="2020-04-28-anim" width="400" />
             </td>
         </tr>
     </table>
@@ -103,7 +103,7 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
 - [ ] Dynamic elements have life
 - [ ] Weaponize enemies
 
-<div align="center">
+<div>
     <table>
         <!--
         <tr>
@@ -117,7 +117,7 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
         -->
         <tr>
             <td>
-                <img src="https://drive.google.com/uc?id=1WBvDyLVMg_c_SImkldvtyFeTQkHBOX_E" width="400">
+                <img src="https://i.postimg.cc/R0BgGDyP/pacman-20200428-202310.gif" alt="features-1" width="400" />
             </td>
         </tr>
     </table>
@@ -173,7 +173,9 @@ We applied the [**Facade**](https://refactoring.guru/design-patterns/facade) pat
 #### Implementation
 The following figure shows how the pattern's roles were mapped to the application classes.
 
-[![facade-lanterna.png](https://i.postimg.cc/rF4j4Dkk/facade-lanterna.png)](https://postimg.cc/4mJpkNyL)
+<div>
+    <img src="https://i.postimg.cc/rF4j4Dkk/facade-lanterna.png" alt="facade-lanterna" />
+</div>
 
 Our facade `LanternaGUI` represents a single terminal window.
 
