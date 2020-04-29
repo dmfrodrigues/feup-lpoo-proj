@@ -1,6 +1,5 @@
-import com.pacman.g60.Model.Color;
+import com.pacman.g60.View.Color;
 import org.junit.Test;
-import org.mockito.internal.util.StringUtil;
 
 import static org.junit.Assert.assertEquals;
 

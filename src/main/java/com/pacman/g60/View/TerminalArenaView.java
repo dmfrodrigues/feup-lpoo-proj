@@ -4,8 +4,7 @@ package com.pacman.g60.View;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.pacman.g60.Model.*;
-import com.pacman.g60.Model.Elements.DynamicElement;
-import com.pacman.g60.Model.Elements.Element;
+import com.pacman.g60.Model.Elements.*;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -40,7 +39,7 @@ public class TerminalArenaView implements ArenaView {
         TerminalSprite sprite;
         
         public WallView() throws FileNotFoundException{
-            TerminalSprite.Loader loader = new TerminalSpriteLoaderFile(new FileInputStream("src/main/resources/lanterna-sprites/wall-8-4.lan"));
+            TerminalSprite.Loader loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/wall-8-4.lan"));
             sprite = loader.getTerminalSprite();
         }
         
@@ -54,13 +53,13 @@ public class TerminalArenaView implements ArenaView {
         
         public HeroView() throws FileNotFoundException {
             TerminalSprite.Loader loader;
-            loader = new TerminalSpriteLoaderFile(new FileInputStream("src/main/resources/lanterna-sprites/hero-8-4-right.lan"));
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/hero-8-4-right.lan"));
             spriteOrientable = new TerminalSpriteOrientable(loader.getTerminalSprite());
-            loader = new TerminalSpriteLoaderFile(new FileInputStream("src/main/resources/lanterna-sprites/hero-8-4-left.lan"));
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/hero-8-4-left.lan"));
             spriteOrientable.setSpriteLeft(loader.getTerminalSprite());
-            loader = new TerminalSpriteLoaderFile(new FileInputStream("src/main/resources/lanterna-sprites/hero-8-4-up.lan"));
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/hero-8-4-up.lan"));
             spriteOrientable.setSpriteUp(loader.getTerminalSprite());
-            loader = new TerminalSpriteLoaderFile(new FileInputStream("src/main/resources/lanterna-sprites/hero-8-4-down.lan"));
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/hero-8-4-down.lan"));
             spriteOrientable.setSpriteDown(loader.getTerminalSprite());
         }
 
@@ -74,10 +73,14 @@ public class TerminalArenaView implements ArenaView {
 
         public GhostView() throws FileNotFoundException {
             TerminalSprite.Loader loader;
-            loader = new TerminalSpriteLoaderFile(new FileInputStream("src/main/resources/lanterna-sprites/ghost-8-4-right.lan"));
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/ghost-8-4-right.lan"));
             spriteOrientable = new TerminalSpriteOrientable(loader.getTerminalSprite());
-            loader = new TerminalSpriteLoaderFile(new FileInputStream("src/main/resources/lanterna-sprites/ghost-8-4-left.lan"));
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/ghost-8-4-left.lan"));
             spriteOrientable.setSpriteLeft(loader.getTerminalSprite());
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/ghost-8-4-up.lan"));
+            spriteOrientable.setSpriteUp(loader.getTerminalSprite());
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/ghost-8-4-down.lan"));
+            spriteOrientable.setSpriteDown(loader.getTerminalSprite());
         }
 
         @Override
@@ -107,8 +110,8 @@ public class TerminalArenaView implements ArenaView {
         public ElementView factoryMethod(Element e){
             ElementView res = null;
             try {
-                if     (e instanceof Wall ) res = wallView;
-                else if(e instanceof Hero ) res = heroView;
+                if     (e instanceof Wall) res = wallView;
+                else if(e instanceof Hero) res = heroView;
                 else if(e instanceof Ghost) res = ghostView;
             } catch(Exception ex){
                 res = null;

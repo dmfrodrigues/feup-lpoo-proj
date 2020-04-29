@@ -1,13 +1,12 @@
 package com.pacman.g60.Model;
 
-import com.pacman.g60.Model.Elements.DynamicElement;
 import com.pacman.g60.Model.Elements.Element;
-import com.pacman.g60.Model.Elements.StaticElement;
+import com.pacman.g60.Model.Elements.Hero;
+import com.pacman.g60.Model.Elements.Wall;
 import com.pacman.g60.Model.Path_Calculation.AdjacencyGraph;
 import com.pacman.g60.Model.Path_Calculation.Graph;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ArenaModel {
     private int W, H;

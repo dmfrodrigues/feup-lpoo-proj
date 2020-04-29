@@ -1,7 +1,9 @@
-package com.pacman.g60.Model;
+package com.pacman.g60.Model.Elements;
 
 
 import com.pacman.g60.Model.Effect.Effect;
+import com.pacman.g60.Model.Elements.Enemy;
+import com.pacman.g60.Model.Position;
 
 public class MeleeEnemy extends Enemy {
 
