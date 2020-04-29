@@ -161,18 +161,44 @@ All these classes can be found in file [TerminalArenaView.java](../src/main/java
 
 
 #### Consequences
-This use of the Abstract Factory pattern allows us the following benefits:
+This use of the Factory Method pattern has the following benefits:
 - An `ArenaView` does not need to care how and where an element is drawn, or which class knows how to draw it; it simply pours it into a factory that will find out the suitable concrete `ElementView` to draw it.
 - Sprite loading is encapsulated in an orderly fashion in each concrete `ElementView`
 
 <a name="absfactory-view"><a/>
 
 ### ViewFactory
+#### Problem in context
+
+There will eventually be an interest on expanding our project to a graphical, [Swing-based](https://mabe02.github.io/lanterna/apidocs/3.0/com/googlecode/lanterna/terminal/swing/SwingTerminalFrame.html) environment, allowing more interesting renderings than those allowed by a terminal environment.
+
+Initially, an object of class `ArenaViewTerminal` (now renamed to `TerminalArenaView`) was [directly instantiated](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/562bbb338aa20e71ef947c78af4f9c5d5a44de0a/src/main/java/Application.java#L17) in `Application`; if this pattern was not used, it was expected that additional views were going to be instantiated similarly, making it hard to program the possibility of choosing another family of `View`s.
+
 #### The pattern
 We applied the [Abstract Factory](https://refactoring.guru/design-patterns/abstract-factory) pattern, which allows a better organization and use of families of products, by:
 1. Declaring interfaces for each distinct product in a family and have each variant implement the respective interface;
 2. Declaring the abstract factory, which has methods for creating all products in a family;
 3. Declare a concrete factory implementing the abstract factory for each family
+
+#### Implementation
+
+The following figure shows how the pattern's roles were mapped to the application classes.
+
+![](images/absfactory-view.svg)
+
+The classes can be found in the following files:
+
+- [ArenaView](../src/main/java/com/pacman/g60/View/ArenaView.java)
+- [ViewFactory](../src/main/java/com/pacman/g60/View/ViewFactory.java)
+- [TerminalArenaView](../src/main/java/com/pacman/g60/View/TerminalArenaView.java)
+- [TerminalFactory](../src/main/java/com/pacman/g60/View/TerminalFactory.java)
+
+#### Consequences
+
+This use of the Abstract Factory pattern has the following benefits:
+
+- It will be easier to choose among several `View` families, once they are developed.
+- The *products* (i.e. the different `View`s associated to a terminal, for instance) of a family can tightly cooperate and share some resources (several terminal `View`s can share the same terminal, although only one `View` can operate on it at each moment).
 
 <a name="factory-arenamodelloaderstream"><a/>
 
