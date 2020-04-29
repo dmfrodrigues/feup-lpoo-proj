@@ -1,6 +1,6 @@
-import com.pacman.g60.Model.Color;
+import com.pacman.g60.View.Color;
 import com.pacman.g60.View.TerminalSprite;
-import com.pacman.g60.View.TerminalSpriteLoaderFile;
+import com.pacman.g60.View.TerminalSpriteLoaderStream;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -8,7 +8,7 @@ import java.io.InputStream;
 
 import static org.junit.Assert.assertEquals;
 
-public class TerminalSpriteLoaderFileTest {
+public class TerminalSpriteLoaderStreamTest {
     
     @Test
     public void test() {
@@ -27,7 +27,7 @@ public class TerminalSpriteLoaderFileTest {
                         "#F0F0F0 #F0F0F0 #F0F0F0 #F0F0F0 #F0F0F0 #F0F0F0 #646464 #646464\n" +
                         "#964B00 #964B00 #964B00 #964B00 #964B00 #964B00 #646464 #646464\n";
         InputStream inputStream = new ByteArrayInputStream(s.getBytes());
-        TerminalSprite.Loader loader = new TerminalSpriteLoaderFile(inputStream);
+        TerminalSprite.Loader loader = new TerminalSpriteLoaderStream(inputStream);
         TerminalSprite sprite = loader.getTerminalSprite();
         assertEquals(sprite.getW(), (Integer) 8);
         assertEquals(sprite.getH(), (Integer) 4);

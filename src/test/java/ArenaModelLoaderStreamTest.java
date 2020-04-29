@@ -1,8 +1,8 @@
 import com.pacman.g60.Model.ArenaModel;
-import com.pacman.g60.Model.ArenaModelLoaderFile;
+import com.pacman.g60.Model.ArenaModelLoaderStream;
 import com.pacman.g60.Model.Elements.Element;
 import com.pacman.g60.Model.Position;
-import com.pacman.g60.Model.Wall;
+import com.pacman.g60.Model.Elements.Wall;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -14,7 +14,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class ArenaModelLoaderFileTest {
+public class ArenaModelLoaderStreamTest {
 
     @Test
     public void ctor(){
@@ -47,7 +47,7 @@ public class ArenaModelLoaderFileTest {
         }
 
         InputStream inputStream = new ByteArrayInputStream(string.getBytes());
-        ArenaModel.Loader arenaModelLoader = new ArenaModelLoaderFile(inputStream);
+        ArenaModel.Loader arenaModelLoader = new ArenaModelLoaderStream(inputStream);
         ArenaModel arenaModel = arenaModelLoader.getArenaModel();
         List<Element> listElements = arenaModel.getElements();
 

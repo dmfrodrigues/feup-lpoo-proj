@@ -1,10 +1,8 @@
-package com.pacman.g60.Model;
-
-
+package com.pacman.g60.Controller;
 
 import java.io.IOException;
 
-import com.pacman.g60.Controller.ArenaController;
+import com.pacman.g60.Model.ArenaModel;
 import com.pacman.g60.View.ArenaView;
 import com.pacman.g60.View.ViewFactory;
 

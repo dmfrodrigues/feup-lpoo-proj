@@ -1,4 +1,4 @@
-package com.pacman.g60.Model;
+package com.pacman.g60.View;
 
 
 import com.googlecode.lanterna.TerminalSize;
@@ -10,7 +10,6 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
-import com.pacman.g60.View.TerminalGUI;
 
 import java.awt.*;
 import java.io.IOException;

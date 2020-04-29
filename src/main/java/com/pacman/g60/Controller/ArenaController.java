@@ -3,7 +3,7 @@ package com.pacman.g60.Controller;
 
 import com.pacman.g60.Model.ArenaModel;
 import com.pacman.g60.Model.Elements.Element;
-import com.pacman.g60.Model.Ghost;
+import com.pacman.g60.Model.Elements.Ghost;
 import com.pacman.g60.Model.Path_Calculation.BFSshortestPath;
 import com.pacman.g60.Model.Path_Calculation.Graph;
 import com.pacman.g60.Model.Path_Calculation.ShortestPath;
@@ -43,7 +43,7 @@ public class ArenaController {
                 for (final Element element : elements) {
                     if (element instanceof Ghost) {
                         Position newPos = shortestPath.getPrev(element.getPos());
-                        if (newPos != null) element.setPos(newPos);
+                        if (newPos != null) ((Ghost) element).updatePos(newPos);
                     }
                 }
                 i = 1;

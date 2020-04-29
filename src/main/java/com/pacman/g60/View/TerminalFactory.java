@@ -7,6 +7,10 @@ public class TerminalFactory implements ViewFactory {
     }
     @Override
     public TerminalArenaView createArenaView() {
-        return new TerminalArenaView(terminalGUI);
+        try {
+            return new TerminalArenaView(terminalGUI);
+        } catch(Exception e){
+            return null;
+        }
     }
 }
