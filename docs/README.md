@@ -1,8 +1,8 @@
 # LPOO_60 - The Cursed Catacombs
 #### (Codename: pacman)
 
-<p align="left">
-  <img src="https://github.com/FEUP-LPOO/lpoo-2020-g60/workflows/gradlew%20test/badge.svg">
+<p>
+  <img src="https://github.com/FEUP-LPOO/lpoo-2020-g60/workflows/gradlew%20test/badge.svg" alt="gradlew test">
 </p>
 
 You are a noble knight seeking to assist Her Majesty in cleansing the capital's catacombs from the many monsters that inhabit it. Your mission is to kill all monsters and collect as many coins as possible across multiple levels.
@@ -150,10 +150,6 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
     - [ ] Sword
     - [ ] Bullet
 - [ ] Swing compatibility
-
-## UML
-
-The UML class diagram of the project is available [here](https://drive.google.com/file/d/1Ql_kmMo6nBzLH933LEEZQvu8vgUm2lDC/view?usp=sharing).
 
 ## Design
 
