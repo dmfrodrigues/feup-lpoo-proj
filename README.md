@@ -141,6 +141,14 @@ To this end, we use the [Abstract Factory](https://refactoring.guru/design-patte
 
 For instance, we can name our abstract factory `ViewFactory` (produces `MenuView` and `GameView`), and a concrete factory `LanternaFactory` (produces `LanternaMenuView implements MenuView` and `LanternaGameView implements GameView`). 
 
+### ArenaModel loader factory (Factory Method)
+
+To encapsulate the `switch` statement in `ArenaModelLoaderStream` to choose the concrete `Element` to create based on the character in the map file, we used the [Factory Method](https://refactoring.guru/design-patterns/factory-method) pattern
+
+### ElementView factory (Factory Method)
+
+To encapsulate the `switch` statement in `TerminalArenaView` to choose the concrete `ElementView` to draw an element, we used the [Factory Method](https://refactoring.guru/design-patterns/factory-method) pattern where `ElementViewFactory` is the factory and `ElementView` is the product.
+
 ### Menus and game (State)
 It's all menus and games, until you reach the point you have to put everything together. The *maestro* of the whole game is (you guessed it) `Game`, which will somehow have to handle the fact we might be in a menu, a scoreboard or in-game.
 
