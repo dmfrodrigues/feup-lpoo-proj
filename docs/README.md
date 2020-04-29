@@ -123,6 +123,8 @@ Should we use Lanterna's methods directly, the code would be:
 - Complex, since there are some extra steps we need to take before we allow drawing.
 - Tightly coupled with the framework.
 
+Right at the beginning we arrived at the conclusion we would have to develop this module taking into account the following pattern, so there is little code that can be presented as the pre-refactoring code.
+
 #### The pattern
 We applied the [**Facade**](https://refactoring.guru/design-patterns/facade) pattern, which consists of creating a facade class that exposes only a few methods of a complex framework, including only the features the client really cares about.
 
@@ -145,7 +147,10 @@ This use of the Facade pattern allows the following benefits:
 
 ### ElementView factory
 #### Problem in context
-To draw an `Element`, an implementation of `ArenaView` would otherwise have a lot of `if` conditionals to correctly assert the concrete `Element` types and draw them, causing a `switch` code smell.
+To draw an `Element`, an implementation of `ArenaView` had to:
+1. [Load all sprites](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/21f450bd2218317b20a4ab332df9227c82dfe0b2/src/main/java/com/pacman/g60/View/TerminalArenaView.java#L27-L54) in `TerminalArenaView`'s constructor in a **very confusing** way.
+2. [Store them in maps](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/21f450bd2218317b20a4ab332df9227c82dfe0b2/src/main/java/com/pacman/g60/View/TerminalArenaView.java#L22-L23).
+3. [Get the correct sprite from the maps](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/21f450bd2218317b20a4ab332df9227c82dfe0b2/src/main/java/com/pacman/g60/View/TerminalArenaView.java#L71-L75), which in practice is **equivalent to** (and thus as bad as) **a large `switch` statement**, thus qualifying as a subtle form of a `switch` statement code smell.
 
 #### The pattern
 We applied the [Factory Method](https://refactoring.guru/design-patterns/factory-method) pattern, which allows a better organization of products, by returning an interface that is actually a concrete implementation of that interface, constructed according to the instructions provided to the factory method.
@@ -154,6 +159,9 @@ We applied the [Factory Method](https://refactoring.guru/design-patterns/factory
 The following figure shows how the pattern's roles were mapped to the application classes.
 
 ![](images/factory-elementview.svg)
+
+All these classes can be found in file [TerminalArenaView.java](../src/main/java/com/pacman/g60/View/TerminalArenaView.java)
+
 
 #### Consequences
 This use of the Abstract Factory pattern allows us the following benefits:
