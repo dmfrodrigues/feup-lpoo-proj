@@ -169,9 +169,7 @@ We applied the [**Facade**](https://refactoring.guru/design-patterns/facade) pat
 #### Implementation
 The following figure shows how the pattern's roles were mapped to the application classes.
 
-<div>
-    <img src="https://i.postimg.cc/rF4j4Dkk/facade-lanterna.png" alt="facade-lanterna" />
-</div>
+![](svg/facade-lanterna.svg)
 
 Our facade `LanternaGUI` represents a single terminal window.
 
