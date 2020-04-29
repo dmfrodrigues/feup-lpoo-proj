@@ -11,6 +11,11 @@ This project was developed for LPOO <sup>2019</sup>⁄<sub>20</sub> by:
 - [Diogo Rodrigues](https://github.com/dmfrodrigues) ([dmfrodrigues2000@gmail.com](mailto:dmfrodrigues2000@gmail.com)/[up201806429@fe.up.pt](mailto:up201806429@fe.up.pt))
 - [João Matos](https://github.com/MechJM) ([up201703884@fe.up.pt](mailto:up201703884@fe.up.pt))
 
+## Table of contents
+1. [Description](#description)
+    1. [Media](#media)
+
+<a name="description"><a/>
 ## Description
 
 Her Majesty the Queen has requested the assistance of a noble knight to cleanse the catacombs of the Kingdom's capital of the terrible monsters that have been haunting her subjects for centuries. Unfortunately, because people are scared of the monsters that occasionally escape the catacombs, productivity is low and the Kingdom's coffers are empty (otherwise she would have hired a professional ghost-hunter team), but whoever answers Her Majesty's call will have rights over any treasure found in the catacombs.
@@ -24,6 +29,7 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
 - **Q: How do I leave the catacombs?** A: You may take a rest or leave at any time, but your mission is only over once you cleanse all the catacombs of the city.
 - **Q: What if I die?** A: Her Majesty has been personally appointed by God, if you die on duty He will give you a second chance. 
 
+<a name="media"><a/>
 ### Media
 
 #### Gallery
@@ -38,41 +44,9 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
 |------------|
 |![2020-04-28-animation](images/pacman-20200428-202310.gif)|
 
-## Specifications
-
-### Elements
-
-#### Abstract classes
-
-- **Tall element**: no other elements can move over it.
-- **Obstacle element**: two obstacles cannot be in the same position.
-- **Movable element**: can be moved, one tile at a time, or stay still.
-- **Dynamic element**: can perform various actions.
-    - **Autonomous element**: its actions are autonomous.
-        - **Follower element**: follows the hero.
-    - **Melee element**: can attack on a short range.
-    - **Ranged element**: can attack on a certain range.
-- **Oriented element**: has a direction.
-- **Living element**: has a life.
-- **Shooter element**: can shoot stuff.
-- **Projectile element**: can be shot.
-
-#### Concrete classes
-
-- **Hero**: is obstacle, movable, melee, ranged, oriented, living.
-- **Enemy**: is autonomous and living.
-    - **Guard**: is movable, melee and oriented. Has melee attack.
-    - **Ghost**: is movable, follower, melee and oriented. Has melee attack.
-    - **Spider**: is movable, follower, melee and oriented. Has melee stun.
-    - **Mummy**: is movable, follower, melee, ranged and oriented. Has ranged stun and melee attack.
-- **Wall**: is tall.
-- **Coin**: nothing in particular.
-- **Weapon**: nothing in particular.
-    - **Sword**: nothing in particular.
-    - **Bullet**: nothing in particular.
-
 ## Implemented features
 
+- [x] Sprites being loaded from files
 - [x] Dynamic elements can move
 - [x] Sprites change according to direction
 - [x] Screen is centered in the Hero
