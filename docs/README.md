@@ -14,6 +14,12 @@ This project was developed for LPOO <sup>2019</sup>⁄<sub>20</sub> by:
 ## Table of contents
 1. [Description](#description)
     1. [Media](#media)
+2. [Implemented features](#implemented-features)
+3. [Planned features](#planned-features)
+4. [Design](#design)
+    1. [Lanterna facade](#lanterna-facade)
+    2. [ElementView factory](#factory-elementview)
+    
 
 <a name="description"><a/>
 ## Description
@@ -32,18 +38,21 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
 <a name="media"><a/>
 ### Media
 
+<a name="gallery"><a/>
 #### Gallery
 
 | 2020-04-26 |
 |------------|
 |![2020-04-26-image](images/2020-04-26_21-31-01.png)|
 
+<a name="animations"><a/>
 #### Animations
 
 | 2020-04-28 |
 |------------|
 |![2020-04-28-animation](images/pacman-20200428-202310.gif)|
 
+<a name="implemented-features"><a/>
 ## Implemented features
 
 - [x] Sprites being loaded from files
@@ -57,6 +66,7 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
 
 ![2020-04-26-image](images/pacman-20200428-202310.gif)
 
+<a name="planned-features"><a/>
 ## Planned features
 
 - [ ] Main menu
@@ -85,8 +95,10 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
     - [ ] Bullet
 - [ ] Swing compatibility
 
+<a name="design"><a/>
 ## Design
 
+<a name="facade-lanterna"><a/>
 ### Lanterna facade
 
 #### Problem in context
@@ -119,8 +131,12 @@ This use of the Facade pattern allows the following benefits:
 - We have a limited but straightforward interface to a complex framework.
 - Knowledge about the framework is restricted to the facade class.
 
+<a name="factory-elementview"><a/>
+
 ### ElementView factory
+
 #### Problem in context
+
 To draw an `Element`, an implementation of `ArenaView` had to:
 1. [Load all sprites](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/21f450bd2218317b20a4ab332df9227c82dfe0b2/src/main/java/com/pacman/g60/View/TerminalArenaView.java#L27-L54) in `TerminalArenaView`'s constructor in a **very confusing** way.
 2. [Store them in maps](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/21f450bd2218317b20a4ab332df9227c82dfe0b2/src/main/java/com/pacman/g60/View/TerminalArenaView.java#L22-L23).
@@ -178,6 +194,10 @@ For that we use the [Strategy](https://refactoring.guru/design-patterns/strategy
 - Use the same algorithm for different classes
 - Implement different algorithms and then choose whichever seems better.
 
-## Code smells
+## Code smells and refactoring suggestions
 
 ## Testing
+
+## Self-evaluation
+
+
