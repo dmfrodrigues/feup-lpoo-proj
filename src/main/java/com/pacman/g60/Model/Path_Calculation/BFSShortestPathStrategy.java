@@ -2,7 +2,7 @@ package com.pacman.g60.Model.Path_Calculation;
 
 import java.util.*;
 
-public class BFSshortestPath<T> implements ShortestPath<T> {
+public class BFSShortestPathStrategy<T> implements ShortestPathStrategy<T> {
     private Graph<T> G;
     private Map<T,T> prev;
 
