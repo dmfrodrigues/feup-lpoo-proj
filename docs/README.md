@@ -19,7 +19,14 @@ This project was developed for LPOO <sup>2019</sup>⁄<sub>20</sub> by:
 4. [Design](#design)
     1. [Lanterna facade](#lanterna-facade)
     2. [ElementView factory](#factory-elementview)
-    
+    3. [ViewFactory](#factory-view)
+    4. [ArenaModelLoaderStream factory](#factory-arenamodelloaderstream)
+    5. [Menus and games](#state-game)
+    6. [ArenaController is the *God of Dynamics*](#command-composite-arenacontroller)
+    7. [Movement strategies](#strategy-movement)
+5. [Code smells and refactoring suggestions](#code-smells)
+6. [Testing](#testing)
+7. [Self-evaluation](#self-evaluation)
 
 <a name="description"><a/>
 ## Description
@@ -33,7 +40,7 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
 - **Q: Do what?** A: Kill monsters and collect coins.
 - **Q: With what?** A: You start with a knife, but you can catch other weapons and bullets in the catacombs.
 - **Q: How do I leave the catacombs?** A: You may take a rest or leave at any time, but your mission is only over once you cleanse all the catacombs of the city.
-- **Q: What if I die?** A: Her Majesty has been personally appointed by God, if you die on duty He will give you a second chance. 
+- **Q: What if I die?** A: Her Majesty has been personally appointed by God, if you die on duty He will give you a second chance.
 
 <a name="media"><a/>
 ### Media
@@ -125,7 +132,7 @@ The classes can be found in the following files:
 - [GUI](../src/main/java/com/pacman/g60/View/GUI.java)
 - [TerminalGUI](../src/main/java/com/pacman/g60/View/TerminalGUI.java)
 - [LanternaGUI](../src/main/java/com/pacman/g60/View/LanternaGUI.java)
- 
+
 #### Consequences
 This use of the Facade pattern allows the following benefits:
 - We have a limited but straightforward interface to a complex framework.
@@ -158,18 +165,24 @@ This use of the Abstract Factory pattern allows us the following benefits:
 - An `ArenaView` does not need to care how and where an element is drawn, or which class knows how to draw it; it simply pours it into a factory that will find out the suitable concrete `ElementView` to draw it.
 - Sprite loading is encapsulated in an orderly fashion in each concrete `ElementView`
 
-### ViewFactory and TerminalFactory (abstract factory)
+<a name="absfactory-view"><a/>
+
+### ViewFactory
 #### The pattern
 We applied the [Abstract Factory](https://refactoring.guru/design-patterns/abstract-factory) pattern, which allows a better organization and use of families of products, by:
 1. Declaring interfaces for each distinct product in a family and have each variant implement the respective interface;
 2. Declaring the abstract factory, which has methods for creating all products in a family;
 3. Declare a concrete factory implementing the abstract factory for each family
 
-### ArenaModel loader factory (Factory Method)
+<a name="factory-arenamodelloaderstream"><a/>
+
+### ArenaModelLoaderStream factory
 
 To encapsulate the `switch` statement in `ArenaModelLoaderStream` to choose the concrete `Element` to create based on the character in the map file, we used the [Factory Method](https://refactoring.guru/design-patterns/factory-method) pattern
 
-### Menus and game (State)
+<a name="state-game"><a/>
+
+### Menus and game
 It's all menus and games, until you reach the point you have to put everything together. The *maestro* of the whole game is (you guessed it) `Game`, which will somehow have to handle the fact we might be in a menu, a scoreboard or in-game.
 
 We will use the [State](https://refactoring.guru/design-patterns/state) pattern to better organize our `Game` class, allowing us to:
@@ -177,7 +190,9 @@ We will use the [State](https://refactoring.guru/design-patterns/state) pattern 
 - Transitions between states are rather explicit.
 - Change the behaviour of `Game` according to its current state (to have the appropriate input/output possibilities for a menu, a scoreboard, in-game, etc.)
 
-### ArenaController is the *God of Dynamics* (Command & Composite)
+<a name="command-composite-arenacontroller"><a/>
+
+### ArenaController is the *God of Dynamics*
 To stay true to the MVC model without using any particular design pattern, `ArenaController` is the *God of Dynamics*, meaning it processes all dynamics and events (moving and collision handling, shooting projectiles, picking weapons, etc.). This gives the ArenaController an excessive amount of responsibility.
 
 We will use the [Command](https://refactoring.guru/design-patterns/command) pattern to reduce `ArenaController`'s knowledge and responsibility. Each command will still somehow be associated to a controller (given the results of a command are also part of a given set of rules), but each command will individually be responsible for handling a certain action. That will allow us to:
@@ -187,17 +202,23 @@ We will also use the [Composite](https://refactoring.guru/design-patterns/compos
 - Compose commands as chains of other commands.
 - Encapsulate commands and lists of commands from whoever has contact with them.
 
-### Movement strategies (Strategy)
+<a name="strategy-movement"><a/>
+
+### Movement strategies
 We might decide to implement a different strategy for moving our followers: instead of going all straight horizontally and then vertically, we might want followers to describe a sort of a diagonal, such that if the tile above and to the left are the same distance from the destination we might want to choose that which makes the movement resemble more of a diagonal (i.e., the one that minimizes the distance in a straight line).
 
 For that we use the [Strategy](https://refactoring.guru/design-patterns/strategy) pattern with `ShortestPathStrategy`, allowing us to:
 - Use the same algorithm for different classes
 - Implement different algorithms and then choose whichever seems better.
 
+<a name="code-smells"><a/>
+
 ## Code smells and refactoring suggestions
+
+<a name="testing"><a/>
 
 ## Testing
 
+<a name="self-evaluation"><a/>
+
 ## Self-evaluation
-
-
