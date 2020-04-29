@@ -113,7 +113,7 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
 
 ## Design
 
-### Complex frameworks require simple interfaces
+### Lanterna facade
 
 #### Problem in context
 Frameworks are complex (and sometimes unfortunately ever-changing) systems, having many more features than those that will actually be used in a project. This is the case of the [Lanterna](https://code.google.com/archive/p/lanterna/) framework we are using, from which we practically only need a few simple features like drawing a character with a certain foreground and background colors, and receive user input.
@@ -143,25 +143,33 @@ This use of the Facade pattern allows the following benefits:
 - We have a limited but straightforward interface to a complex framework.
 - Knowledge about the framework is restricted to the facade class.
 
-### To be or not to be a terminal (Abstract Factory)
-To draw an `Element`, an implementation of `ArenaView` does not need to care how and where it is drawn; it simply pours it into another class which will figure out how to draw it using a certain framework.
+### ElementView factory
+#### Problem in context
+To draw an `Element`, an implementation of `ArenaView` would otherwise have a lot of `if` conditionals to correctly assert the concrete `Element` types and draw them, causing a `switch` code smell.
 
-We want our interface between game and framework (our `ArenaView`) to actually support several frameworks, not just a dull terminal.
+#### The pattern
+We applied the [Factory Method](https://refactoring.guru/design-patterns/factory-method) pattern, which allows a better organization of products, by returning an interface that is actually a concrete implementation of that interface, constructed according to the instructions provided to the factory method.
 
-To this end, we use the [Abstract Factory](https://refactoring.guru/design-patterns/abstract-factory) pattern, which will allow us to:
-- Generally ignore how *products* are made (where a product might be a `com.pacman.g60.View` for a specific `Element`)
-- Have several families of products (e.g., one for a Lanterna terminal and another for a Swing window)
-- Make `com.pacman.g60.View`s from the same family work in tight cooperation if needed.
+#### Implementation
+The following figure shows how the pattern's roles were mapped to the application classes.
 
-For instance, we can name our abstract factory `ViewFactory` (produces `MenuView` and `GameView`), and a concrete factory `LanternaFactory` (produces `LanternaMenuView implements MenuView` and `LanternaGameView implements GameView`). 
+![](images/factory-elementview.svg)
+
+#### Consequences
+This use of the Abstract Factory pattern allows us the following benefits:
+- An `ArenaView` does not need to care how and where an element is drawn, or which class knows how to draw it; it simply pours it into a factory that will find out the suitable concrete `ElementView` to draw it.
+- Sprite loading is encapsulated in an orderly fashion in each concrete `ElementView`
+
+### ViewFactory and TerminalFactory (abstract factory)
+#### The pattern
+We applied the [Abstract Factory](https://refactoring.guru/design-patterns/abstract-factory) pattern, which allows a better organization and use of families of products, by:
+1. Declaring interfaces for each distinct product in a family and have each variant implement the respective interface;
+2. Declaring the abstract factory, which has methods for creating all products in a family;
+3. Declare a concrete factory implementing the abstract factory for each family
 
 ### ArenaModel loader factory (Factory Method)
 
 To encapsulate the `switch` statement in `ArenaModelLoaderStream` to choose the concrete `Element` to create based on the character in the map file, we used the [Factory Method](https://refactoring.guru/design-patterns/factory-method) pattern
-
-### ElementView factory (Factory Method)
-
-To encapsulate the `switch` statement in `TerminalArenaView` to choose the concrete `ElementView` to draw an element, we used the [Factory Method](https://refactoring.guru/design-patterns/factory-method) pattern where `ElementViewFactory` is the factory and `ElementView` is the product.
 
 ### Menus and game (State)
 It's all menus and games, until you reach the point you have to put everything together. The *maestro* of the whole game is (you guessed it) `Game`, which will somehow have to handle the fact we might be in a menu, a scoreboard or in-game.
