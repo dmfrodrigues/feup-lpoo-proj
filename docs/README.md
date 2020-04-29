@@ -28,37 +28,15 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
 
 #### Gallery
 
-<div>
-    <table>
-        <tr>
-            <th>
-                2020-04-26
-               </th>
-        </tr>
-        <tr>
-            <td>
-                <img src="https://i.postimg.cc/nzTSXGd3/2020-04-26-21-31-01.png" alt="2020-04-26-img" width="400" />
-            </td>
-        </tr>
-    </table>
-</div>
+| 2020-04-26 |
+|------------|
+|![2020-04-26-image](images/2020-04-26_21-31-01.png)|
 
 #### Animations
 
-<div>
-    <table>
-        <tr>
-            <th>
-                2020-04-28
-               </th>
-        </tr>
-        <tr>
-            <td>
-                <img src="https://i.postimg.cc/R0BgGDyP/pacman-20200428-202310.gif" alt="2020-04-28-anim" width="400" />
-            </td>
-        </tr>
-    </table>
-</div>
+| 2020-04-28 |
+|------------|
+|![2020-04-28-animation](images/pacman-20200428-202310.gif)|
 
 ## Specifications
 
@@ -103,25 +81,7 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
 - [ ] Dynamic elements have life
 - [ ] Weaponize enemies
 
-<div>
-    <table>
-        <!--
-        <tr>
-            <td>
-                Dynamic elements can move<br>
-                Sprites change according to direction<br>
-                Screen is centered in the Hero<br>
-                Some enemies follow the hero
-            </td>
-        </tr>
-        -->
-        <tr>
-            <td>
-                <img src="https://i.postimg.cc/R0BgGDyP/pacman-20200428-202310.gif" alt="features-1" width="400" />
-            </td>
-        </tr>
-    </table>
-</div>
+![2020-04-26-image](images/pacman-20200428-202310.gif)
 
 ## Planned features
 
@@ -169,7 +129,7 @@ We applied the [**Facade**](https://refactoring.guru/design-patterns/facade) pat
 #### Implementation
 The following figure shows how the pattern's roles were mapped to the application classes.
 
-![](svg/facade-lanterna.svg)
+![](images/facade-lanterna.svg)
 
 Our facade `LanternaGUI` represents a single terminal window.
 
