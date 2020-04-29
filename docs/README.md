@@ -37,7 +37,7 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
         </tr>
         <tr>
             <td>
-                <img src="https://drive.google.com/uc?id=1WstrLPkEo1YTzjKws6ZUzi35vcV6Ieky" width="400">
+                <img src="https://i.postimg.cc/nzTSXGd3/2020-04-26-21-31-01.png" width="400">
             </td>
         </tr>
     </table>
@@ -54,7 +54,7 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
         </tr>
         <tr>
             <td>
-                <img src="https://drive.google.com/uc?id=1WBvDyLVMg_c_SImkldvtyFeTQkHBOX_E" width="400">
+                <img src="https://i.postimg.cc/R0BgGDyP/pacman-20200428-202310.gif" width="400">
             </td>
         </tr>
     </table>
@@ -174,7 +174,7 @@ We applied the [**Facade**](https://refactoring.guru/design-patterns/facade) pat
 The following figure shows how the pattern's roles were mapped to the application classes.
 
 <div align="center">
-    <img src="https://drive.google.com/uc?id=1rKYRbxJPLTdlYJDBx1KMupA_nfhLPzCw">
+    <img src="https://i.postimg.cc/rF4j4Dkk/facade-lanterna.png">
 </div>
 
 Our facade `LanternaGUI` represents a single terminal window.
