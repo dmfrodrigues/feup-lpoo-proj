@@ -43,7 +43,7 @@ public class ArenaController {
                 for (final Element element : elements) {
                     if (element instanceof Ghost) {
                         Position newPos = shortestPath.getPrev(element.getPos());
-                        if (newPos != null) element.setPos(newPos);
+                        if (newPos != null) ((Ghost) element).updatePos(newPos);
                     }
                 }
                 i = 1;
