@@ -38,7 +38,7 @@ public class LanternaGUI implements TerminalGUI {
     }
 
     @Override
-    public void drawCharacter(int x, int y, char c, Color f, Color b) {
+    public void drawCharacter(Integer x, Integer y, Character c, Color f, Color b) {
         TextGraphics graphics = screen.newTextGraphics();
         graphics.setForegroundColor(new TextColor.RGB(f.getR(), f.getG(), f.getB()));
         graphics.setBackgroundColor(new TextColor.RGB(b.getR(), b.getG(), b.getB()));

@@ -1,8 +1,15 @@
-# LPOO-2020-G60: Pacman (or maybe not)
+# LPOO_60 - The Cursed Catacombs
+#### (Codename: pacman)
 
 <p align="left">
   <img src="https://github.com/FEUP-LPOO/lpoo-2020-g60/workflows/gradlew%20test/badge.svg">
 </p>
+
+You are a noble knight seeking to assist Her Majesty in cleansing the capital's catacombs from the many monsters that inhabit it. Your mission is to kill all monsters and collect as many coins as possible across multiple levels.
+
+This project was developed for LPOO <sup>2019</sup>⁄<sub>20</sub> by:
+- [Diogo Rodrigues](https://github.com/dmfrodrigues) ([dmfrodrigues2000@gmail.com](mailto:dmfrodrigues2000@gmail.com)/[up201806429@fe.up.pt](mailto:up201806429@fe.up.pt))
+- [João Matos](https://github.com/MechJM) ([up201703884@fe.up.pt](mailto:up201703884@fe.up.pt))
 
 ## Description
 
@@ -36,7 +43,7 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
     </table>
 </div>
 
-#### Gifs
+#### Animations
 
 <div align="center">
     <table>
@@ -86,17 +93,44 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
     - **Sword**: nothing in particular.
     - **Bullet**: nothing in particular.
 
-## Features
+## Implemented features
 
+- [x] Dynamic elements can move
+- [x] Sprites change according to direction
+- [x] Screen is centered in the Hero
+- [x] Some enemies follow the hero
 - [ ] Collisions
+- [ ] Dynamic elements have life
+- [ ] Weaponize enemies
+
+<div align="center">
+    <table>
+        <!--
+        <tr>
+            <td>
+                Dynamic elements can move<br>
+                Sprites change according to direction<br>
+                Screen is centered in the Hero<br>
+                Some enemies follow the hero
+            </td>
+        </tr>
+        -->
+        <tr>
+            <td>
+                <img src="https://drive.google.com/uc?id=1WBvDyLVMg_c_SImkldvtyFeTQkHBOX_E" width="400">
+            </td>
+        </tr>
+    </table>
+</div>
+
+## Planned features
+
 - [ ] Main menu
     - [ ] Scoreboard
     - [ ] Level selector
     - [ ] Level editor (?)
 - [ ] Score system
 - [ ] Current game state can be saved and loaded
-- [ ] Hero is always in the center of the screen
-- [ ] Weaponize enemies
 - [ ] Weaponize hero
 - [ ] Information bar:
     - [ ] Timer
@@ -123,14 +157,40 @@ The UML class diagram of the project is available [here](https://drive.google.co
 
 ## Design
 
-### Complex frameworks require simple interfaces (Facade)
-To draw an `Element`, an implementation of `ArenaView` does not need to care how and where it is drawn; it simply pours it into another class that will figure out how to draw it using a certain framework.
+### Complex frameworks require simple interfaces
 
-To this end, we use the [Facade](https://refactoring.guru/design-patterns/facade) pattern, which allows us to:
-- Have a limited but straightforward interface to a complex framework: draw me this, and let me know when the user does something (but on the clients' terms, not the framework terms).
+#### Problem in context
+Frameworks are complex (and sometimes unfortunately ever-changing) systems, having many more features than those that will actually be used in a project. This is the case of the [Lanterna](https://code.google.com/archive/p/lanterna/) framework we are using, from which we practically only need a few simple features like drawing a character with a certain foreground and background colors, and receive user input.
+
+Should we use Lanterna's methods directly, the code would be:
+
+- Complex, since there are some extra steps we need to take before we allow drawing.
+- Tightly coupled with the framework.
+
+#### The pattern
+We applied the [**Facade**](https://refactoring.guru/design-patterns/facade) pattern, which consists of creating a facade class that exposes only a few methods of a complex framework, including only the features the client really cares about.
+
+#### Implementation
+The following figure shows how the pattern's roles were mapped to the application classes.
+
+<div align="center">
+    <img src="https://drive.google.com/uc?id=1rKYRbxJPLTdlYJDBx1KMupA_nfhLPzCw">
+</div>
+
+Our facade `LanternaGUI` represents a single terminal window.
+
+The classes can be found in the following files:
+- [GUI](../src/main/java/com/pacman/g60/View/GUI.java)
+- [TerminalGUI](../src/main/java/com/pacman/g60/View/TerminalGUI.java)
+- [LanternaGUI](../src/main/java/com/pacman/g60/View/LanternaGUI.java)
+ 
+#### Consequences
+This use of the Facade pattern allows the following benefits:
+- We have a limited but straightforward interface to a complex framework.
+- Knowledge about the framework is restricted to the facade class.
 
 ### To be or not to be a terminal (Abstract Factory)
-The above note will allow us to further organize our code.
+To draw an `Element`, an implementation of `ArenaView` does not need to care how and where it is drawn; it simply pours it into another class which will figure out how to draw it using a certain framework.
 
 We want our interface between game and framework (our `ArenaView`) to actually support several frameworks, not just a dull terminal.
 
