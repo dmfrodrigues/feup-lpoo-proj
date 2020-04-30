@@ -245,7 +245,7 @@ This use of the State pattern has the benefit of changing the behaviour of `Game
 
 #### Problem in context
 
-To stay true to the MVC model without using any particular design pattern, `ArenaController` is the *God of Dynamics*, meaning it processes all dynamics and events (moving and collision handling, shooting projectiles, picking weapons, etc.). The issue is that this gives the ArenaController an excessive amount of responsibility.
+To stay true to the MVC model without using any particular design pattern, `ArenaController` is the *God of Dynamics*, meaning it processes all dynamics and events (moving and collision handling, shooting projectiles, picking weapons, etc.). The issue is the excessive amount of responsibilities granted to ArenaController this way.
 
 #### The pattern
 
@@ -254,7 +254,7 @@ We will use the [Command](https://refactoring.guru/design-patterns/command) patt
 
 #### Implementation
 
-Our implementation will follow the following diagram.
+Our implementation will follow the diagram shown below.
 
 ![](images/command-diagram.png)
 
