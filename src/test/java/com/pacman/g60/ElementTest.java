@@ -1,3 +1,5 @@
+package com.pacman.g60;
+
 import com.pacman.g60.Model.Elements.StaticElement;
 import com.pacman.g60.Model.Position;
 import com.pacman.g60.Model.Elements.Wall;

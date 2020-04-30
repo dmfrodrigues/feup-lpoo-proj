@@ -272,7 +272,9 @@ For that we use the [Strategy](https://refactoring.guru/design-patterns/strategy
 
 The test report is available [here](https://feup-lpoo.github.io/lpoo-2020-g60/reports/tests/test/).
 
-The coverage report (obtained using the [JaCoCo](https://docs.gradle.org/current/userguide/jacoco_plugin.html) plugin) is available [here](https://feup-lpoo.github.io/lpoo-2020-g60/reports/jacoco/test/html/).
+The coverage test report (obtained using the [JaCoCo](https://docs.gradle.org/current/userguide/jacoco_plugin.html) plugin) is available [here](https://feup-lpoo.github.io/lpoo-2020-g60/reports/jacoco/test/html/).
+
+The mutation test report (obtained using the [PIT Mutation Testing](https://gradle-pitest-plugin.solidsoft.info/) plugin) is available [here](https://feup-lpoo.github.io/lpoo-2020-g60/reports/pitest/)
 
 <a name="self-evaluation"><a/>
 

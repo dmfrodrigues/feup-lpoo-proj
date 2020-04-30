@@ -23,7 +23,10 @@ jobs:
       run: ./gradlew jacocoTestReport
     - name: Stash reports
       run: |
-        mv build/reports $HOME
+        mkdir $HOME/reports
+        mv build/reports/tests build/reports/jacoco $HOME/reports
+        mkdir $HOME/reports/pitest
+        mv build/reports/pitest/*/* $HOME/reports/pitest
     - name: Checkout gh-actions-builds branch
       uses: actions/checkout@v1
       with:

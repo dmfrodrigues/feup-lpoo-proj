@@ -2,13 +2,14 @@ plugins {
     id 'java'
     id 'application'
     id 'jacoco'
+    id 'info.solidsoft.pitest' version '1.4.6'
 }
 
 application {
     mainClassName = 'com.pacman.g60.Application'
 }
 
-group 'org.example'
+group 'com.pacman.g60'
 version '1.0-SNAPSHOT'
 
 repositories {
