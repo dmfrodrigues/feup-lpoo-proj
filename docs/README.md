@@ -149,6 +149,7 @@ To draw an `Element`, an implementation of `ArenaView` had to:
 2. [Store them in maps](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/21f450bd2218317b20a4ab332df9227c82dfe0b2/src/main/java/com/pacman/g60/View/TerminalArenaView.java#L22-L23).
 3. [Get the correct sprite from the maps](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/21f450bd2218317b20a4ab332df9227c82dfe0b2/src/main/java/com/pacman/g60/View/TerminalArenaView.java#L71-L75), which in practice is **equivalent to** (and thus as bad as) **a large `switch` statement**, thus qualifying as a subtle form of a `switch` statement code smell.
 
+<a name="factory-pattern"><a/>
 #### The pattern
 We applied the [Factory Method](https://refactoring.guru/design-patterns/factory-method) pattern, which allows a better organization of products, by returning an interface that is actually a concrete implementation of that interface, constructed according to the instructions provided to the factory method.
 
@@ -204,17 +205,41 @@ This use of the Abstract Factory pattern has the following benefits:
 
 ### ArenaModelLoaderStream factory
 
-To encapsulate the `switch` statement in `ArenaModelLoaderStream` to choose the concrete `Element` to create based on the character in the map file, we used the [Factory Method](https://refactoring.guru/design-patterns/factory-method) pattern
+#### Problem in context
+
+We were using a [quite long `switch` statement](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/e777ea8c67b9296520d7d72a7ad919fc30e85143/src/main/java/com/pacman/g60/Model/ArenaModelLoaderStream.java#L18-L23) in `ArenaModelLoaderStream`, so we could distinguish characters and correctly instantiate the corresponding concrete `Element`. This is obviously a `switch` statement code smell.
+
+#### The pattern
+We applied the [Factory Method](https://refactoring.guru/design-patterns/factory-method) pattern, which has already been generically introduced [here](#factory-pattern).
+
+#### Implementation
+The following figure shows how the pattern's roles were mapped to the application classes.
+
+![](images/factory-arenamodelloaderstream.svg)
+
+All these classes can be found in file [ArenaModelLoaderStream.java](../src/main/java/com/pacman/g60/Model/ArenaModelLoaderStream.java).
+
+#### Consequences
+The most significant benefit is that now the `switch` statement is completely contained in a factory, which separates the responsibility of opening and iterating over the file from the responsibility to know what each symbol means.
 
 <a name="state-game"><a/>
 
 ### Menus and game
-It's all menus and games, until you reach the point you have to put everything together. The *maestro* of the whole game is (you guessed it) `Game`, which will somehow have to handle the fact we might be in a menu, a scoreboard or in-game.
+#### Problem in context
+It's all menus and games, until you reach the point you have to put everything together. The *maestro* of the whole game is `Game`, which will somehow have to handle the fact we might be in a menu, a scoreboard or in-game.
 
-We will use the [State](https://refactoring.guru/design-patterns/state) pattern to better organize our `Game` class, allowing us to:
-- Represent the general workings of the game as a deterministic finite automata, where some states are only reachable from others.
-- Transitions between states are rather explicit.
-- Change the behaviour of `Game` according to its current state (to have the appropriate input/output possibilities for a menu, a scoreboard, in-game, etc.)
+#### The pattern
+
+We will apply the [State](https://refactoring.guru/design-patterns/state) pattern, which consists of representing the general workings of the game as a deterministic finite automaton, where some states are only reachable from others, and with the added advantage that transitions between states are made explicit.
+
+#### Implementation
+
+We will use the following state diagram to guide our implementation.
+
+![](images/state-diagram.svg)
+
+#### Consequences
+This use of the State pattern has the benefit of changing the behaviour of `Game` in an orderly fashion, according to its current state (to have the appropriate input/output possibilities for a menu, a scoreboard, in-game, etc.)
 
 <a name="command-composite-arenacontroller"><a/>
 

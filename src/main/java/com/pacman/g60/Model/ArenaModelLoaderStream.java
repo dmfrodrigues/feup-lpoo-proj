@@ -12,7 +12,7 @@ public class ArenaModelLoaderStream implements ArenaModel.Loader {
     private class Factory {
         private Position pos;
         public Factory(Position pos){ this.pos = new Position(pos); }
-        public Element factoryMethod(char c) throws IllegalArgumentException {
+        public Element factoryMethod(Character c) throws IllegalArgumentException {
             switch(c){
                 case 'W': return new Wall(pos);
                 case 'H': return new Hero(pos);
@@ -22,9 +22,9 @@ public class ArenaModelLoaderStream implements ArenaModel.Loader {
             }
         }
     }
-    
+
     private ArenaModel arenaModel;
-    
+
     public ArenaModelLoaderStream(InputStream inputStream) {
         Scanner scanner = new Scanner(inputStream);
         String[] firstLine = scanner.nextLine().split(" ");

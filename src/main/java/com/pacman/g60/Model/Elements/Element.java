@@ -5,7 +5,7 @@ import com.pacman.g60.Model.Position;
 
 public abstract class Element {
 
-    protected Position pos;
+    private Position pos;
     public Element(Position pos){
         this.pos = pos;
     }
