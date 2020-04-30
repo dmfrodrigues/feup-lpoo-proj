@@ -1,3 +1,5 @@
+package com.pacman.g60;
+
 import com.pacman.g60.View.Color;
 import org.junit.Test;
 

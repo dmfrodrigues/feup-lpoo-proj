@@ -6,6 +6,7 @@ import com.pacman.g60.Model.ArenaModel;
 import com.pacman.g60.Model.Elements.Element;
 import com.pacman.g60.Model.Elements.Ghost;
 import com.pacman.g60.Model.Path_Calculation.BFSShortestPathStrategy;
+import com.pacman.g60.Model.Path_Calculation.BFSTieBreakerDiag;
 import com.pacman.g60.Model.Path_Calculation.Graph;
 import com.pacman.g60.Model.Path_Calculation.ShortestPathStrategy;
 import com.pacman.g60.Model.Position;
@@ -38,7 +39,7 @@ public class ArenaController {
             if(i%10 == 0) {
 
                 Graph<Position> G = arenaModel.getGraph();
-                ShortestPathStrategy<Position> shortestPathStrategy = new BFSShortestPathStrategy<Position>();
+                ShortestPathStrategy<Position> shortestPathStrategy = new BFSShortestPathStrategy<Position>(new BFSTieBreakerDiag(arenaModel.getHero().getPos()));
                 shortestPathStrategy.setGraph(G);
                 shortestPathStrategy.calcPaths(arenaModel.getHero().getPos());
                 List<Element> elements = arenaModel.getElements();
