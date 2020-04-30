@@ -1,3 +1,5 @@
+package com.pacman.g60;
+
 import com.pacman.g60.Application;
 import com.pacman.g60.Controller.Command;
 import com.pacman.g60.Controller.MoveHeroCommand;

@@ -1,3 +1,5 @@
+package com.pacman.g60;
+
 import com.pacman.g60.Controller.UpdateEnemyPosCommand;
 import com.pacman.g60.Model.Elements.DynamicElement;
 import com.pacman.g60.Model.Elements.Ghost;
