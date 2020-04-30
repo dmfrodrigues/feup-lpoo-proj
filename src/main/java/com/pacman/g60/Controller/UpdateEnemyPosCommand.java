@@ -10,25 +10,18 @@ import com.pacman.g60.Model.Position;
 
 import java.util.List;
 
-public class UpdateEnemyPosCommand extends Command {
+public class UpdateEnemyPosCommand implements Command {
+    private Element element;
+    private Position position;
 
-    public UpdateEnemyPosCommand(ArenaModel arenaModel)
+    public UpdateEnemyPosCommand(Element element, Position position)
     {
-        super(arenaModel);
+        this.element = element;
+        this.position = position;
     }
 
     @Override
     public void execute() {
-        Graph<Position> G = arenaModel.getGraph();
-        ShortestPathStrategy<Position> shortestPathStrategy = new BFSShortestPathStrategy<Position>();
-        shortestPathStrategy.setGraph(G);
-        shortestPathStrategy.calcPaths(arenaModel.getHero().getPos());
-        List<Element> elements = arenaModel.getElements();
-        for (final Element element : elements) {
-            if (element instanceof Ghost) {
-                Position newPos = shortestPathStrategy.getPrev(element.getPos());
-                if (newPos != null) ((Ghost) element).updatePos(newPos);
-            }
-        }
+        if (position != null) ((Ghost) element).updatePos(position);
     }
 }

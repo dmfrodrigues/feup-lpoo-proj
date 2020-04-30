@@ -3,10 +3,11 @@ package com.pacman.g60.Controller;
 import com.pacman.g60.Application;
 import com.pacman.g60.Model.ArenaModel;
 
-public class MoveHeroCommand extends Command {
+public class MoveHeroCommand implements Command {
+    private ArenaModel arenaModel;
     private Application.Direction dir;
 
-    public MoveHeroCommand(ArenaModel arenaModel, Application.Direction dir){super(arenaModel); this.dir = dir;}
+    public MoveHeroCommand(ArenaModel arenaModel, Application.Direction dir){this.arenaModel = arenaModel; this.dir = dir;}
 
     @Override
     public void execute() {

@@ -36,7 +36,19 @@ public class ArenaController {
             }
             
             if(i%10 == 0) {
-                executeCommand(new UpdateEnemyPosCommand(this.arenaModel));
+
+                Graph<Position> G = arenaModel.getGraph();
+                ShortestPathStrategy<Position> shortestPathStrategy = new BFSShortestPathStrategy<Position>();
+                shortestPathStrategy.setGraph(G);
+                shortestPathStrategy.calcPaths(arenaModel.getHero().getPos());
+                List<Element> elements = arenaModel.getElements();
+                for (final Element element : elements) {
+                    if (element instanceof Ghost) {
+                        Position newPos = shortestPathStrategy.getPrev(element.getPos());
+                        executeCommand(new UpdateEnemyPosCommand(element,newPos));
+                    }
+                }
+
                 i = 1;
             }
             ++i;
