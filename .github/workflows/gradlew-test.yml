@@ -19,3 +19,10 @@ jobs:
         java-version: 1.8
     - name: Test with Gradle
       run: ./gradlew test
+    - name: Check file structure
+      run: ls -la && cd build && ls -la
+    - name: Upload test report
+      uses: actions/upload-artifact@v1
+      with:
+        name: Package
+        path: build/reports
