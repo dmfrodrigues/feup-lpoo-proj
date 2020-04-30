@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BFSShortestPathStrategy.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.Model.Path_Calculation</a> &gt; <span class="el_source">BFSShortestPathStrategy.java</span></div><h1>BFSShortestPathStrategy.java</h1><pre class="source lang-java linenums">package com.pacman.g60.Model.Path_Calculation;
+
+import java.util.*;
+
+<span class="nc" id="L5">public class BFSShortestPathStrategy&lt;T&gt; implements ShortestPathStrategy&lt;T&gt; {</span>
+    private Graph&lt;T&gt; G;
+    private Map&lt;T,T&gt; prev;
+
+    @Override
+    public void setGraph(Graph G) {
+<span class="nc" id="L11">        this.G = G;</span>
+<span class="nc" id="L12">    }</span>
+
+    @Override
+    public void calcPaths(T source) {
+<span class="nc" id="L16">        prev = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L17">        Map&lt;T,Integer&gt; dist = new HashMap&lt;&gt;();</span>
+
+<span class="nc" id="L19">        List&lt;T&gt; nodes = G.getNodes();</span>
+
+<span class="nc bnc" id="L21" title="All 2 branches missed.">        for (final T u : nodes)</span>
+        {
+<span class="nc" id="L23">            prev.put(u,null);</span>
+<span class="nc" id="L24">            dist.put(u,Integer.MAX_VALUE);</span>
+<span class="nc" id="L25">        }</span>
+
+<span class="nc" id="L27">        Queue&lt;T&gt; queue = new LinkedList&lt;&gt;();</span>
+<span class="nc bnc" id="L28" title="All 2 branches missed.">        if(nodes.contains(source)) {</span>
+<span class="nc" id="L29">            dist.put(source, 0);</span>
+<span class="nc" id="L30">            prev.put(source, source);</span>
+<span class="nc" id="L31">            queue.add(source);</span>
+        }
+
+<span class="nc bnc" id="L34" title="All 2 branches missed.">        while (!queue.isEmpty())</span>
+        {
+<span class="nc" id="L36">            T u = queue.poll();</span>
+<span class="nc" id="L37">            List&lt;T&gt; adj = G.getAdj(u);</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">            for (T v : adj)</span>
+            {
+<span class="nc bnc" id="L40" title="All 2 branches missed.">                if (dist.get(v) == Integer.MAX_VALUE)</span>
+                {
+<span class="nc" id="L42">                    dist.put(v,dist.get(u) + 1);</span>
+<span class="nc" id="L43">                    prev.put(v,u);</span>
+<span class="nc" id="L44">                    queue.add(v);</span>
+                }
+<span class="nc" id="L46">            }</span>
+<span class="nc" id="L47">        }</span>
+<span class="nc" id="L48">    }</span>
+
+    @Override
+    public T getPrev(T u) {
+<span class="nc" id="L52">        return prev.get(u);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

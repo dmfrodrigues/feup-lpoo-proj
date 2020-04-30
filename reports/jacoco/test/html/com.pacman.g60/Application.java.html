@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Application.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60</a> &gt; <span class="el_source">Application.java</span></div><h1>Application.java</h1><pre class="source lang-java linenums">package com.pacman.g60;
+
+import com.pacman.g60.Model.ArenaModel;
+import com.pacman.g60.Model.ArenaModelLoaderStream;
+import com.pacman.g60.Controller.Game;
+import com.pacman.g60.View.LanternaGUI;
+import com.pacman.g60.View.TerminalFactory;
+import com.pacman.g60.View.TerminalGUI;
+import com.pacman.g60.View.ViewFactory;
+
+import java.io.*;
+
+<span class="nc" id="L13">public class Application {</span>
+    public static void main(String[] argv){
+        // ViewFactory
+<span class="nc" id="L16">        TerminalGUI terminalGUI = new LanternaGUI();</span>
+<span class="nc" id="L17">        ViewFactory viewFactory = new TerminalFactory(terminalGUI);</span>
+        // game
+        try {
+<span class="nc" id="L20">            Game game = new Game(viewFactory);</span>
+<span class="nc" id="L21">            game.run();</span>
+<span class="nc" id="L22">            terminalGUI.close();</span>
+<span class="nc" id="L23">        } catch(FileNotFoundException e){</span>
+<span class="nc" id="L24">            System.err.println(&quot;FileNotFoundException: &quot; + e.getMessage());</span>
+<span class="nc" id="L25">        } catch(IOException e){</span>
+<span class="nc" id="L26">            System.err.println(&quot;IOException: &quot; + e.getMessage());</span>
+<span class="nc" id="L27">        }</span>
+<span class="nc" id="L28">    }</span>
+<span class="nc" id="L29">    public enum Direction {UP,DOWN,LEFT,RIGHT}</span>
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
