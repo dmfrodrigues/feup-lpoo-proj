@@ -25,17 +25,18 @@ jobs:
     - name: Checkout gh-actions-builds branch
       uses: actions/checkout@v1
       with:
-        ref: gh-actions-builds
+        ref: gh-pages
     - name: Commit reports
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name = "GitHub Action"
+        rm -rf reports
         mv $HOME/reports $(pwd)
         git add reports
         git commit -m "Add changes"
     - name: Push reports
       uses: ad-m/github-push-action@v0.5.0
       with:
-        branch: gh-actions-builds
+        branch: gh-pages
         force: false
         github_token: ${{ secrets.GITHUB_TOKEN }}
