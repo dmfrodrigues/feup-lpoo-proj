@@ -2,8 +2,8 @@ package com.pacman.g60.Model.Path_Calculation;
 
 import java.util.*;
 
-public class AdjacencyGraph<T> implements Graph<T> {
-    Map<T,List<T>> adj;
+public class AdjacencyGraph<T> extends Graph<T> {
+    Map<T,Set<T>> adj;
 
     public AdjacencyGraph()
     {
@@ -11,8 +11,9 @@ public class AdjacencyGraph<T> implements Graph<T> {
     }
 
     @Override
-    public void addNode(T node) {
-        adj.put(node,new ArrayList<>());
+    public void addNode(T node) throws IllegalArgumentException {
+        if(adj.get(node) != null) throw new IllegalArgumentException("Node already exists");
+        adj.put(node,new HashSet<>());
     }
 
     @Override
@@ -24,21 +25,10 @@ public class AdjacencyGraph<T> implements Graph<T> {
     }
 
     @Override
-    public List getAdj(T node) {
+    public Set<T> getAdj(T node) {
         return adj.get(node);
     }
 
     @Override
-    public List<T> getNodes() {
-        List<T> res = new ArrayList<>();
-
-        Iterator it = adj.entrySet().iterator();
-
-        while (it.hasNext())
-        {
-            Map.Entry pair = (Map.Entry) it.next();
-            res.add((T) pair.getKey());
-        }
-        return res;
-    }
+    public Set<T> getNodes() { return adj.keySet(); }
 }

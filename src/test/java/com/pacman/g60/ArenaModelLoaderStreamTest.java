@@ -13,9 +13,7 @@ import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -36,7 +34,7 @@ public class ArenaModelLoaderStreamTest {
                         "WWWWWWWWWW \n";
         Graph<Position> G = new AdjacencyGraph<>();
         List<Integer> nodePositions = new ArrayList<>(Arrays.asList(
-                
+                                                                            10, 0,
                       1, 1,       3, 1, 4, 1, 5, 1, 6, 1, 7, 1, 8, 1,       10, 1,
                       1, 2,       3, 2,                   7, 2, 8, 2,       10, 2,
                       1, 3,       3, 3, 4, 3, 5, 3,       7, 3, 8, 3,       10, 3,
@@ -44,12 +42,26 @@ public class ArenaModelLoaderStreamTest {
                       1, 5, 2, 5,       4, 5,       6, 5, 7, 5, 8, 5,       10, 5,
                       1, 6, 2, 6,       4, 6,       6, 6,                   10, 6,
                       1, 7, 2, 7,       4, 7,       6, 7, 7, 7, 8, 7,       10, 7,
-                      1, 8, 2, 8, 3, 8, 4, 8, 5, 8, 6, 8, 7, 8, 8, 8,       10, 8
-                
+                      1, 8, 2, 8, 3, 8, 4, 8, 5, 8, 6, 8, 7, 8, 8, 8,       10, 8,
+                                                                            10, 9
         ));
+        Set<Position> posSet = new HashSet<>();
         for(int i = 0; i < nodePositions.size(); i += 2){
+            posSet.add(new Position(nodePositions.get(i), nodePositions.get(i+1)));
             G.addNode(new Position(nodePositions.get(i), nodePositions.get(i+1)));
         }
+        for(final Position pos: posSet){
+            Position left  = new Position(pos.getX()-1, pos.getY());
+            Position right = new Position(pos.getX()+1, pos.getY());
+            Position up    = new Position(pos.getX(), pos.getY()-1);
+            Position down  = new Position(pos.getX(), pos.getY()+1);
+            if(posSet.contains(left )) G.addEdge(pos, left );
+            if(posSet.contains(right)) G.addEdge(pos, right);
+            if(posSet.contains(up   )) G.addEdge(pos, up   );
+            if(posSet.contains(down )) G.addEdge(pos, down );
+        }
+        
+        
         List<Integer> wallsPositions = new ArrayList<>(Arrays.asList(
                 0, 0, 1, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 7, 0, 8, 0, 9, 0,
                 0, 1,       2, 1,                                     9, 1,
@@ -90,11 +102,7 @@ public class ArenaModelLoaderStreamTest {
         }
         
         Graph<Position> Gnew = arenaModel.getGraph();
-        List<Position> l1 = Gnew.getNodes();
-        List<Position> l2 = G.getNodes();
-        l1.sort();
-        l2.sort();
-        assertEquals(l1, l2);
+        assertEquals(Gnew, G);
     }
     @Test
     public void ctor_exception(){
