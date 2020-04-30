@@ -5,6 +5,8 @@ import com.pacman.g60.Model.ArenaModelLoaderStream;
 import com.pacman.g60.Model.Elements.Element;
 import com.pacman.g60.Model.Elements.Ghost;
 import com.pacman.g60.Model.Elements.Hero;
+import com.pacman.g60.Model.Path_Calculation.AdjacencyGraph;
+import com.pacman.g60.Model.Path_Calculation.Graph;
 import com.pacman.g60.Model.Position;
 import com.pacman.g60.Model.Elements.Wall;
 import org.junit.Test;
@@ -15,24 +17,39 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class ArenaModelLoaderStreamTest {
 
     @Test
     public void ctor(){
-        String string = "10 10\n"+
-                        "WWWWWWWWWW\n"+
-                        "W W      W\n"+
-                        "W W WWW  W\n"+
-                        "W W   W  W\n"+
-                        "W WWWWW  W\n"+
-                        "WH W W   W\n"+
-                        "W  W W WWW\n"+
-                        "W  W W   W\n"+
-                        "W  G   G W\n"+
-                        "WWWWWWWWWW\n";
+        String string = "11 10\n"+
+                        "WWWWWWWWWW \n"+
+                        "W W      W \n"+
+                        "W W WWW  W \n"+
+                        "W W   W  W \n"+
+                        "W WWWWW  W \n"+
+                        "WH W W   W \n"+
+                        "W  W W WWW \n"+
+                        "W  W W   W \n"+
+                        "W  G   G W \n"+
+                        "WWWWWWWWWW \n";
+        Graph<Position> G = new AdjacencyGraph<>();
+        List<Integer> nodePositions = new ArrayList<>(Arrays.asList(
+                
+                      1, 1,       3, 1, 4, 1, 5, 1, 6, 1, 7, 1, 8, 1,       10, 1,
+                      1, 2,       3, 2,                   7, 2, 8, 2,       10, 2,
+                      1, 3,       3, 3, 4, 3, 5, 3,       7, 3, 8, 3,       10, 3,
+                      1, 4,                               7, 4, 8, 4,       10, 4,
+                      1, 5, 2, 5,       4, 5,       6, 5, 7, 5, 8, 5,       10, 5,
+                      1, 6, 2, 6,       4, 6,       6, 6,                   10, 6,
+                      1, 7, 2, 7,       4, 7,       6, 7, 7, 7, 8, 7,       10, 7,
+                      1, 8, 2, 8, 3, 8, 4, 8, 5, 8, 6, 8, 7, 8, 8, 8,       10, 8
+                
+        ));
+        for(int i = 0; i < nodePositions.size(); i += 2){
+            G.addNode(new Position(nodePositions.get(i), nodePositions.get(i+1)));
+        }
         List<Integer> wallsPositions = new ArrayList<>(Arrays.asList(
                 0, 0, 1, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 7, 0, 8, 0, 9, 0,
                 0, 1,       2, 1,                                     9, 1,
@@ -62,12 +79,44 @@ public class ArenaModelLoaderStreamTest {
         InputStream inputStream = new ByteArrayInputStream(string.getBytes());
         ArenaModel.Loader arenaModelLoader = new ArenaModelLoaderStream(inputStream);
         ArenaModel arenaModel = arenaModelLoader.getArenaModel();
+        assertEquals(arenaModel.getW(), 11);
+        assertEquals(arenaModel.getH(), 10);
+        assertEquals(arenaModel.getHero(), new Hero(new Position(heroPositions.get(0), heroPositions.get(1))));
         List<Element> listElementsArena = arenaModel.getElements();
 
         assertEquals(listElementsArena.size(), listElements.size());
         for(final Element e: listElements){
             assertTrue(listElements.contains(e));
         }
-
+        
+        Graph<Position> Gnew = arenaModel.getGraph();
+        List<Position> l1 = Gnew.getNodes();
+        List<Position> l2 = G.getNodes();
+        l1.sort();
+        l2.sort();
+        assertEquals(l1, l2);
+    }
+    @Test
+    public void ctor_exception(){
+        String string = "10 10\n"+
+                "WWWWWWWWWW\n"+
+                "W W   A  W\n"+
+                "W W WWW  W\n"+
+                "W W   W  W\n"+
+                "W WWWWW  W\n"+
+                "WH W W   W\n"+
+                "W  W W WWW\n"+
+                "W  W W   W\n"+
+                "W  G   G W\n"+
+                "WWWWWWWWWW\n";
+        InputStream inputStream = new ByteArrayInputStream(string.getBytes());
+        try {
+            ArenaModel.Loader arenaModelLoader = new ArenaModelLoaderStream(inputStream);
+            fail();
+        } catch(Exception e){
+            System.out.println(e.getClass().toString());
+            assertEquals(e.getClass().toString(), "class java.lang.IllegalArgumentException");
+            assertEquals(e.getMessage(), "Unknown character 'A'");
+        }
     }
 }
