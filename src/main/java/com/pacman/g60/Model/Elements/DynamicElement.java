@@ -42,7 +42,7 @@ public abstract class DynamicElement extends Element {
     
     public void updatePos(Position newPos)
     {
-        Position currentPos = this.pos;
+        Position currentPos = getPos();
         int currentX = currentPos.getX();
         int currentY = currentPos.getY();
         int newX = newPos.getX();
@@ -56,7 +56,7 @@ public abstract class DynamicElement extends Element {
         if (diffX == 1) this.dir = Application.Direction.RIGHT;
         else if (diffX == -1) this.dir = Application.Direction.LEFT;
 
-        this.pos = newPos;
+        this.setPos(newPos);
     }
 
 }

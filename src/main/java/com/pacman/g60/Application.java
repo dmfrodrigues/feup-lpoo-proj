@@ -12,26 +12,18 @@ import java.io.*;
 
 public class Application {
     public static void main(String[] argv){
-        // arenaModel
-        ArenaModel arenaModel;
-        try{
-            InputStream inputStream = new FileInputStream("src/main/resources/maps/map1.map");
-            ArenaModel.Loader arenaModelLoader = new ArenaModelLoaderStream(inputStream);
-            arenaModel = arenaModelLoader.getArenaModel();
-        } catch(FileNotFoundException e) {
-            System.err.println("File not found");
-            arenaModel = new ArenaModel(150, 50);
-        }
         // ViewFactory
         TerminalGUI terminalGUI = new LanternaGUI();
         ViewFactory viewFactory = new TerminalFactory(terminalGUI);
         // game
-        Game game = new Game(arenaModel, viewFactory);
         try {
+            Game game = new Game(viewFactory);
             game.run();
             terminalGUI.close();
+        } catch(FileNotFoundException e){
+            System.err.println("FileNotFoundException: " + e.getMessage());
         } catch(IOException e){
-            System.err.println("IOException");
+            System.err.println("IOException: " + e.getMessage());
         }
     }
     public enum Direction {UP,DOWN,LEFT,RIGHT}

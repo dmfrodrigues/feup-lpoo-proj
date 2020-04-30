@@ -4,9 +4,9 @@ package com.pacman.g60.Controller;
 import com.pacman.g60.Model.ArenaModel;
 import com.pacman.g60.Model.Elements.Element;
 import com.pacman.g60.Model.Elements.Ghost;
-import com.pacman.g60.Model.Path_Calculation.BFSshortestPath;
+import com.pacman.g60.Model.Path_Calculation.BFSShortestPathStrategy;
 import com.pacman.g60.Model.Path_Calculation.Graph;
-import com.pacman.g60.Model.Path_Calculation.ShortestPath;
+import com.pacman.g60.Model.Path_Calculation.ShortestPathStrategy;
 import com.pacman.g60.Model.Position;
 import com.pacman.g60.View.ArenaView;
 
@@ -36,13 +36,13 @@ public class ArenaController {
             
             if(i%10 == 0) {
                 Graph<Position> G = arenaModel.getGraph();
-                ShortestPath<Position> shortestPath = new BFSshortestPath<Position>();
-                shortestPath.setGraph(G);
-                shortestPath.calcPaths(arenaModel.getHero().getPos());
+                ShortestPathStrategy<Position> shortestPathStrategy = new BFSShortestPathStrategy<Position>();
+                shortestPathStrategy.setGraph(G);
+                shortestPathStrategy.calcPaths(arenaModel.getHero().getPos());
                 List<Element> elements = arenaModel.getElements();
                 for (final Element element : elements) {
                     if (element instanceof Ghost) {
-                        Position newPos = shortestPath.getPrev(element.getPos());
+                        Position newPos = shortestPathStrategy.getPrev(element.getPos());
                         if (newPos != null) ((Ghost) element).updatePos(newPos);
                     }
                 }

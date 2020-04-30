@@ -91,9 +91,9 @@ public class TerminalArenaView implements ArenaView {
     
     private class ElementViewFactory {
         private Position heroPos;
-        WallView wallView;
-        HeroView heroView;
-        GhostView ghostView;
+        private WallView wallView;
+        private HeroView heroView;
+        private GhostView ghostView;
         public ElementViewFactory() throws FileNotFoundException{
             wallView = new WallView();
             heroView = new HeroView();
