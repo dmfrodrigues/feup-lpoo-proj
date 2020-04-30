@@ -3,8 +3,10 @@ package com.pacman.g60;
 import com.pacman.g60.Model.Position;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import java.util.Set;
+import java.util.TreeSet;
+
+import static org.junit.Assert.*;
 
 public class PositionTest {
 
@@ -54,5 +56,54 @@ public class PositionTest {
         Position position = new Position(10,20);
         Position position2 = new Position(10,20);
         assertEquals(position,position2);
+        assertNotEquals(position, null);
+        assertNotEquals(position, new Object());
+    }
+    
+    @Test
+    public void hashCode_value(){
+        final int NPOS = 100;
+        final int MINX = -1000000000;
+        final int MAXX = +1000000000;
+        final int AMPX = MAXX-MINX;
+        for(int i = 0; i < NPOS; ++i){
+            Integer x = (int)(Math.random()*AMPX + MINX);
+            Integer y = (int)(Math.random()*AMPX + MINX);
+            Position pos = new Position(x, y);
+            assertEquals(pos.hashCode(), x.hashCode()+y.hashCode());
+        }
+    }
+    
+    @Test
+    public void hashCode_quality(){
+        final int NPOS = 1000000;
+        final int MINX = -1000000000;
+        final int MAXX = +1000000000;
+        final int AMPX = MAXX-MINX;
+        final double collision_limit = 0.001;
+        Set<Integer> hashes = new TreeSet<>();
+        for(int i = 0; i < NPOS; ++i){
+            int x = (int)(Math.random()*AMPX + MINX);
+            int y = (int)(Math.random()*AMPX + MINX);
+            Position pos = new Position(x, y);
+            hashes.add(pos.hashCode());
+        }
+        int num_collisions = NPOS - hashes.size();
+        double collision = (double)(num_collisions)/(double)(NPOS);
+        assertTrue(collision < collision_limit);
+    }
+    
+    @Test
+    public void toString_test(){
+        final int NPOS = 1000;
+        final int MINX = -1000000000;
+        final int MAXX = +1000000000;
+        final int AMPX = MAXX-MINX;
+        for(int i = 0; i < NPOS; ++i){
+            int x = (int)(Math.random()*AMPX + MINX);
+            int y = (int)(Math.random()*AMPX + MINX);
+            Position pos = new Position(x, y);
+            assertEquals(pos.toString(), "("+x+", "+y+")");
+        }
     }
 }
