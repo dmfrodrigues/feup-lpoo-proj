@@ -1,9 +1,7 @@
 # LPOO_60 - The Cursed Catacombs
 #### (Codename: pacman)
 
-<p>
-  <img src="https://github.com/FEUP-LPOO/lpoo-2020-g60/workflows/gradlew%20test/badge.svg" alt="gradlew test">
-</p>
+[![gradlew test](https://github.com/FEUP-LPOO/lpoo-2020-g60/workflows/gradlew%20test/badge.svg)](https://feup-lpoo.github.io/lpoo-2020-g60/reports/tests/test/index.html)
 
 You are a noble knight seeking to assist Her Majesty in cleansing the capital's catacombs from the many monsters that inhabit it. Your mission is to kill all monsters and collect as many coins as possible across multiple levels.
 
@@ -244,10 +242,26 @@ This use of the State pattern has the benefit of changing the behaviour of `Game
 <a name="command-composite-arenacontroller"><a/>
 
 ### ArenaController is the *God of Dynamics*
-To stay true to the MVC model without using any particular design pattern, `ArenaController` is the *God of Dynamics*, meaning it processes all dynamics and events (moving and collision handling, shooting projectiles, picking weapons, etc.). This gives the ArenaController an excessive amount of responsibility.
+
+#### Problem in context
+
+To stay true to the MVC model without using any particular design pattern, `ArenaController` is the *God of Dynamics*, meaning it processes all dynamics and events (moving and collision handling, shooting projectiles, picking weapons, etc.). The issue is that this gives the ArenaController an excessive amount of responsibility.
+
+#### The pattern
 
 We will use the [Command](https://refactoring.guru/design-patterns/command) pattern to reduce `ArenaController`'s knowledge and responsibility. Each command will still somehow be associated to a controller (given the results of a command are also part of a given set of rules), but each command will individually be responsible for handling a certain action. That will allow us to:
 - Structure `ArenaController` around high-level commands built on primitive operations.
+
+#### Implementation
+
+Our implementation will follow the following diagram.
+
+![](images/command-diagram.png)
+
+#### Consequences
+
+With this pattern, the ArenaController doesn't need to know how do everything and can just delegate tasks, reducing the amount of responsibility it has.
+
 
 We will also use the [Composite](https://refactoring.guru/design-patterns/composite), which will allow us to:
 - Compose commands as chains of other commands.
@@ -256,10 +270,25 @@ We will also use the [Composite](https://refactoring.guru/design-patterns/compos
 <a name="strategy-movement"><a/>
 
 ### Movement strategies
-We might decide to implement a different strategy for moving our followers: instead of going all straight horizontally and then vertically, we might want followers to describe a sort of a diagonal, such that if the tile above and to the left are the same distance from the destination we might want to choose that which makes the movement resemble more of a diagonal (i.e., the one that minimizes the distance in a straight line).
+#### Problem in context
+We might decide to implement a different strategy for moving our followers: ghosts do not touch the ground, but if we decide to implement a swamp element where walking followers are slower they might want to choose a different path, using a different strategy.
 
-For that we use the [Strategy](https://refactoring.guru/design-patterns/strategy) pattern with `ShortestPathStrategy`, allowing us to:
-- Use the same algorithm for different classes
+#### The pattern
+We applied the [Strategy](https://refactoring.guru/design-patterns/strategy) pattern, which separates different ways to make the same thing into several different classes, also called *concrete strategies*.
+
+#### Implementation
+The following figure shows how the pattern's roles were mapped to the application classes.
+
+![](images/strategy-shortestpath.svg)
+
+The classes can be found in the following files:
+- [ShortestPathStrategy](../src/main/java/com/pacman/g60/Model/Path_Calculation/ShortestPathStrategy.java)
+- [BFSShortestPathStrategy](../src/main/java/com/pacman/g60/Model/Path_Calculation/BFSShortestPathStrategy.java)
+
+#### Consequences
+This use of the Strategy pattern has the benefits of:
+- Organizing algorithmic knowledge in a systematic way.
+- Allowing reuse of an algorithm for different elements.
 - Implement different algorithms and then choose whichever seems better.
 
 <a name="code-smells"><a/>
@@ -269,6 +298,14 @@ For that we use the [Strategy](https://refactoring.guru/design-patterns/strategy
 <a name="testing"><a/>
 
 ## Testing
+
+[![gradlew test](https://github.com/FEUP-LPOO/lpoo-2020-g60/workflows/gradlew%20test/badge.svg)](https://feup-lpoo.github.io/lpoo-2020-g60/reports/tests/test/index.html)
+
+The test report is available [here](https://feup-lpoo.github.io/lpoo-2020-g60/reports/tests/test/index.html).
+
+The coverage test report (obtained using the [JaCoCo](https://docs.gradle.org/current/userguide/jacoco_plugin.html) plugin) is available [here](https://feup-lpoo.github.io/lpoo-2020-g60/reports/jacoco/test/html/index.html).
+
+The mutation test report (obtained using the [PIT Mutation Testing](https://gradle-pitest-plugin.solidsoft.info/) plugin) is available [here](https://feup-lpoo.github.io/lpoo-2020-g60/reports/pitest/index.html).
 
 <a name="self-evaluation"><a/>
 
