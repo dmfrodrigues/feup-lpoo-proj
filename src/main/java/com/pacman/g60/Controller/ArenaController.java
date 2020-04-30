@@ -1,6 +1,7 @@
 package com.pacman.g60.Controller;
 
 
+import com.pacman.g60.Application;
 import com.pacman.g60.Model.ArenaModel;
 import com.pacman.g60.Model.Elements.Element;
 import com.pacman.g60.Model.Elements.Ghost;
@@ -36,6 +37,7 @@ public class ArenaController {
             }
             
             if(i%10 == 0) {
+
                 Graph<Position> G = arenaModel.getGraph();
                 ShortestPathStrategy<Position> shortestPathStrategy = new BFSShortestPathStrategy<Position>(new BFSTieBreakerDiag(arenaModel.getHero().getPos()));
                 shortestPathStrategy.setGraph(G);
@@ -44,9 +46,10 @@ public class ArenaController {
                 for (final Element element : elements) {
                     if (element instanceof Ghost) {
                         Position newPos = shortestPathStrategy.getPrev(element.getPos());
-                        if (newPos != null) ((Ghost) element).updatePos(newPos);
+                        executeCommand(new UpdateEnemyPosCommand(element,newPos));
                     }
                 }
+
                 i = 1;
             }
             ++i;
@@ -58,20 +61,23 @@ public class ArenaController {
                         good = false;
                         break;
                     case UP:
-                        arenaModel.getHero().moveUp(); break;
+                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.UP)); break;
                     case DOWN:
-                        arenaModel.getHero().moveDown(); break;
+                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.DOWN)); break;
                     case LEFT:
-                        arenaModel.getHero().moveLeft(); break;
+                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.LEFT)); break;
                     case RIGHT:
-                        arenaModel.getHero().moveRight(); break;
+                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.RIGHT)); break;
                 }
             }
             arenaView.draw(arenaModel);
         }
     }
 
-
+    public void executeCommand(Command command)
+    {
+        command.execute();
+    }
 
 
 

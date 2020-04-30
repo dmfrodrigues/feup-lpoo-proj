@@ -242,10 +242,26 @@ This use of the State pattern has the benefit of changing the behaviour of `Game
 <a name="command-composite-arenacontroller"><a/>
 
 ### ArenaController is the *God of Dynamics*
-To stay true to the MVC model without using any particular design pattern, `ArenaController` is the *God of Dynamics*, meaning it processes all dynamics and events (moving and collision handling, shooting projectiles, picking weapons, etc.). This gives the ArenaController an excessive amount of responsibility.
+
+#### Problem in context
+
+To stay true to the MVC model without using any particular design pattern, `ArenaController` is the *God of Dynamics*, meaning it processes all dynamics and events (moving and collision handling, shooting projectiles, picking weapons, etc.). The issue is that this gives the ArenaController an excessive amount of responsibility.
+
+#### The pattern
 
 We will use the [Command](https://refactoring.guru/design-patterns/command) pattern to reduce `ArenaController`'s knowledge and responsibility. Each command will still somehow be associated to a controller (given the results of a command are also part of a given set of rules), but each command will individually be responsible for handling a certain action. That will allow us to:
 - Structure `ArenaController` around high-level commands built on primitive operations.
+
+#### Implementation
+
+Our implementation will follow the following diagram.
+
+![](images/command-diagram.png)
+
+#### Consequences
+
+With this pattern, the ArenaController doesn't need to know how do everything and can just delegate tasks, reducing the amount of responsibility it has.
+
 
 We will also use the [Composite](https://refactoring.guru/design-patterns/composite), which will allow us to:
 - Compose commands as chains of other commands.
