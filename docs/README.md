@@ -254,10 +254,25 @@ We will also use the [Composite](https://refactoring.guru/design-patterns/compos
 <a name="strategy-movement"><a/>
 
 ### Movement strategies
-We might decide to implement a different strategy for moving our followers: instead of going all straight horizontally and then vertically, we might want followers to describe a sort of a diagonal, such that if the tile above and to the left are the same distance from the destination we might want to choose that which makes the movement resemble more of a diagonal (i.e., the one that minimizes the distance in a straight line).
+#### Problem in context
+We might decide to implement a different strategy for moving our followers: ghosts do not touch the ground, but if we decide to implement a swamp element where walking followers are slower they might want to choose a different path, using a different strategy.
 
-For that we use the [Strategy](https://refactoring.guru/design-patterns/strategy) pattern with `ShortestPathStrategy`, allowing us to:
-- Use the same algorithm for different classes
+#### The pattern
+We applied the [Strategy](https://refactoring.guru/design-patterns/strategy) pattern, which separates different ways to make the same thing into several different classes, also called *concrete strategies*.
+
+#### Implementation
+The following figure shows how the pattern's roles were mapped to the application classes.
+
+![](images/strategy-shortestpath.svg)
+
+The classes can be found in the following files:
+- [ShortestPathStrategy](../src/main/java/com/pacman/g60/Model/Path_Calculation/ShortestPathStrategy.java)
+- [BFSShortestPathStrategy](../src/main/java/com/pacman/g60/Model/Path_Calculation/BFSShortestPathStrategy.java)
+
+#### Consequences
+This use of the Strategy pattern has the benefits of:
+- Organizing algorithmic knowledge in a systematic way.
+- Allowing reuse of an algorithm for different elements.
 - Implement different algorithms and then choose whichever seems better.
 
 <a name="code-smells"><a/>
@@ -274,7 +289,7 @@ The test report is available [here](https://feup-lpoo.github.io/lpoo-2020-g60/re
 
 The coverage test report (obtained using the [JaCoCo](https://docs.gradle.org/current/userguide/jacoco_plugin.html) plugin) is available [here](https://feup-lpoo.github.io/lpoo-2020-g60/reports/jacoco/test/html/index.html).
 
-The mutation test report (obtained using the [PIT Mutation Testing](https://gradle-pitest-plugin.solidsoft.info/) plugin) is available [here](https://feup-lpoo.github.io/lpoo-2020-g60/reports/pitest/index.html)
+The mutation test report (obtained using the [PIT Mutation Testing](https://gradle-pitest-plugin.solidsoft.info/) plugin) is available [here](https://feup-lpoo.github.io/lpoo-2020-g60/reports/pitest/index.html).
 
 <a name="self-evaluation"><a/>
 
