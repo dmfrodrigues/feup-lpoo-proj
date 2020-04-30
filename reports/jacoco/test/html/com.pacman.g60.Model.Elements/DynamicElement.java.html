@@ -13,51 +13,51 @@ public abstract class DynamicElement extends Element {
 <span class="fc" id="L13">    }</span>
 
     public void moveUp(){
-<span class="nc" id="L16">        Position pos = getPos();</span>
-<span class="nc" id="L17">        pos.setY(pos.getY()-1);</span>
-<span class="nc" id="L18">        setPos(pos);</span>
-<span class="nc" id="L19">        dir = Application.Direction.UP;</span>
-<span class="nc" id="L20">    }</span>
+<span class="fc" id="L16">        Position pos = getPos();</span>
+<span class="fc" id="L17">        pos.setY(pos.getY()-1);</span>
+<span class="fc" id="L18">        setPos(pos);</span>
+<span class="fc" id="L19">        dir = Application.Direction.UP;</span>
+<span class="fc" id="L20">    }</span>
     public void moveDown(){
-<span class="nc" id="L22">        Position pos = getPos();</span>
-<span class="nc" id="L23">        pos.setY(pos.getY()+1);</span>
-<span class="nc" id="L24">        setPos(pos);</span>
-<span class="nc" id="L25">        dir = Application.Direction.DOWN;</span>
-<span class="nc" id="L26">    }</span>
+<span class="fc" id="L22">        Position pos = getPos();</span>
+<span class="fc" id="L23">        pos.setY(pos.getY()+1);</span>
+<span class="fc" id="L24">        setPos(pos);</span>
+<span class="fc" id="L25">        dir = Application.Direction.DOWN;</span>
+<span class="fc" id="L26">    }</span>
     public void moveLeft(){
-<span class="nc" id="L28">        Position pos = getPos();</span>
-<span class="nc" id="L29">        pos.setX(pos.getX()-1);</span>
-<span class="nc" id="L30">        setPos(pos);</span>
-<span class="nc" id="L31">        dir = Application.Direction.LEFT;</span>
-<span class="nc" id="L32">    }</span>
+<span class="fc" id="L28">        Position pos = getPos();</span>
+<span class="fc" id="L29">        pos.setX(pos.getX()-1);</span>
+<span class="fc" id="L30">        setPos(pos);</span>
+<span class="fc" id="L31">        dir = Application.Direction.LEFT;</span>
+<span class="fc" id="L32">    }</span>
     public void moveRight(){
-<span class="nc" id="L34">        Position pos = getPos();</span>
-<span class="nc" id="L35">        pos.setX(pos.getX()+1);</span>
-<span class="nc" id="L36">        setPos(pos);</span>
-<span class="nc" id="L37">        dir = Application.Direction.RIGHT;</span>
+<span class="fc" id="L34">        Position pos = getPos();</span>
+<span class="fc" id="L35">        pos.setX(pos.getX()+1);</span>
+<span class="fc" id="L36">        setPos(pos);</span>
+<span class="fc" id="L37">        dir = Application.Direction.RIGHT;</span>
 
-<span class="nc" id="L39">    }</span>
+<span class="fc" id="L39">    }</span>
 
 <span class="nc" id="L41">    public Application.Direction getDirection() { return dir; }</span>
     
     public void updatePos(Position newPos)
     {
-<span class="nc" id="L45">        Position currentPos = getPos();</span>
-<span class="nc" id="L46">        int currentX = currentPos.getX();</span>
-<span class="nc" id="L47">        int currentY = currentPos.getY();</span>
-<span class="nc" id="L48">        int newX = newPos.getX();</span>
-<span class="nc" id="L49">        int newY = newPos.getY();</span>
+<span class="fc" id="L45">        Position currentPos = getPos();</span>
+<span class="fc" id="L46">        int currentX = currentPos.getX();</span>
+<span class="fc" id="L47">        int currentY = currentPos.getY();</span>
+<span class="fc" id="L48">        int newX = newPos.getX();</span>
+<span class="fc" id="L49">        int newY = newPos.getY();</span>
 
-<span class="nc" id="L51">        int diffY = newY - currentY;</span>
-<span class="nc bnc" id="L52" title="All 2 branches missed.">        if (diffY == 1) this.dir = Application.Direction.DOWN;</span>
-<span class="nc bnc" id="L53" title="All 2 branches missed.">        else if (diffY == -1 ) this.dir = Application.Direction.UP;</span>
+<span class="fc" id="L51">        int diffY = newY - currentY;</span>
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">        if (diffY == 1) this.dir = Application.Direction.DOWN;</span>
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">        else if (diffY == -1 ) this.dir = Application.Direction.UP;</span>
 
-<span class="nc" id="L55">        int diffX = newX - currentX;</span>
-<span class="nc bnc" id="L56" title="All 2 branches missed.">        if (diffX == 1) this.dir = Application.Direction.RIGHT;</span>
-<span class="nc bnc" id="L57" title="All 2 branches missed.">        else if (diffX == -1) this.dir = Application.Direction.LEFT;</span>
+<span class="fc" id="L55">        int diffX = newX - currentX;</span>
+<span class="pc bpc" id="L56" title="1 of 2 branches missed.">        if (diffX == 1) this.dir = Application.Direction.RIGHT;</span>
+<span class="pc bpc" id="L57" title="1 of 2 branches missed.">        else if (diffX == -1) this.dir = Application.Direction.LEFT;</span>
 
-<span class="nc" id="L59">        this.setPos(newPos);</span>
-<span class="nc" id="L60">    }</span>
+<span class="fc" id="L59">        this.setPos(newPos);</span>
+<span class="fc" id="L60">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
