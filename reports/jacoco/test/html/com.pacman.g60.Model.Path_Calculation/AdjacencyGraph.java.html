@@ -2,8 +2,8 @@
 
 import java.util.*;
 
-public class AdjacencyGraph&lt;T&gt; implements Graph&lt;T&gt; {
-    Map&lt;T,List&lt;T&gt;&gt; adj;
+public class AdjacencyGraph&lt;T&gt; extends Graph&lt;T&gt; {
+    Map&lt;T,Set&lt;T&gt;&gt; adj;
 
     public AdjacencyGraph()
 <span class="fc" id="L9">    {</span>
@@ -11,35 +11,25 @@ public class AdjacencyGraph&lt;T&gt; implements Graph&lt;T&gt; {
 <span class="fc" id="L11">    }</span>
 
     @Override
-    public void addNode(T node) {
-<span class="fc" id="L15">        adj.put(node,new ArrayList&lt;&gt;());</span>
-<span class="fc" id="L16">    }</span>
+    public void addNode(T node) throws IllegalArgumentException {
+<span class="pc bpc" id="L15" title="1 of 2 branches missed.">        if(adj.get(node) != null) throw new IllegalArgumentException(&quot;Node already exists&quot;);</span>
+<span class="fc" id="L16">        adj.put(node,new HashSet&lt;&gt;());</span>
+<span class="fc" id="L17">    }</span>
 
     @Override
     public void addEdge(T source, T dest) throws IllegalArgumentException {
-<span class="pc bpc" id="L20" title="1 of 2 branches missed.">        if  (!adj.containsKey(source)) throw new IllegalArgumentException(&quot;Node &quot; + source.toString() + &quot; does not exist.\n&quot;);</span>
-<span class="pc bpc" id="L21" title="1 of 2 branches missed.">        if  (!adj.containsKey(dest)) throw new IllegalArgumentException(&quot;Node &quot; + dest.toString() + &quot; does not exist.\n&quot;);</span>
-<span class="fc" id="L22">        adj.get(source).add(dest);</span>
-<span class="fc" id="L23">        adj.get(dest).add(source);</span>
-<span class="fc" id="L24">    }</span>
+<span class="pc bpc" id="L21" title="1 of 2 branches missed.">        if  (!adj.containsKey(source)) throw new IllegalArgumentException(&quot;Node &quot; + source.toString() + &quot; does not exist.\n&quot;);</span>
+<span class="pc bpc" id="L22" title="1 of 2 branches missed.">        if  (!adj.containsKey(dest)) throw new IllegalArgumentException(&quot;Node &quot; + dest.toString() + &quot; does not exist.\n&quot;);</span>
+<span class="fc" id="L23">        adj.get(source).add(dest);</span>
+<span class="fc" id="L24">        adj.get(dest).add(source);</span>
+<span class="fc" id="L25">    }</span>
 
     @Override
-    public List getAdj(T node) {
-<span class="nc" id="L28">        return adj.get(node);</span>
+    public Set&lt;T&gt; getAdj(T node) {
+<span class="fc" id="L29">        return adj.get(node);</span>
     }
 
     @Override
-    public List&lt;T&gt; getNodes() {
-<span class="nc" id="L33">        List&lt;T&gt; res = new ArrayList&lt;&gt;();</span>
-
-<span class="nc" id="L35">        Iterator it = adj.entrySet().iterator();</span>
-
-<span class="nc bnc" id="L37" title="All 2 branches missed.">        while (it.hasNext())</span>
-        {
-<span class="nc" id="L39">            Map.Entry pair = (Map.Entry) it.next();</span>
-<span class="nc" id="L40">            res.add((T) pair.getKey());</span>
-<span class="nc" id="L41">        }</span>
-<span class="nc" id="L42">        return res;</span>
-    }
+<span class="fc" id="L33">    public Set&lt;T&gt; getNodes() { return adj.keySet(); }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -30,9 +30,9 @@ public class BFSShortestPathStrategy&lt;T&gt; implements ShortestPathStrategy&lt
 <span class="nc" id="L30">        prev = new HashMap&lt;&gt;();</span>
 <span class="nc" id="L31">        Map&lt;T,Integer&gt; dist = new HashMap&lt;&gt;();</span>
 
-<span class="nc" id="L33">        List&lt;T&gt; nodes = G.getNodes();</span>
+<span class="nc" id="L33">        final Set&lt;T&gt; nodes = G.getNodes();</span>
 
-<span class="nc bnc" id="L35" title="All 2 branches missed.">        for (final T u : nodes)</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">        for (final T u : G.getNodes())</span>
         {
 <span class="nc" id="L37">            prev.put(u,null);</span>
 <span class="nc" id="L38">            dist.put(u,Integer.MAX_VALUE);</span>
@@ -47,23 +47,22 @@ public class BFSShortestPathStrategy&lt;T&gt; implements ShortestPathStrategy&lt
 
 <span class="nc bnc" id="L48" title="All 2 branches missed.">        while (!queue.isEmpty())</span>
         {
-<span class="nc" id="L50">            T u = queue.poll();</span>
-<span class="nc" id="L51">            List&lt;T&gt; adj = G.getAdj(u);</span>
-<span class="nc bnc" id="L52" title="All 2 branches missed.">            for (T v : adj)</span>
+<span class="nc" id="L50">            final T u = queue.poll();</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">            for (final T v : G.getAdj(u))</span>
             {
-<span class="nc bnc" id="L54" title="All 6 branches missed.">                if (dist.get(v) == Integer.MAX_VALUE || (dist.get(v) == dist.get(u)+1 &amp;&amp; tieBreaker.untie(u, prev.get(v))))</span>
+<span class="nc bnc" id="L53" title="All 6 branches missed.">                if (dist.get(v) == Integer.MAX_VALUE || (dist.get(v) == dist.get(u)+1 &amp;&amp; tieBreaker.untie(u, prev.get(v))))</span>
                 {
-<span class="nc" id="L56">                    dist.put(v,dist.get(u) + 1);</span>
-<span class="nc" id="L57">                    prev.put(v,u);</span>
-<span class="nc" id="L58">                    queue.add(v);</span>
+<span class="nc" id="L55">                    dist.put(v,dist.get(u) + 1);</span>
+<span class="nc" id="L56">                    prev.put(v,u);</span>
+<span class="nc" id="L57">                    queue.add(v);</span>
                 }
-<span class="nc" id="L60">            }</span>
-<span class="nc" id="L61">        }</span>
-<span class="nc" id="L62">    }</span>
+<span class="nc" id="L59">            }</span>
+<span class="nc" id="L60">        }</span>
+<span class="nc" id="L61">    }</span>
 
     @Override
     public T getPrev(T u) {
-<span class="nc" id="L66">        return prev.get(u);</span>
+<span class="nc" id="L65">        return prev.get(u);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

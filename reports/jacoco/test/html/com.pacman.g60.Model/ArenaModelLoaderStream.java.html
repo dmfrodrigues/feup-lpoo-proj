@@ -13,12 +13,12 @@ public class ArenaModelLoaderStream implements ArenaModel.Loader {
         private Position pos;
 <span class="fc" id="L14">        public Factory(Position pos){ this.pos = new Position(pos); }</span>
         public Element factoryMethod(Character c) throws IllegalArgumentException {
-<span class="pc bpc" id="L16" title="1 of 5 branches missed.">            switch(c){</span>
+<span class="fc bfc" id="L16" title="All 5 branches covered.">            switch(c){</span>
 <span class="fc" id="L17">                case 'W': return new Wall(pos);</span>
 <span class="fc" id="L18">                case 'H': return new Hero(pos);</span>
 <span class="fc" id="L19">                case 'G': return new Ghost(pos);</span>
 <span class="fc" id="L20">                case ' ': return null;</span>
-<span class="nc" id="L21">                default: throw new IllegalArgumentException(&quot;Unknown character&quot;);</span>
+<span class="fc" id="L21">                default: throw new IllegalArgumentException(&quot;Unknown character '&quot; + c + &quot;'&quot;);</span>
             }
         }
     }
