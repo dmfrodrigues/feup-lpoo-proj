@@ -1,6 +1,7 @@
 package com.pacman.g60.Controller;
 
 import com.pacman.g60.Model.ArenaModel;
+import com.pacman.g60.Model.Elements.DynamicElement;
 import com.pacman.g60.Model.Elements.Element;
 import com.pacman.g60.Model.Elements.Ghost;
 import com.pacman.g60.Model.Path_Calculation.BFSShortestPathStrategy;
@@ -22,6 +23,6 @@ public class UpdateEnemyPosCommand implements Command {
 
     @Override
     public void execute() {
-        if (position != null) ((Ghost) element).updatePos(position);
+        if (position != null) ((DynamicElement) element).updatePos(position);
     }
 }
