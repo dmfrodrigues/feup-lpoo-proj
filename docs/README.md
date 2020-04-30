@@ -1,9 +1,7 @@
 # LPOO_60 - The Cursed Catacombs
 #### (Codename: pacman)
 
-<p>
-  <img src="https://github.com/FEUP-LPOO/lpoo-2020-g60/workflows/gradlew%20test/badge.svg" alt="gradlew test">
-</p>
+[![gradlew test](https://github.com/FEUP-LPOO/lpoo-2020-g60/workflows/gradlew%20test/badge.svg)](https://feup-lpoo.github.io/lpoo-2020-g60/reports/tests/test/)
 
 You are a noble knight seeking to assist Her Majesty in cleansing the capital's catacombs from the many monsters that inhabit it. Your mission is to kill all monsters and collect as many coins as possible across multiple levels.
 
@@ -269,6 +267,12 @@ For that we use the [Strategy](https://refactoring.guru/design-patterns/strategy
 <a name="testing"><a/>
 
 ## Testing
+
+[![gradlew test](https://github.com/FEUP-LPOO/lpoo-2020-g60/workflows/gradlew%20test/badge.svg)](https://feup-lpoo.github.io/lpoo-2020-g60/reports/tests/test/)
+
+The test report is available [here](https://feup-lpoo.github.io/lpoo-2020-g60/reports/tests/test/).
+
+The coverage report (obtained using the [JaCoCo](https://docs.gradle.org/current/userguide/jacoco_plugin.html) plugin) is available [here](https://feup-lpoo.github.io/lpoo-2020-g60/reports/jacoco/test/html/).
 
 <a name="self-evaluation"><a/>
 
