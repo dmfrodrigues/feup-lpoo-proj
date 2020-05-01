@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ArenaModel.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.Model</a> &gt; <span class="el_source">ArenaModel.java</span></div><h1>ArenaModel.java</h1><pre class="source lang-java linenums">package com.pacman.g60.Model;
 
+import com.pacman.g60.Model.Elements.Coin;
 import com.pacman.g60.Model.Elements.Element;
 import com.pacman.g60.Model.Elements.Hero;
 import com.pacman.g60.Model.Elements.Wall;
@@ -10,61 +11,66 @@ import java.util.ArrayList;
 
 public class ArenaModel {
     private int W, H;
-<span class="fc" id="L13">    private Hero hero = null;</span>
+    private Integer numCoins;
+<span class="fc" id="L15">    private Hero hero = null;</span>
     private ArrayList&lt;Element&gt; listElements;
 
-<span class="fc" id="L16">    public ArenaModel(int W, int H){</span>
-<span class="fc" id="L17">        this.W = W;</span>
-<span class="fc" id="L18">        this.H = H;</span>
-<span class="fc" id="L19">        listElements = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L20">    }</span>
+<span class="fc" id="L18">    public ArenaModel(int W, int H){</span>
+<span class="fc" id="L19">        this.W = W;</span>
+<span class="fc" id="L20">        this.H = H;</span>
+<span class="fc" id="L21">        listElements = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L22">        this.numCoins = 0;</span>
+<span class="fc" id="L23">    }</span>
 
     public void addElement(Element element){
-<span class="fc" id="L23">        listElements.add(element);</span>
-<span class="fc bfc" id="L24" title="All 2 branches covered.">        if(element instanceof Hero) hero = (Hero)element;</span>
-<span class="fc" id="L25">    }</span>
+<span class="fc" id="L26">        listElements.add(element);</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">        if(element instanceof Hero) hero = (Hero)element;</span>
+<span class="pc bpc" id="L28" title="1 of 2 branches missed.">        else if (element instanceof Coin) numCoins++;</span>
+<span class="fc" id="L29">    }</span>
 
     public ArrayList&lt;Element&gt; getElements(){
-<span class="fc" id="L28">        return listElements;</span>
+<span class="fc" id="L32">        return listElements;</span>
     }
 
     public Graph&lt;Position&gt; getGraph()
     {
-<span class="fc" id="L33">        boolean[][] obstacle = new boolean[W][H];</span>
-<span class="fc bfc" id="L34" title="All 2 branches covered.">        for (final Element e : listElements)</span>
+<span class="fc" id="L37">        boolean[][] obstacle = new boolean[W][H];</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        for (final Element e : listElements)</span>
         {
-<span class="fc bfc" id="L36" title="All 2 branches covered.">            if (e instanceof Wall) obstacle[e.getPos().getX()][e.getPos().getY()] = true;</span>
-<span class="fc" id="L37">        }</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">            if (e instanceof Wall) obstacle[e.getPos().getX()][e.getPos().getY()] = true;</span>
+<span class="fc" id="L41">        }</span>
 
-<span class="fc" id="L39">        Graph&lt;Position&gt; G = new AdjacencyGraph&lt;&gt;();</span>
-<span class="fc bfc" id="L40" title="All 2 branches covered.">        for (int x = 0; x &lt; W; ++x)</span>
+<span class="fc" id="L43">        Graph&lt;Position&gt; G = new AdjacencyGraph&lt;&gt;();</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        for (int x = 0; x &lt; W; ++x)</span>
         {
-<span class="fc bfc" id="L42" title="All 2 branches covered.">            for (int y = 0; y &lt; H; ++y)</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">            for (int y = 0; y &lt; H; ++y)</span>
             {
-<span class="fc bfc" id="L44" title="All 2 branches covered.">                if (!obstacle[x][y]) G.addNode(new Position(x,y));</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">                if (!obstacle[x][y]) G.addNode(new Position(x,y));</span>
             }
         }
-<span class="fc bfc" id="L47" title="All 2 branches covered.">        for (int x = 0; x &lt; W; ++x)</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        for (int x = 0; x &lt; W; ++x)</span>
         {
-<span class="fc bfc" id="L49" title="All 2 branches covered.">            for (int y = 0; y &lt; H; ++y)</span>
+<span class="fc bfc" id="L53" title="All 2 branches covered.">            for (int y = 0; y &lt; H; ++y)</span>
             {
-<span class="fc bfc" id="L51" title="All 2 branches covered.">                if (obstacle[x][y]) continue;</span>
-<span class="fc bfc" id="L52" title="All 4 branches covered.">                if (x &lt; W-1 &amp;&amp; !obstacle[x+1][y]) G.addEdge(new Position(x,y),new Position(x+1,y));</span>
-<span class="fc bfc" id="L53" title="All 4 branches covered.">                if (y &lt; H-1 &amp;&amp; !obstacle[x][y+1]) G.addEdge(new Position(x,y),new Position(x,y+1));</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">                if (obstacle[x][y]) continue;</span>
+<span class="fc bfc" id="L56" title="All 4 branches covered.">                if (x &lt; W-1 &amp;&amp; !obstacle[x+1][y]) G.addEdge(new Position(x,y),new Position(x+1,y));</span>
+<span class="fc bfc" id="L57" title="All 4 branches covered.">                if (y &lt; H-1 &amp;&amp; !obstacle[x][y+1]) G.addEdge(new Position(x,y),new Position(x,y+1));</span>
             }
         }
-<span class="fc" id="L56">        return G;</span>
+<span class="fc" id="L60">        return G;</span>
     }
 
+<span class="nc" id="L63">    public Integer getNumCoins() {return numCoins;}</span>
+
     public int getW() {
-<span class="fc" id="L60">        return W;</span>
+<span class="fc" id="L66">        return W;</span>
     }
 
     public int getH() {
-<span class="fc" id="L64">        return H;</span>
+<span class="fc" id="L70">        return H;</span>
     }
 
-<span class="fc" id="L67">    public Hero getHero() { return hero; }</span>
+<span class="fc" id="L73">    public Hero getHero() { return hero; }</span>
     
     public interface Loader {
         public ArenaModel getArenaModel();

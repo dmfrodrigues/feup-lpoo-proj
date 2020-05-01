@@ -5,6 +5,34 @@ import com.pacman.g60.Model.Elements.DynamicElement;
 import com.pacman.g60.Model.Position;
 
 public class Hero extends DynamicElement {
-<span class="fc" id="L8">    public Hero(Position pos){ super(pos); }</span>
+    private Integer health,coins;
+<span class="fc" id="L9">    final private Integer maxHealth = 10;</span>
+    public Hero(Position pos)
+    {
+<span class="fc" id="L12">        super(pos);</span>
+<span class="fc" id="L13">        this.health = maxHealth;</span>
+<span class="fc" id="L14">        this.coins = 0;</span>
+<span class="fc" id="L15">    }</span>
+
+    public Integer getHealth() {
+<span class="nc" id="L18">        return health;</span>
+    }
+
+    public void setHealth(Integer health) {
+<span class="nc" id="L22">        this.health = health;</span>
+<span class="nc" id="L23">    }</span>
+
+    public Integer getCoins() {
+<span class="nc" id="L26">        return coins;</span>
+    }
+
+    public void setCoins(Integer coins) {
+<span class="nc" id="L30">        this.coins = coins;</span>
+<span class="nc" id="L31">    }</span>
+
+    public Integer getMaxHealth()
+    {
+<span class="nc" id="L35">        return this.maxHealth;</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
