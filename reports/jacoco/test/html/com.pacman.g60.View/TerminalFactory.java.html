@@ -2,13 +2,13 @@
 
 public class TerminalFactory implements ViewFactory {
     private TerminalGUI terminalGUI;
-<span class="nc" id="L5">    public TerminalFactory(TerminalGUI terminalGUI){</span>
-<span class="nc" id="L6">        this.terminalGUI = terminalGUI;</span>
-<span class="nc" id="L7">    }</span>
+<span class="fc" id="L5">    public TerminalFactory(TerminalGUI terminalGUI){</span>
+<span class="fc" id="L6">        this.terminalGUI = terminalGUI;</span>
+<span class="fc" id="L7">    }</span>
     @Override
     public TerminalArenaView createArenaView() {
         try {
-<span class="nc" id="L11">            return new TerminalArenaView(terminalGUI);</span>
+<span class="fc" id="L11">            return new TerminalArenaView(terminalGUI);</span>
 <span class="nc" id="L12">        } catch(Exception e){</span>
 <span class="nc" id="L13">            return null;</span>
         }

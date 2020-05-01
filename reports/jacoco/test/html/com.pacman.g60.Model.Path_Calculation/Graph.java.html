@@ -14,12 +14,12 @@ import java.util.Set;
     
     @Override
     public boolean equals(Object obj) {
-<span class="pc bpc" id="L17" title="1 of 2 branches missed.">        if(obj == null) return false;</span>
-<span class="pc bpc" id="L18" title="1 of 2 branches missed.">        if(this.getClass() != obj.getClass()) return false;</span>
+<span class="fc bfc" id="L17" title="All 2 branches covered.">        if(obj == null) return false;</span>
+<span class="fc bfc" id="L18" title="All 2 branches covered.">        if(this.getClass() != obj.getClass()) return false;</span>
 <span class="fc" id="L19">        Graph&lt;T&gt; G = (Graph&lt;T&gt;)obj;</span>
-<span class="pc bpc" id="L20" title="1 of 2 branches missed.">        if(!getNodes().equals(G.getNodes())) return false;</span>
+<span class="fc bfc" id="L20" title="All 2 branches covered.">        if(!getNodes().equals(G.getNodes())) return false;</span>
 <span class="fc bfc" id="L21" title="All 2 branches covered.">        for(final T u: getNodes()){</span>
-<span class="pc bpc" id="L22" title="1 of 2 branches missed.">            if(!getAdj(u).equals(G.getAdj(u))) return false;</span>
+<span class="fc bfc" id="L22" title="All 2 branches covered.">            if(!getAdj(u).equals(G.getAdj(u))) return false;</span>
 <span class="fc" id="L23">        }</span>
 <span class="fc" id="L24">        return true;</span>
     }

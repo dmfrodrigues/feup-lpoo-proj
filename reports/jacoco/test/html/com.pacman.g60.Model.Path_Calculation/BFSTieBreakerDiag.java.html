@@ -4,17 +4,17 @@ import com.pacman.g60.Model.Position;
 
 public class BFSTieBreakerDiag implements BFSShortestPathStrategy.TieBreaker&lt;Position&gt; {
     private Position pos;
-<span class="nc" id="L7">    public BFSTieBreakerDiag(Position pos){ this.pos = new Position(pos); }</span>
+<span class="fc" id="L7">    public BFSTieBreakerDiag(Position pos){ this.pos = new Position(pos); }</span>
     
     private Integer euclideanDistSqr(Position p, Position q){
-<span class="nc" id="L10">        Integer Dx = p.getX() - q.getX();</span>
-<span class="nc" id="L11">        Integer Dy = p.getY() - q.getY();</span>
-<span class="nc" id="L12">        return Dx*Dx + Dy*Dy;</span>
+<span class="fc" id="L10">        Integer Dx = p.getX() - q.getX();</span>
+<span class="fc" id="L11">        Integer Dy = p.getY() - q.getY();</span>
+<span class="fc" id="L12">        return Dx*Dx + Dy*Dy;</span>
     }
     
     @Override
     public boolean untie(Position u, Position v) {
-<span class="nc bnc" id="L17" title="All 2 branches missed.">        return (euclideanDistSqr(u, pos) &lt; euclideanDistSqr(v, pos));</span>
+<span class="fc bfc" id="L17" title="All 2 branches covered.">        return (euclideanDistSqr(u, pos) &lt; euclideanDistSqr(v, pos));</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

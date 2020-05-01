@@ -5,23 +5,33 @@ import com.pacman.g60.Application;
 
 public class TerminalSpriteOrientable{
     private TerminalSprite spriteRight, spriteLeft, spriteUp, spriteDown;
-<span class="nc" id="L8">    public TerminalSpriteOrientable(TerminalSprite sprite) throws IllegalArgumentException{</span>
-<span class="nc bnc" id="L9" title="All 2 branches missed.">        if(sprite == null) throw new IllegalArgumentException(&quot;Null sprite not allowed&quot;);</span>
-<span class="nc" id="L10">        spriteRight = sprite;</span>
-<span class="nc" id="L11">    }</span>
-<span class="nc" id="L12">    public void setSpriteRight(TerminalSprite sprite){ this.spriteRight = sprite; }</span>
-<span class="nc" id="L13">    public void setSpriteLeft(TerminalSprite sprite){ this.spriteLeft = sprite; }</span>
-<span class="nc" id="L14">    public void setSpriteUp(TerminalSprite sprite){ this.spriteUp = sprite; }</span>
-<span class="nc" id="L15">    public void setSpriteDown(TerminalSprite sprite){ this.spriteDown = sprite; }</span>
+<span class="fc" id="L8">    public TerminalSpriteOrientable(TerminalSprite sprite) throws NullPointerException{</span>
+<span class="fc bfc" id="L9" title="All 2 branches covered.">        if(sprite == null) throw new NullPointerException();</span>
+<span class="fc" id="L10">        spriteRight = sprite;</span>
+<span class="fc" id="L11">    }</span>
+<span class="fc" id="L12">    public void setSpriteRight(TerminalSprite sprite){ this.spriteRight = sprite; }</span>
+<span class="fc" id="L13">    public void setSpriteLeft(TerminalSprite sprite){ this.spriteLeft = sprite; }</span>
+<span class="fc" id="L14">    public void setSpriteUp(TerminalSprite sprite){ this.spriteUp = sprite; }</span>
+<span class="fc" id="L15">    public void setSpriteDown(TerminalSprite sprite){ this.spriteDown = sprite; }</span>
     public TerminalSprite getSprite(Application.Direction dir){
-<span class="nc" id="L17">        TerminalSprite res = null;</span>
-<span class="nc bnc" id="L18" title="All 5 branches missed.">        switch(dir) {</span>
-<span class="nc" id="L19">            case UP   : res = spriteUp   ; break;</span>
-<span class="nc" id="L20">            case DOWN : res = spriteDown ; break;</span>
-<span class="nc" id="L21">            case LEFT : res = spriteLeft ; break;</span>
-<span class="nc" id="L22">            case RIGHT: res = spriteRight; break;</span>
+<span class="fc" id="L17">        TerminalSprite res = null;</span>
+<span class="fc bfc" id="L18" title="All 2 branches covered.">        if(dir != null) {</span>
+<span class="pc bpc" id="L19" title="1 of 5 branches missed.">            switch (dir) {</span>
+                case UP:
+<span class="fc" id="L21">                    res = spriteUp;</span>
+<span class="fc" id="L22">                    break;</span>
+                case DOWN:
+<span class="fc" id="L24">                    res = spriteDown;</span>
+<span class="fc" id="L25">                    break;</span>
+                case LEFT:
+<span class="fc" id="L27">                    res = spriteLeft;</span>
+<span class="fc" id="L28">                    break;</span>
+                case RIGHT:
+<span class="fc" id="L30">                    res = spriteRight;</span>
+                    break;
+            }
         }
-<span class="nc bnc" id="L24" title="All 2 branches missed.">        return (res != null ? res : spriteRight);</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        return (res != null ? res : spriteRight);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

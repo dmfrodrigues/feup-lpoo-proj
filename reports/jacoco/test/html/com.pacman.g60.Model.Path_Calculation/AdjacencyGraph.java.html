@@ -12,14 +12,14 @@ public class AdjacencyGraph&lt;T&gt; extends Graph&lt;T&gt; {
 
     @Override
     public void addNode(T node) throws IllegalArgumentException {
-<span class="pc bpc" id="L15" title="1 of 2 branches missed.">        if(adj.get(node) != null) throw new IllegalArgumentException(&quot;Node already exists&quot;);</span>
+<span class="fc bfc" id="L15" title="All 2 branches covered.">        if(adj.get(node) != null) throw new IllegalArgumentException(&quot;Node &quot; + node + &quot; already exists&quot;);</span>
 <span class="fc" id="L16">        adj.put(node,new HashSet&lt;&gt;());</span>
 <span class="fc" id="L17">    }</span>
 
     @Override
     public void addEdge(T source, T dest) throws IllegalArgumentException {
-<span class="pc bpc" id="L21" title="1 of 2 branches missed.">        if  (!adj.containsKey(source)) throw new IllegalArgumentException(&quot;Node &quot; + source.toString() + &quot; does not exist.\n&quot;);</span>
-<span class="pc bpc" id="L22" title="1 of 2 branches missed.">        if  (!adj.containsKey(dest)) throw new IllegalArgumentException(&quot;Node &quot; + dest.toString() + &quot; does not exist.\n&quot;);</span>
+<span class="fc bfc" id="L21" title="All 2 branches covered.">        if  (!adj.containsKey(source)) throw new IllegalArgumentException(&quot;Node &quot; + source + &quot; does not exist&quot;);</span>
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        if  (!adj.containsKey(dest)) throw new IllegalArgumentException(&quot;Node &quot; + dest + &quot; does not exist&quot;);</span>
 <span class="fc" id="L23">        adj.get(source).add(dest);</span>
 <span class="fc" id="L24">        adj.get(dest).add(source);</span>
 <span class="fc" id="L25">    }</span>

@@ -14,19 +14,19 @@ public class TerminalSpriteLoaderStream implements TerminalSprite.Loader{
 <span class="fc" id="L14">        terminalSprite = new TerminalSprite(W, H);</span>
 <span class="fc bfc" id="L15" title="All 2 branches covered.">        for(Integer y = 0; y &lt; H; ++y){</span>
 <span class="fc" id="L16">            String[] colors = scanner.nextLine().split(&quot; &quot;);</span>
-<span class="pc bpc" id="L17" title="1 of 2 branches missed.">            if(colors.length != W) throw new IllegalArgumentException(&quot;Invalid file content&quot;);</span>
+<span class="fc bfc" id="L17" title="All 2 branches covered.">            if(colors.length != W) throw new IllegalArgumentException(&quot;Invalid file content&quot;);</span>
 <span class="fc bfc" id="L18" title="All 2 branches covered.">            for(Integer x = 0; x &lt; W; ++x)</span>
 <span class="fc" id="L19">                terminalSprite.setBackgroundColor(x, y, new Color(colors[x]));</span>
         }
 <span class="fc bfc" id="L21" title="All 2 branches covered.">        for(Integer y = 0; y &lt; H; ++y){</span>
 <span class="fc" id="L22">            String line = scanner.nextLine();</span>
-<span class="pc bpc" id="L23" title="1 of 2 branches missed.">            if(line.length() != W) throw new IllegalArgumentException(&quot;Invalid file content&quot;);</span>
+<span class="fc bfc" id="L23" title="All 2 branches covered.">            if(line.length() != W) throw new IllegalArgumentException(&quot;Invalid file content&quot;);</span>
 <span class="fc bfc" id="L24" title="All 2 branches covered.">            for(Integer x = 0; x &lt; W; ++x)</span>
 <span class="fc" id="L25">                terminalSprite.setChar(x, y, line.charAt(x));</span>
         }
 <span class="fc bfc" id="L27" title="All 2 branches covered.">        for(Integer y = 0; y &lt; H; ++y){</span>
 <span class="fc" id="L28">            String[] colors = scanner.nextLine().split(&quot; &quot;);</span>
-<span class="pc bpc" id="L29" title="1 of 2 branches missed.">            if(colors.length != W) throw new IllegalArgumentException(&quot;Invalid file content&quot;);</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">            if(colors.length != W) throw new IllegalArgumentException(&quot;Invalid file content&quot;);</span>
 <span class="fc bfc" id="L30" title="All 2 branches covered.">            for(Integer x = 0; x &lt; W; ++x)</span>
 <span class="fc" id="L31">                terminalSprite.setForegroundColor(x, y, new Color(colors[x]));</span>
         }
