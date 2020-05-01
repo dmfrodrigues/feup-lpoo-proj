@@ -18,7 +18,7 @@ public class ArenaModelLoaderStream implements ArenaModel.Loader {
                 case 'H': return new Hero(pos);
                 case 'G': return new Ghost(pos);
                 case ' ': return null;
-                default: throw new IllegalArgumentException("Unknown character");
+                default: throw new IllegalArgumentException("Unknown character '" + c + "'");
             }
         }
     }

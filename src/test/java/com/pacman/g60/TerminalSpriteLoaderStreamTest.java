@@ -9,6 +9,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class TerminalSpriteLoaderStreamTest {
     
@@ -43,5 +44,63 @@ public class TerminalSpriteLoaderStreamTest {
         assertEquals(sprite.getChar(5, 1), '▌');
         assertEquals(sprite.getChar(6, 1), '┣');
         assertEquals(sprite.getChar(2, 3), '▘');
+    }
+    @Test
+    public void ctor_exceptions(){
+        String s;
+        InputStream inputStream;
+        
+        s = "1 1\n" +
+                        "#000000 #000000\n" +
+                        "┣\n" +
+                        "#969696\n";
+        inputStream = new ByteArrayInputStream(s.getBytes());
+        try {
+            new TerminalSpriteLoaderStream(inputStream);
+            fail();
+        } catch(Exception e){
+            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertEquals("Invalid file content", e.getMessage());
+        }
+
+        s = "1 1\n" +
+                "#00000\n" +
+                "┣\n" +
+                "#969696\n";
+        inputStream = new ByteArrayInputStream(s.getBytes());
+        try {
+            new TerminalSpriteLoaderStream(inputStream);
+            fail();
+        } catch(Exception e){
+            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertEquals("Argument has wrong length", e.getMessage());
+        }
+
+        s = "1 1\n" +
+                "#000000\n" +
+                "┣┣\n" +
+                "#969696\n";
+        inputStream = new ByteArrayInputStream(s.getBytes());
+        try {
+            new TerminalSpriteLoaderStream(inputStream);
+            fail();
+        } catch(Exception e){
+            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertEquals("Invalid file content", e.getMessage());
+        }
+
+        s = "1 1\n" +
+                "#000000\n" +
+                "┣\n" +
+                "#969696 #969696\n";
+        inputStream = new ByteArrayInputStream(s.getBytes());
+        try {
+            new TerminalSpriteLoaderStream(inputStream);
+            fail();
+        } catch(Exception e){
+            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertEquals("Invalid file content", e.getMessage());
+        }
+
     }
 }

@@ -1,6 +1,6 @@
 package com.pacman.g60.Model;
 
-public class Position {
+public class Position implements Comparable<Position>{
     private Integer x,y;
 
     public Position(Position pos) {
@@ -31,13 +31,16 @@ public class Position {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) return false;
-        if (obj == this) return true;
+        if(obj == null) return false;
         if (obj.getClass() != this.getClass()) return false;
+        return (compareTo((Position)obj) == 0);
+    }
 
-        Position pos = (Position) obj;
-
-        return x.equals(pos.x) && y.equals(pos.y);
+    @Override
+    public int compareTo(Position position) {
+        if(this == position) return 0;
+        if(!this.x.equals(position.x)) return this.x - position.x;
+        return this.y - position.y;
     }
 
     @Override

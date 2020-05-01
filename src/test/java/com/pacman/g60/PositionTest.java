@@ -106,4 +106,13 @@ public class PositionTest {
             assertEquals(pos.toString(), "("+x+", "+y+")");
         }
     }
+    
+    @Test
+    public void compareTo(){
+        assertTrue((new Position(1, 2)).compareTo(new Position(1, 2)) == 0);
+        assertTrue((new Position(1, 2)).compareTo(new Position(2, 2)) < 0);
+        assertTrue((new Position(1, 2)).compareTo(new Position(0, 2)) > 0);
+        assertTrue((new Position(1, 2)).compareTo(new Position(1, 1)) > 0);
+        assertTrue((new Position(1, 2)).compareTo(new Position(1, 3)) < 0);
+    }
 }

@@ -20,8 +20,14 @@ public class Color {
 
     @Override
     public boolean equals(Object obj) {
+        if(obj == null) return false;
         if(obj.getClass() != getClass()) return false;
         Color c = (Color)obj;
         return getR() == c.getR() && getG() == c.getG() && getB() == c.getB();
+    }
+
+    @Override
+    public String toString() {
+        return String.format("#%02X%02X%02X", r, g, b);
     }
 }

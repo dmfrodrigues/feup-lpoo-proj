@@ -109,13 +109,9 @@ public class TerminalArenaView implements ArenaView {
 
         public ElementView factoryMethod(Element e){
             ElementView res = null;
-            try {
-                if     (e instanceof Wall) res = wallView;
-                else if(e instanceof Hero) res = heroView;
-                else if(e instanceof Ghost) res = ghostView;
-            } catch(Exception ex){
-                res = null;
-            }
+            if     (e instanceof Wall) res = wallView;
+            else if(e instanceof Hero) res = heroView;
+            else if(e instanceof Ghost) res = ghostView;
             return res;
         }
     }

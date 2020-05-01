@@ -30,9 +30,9 @@ public class BFSShortestPathStrategy<T> implements ShortestPathStrategy<T> {
         prev = new HashMap<>();
         Map<T,Integer> dist = new HashMap<>();
 
-        List<T> nodes = G.getNodes();
+        final Set<T> nodes = G.getNodes();
 
-        for (final T u : nodes)
+        for (final T u : G.getNodes())
         {
             prev.put(u,null);
             dist.put(u,Integer.MAX_VALUE);
@@ -47,9 +47,8 @@ public class BFSShortestPathStrategy<T> implements ShortestPathStrategy<T> {
 
         while (!queue.isEmpty())
         {
-            T u = queue.poll();
-            List<T> adj = G.getAdj(u);
-            for (T v : adj)
+            final T u = queue.poll();
+            for (final T v : G.getAdj(u))
             {
                 if (dist.get(v) == Integer.MAX_VALUE || (dist.get(v) == dist.get(u)+1 && tieBreaker.untie(u, prev.get(v))))
                 {
