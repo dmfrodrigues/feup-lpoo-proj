@@ -1,5 +1,6 @@
 package com.pacman.g60.Model;
 
+import com.pacman.g60.Model.Elements.Coin;
 import com.pacman.g60.Model.Elements.Element;
 import com.pacman.g60.Model.Elements.Hero;
 import com.pacman.g60.Model.Elements.Wall;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 
 public class ArenaModel {
     private int W, H;
+    private Integer numCoins;
     private Hero hero = null;
     private ArrayList<Element> listElements;
 
@@ -17,11 +19,13 @@ public class ArenaModel {
         this.W = W;
         this.H = H;
         listElements = new ArrayList<>();
+        this.numCoins = 0;
     }
 
     public void addElement(Element element){
         listElements.add(element);
         if(element instanceof Hero) hero = (Hero)element;
+        else if (element instanceof Coin) numCoins++;
     }
 
     public ArrayList<Element> getElements(){
@@ -55,6 +59,8 @@ public class ArenaModel {
         }
         return G;
     }
+
+    public Integer getNumCoins() {return numCoins;}
 
     public int getW() {
         return W;
