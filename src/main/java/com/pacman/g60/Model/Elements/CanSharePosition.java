@@ -1,4 +1,4 @@
 package com.pacman.g60.Model.Elements;
 
-public interface ShooterElement {
+public interface CanSharePosition {
 }
