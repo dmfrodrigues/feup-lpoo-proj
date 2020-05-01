@@ -122,9 +122,8 @@ public class ArenaModelLoaderStreamTest {
             ArenaModel.Loader arenaModelLoader = new ArenaModelLoaderStream(inputStream);
             fail();
         } catch(Exception e){
-            System.out.println(e.getClass().toString());
-            assertEquals(e.getClass().toString(), "class java.lang.IllegalArgumentException");
-            assertEquals(e.getMessage(), "Unknown character 'A'");
+            assertEquals(IllegalArgumentException.class, e.getClass());
+            assertEquals("Unknown character 'A'", e.getMessage());
         }
     }
 }
