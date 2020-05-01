@@ -1,10 +1,13 @@
 package com.pacman.g60.Model.Elements;
 
 
-import com.pacman.g60.Model.Elements.DynamicElement;
+
+import com.pacman.g60.Model.Elements.Hierarchy.*;
 import com.pacman.g60.Model.Position;
 
-public class Hero extends DynamicElement {
+
+
+public class Hero extends DynamicElement implements ControlledByPlayer, LivingElement, MeleeAttackerElement, RangedAttackerElement, OrientedElement {
     private Integer health,coins;
     final private Integer maxHealth = 10;
     public Hero(Position pos)
