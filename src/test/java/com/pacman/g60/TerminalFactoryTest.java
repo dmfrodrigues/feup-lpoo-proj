@@ -76,7 +76,7 @@ public class TerminalFactoryTest {
         }catch(Exception e){
             fail();
         }
-        Mockito.verify(terminalGUI, times(32)).drawCharacter(
+        Mockito.verify(terminalGUI, times(324)).drawCharacter(
                 xCaptor.capture(),
                 yCaptor.capture(),
                 cCaptor.capture(),
@@ -100,7 +100,7 @@ public class TerminalFactoryTest {
             ));
         }
         
-        assertEquals(32, argHolders.size());
+        assertEquals(324, argHolders.size());
         List<ArgHolder> args = new ArrayList<>(Arrays.asList(
                 new ArgHolder(-4, -2, ' ', new Color("#969696"), new Color("#000000")),
                 new ArgHolder(-4, -1, '▐', new Color("#969696"), new Color("#000000")),
