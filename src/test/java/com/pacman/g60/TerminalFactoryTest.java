@@ -4,12 +4,10 @@ import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import com.pacman.g60.Model.ArenaModel;
 import com.pacman.g60.Model.Elements.Hero;
-import com.pacman.g60.Model.Elements.Wall;
 import com.pacman.g60.Model.Position;
 import com.pacman.g60.View.*;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
-import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 

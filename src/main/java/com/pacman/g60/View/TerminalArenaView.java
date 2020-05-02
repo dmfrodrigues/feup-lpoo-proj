@@ -37,9 +37,10 @@ public class TerminalArenaView implements ArenaView {
             }
         }
     }
-    
+
+    private static final Integer HInfoBar = 5;
+
     private class InfoBar {
-        private final Integer H = 5;
         private final Integer Wmargin = 2;
         private void drawSprite(TerminalSprite sprite, int x0, int y0){
             for(int x = 0; x < sprite.getW(); ++x) {
@@ -70,19 +71,19 @@ public class TerminalArenaView implements ArenaView {
         private void drawFrame(){
             for(Integer x = 1; x < terminalGUI.getW()-1; ++x){
                 terminalGUI.drawCharacter(x, 0, '▀', Color.GREY, Color.BLACK);
-                terminalGUI.drawCharacter(x, H-1, '▄', Color.GREY, Color.BLACK);
+                terminalGUI.drawCharacter(x, HInfoBar-1, '▄', Color.GREY, Color.BLACK);
             }
-            for(Integer y = 1; y < H-1; ++y){
+            for(Integer y = 1; y < HInfoBar-1; ++y){
                 terminalGUI.drawCharacter(0, y, '█', Color.GREY, Color.BLACK);
                 terminalGUI.drawCharacter(terminalGUI.getW()-1, y, '█', Color.GREY, Color.BLACK);
             }
             for(Integer x = 1; x < terminalGUI.getW()-1; ++x){
-                for(Integer y = 1; y < H-1; ++y){
+                for(Integer y = 1; y < HInfoBar-1; ++y){
                     terminalGUI.drawCharacter(x, y, ' ', Color.BLACK, Color.BLACK);
                 }
             }
             terminalGUI.drawCharacter(0, 0, '█', Color.GREY, Color.BLACK); terminalGUI.drawCharacter(terminalGUI.getW()-1, 0, '█', Color.GREY, Color.BLACK);
-            terminalGUI.drawCharacter(0, H-1, '█', Color.GREY, Color.BLACK); terminalGUI.drawCharacter(terminalGUI.getW()-1, H-1, '█', Color.GREY, Color.BLACK);
+            terminalGUI.drawCharacter(0, HInfoBar-1, '█', Color.GREY, Color.BLACK); terminalGUI.drawCharacter(terminalGUI.getW()-1, HInfoBar-1, '█', Color.GREY, Color.BLACK);
         }
         private void drawHealth(double health, double maxHealth){
             int x0 = 2;
@@ -120,7 +121,7 @@ public class TerminalArenaView implements ArenaView {
         }
         public void draw(ArenaModel arenaModel){
             drawFrame();
-            drawHealth(arenaModel.getHero().getHealth()*0.75, arenaModel.getHero().getMaxHealth());
+            drawHealth(arenaModel.getHero().getHealth(), arenaModel.getHero().getMaxHealth());
             drawCoins(arenaModel.getHero().getCoins(), arenaModel.getNumCoins() + arenaModel.getHero().getCoins());
             long now = System.currentTimeMillis();
             drawTimer((now-startTime)/1000);
@@ -138,7 +139,7 @@ public class TerminalArenaView implements ArenaView {
         public final void draw(Element e){
             TerminalSprite sprite = getSprite(e);
             int x0 = (e.getPos().getX()-heroPos.getX())*Wtile + terminalGUI.getW()/2 - Wtile/2;
-            int y0 = (e.getPos().getY()-heroPos.getY())*Htile + terminalGUI.getH()/2 - Htile/2;
+            int y0 = (e.getPos().getY()-heroPos.getY())*Htile + (terminalGUI.getH()-HInfoBar)/2 - Htile/2 + HInfoBar;
             for(int x = 0; x < sprite.getW(); ++x) {
                 for (int y = 0; y < sprite.getH(); ++y) {
                     terminalGUI.drawCharacter(x0 + x, y0 + y,

@@ -46,16 +46,16 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
 <a name="gallery"><a/>
 #### Gallery
 
-| 2020-04-26 |
-|------------|
-|![2020-04-26-image](images/2020-04-26_21-31-01.png)|
+| 2020-04-26 | 2020-05-02 |
+|------------|------------|
+|![2020-04-26-image](images/2020-04-26_21-31-01.png)|![2020-05-02-image](images/2020-05-02_04-43-23.png)|
 
 <a name="animations"><a/>
 #### Animations
 
-| 2020-04-28 |
-|------------|
-|![2020-04-28-animation](images/pacman-20200428-202310.gif)|
+| 2020-04-28 | 2020-05-02 |
+|------------|------------|
+|![2020-04-28-animation](images/pacman-20200428-202310.gif)|![2020-04-26-image](images/pacman-20200502-042816.gif)|
 
 <a name="implemented-features"><a/>
 ## Implemented features
@@ -65,15 +65,22 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
 - [x] Sprites change according to direction
 - [x] Screen is centered in the Hero
 - [x] Some enemies follow the hero
+
+![2020-04-26-image](images/pacman-20200428-202310.gif)
+
 - [x] Collisions
-- [ ] Dynamic elements have life
-- [ ] Weaponize enemies
 - [x] Information bar:
     - [x] Timer
     - [x] Life
     - [x] Money collected
+    
+![2020-04-26-image](images/pacman-20200502-042816.gif)
+    
+- [ ] Dynamic elements have life
+- [ ] Weaponize enemies
 
-![2020-04-26-image](images/pacman-20200428-202310.gif)
+
+
 
 <a name="planned-features"><a/>
 ## Planned features
