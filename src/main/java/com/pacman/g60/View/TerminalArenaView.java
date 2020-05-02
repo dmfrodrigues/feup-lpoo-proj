@@ -41,23 +41,6 @@ public class TerminalArenaView implements ArenaView {
     private class InfoBar {
         private final Integer H = 5;
         private final Integer Wmargin = 2;
-        private void drawFrame(){
-            for(Integer x = 1; x < terminalGUI.getW()-1; ++x){
-                terminalGUI.drawCharacter(x, 0, '▀', Color.GREY, Color.BLACK);
-                terminalGUI.drawCharacter(x, H-1, '▄', Color.GREY, Color.BLACK);
-            }
-            for(Integer y = 1; y < H-1; ++y){
-                terminalGUI.drawCharacter(0, y, '█', Color.GREY, Color.BLACK);
-                terminalGUI.drawCharacter(terminalGUI.getW()-1, y, '█', Color.GREY, Color.BLACK);
-            }
-            for(Integer x = 1; x < terminalGUI.getW()-1; ++x){
-                for(Integer y = 1; y < H-1; ++y){
-                    terminalGUI.drawCharacter(x, y, ' ', Color.BLACK, Color.BLACK);
-                }
-            }
-            terminalGUI.drawCharacter(0, 0, '█', Color.GREY, Color.BLACK); terminalGUI.drawCharacter(terminalGUI.getW()-1, 0, '█', Color.GREY, Color.BLACK);
-            terminalGUI.drawCharacter(0, H-1, '█', Color.GREY, Color.BLACK); terminalGUI.drawCharacter(terminalGUI.getW()-1, H-1, '█', Color.GREY, Color.BLACK);
-        }
         private void drawSprite(TerminalSprite sprite, int x0, int y0){
             for(int x = 0; x < sprite.getW(); ++x) {
                 for (int y = 0; y < sprite.getH(); ++y) {
@@ -84,13 +67,24 @@ public class TerminalArenaView implements ArenaView {
             textView = new TextView();
             startTime = System.currentTimeMillis();
         }
-        public void draw(ArenaModel arenaModel){
-            drawFrame();
-            
-            double health = arenaModel.getHero().getHealth()*0.75;
-            double maxHealth = arenaModel.getHero().getMaxHealth();
-            int coins = arenaModel.getHero().getCoins();
-            int totalCoins = arenaModel.getNumCoins() + coins;
+        private void drawFrame(){
+            for(Integer x = 1; x < terminalGUI.getW()-1; ++x){
+                terminalGUI.drawCharacter(x, 0, '▀', Color.GREY, Color.BLACK);
+                terminalGUI.drawCharacter(x, H-1, '▄', Color.GREY, Color.BLACK);
+            }
+            for(Integer y = 1; y < H-1; ++y){
+                terminalGUI.drawCharacter(0, y, '█', Color.GREY, Color.BLACK);
+                terminalGUI.drawCharacter(terminalGUI.getW()-1, y, '█', Color.GREY, Color.BLACK);
+            }
+            for(Integer x = 1; x < terminalGUI.getW()-1; ++x){
+                for(Integer y = 1; y < H-1; ++y){
+                    terminalGUI.drawCharacter(x, y, ' ', Color.BLACK, Color.BLACK);
+                }
+            }
+            terminalGUI.drawCharacter(0, 0, '█', Color.GREY, Color.BLACK); terminalGUI.drawCharacter(terminalGUI.getW()-1, 0, '█', Color.GREY, Color.BLACK);
+            terminalGUI.drawCharacter(0, H-1, '█', Color.GREY, Color.BLACK); terminalGUI.drawCharacter(terminalGUI.getW()-1, H-1, '█', Color.GREY, Color.BLACK);
+        }
+        private void drawHealth(double health, double maxHealth){
             int x0 = 2;
             int y0 = 1;
             for(int x = 0; x < maxHealth*heartSprite.getW(); ++x) {
@@ -108,14 +102,28 @@ public class TerminalArenaView implements ArenaView {
                     }
                 }
             }
+        }
+        private void drawCoins(int coins, int totalCoins){
             String coinsStr = String.format("%d/%d", coins, totalCoins);
-            
             int coinsStrX = terminalGUI.getW()-Wmargin-textView.getStringWidth(coinsStr);
             textView.draw(coinsStrX, 1+coinSprite.getH()-textView.getStringHeight(coinsStr), coinsStr);
-            //terminalGUI.drawString(coinsStrX, coinSprite.getH(), coinsStr, new Color(255, 255, 255), new Color(0, 0, 0));
             int coinsSpriteX = coinsStrX - coinSprite.getW() -1;
             drawSprite(coinSprite, coinsSpriteX, 1);
-            
+        }
+        private void drawTimer(long time){
+            long sec = time%60;
+            long min = time/60;
+            String sSec = String.format("%02d", sec);
+            String sMin = String.format("%d", min);
+            String s = sMin + ":" + sSec;
+            textView.draw(terminalGUI.getW()/2-textView.getStringWidth(sMin), 1, s);
+        }
+        public void draw(ArenaModel arenaModel){
+            drawFrame();
+            drawHealth(arenaModel.getHero().getHealth()*0.75, arenaModel.getHero().getMaxHealth());
+            drawCoins(arenaModel.getHero().getCoins(), arenaModel.getNumCoins() + arenaModel.getHero().getCoins());
+            long now = System.currentTimeMillis();
+            drawTimer((now-startTime)/1000);
         }
     }
     

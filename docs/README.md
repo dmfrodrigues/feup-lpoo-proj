@@ -68,6 +68,10 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
 - [x] Collisions
 - [ ] Dynamic elements have life
 - [ ] Weaponize enemies
+- [x] Information bar:
+    - [x] Timer
+    - [x] Life
+    - [x] Money collected
 
 ![2020-04-26-image](images/pacman-20200428-202310.gif)
 
@@ -82,11 +86,7 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
 - [ ] Current game state can be saved and loaded
 - [ ] Weaponize hero
 - [ ] Information bar:
-    - [ ] Timer
-    - [ ] Score
     - [ ] Level number
-    - [x] Life
-    - [x] Money collected
     - [ ] Restart level
     - [ ] Go to main menu
 - [ ] Enemies
