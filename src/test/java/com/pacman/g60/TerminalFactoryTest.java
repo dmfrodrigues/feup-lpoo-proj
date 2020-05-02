@@ -99,14 +99,6 @@ public class TerminalFactoryTest {
         }
         
         assertEquals(324, argHolders.size());
-        List<ArgHolder> args = new ArrayList<>(Arrays.asList(
-                new ArgHolder(-4, -2, ' ', new Color("#969696"), new Color("#000000")),
-                new ArgHolder(-4, -1, '▐', new Color("#969696"), new Color("#000000")),
-                new ArgHolder(-2, -1, '▬', new Color("#000000"), new Color("#969696")),
-                new ArgHolder(2, 0, '┃', new Color("#646464"), new Color("#000000"))
-        ));
-        for(final ArgHolder a_: args)
-            assertTrue(argHolders.contains(a_));
         
         try {
             Mockito.when(terminalGUI.pollKey()).thenReturn(null);
