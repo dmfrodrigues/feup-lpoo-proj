@@ -46,14 +46,14 @@ public class ArenaController {
                 for (final Element element : elements) {
                     if (element instanceof Ghost) {
                         Position newPos = shortestPathStrategy.getPrev(element.getPos());
-                        executeCommand(new UpdateEnemyPosCommand(element,newPos));
+                        executeCommand(new UpdateEnemyPosCommand(this.arenaModel, element,element.getPos(),newPos));
                     }
                 }
 
                 i = 1;
             }
             ++i;
-            
+
             ArenaView.COMMAND cmd = arenaView.pollCommand();
             if(!(cmd == null)) {
                 switch (cmd) {

@@ -2,6 +2,7 @@ package com.pacman.g60.Controller;
 
 import com.pacman.g60.Application;
 import com.pacman.g60.Model.ArenaModel;
+import com.pacman.g60.Model.Position;
 
 public class MoveHeroCommand implements Command {
     private ArenaModel arenaModel;
@@ -11,28 +12,38 @@ public class MoveHeroCommand implements Command {
 
     @Override
     public void execute() {
+        Position newPos = new Position(0,0);
         switch (this.dir)
         {
             case UP:
             {
-                this.arenaModel.getHero().moveUp();
+                newPos = this.arenaModel.getHero().moveUp();
                 break;
             }
             case DOWN:
             {
-                this.arenaModel.getHero().moveDown();
+                newPos = this.arenaModel.getHero().moveDown();
                 break;
             }
             case LEFT:
             {
-                this.arenaModel.getHero().moveLeft();
+                newPos = this.arenaModel.getHero().moveLeft();
                 break;
             }
             case RIGHT:
             {
-                this.arenaModel.getHero().moveRight();
+                newPos = this.arenaModel.getHero().moveRight();
                 break;
             }
         }
+
+
+        if (this.arenaModel.isPositionAvailable(newPos))
+        {
+            Position currentHeroPos = this.arenaModel.getHero().getPos();
+            this.arenaModel.updateMapKey(currentHeroPos,newPos);
+            this.arenaModel.getHero().updatePos(newPos);
+        }
+
     }
 }

@@ -19,9 +19,9 @@ public class MoveHeroCommandTest {
     public void setup()
     {
         Position initialPos = new Position(5, 5);
-        this.arenaModel = Mockito.mock(ArenaModel.class);
         Hero hero = new Hero(initialPos);
-        Mockito.when(arenaModel.getHero()).thenReturn(hero);
+        this.arenaModel = new ArenaModel(10,10);
+        this.arenaModel.addElement(hero);
     }
 
     @Test
