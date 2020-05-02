@@ -46,30 +46,37 @@ public class LanternaGUI implements TerminalGUI {
 <span class="nc" id="L46">    }</span>
 
     @Override
+    public void drawString(Integer x, Integer y, String s, Color f, Color b) {
+<span class="nc bnc" id="L50" title="All 2 branches missed.">        for(Integer xadd = 0; xadd &lt; s.length(); ++xadd){</span>
+<span class="nc" id="L51">            drawCharacter(x+xadd, y, s.charAt(xadd), f, b);</span>
+        }
+<span class="nc" id="L53">    }</span>
+
+    @Override
     public void clear(){
-<span class="nc" id="L50">        screen.doResizeIfNecessary();</span>
-<span class="nc" id="L51">        screen.clear();</span>
-<span class="nc" id="L52">    }</span>
+<span class="nc" id="L57">        screen.doResizeIfNecessary();</span>
+<span class="nc" id="L58">        screen.clear();</span>
+<span class="nc" id="L59">    }</span>
 
     @Override
     public void refresh() throws IOException {
-<span class="nc" id="L56">        screen.refresh(Screen.RefreshType.DELTA);</span>
-<span class="nc" id="L57">    }</span>
+<span class="nc" id="L63">        screen.refresh(Screen.RefreshType.DELTA);</span>
+<span class="nc" id="L64">    }</span>
 
     @Override
     public KeyStroke pollKey() throws IOException{
-<span class="nc" id="L61">        return screen.pollInput();</span>
+<span class="nc" id="L68">        return screen.pollInput();</span>
     }
 
     @Override
     public void close() throws IOException{
-<span class="nc" id="L66">        screen.close();</span>
-<span class="nc" id="L67">    }</span>
+<span class="nc" id="L73">        screen.close();</span>
+<span class="nc" id="L74">    }</span>
 
     @Override
-<span class="nc" id="L70">    public Integer getW() { return screen.getTerminalSize().getColumns(); }</span>
+<span class="nc" id="L77">    public Integer getW() { return screen.getTerminalSize().getColumns(); }</span>
 
     @Override
-<span class="nc" id="L73">    public Integer getH() { return screen.getTerminalSize().getRows(); }</span>
+<span class="nc" id="L80">    public Integer getH() { return screen.getTerminalSize().getRows(); }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
