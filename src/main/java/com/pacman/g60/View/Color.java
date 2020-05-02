@@ -30,4 +30,8 @@ public class Color {
     public String toString() {
         return String.format("#%02X%02X%02X", r, g, b);
     }
+
+    public static Color BLACK = new Color(0, 0, 0);
+    public static Color WHITE = new Color(255, 255, 255);
+    public static Color GREY  = new Color(127, 127, 127);
 }
