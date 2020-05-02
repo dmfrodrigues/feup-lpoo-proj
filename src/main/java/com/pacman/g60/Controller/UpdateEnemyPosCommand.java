@@ -12,17 +12,28 @@ import com.pacman.g60.Model.Position;
 import java.util.List;
 
 public class UpdateEnemyPosCommand implements Command {
+    private ArenaModel arenaModel;
     private Element element;
-    private Position position;
+    private Position oldPos, newPos;
 
-    public UpdateEnemyPosCommand(Element element, Position position)
+    public UpdateEnemyPosCommand(ArenaModel arenaModel,Element element, Position oldPos, Position newPos)
     {
+        this.arenaModel = arenaModel;
         this.element = element;
-        this.position = position;
+        this.oldPos = oldPos;
+        this.newPos = newPos;
     }
 
     @Override
-    public void execute() {
-        if (position != null) ((DynamicElement) element).updatePos(position);
+    public void execute()
+    {
+        boolean isNewPosValid = arenaModel.isPositionAvailable(newPos);
+
+        if (newPos != null && isNewPosValid)
+        {
+            arenaModel.updateMapKey(oldPos,newPos);
+            ((DynamicElement) element).updatePos(newPos);
+        }
+
     }
 }

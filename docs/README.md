@@ -65,7 +65,7 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
 - [x] Sprites change according to direction
 - [x] Screen is centered in the Hero
 - [x] Some enemies follow the hero
-- [ ] Collisions
+- [x] Collisions
 - [ ] Dynamic elements have life
 - [ ] Weaponize enemies
 

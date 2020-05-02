@@ -3,39 +3,36 @@ package com.pacman.g60.Model.Elements;
 
 
 import com.pacman.g60.Application;
+import com.pacman.g60.Model.Elements.Hierarchy.MovableElement;
+import com.pacman.g60.Model.Elements.Hierarchy.OrientedElement;
 import com.pacman.g60.Model.Position;
 
-public abstract class DynamicElement extends Element {
+public abstract class DynamicElement extends Element implements MovableElement, OrientedElement {
     protected Application.Direction dir;
     public DynamicElement(Position pos){
         super(pos);
         dir = Application.Direction.RIGHT;
     }
 
-    public void moveUp(){
+    public Position moveUp(){
         Position pos = getPos();
         pos.setY(pos.getY()-1);
-        setPos(pos);
-        dir = Application.Direction.UP;
+        return pos;
     }
-    public void moveDown(){
+    public Position moveDown(){
         Position pos = getPos();
         pos.setY(pos.getY()+1);
-        setPos(pos);
-        dir = Application.Direction.DOWN;
+        return pos;
     }
-    public void moveLeft(){
+    public Position moveLeft(){
         Position pos = getPos();
         pos.setX(pos.getX()-1);
-        setPos(pos);
-        dir = Application.Direction.LEFT;
+        return pos;
     }
-    public void moveRight(){
+    public Position moveRight(){
         Position pos = getPos();
         pos.setX(pos.getX()+1);
-        setPos(pos);
-        dir = Application.Direction.RIGHT;
-
+        return pos;
     }
 
     public Application.Direction getDirection() { return dir; }
