@@ -1,9 +1,6 @@
 package com.pacman.g60.Model;
 
-import com.pacman.g60.Model.Elements.Element;
-import com.pacman.g60.Model.Elements.Ghost;
-import com.pacman.g60.Model.Elements.Hero;
-import com.pacman.g60.Model.Elements.Wall;
+import com.pacman.g60.Model.Elements.*;
 
 import java.io.InputStream;
 import java.util.Scanner;
@@ -17,6 +14,7 @@ public class ArenaModelLoaderStream implements ArenaModel.Loader {
                 case 'W': return new Wall(pos);
                 case 'H': return new Hero(pos);
                 case 'G': return new Ghost(pos);
+                case 'C': return new Coin(pos);
                 case ' ': return null;
                 default: throw new IllegalArgumentException("Unknown character '" + c + "'");
             }

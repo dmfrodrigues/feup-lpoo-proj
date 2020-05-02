@@ -46,6 +46,13 @@ public class LanternaGUI implements TerminalGUI {
     }
 
     @Override
+    public void drawString(Integer x, Integer y, String s, Color f, Color b) {
+        for(Integer xadd = 0; xadd < s.length(); ++xadd){
+            drawCharacter(x+xadd, y, s.charAt(xadd), f, b);
+        }
+    }
+
+    @Override
     public void clear(){
         screen.doResizeIfNecessary();
         screen.clear();

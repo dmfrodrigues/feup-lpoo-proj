@@ -85,8 +85,8 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
     - [ ] Timer
     - [ ] Score
     - [ ] Level number
-    - [ ] Life
-    - [ ] Money collected
+    - [x] Life
+    - [x] Money collected
     - [ ] Restart level
     - [ ] Go to main menu
 - [ ] Enemies
