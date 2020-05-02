@@ -2,16 +2,17 @@
 
 
 import com.pacman.g60.Model.Effect.Effect;
-import com.pacman.g60.Model.Elements.DynamicElement;
+import com.pacman.g60.Model.Elements.Hierarchy.AttackerElement;
+import com.pacman.g60.Model.Elements.Hierarchy.LivingElement;
 import com.pacman.g60.Model.Position;
 
-public abstract class Enemy extends DynamicElement {
+public abstract class Enemy extends DynamicElement implements LivingElement, AttackerElement {
     protected Effect effect;
 
     public Enemy(Position pos, Effect effect) {
-<span class="fc" id="L12">        super(pos);</span>
-<span class="fc" id="L13">        this.effect = effect;</span>
-<span class="fc" id="L14">    }</span>
+<span class="fc" id="L13">        super(pos);</span>
+<span class="fc" id="L14">        this.effect = effect;</span>
+<span class="fc" id="L15">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

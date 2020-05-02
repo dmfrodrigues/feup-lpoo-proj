@@ -12,18 +12,29 @@ import com.pacman.g60.Model.Position;
 import java.util.List;
 
 public class UpdateEnemyPosCommand implements Command {
+    private ArenaModel arenaModel;
     private Element element;
-    private Position position;
+    private Position oldPos, newPos;
 
-    public UpdateEnemyPosCommand(Element element, Position position)
-<span class="fc" id="L19">    {</span>
-<span class="fc" id="L20">        this.element = element;</span>
-<span class="fc" id="L21">        this.position = position;</span>
-<span class="fc" id="L22">    }</span>
+    public UpdateEnemyPosCommand(ArenaModel arenaModel,Element element, Position oldPos, Position newPos)
+<span class="fc" id="L20">    {</span>
+<span class="fc" id="L21">        this.arenaModel = arenaModel;</span>
+<span class="fc" id="L22">        this.element = element;</span>
+<span class="fc" id="L23">        this.oldPos = oldPos;</span>
+<span class="fc" id="L24">        this.newPos = newPos;</span>
+<span class="fc" id="L25">    }</span>
 
     @Override
-    public void execute() {
-<span class="pc bpc" id="L26" title="1 of 2 branches missed.">        if (position != null) ((DynamicElement) element).updatePos(position);</span>
-<span class="fc" id="L27">    }</span>
+    public void execute()
+    {
+<span class="fc" id="L30">        boolean isNewPosValid = arenaModel.isPositionAvailable(newPos);</span>
+
+<span class="pc bpc" id="L32" title="2 of 4 branches missed.">        if (newPos != null &amp;&amp; isNewPosValid)</span>
+        {
+<span class="fc" id="L34">            arenaModel.updateMapKey(oldPos,newPos);</span>
+<span class="fc" id="L35">            ((DynamicElement) element).updatePos(newPos);</span>
+        }
+
+<span class="fc" id="L38">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
