@@ -263,11 +263,13 @@ We will use the [Command](https://refactoring.guru/design-patterns/command) patt
 
 Our implementation will follow the diagram shown below.
 
-![](images/command-diagram.png)
+![](images/command-diagram.svg)
 
 #### Consequences
 
 With this pattern, the ArenaController doesn't need to know how do everything and can just delegate tasks, reducing the amount of responsibility it has.
+
+### The complexity of ArenaController's actions
 
 #### Problem in context
 
@@ -282,7 +284,7 @@ With the [Composite](https://refactoring.guru/design-patterns/composite) pattern
 
 Our implementation will be guided by the following diagram.
 
-![](images/composite-diagram.png)
+![](images/composite-diagram.svg)
 
 #### Consequences
 This allows us to:
