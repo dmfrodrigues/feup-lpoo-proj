@@ -315,6 +315,26 @@ This use of the Strategy pattern has the benefits of:
 
 ## Code smells and refactoring suggestions
 
+### [Switch Statements](https://refactoring.guru/smells/switch-statements)
+
+This is a smell found in the ArenaController and MoveHeroCommand classes. In the first case, it may not be possible to get rid of the smell since the player input needs to be translated to actions in the code and conditional statements are the only way to do this. For the other situation, a possible solution would be to use the refactoring technique [Replace Conditional with Polymorphism](https://refactoring.guru/replace-conditional-with-polymorphism), although this may be a bit excessive.
+
+### [Comments](https://refactoring.guru/smells/comments)
+
+This smell can be found in the Game class and can be easily removed using the refactoring technique [Extract Method](https://refactoring.guru/extract-method) to place the sections separated by comments in other functions.
+
+### Hard to read code
+
+This isn't a particular smell and I guess it could be considered a nitpick but I believe the code in the UpdateAllEnemyPosCommand class is a bit hard to read. I think this situation could be improved using [Extract Method](https://refactoring.guru/extract-method) to separate parts of the setup function into smaller portions that are easier to understand. Also, some of the variables used could have better names.
+
+### [Long Parameter List](https://refactoring.guru/smells/long-parameter-list)
+
+This smell is present in the constructor of the UpdateEnemyPosCommand class and could be eliminated using [Introduce Parameter Object](https://refactoring.guru/introduce-parameter-object). However, it could also be argued that having four parameters isn't a big problem and applying this technique would be excessive.
+
+### [Long Method](https://refactoring.guru/smells/long-method)
+
+The updatePos function in the DynamicElement class is a bit too long and could be divided into smaller pieces using [Extract Method](https://refactoring.guru/extract-method).
+
 <a name="testing"><a/>
 
 ## Testing
@@ -330,3 +350,6 @@ The mutation test report (obtained using the [PIT Mutation Testing](https://grad
 <a name="self-evaluation"><a/>
 
 ## Self-evaluation
+
+Diogo Rodrigues: 60%
+João Matos: 40%
