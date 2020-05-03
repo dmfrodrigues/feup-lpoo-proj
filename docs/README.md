@@ -315,9 +315,34 @@ This use of the Strategy pattern has the benefits of:
 
 ## Code smells and refactoring suggestions
 
+### [Shotgun surgery](https://refactoring.guru/smells/shotgun-surgery)
+
+The [Element](../src/main/java/com/pacman/g60/Model/Elements/) hierarchy, [TerminalArenaView.ElementViewFactory](../src/main/java/com/pacman/g60/View/TerminalArenaView.java) and [ArenaModelLoaderStream](../src/main/java/com/pacman/g60/Model/ArenaModelLoaderStream.java) suffer from shotgun surgery, since they are excessively coupled in a manner, and adding a class to the `Element` hierarchy would require creating new classes and making a lot of minor changes to the members of `TerminalArenaView` and `ArenaModelLoaderStream`. These smells are probably the result of a zealous application of the MVC architecture.
+
+As for `TerminalArenaView.ElementViewFactory`, we have decided not to move responsibilities to a single class, since we considered it was more important to preserve the MVC and more easily allow creation of new Views for other frameworks, rather than try to refactor this smell.
+
+As for `ArenaModelLoaderStream`, this is just a loader from an input stream, the `Element` hierarchy does not really care how an `ArenaModel` is loaded from a file since there can also be many ways to save it to a file. The `ArenaModelLoaderStream` can also be interpreted as a sort of application of the [Builder](https://refactoring.guru/design-patterns/builder) pattern, which is an attempt at decluttering a section of code that would otherwise be a constructor of `ArenaModel`.
+
+### [Feature envy](https://refactoring.guru/smells/feature-envy)
+
+A slight smell of feature envy can be identified in [LanternaGUI](../src/main/java/com/pacman/g60/View/LanternaGUI.java), since this class very often uses features of the Lanterna framework.
+
+We will not refactor this class, since `LanternaGUI` is a facade for the Lanterna framework, and as such it is understandable that it often uses features of the Lanterna framework.
+
+### [Duplicate code](https://refactoring.guru/smells/duplicate-code)
+In [TerminalArenaView](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/355eabbe3d893e2c97e3a915dbd3ab023d953ed2/src/main/java/com/pacman/g60/View/TerminalArenaView.java), members [TextView.drawChar](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/355eabbe3d893e2c97e3a915dbd3ab023d953ed2/src/main/java/com/pacman/g60/View/TerminalArenaView.java#L28-L32), [InfoBar.drawSprite](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/355eabbe3d893e2c97e3a915dbd3ab023d953ed2/src/main/java/com/pacman/g60/View/TerminalArenaView.java#L46-L53) and [TerminalArenaView.ElementView.draw](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/355eabbe3d893e2c97e3a915dbd3ab023d953ed2/src/main/java/com/pacman/g60/View/TerminalArenaView.java#L143-L150) have duplicate code to draw sprites.
+
+We will refactor this class by applying [Extract Method](https://refactoring.guru/extract-method) to extract a sprite-drawing routine, and call it from all places where sprites are drawn.
+
 ### [Switch Statements](https://refactoring.guru/smells/switch-statements)
 
 This is a smell found in the ArenaController and MoveHeroCommand classes. In the first case, it may not be possible to get rid of the smell since the player input needs to be translated to actions in the code and conditional statements are the only way to do this. For the other situation, a possible solution would be to use the refactoring technique [Replace Conditional with Polymorphism](https://refactoring.guru/replace-conditional-with-polymorphism), although this may be a bit excessive.
+
+#### In factories
+
+There are also switch statements in [TerminalArenaView.ElementViewFactory](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/0eef3838556b58a878e4277710615d93091581e8/src/main/java/com/pacman/g60/View/TerminalArenaView.java#L243-L246) and [TerminalSpriteOrientable](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/0eef3838556b58a878e4277710615d93091581e8/src/main/java/com/pacman/g60/View/TerminalSpriteOrientable.java#L19-L32), but these are in factories exactly because this smell had already been identified, leading to the decision of at least isolating these statements inside factories.
+
+The loader [ArenaModelLoaderStream](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/0eef3838556b58a878e4277710615d93091581e8/src/main/java/com/pacman/g60/Model/ArenaModelLoaderStream.java#L13-L20) also has a switch statement, but we have isolated it in a [factory method](https://refactoring.guru/design-patterns/factory-method).
 
 ### [Comments](https://refactoring.guru/smells/comments)
 
@@ -340,6 +365,7 @@ The updatePos function in the DynamicElement class is a bit too long and could b
 ## Testing
 
 [![gradlew test](https://github.com/FEUP-LPOO/lpoo-2020-g60/workflows/gradlew%20test/badge.svg)](https://feup-lpoo.github.io/lpoo-2020-g60/reports/tests/test/index.html)
+[![gradlew test](https://github.com/FEUP-LPOO/lpoo-2020-g60/workflows/gradlew%20test/badge.svg)](https://feup-lpoo.github.io/lpoo-2020-g60/reports/tests/test/index.html)
 
 The test report is available [here](https://feup-lpoo.github.io/lpoo-2020-g60/reports/tests/test/index.html).
 
@@ -351,5 +377,6 @@ The mutation test report (obtained using the [PIT Mutation Testing](https://grad
 
 ## Self-evaluation
 
-Diogo Rodrigues: 60%
-João Matos: 40%
+- Diogo Rodrigues: 60%
+
+- João Matos: 40%

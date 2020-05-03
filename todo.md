@@ -1,0 +1,57 @@
+# Análise de cheiros
+- [ ] Controller
+	- [ ] ArenaController
+	- [ ] Command
+	- [ ] CompositeCommand
+	- [ ] Game
+	- [ ] MoveHeroCommand
+	- [ ] UpdateAlEnemyPosCommand
+	- [ ] UpdateEnemyPosCommand
+- [ ] Model
+	- [ ] Effect
+		- [ ] DamageEffect
+		- [ ] Effect
+	- [ ] Elements
+		- [ ] Hierarchy
+			- [ ] AttackerElement
+			- [ ] CanSharePosition
+			- [ ] ControlledByPlayer
+			- [ ] FollowHeroElement
+			- [ ] LivingElement
+			- [ ] MeleeAttackerElement
+			- [ ] MovableElement
+			- [ ] OrientedElement
+			- [ ] RangedAttackerElement
+		- [ ] Coin
+		- [ ] DynamicElement
+		- [ ] Element
+		- [ ] Enemy
+		- [ ] Ghost
+		- [ ] Hero
+        - [ ] =========================
+		- [ ] StaticElement
+		- [ ] Wall
+	- [ ] Path_Calculation
+		- [ ] AdjacencyGraph
+		- [ ] BFSShortestPathStrategy
+		- [ ] BFSTieBreakerDiag
+		- [ ] Graph
+		- [ ] ShortestPathStrategy
+	- [ ] ArenaModel
+	- [ ] ArenaModelLoaderStream
+	- [ ] Position
+- [ ] View
+	- [ ] ArenaView
+	- [ ] Color
+	- [ ] GUI
+	- [ ] LanternaGUI
+	- [ ] TerminalArenaView
+	- [ ] TerminalFactory
+	- [ ] TerminalFont
+	- [ ] TerminalFontLoaderStream
+	- [ ] TerminalGUI
+	- [ ] TerminalSprite
+	- [ ] TerminalSpriteLoaderStream
+	- [ ] TerminalSpriteOrientable
+	- [ ] ViewFactory
+- [ ] Application
