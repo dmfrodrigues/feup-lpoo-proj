@@ -352,4 +352,5 @@ The mutation test report (obtained using the [PIT Mutation Testing](https://grad
 ## Self-evaluation
 
 Diogo Rodrigues: 60%
+
 João Matos: 40%
