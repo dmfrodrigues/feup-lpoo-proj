@@ -269,8 +269,23 @@ Our implementation will follow the diagram shown below.
 
 With this pattern, the ArenaController doesn't need to know how do everything and can just delegate tasks, reducing the amount of responsibility it has.
 
+#### Problem in context
 
-We will also use the [Composite](https://refactoring.guru/design-patterns/composite), which will allow us to:
+Since some of the tasks the ArenaController needs to perform are quite complex, the commands used need to be able to support that complexity. 
+
+#### The pattern
+
+With the [Composite](https://refactoring.guru/design-patterns/composite) pattern, we can use commands that are made up of other simpler commands.
+
+
+#### Implementation
+
+Our implementation will be guided by the following diagram.
+
+![](images/composite-diagram.png)
+
+#### Consequences
+This allows us to:
 - Compose commands as chains of other commands.
 - Encapsulate commands and lists of commands from whoever has contact with them.
 
