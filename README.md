@@ -31,12 +31,12 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
 
 | 2020-04-26 | 2020-05-02 |
 |------------|------------|
-|![2020-04-26-image](images/2020-04-26_21-31-01.png)|![2020-05-02-image](images/2020-05-02_04-43-23.png)|
+|![2020-04-26-image](docs/images/2020-04-26_21-31-01.png)|![2020-05-02-image](docs/images/2020-05-02_04-43-23.png)|
 
 <a name="animations"><a/>
 #### Animations
 
 | 2020-04-28 | 2020-05-02 |
 |------------|------------|
-|![2020-04-28-animation](images/pacman-20200428-202310.gif)|![2020-04-26-image](images/pacman-20200502-042816.gif)|
+|![2020-04-28-animation](docs/images/pacman-20200428-202310.gif)|![2020-04-26-image](docs/images/pacman-20200502-042816.gif)|
 
