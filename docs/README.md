@@ -62,6 +62,7 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
 
 - [x] Sprites being loaded from files
 - [x] Dynamic elements can move
+- [x] Control hero with keyboard arrows
 - [x] Sprites change according to direction
 - [x] Screen is centered in the Hero
 - [x] Some enemies follow the hero
