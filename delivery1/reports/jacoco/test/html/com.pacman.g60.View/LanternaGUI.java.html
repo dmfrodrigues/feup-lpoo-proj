@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LanternaGUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.View</a> &gt; <span class="el_source">LanternaGUI.java</span></div><h1>LanternaGUI.java</h1><pre class="source lang-java linenums">package com.pacman.g60.View;
+
+
+import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.screen.Screen;
+import com.googlecode.lanterna.screen.TerminalScreen;
+import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+import com.googlecode.lanterna.terminal.Terminal;
+import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
+
+import java.awt.*;
+import java.io.IOException;
+
+public class LanternaGUI implements TerminalGUI {
+    private Screen screen;
+    private static final String LANTERNA_FONT = &quot;Monospaced&quot;;
+    private static final int LANTERNA_FONT_SIZE = 10;
+<span class="nc" id="L21">    public LanternaGUI(){</span>
+        // Initialize screen
+        try{
+<span class="nc" id="L24">            Font font = new Font(LANTERNA_FONT, Font.PLAIN, LANTERNA_FONT_SIZE);</span>
+<span class="nc" id="L25">            SwingTerminalFontConfiguration cfg = SwingTerminalFontConfiguration.newInstance(font);</span>
+
+<span class="nc" id="L27">            DefaultTerminalFactory factory = new DefaultTerminalFactory();</span>
+<span class="nc" id="L28">            factory.setInitialTerminalSize(new TerminalSize(233, 57));</span>
+<span class="nc" id="L29">            factory.setTerminalEmulatorFontConfiguration(cfg);</span>
+<span class="nc" id="L30">            Terminal terminal = factory.createTerminal();</span>
+<span class="nc" id="L31">            screen = new TerminalScreen(terminal);</span>
+<span class="nc" id="L32">            screen.setCursorPosition(null);</span>
+<span class="nc" id="L33">            screen.startScreen();</span>
+<span class="nc" id="L34">            screen.doResizeIfNecessary();</span>
+<span class="nc" id="L35">        } catch (IOException e){</span>
+<span class="nc" id="L36">            e.printStackTrace();</span>
+<span class="nc" id="L37">        }</span>
+<span class="nc" id="L38">    }</span>
+
+    @Override
+    public void drawCharacter(Integer x, Integer y, Character c, Color f, Color b) {
+<span class="nc" id="L42">        TextGraphics graphics = screen.newTextGraphics();</span>
+<span class="nc" id="L43">        graphics.setForegroundColor(new TextColor.RGB(f.getR(), f.getG(), f.getB()));</span>
+<span class="nc" id="L44">        graphics.setBackgroundColor(new TextColor.RGB(b.getR(), b.getG(), b.getB()));</span>
+<span class="nc" id="L45">        graphics.putString(x, y, String.valueOf(c));</span>
+<span class="nc" id="L46">    }</span>
+
+    @Override
+    public void drawString(Integer x, Integer y, String s, Color f, Color b) {
+<span class="nc bnc" id="L50" title="All 2 branches missed.">        for(Integer xadd = 0; xadd &lt; s.length(); ++xadd){</span>
+<span class="nc" id="L51">            drawCharacter(x+xadd, y, s.charAt(xadd), f, b);</span>
+        }
+<span class="nc" id="L53">    }</span>
+
+    @Override
+    public void clear(){
+<span class="nc" id="L57">        screen.doResizeIfNecessary();</span>
+<span class="nc" id="L58">        screen.clear();</span>
+<span class="nc" id="L59">    }</span>
+
+    @Override
+    public void refresh() throws IOException {
+<span class="nc" id="L63">        screen.refresh(Screen.RefreshType.DELTA);</span>
+<span class="nc" id="L64">    }</span>
+
+    @Override
+    public KeyStroke pollKey() throws IOException{
+<span class="nc" id="L68">        return screen.pollInput();</span>
+    }
+
+    @Override
+    public void close() throws IOException{
+<span class="nc" id="L73">        screen.close();</span>
+<span class="nc" id="L74">    }</span>
+
+    @Override
+<span class="nc" id="L77">    public Integer getW() { return screen.getTerminalSize().getColumns(); }</span>
+
+    @Override
+<span class="nc" id="L80">    public Integer getH() { return screen.getTerminalSize().getRows(); }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

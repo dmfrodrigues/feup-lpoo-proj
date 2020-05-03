@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TerminalSprite.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.View</a> &gt; <span class="el_source">TerminalSprite.java</span></div><h1>TerminalSprite.java</h1><pre class="source lang-java linenums">package com.pacman.g60.View;
+
+
+public class TerminalSprite {
+    private final Integer W, H;
+<span class="fc" id="L6">    private char[][] chars = null;</span>
+<span class="fc" id="L7">    private Color[][] back = null;</span>
+<span class="fc" id="L8">    private Color[][] fore = null;</span>
+<span class="fc" id="L9">    public TerminalSprite(Integer W, Integer H){</span>
+<span class="fc" id="L10">        this.W = W;</span>
+<span class="fc" id="L11">        this.H = H;</span>
+<span class="fc" id="L12">        chars = new char [H][W];</span>
+<span class="fc" id="L13">        back  = new Color[H][W];</span>
+<span class="fc" id="L14">        fore  = new Color[H][W];</span>
+<span class="fc" id="L15">    }</span>
+<span class="fc" id="L16">    public void  setChar           (Integer x, Integer y, char  c){ chars[y][x] = c; }</span>
+<span class="fc" id="L17">    public void  setBackgroundColor(Integer x, Integer y, Color c){ back [y][x] = c; }</span>
+<span class="fc" id="L18">    public void  setForegroundColor(Integer x, Integer y, Color c){ fore [y][x] = c; }</span>
+<span class="fc" id="L19">    public char  getChar           (Integer x, Integer y){ return chars[y][x]; }</span>
+<span class="fc" id="L20">    public Color getBackgroundColor(Integer x, Integer y){ return back [y][x]; }</span>
+<span class="fc" id="L21">    public Color getForegroundColor(Integer x, Integer y){ return fore [y][x]; }</span>
+
+<span class="fc" id="L23">    public Integer getW() { return W; }</span>
+
+<span class="fc" id="L25">    public Integer getH() { return H; }</span>
+
+    public interface Loader {
+        TerminalSprite getTerminalSprite();
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
