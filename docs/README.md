@@ -373,11 +373,19 @@ The updatePos function in the DynamicElement class is a bit too long and could b
 
 [![gradlew test](https://github.com/FEUP-LPOO/lpoo-2020-g60/workflows/gradlew%20test/badge.svg)](https://feup-lpoo.github.io/lpoo-2020-g60/reports/tests/test/index.html)
 
-The test report is available [here](https://feup-lpoo.github.io/lpoo-2020-g60/reports/tests/test/index.html).
+The most recent test report is available [here](https://feup-lpoo.github.io/lpoo-2020-g60/reports/tests/test/index.html).
 
-The coverage test report (obtained using the [JaCoCo](https://docs.gradle.org/current/userguide/jacoco_plugin.html) plugin) is available [here](https://feup-lpoo.github.io/lpoo-2020-g60/reports/jacoco/test/html/index.html).
+The most recent coverage test report (obtained using the [JaCoCo](https://docs.gradle.org/current/userguide/jacoco_plugin.html) plugin) is available [here](https://feup-lpoo.github.io/lpoo-2020-g60/reports/jacoco/test/html/index.html).
 
-The mutation test report (obtained using the [PIT Mutation Testing](https://gradle-pitest-plugin.solidsoft.info/) plugin) is available [here](https://feup-lpoo.github.io/lpoo-2020-g60/reports/pitest/index.html).
+The most recent mutation test report (obtained using the [PIT Mutation Testing](https://gradle-pitest-plugin.solidsoft.info/) plugin) is available [here](https://feup-lpoo.github.io/lpoo-2020-g60/reports/pitest/index.html).
+
+### First delivery
+
+Test report for the first delivery is available [here](https://feup-lpoo.github.io/lpoo-2020-g60/delivery1/reports/tests/test/index.html)
+
+Coverage test report for the first delivery is available [here](https://feup-lpoo.github.io/lpoo-2020-g60/delivery1/reports/jacoco/test/html/index.html).
+
+Mutation test report for the first delivery is available [here](https://feup-lpoo.github.io/lpoo-2020-g60/reports/pitest/index.html).
 
 <a name="self-evaluation"><a/>
 
