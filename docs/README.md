@@ -365,7 +365,6 @@ The updatePos function in the DynamicElement class is a bit too long and could b
 ## Testing
 
 [![gradlew test](https://github.com/FEUP-LPOO/lpoo-2020-g60/workflows/gradlew%20test/badge.svg)](https://feup-lpoo.github.io/lpoo-2020-g60/reports/tests/test/index.html)
-[![gradlew test](https://github.com/FEUP-LPOO/lpoo-2020-g60/workflows/gradlew%20test/badge.svg)](https://feup-lpoo.github.io/lpoo-2020-g60/reports/tests/test/index.html)
 
 The test report is available [here](https://feup-lpoo.github.io/lpoo-2020-g60/reports/tests/test/index.html).
 
