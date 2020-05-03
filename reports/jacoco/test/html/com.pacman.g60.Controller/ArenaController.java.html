@@ -3,17 +3,10 @@
 
 import com.pacman.g60.Application;
 import com.pacman.g60.Model.ArenaModel;
-import com.pacman.g60.Model.Elements.Element;
-import com.pacman.g60.Model.Elements.Ghost;
-import com.pacman.g60.Model.Path_Calculation.BFSShortestPathStrategy;
-import com.pacman.g60.Model.Path_Calculation.BFSTieBreakerDiag;
-import com.pacman.g60.Model.Path_Calculation.Graph;
-import com.pacman.g60.Model.Path_Calculation.ShortestPathStrategy;
-import com.pacman.g60.Model.Position;
 import com.pacman.g60.View.ArenaView;
 
 import java.io.IOException;
-import java.util.List;
+
 
 
 public class ArenaController {
@@ -21,63 +14,53 @@ public class ArenaController {
     ArenaView arenaView;
 
 
-<span class="nc" id="L24">    public ArenaController(ArenaModel arenaModel, ArenaView arenaView){</span>
-<span class="nc" id="L25">        this.arenaModel = arenaModel;</span>
-<span class="nc" id="L26">        this.arenaView = arenaView;</span>
-<span class="nc" id="L27">    }</span>
+<span class="nc" id="L17">    public ArenaController(ArenaModel arenaModel, ArenaView arenaView){</span>
+<span class="nc" id="L18">        this.arenaModel = arenaModel;</span>
+<span class="nc" id="L19">        this.arenaView = arenaView;</span>
+<span class="nc" id="L20">    }</span>
     public void run() throws IOException {
-<span class="nc" id="L29">        boolean good = true;</span>
-<span class="nc" id="L30">        int i = 0;</span>
-<span class="nc bnc" id="L31" title="All 2 branches missed.">        while(good){</span>
+<span class="nc" id="L22">        boolean good = true;</span>
+<span class="nc" id="L23">        int i = 0;</span>
+<span class="nc bnc" id="L24" title="All 2 branches missed.">        while(good){</span>
             
             try {
-<span class="nc" id="L34">                Thread.sleep(10);</span>
-<span class="nc" id="L35">            } catch(InterruptedException e){</span>
+<span class="nc" id="L27">                Thread.sleep(10);</span>
+<span class="nc" id="L28">            } catch(InterruptedException e){</span>
                 
-<span class="nc" id="L37">            }</span>
+<span class="nc" id="L30">            }</span>
             
-<span class="nc bnc" id="L39" title="All 2 branches missed.">            if(i%10 == 0) {</span>
+<span class="nc bnc" id="L32" title="All 2 branches missed.">            if(i%10 == 0) {</span>
 
-<span class="nc" id="L41">                Graph&lt;Position&gt; G = arenaModel.getGraph();</span>
-<span class="nc" id="L42">                ShortestPathStrategy&lt;Position&gt; shortestPathStrategy = new BFSShortestPathStrategy&lt;Position&gt;(new BFSTieBreakerDiag(arenaModel.getHero().getPos()));</span>
-<span class="nc" id="L43">                shortestPathStrategy.setGraph(G);</span>
-<span class="nc" id="L44">                shortestPathStrategy.calcPaths(arenaModel.getHero().getPos());</span>
-<span class="nc" id="L45">                List&lt;Element&gt; elements = arenaModel.getElements();</span>
-<span class="nc bnc" id="L46" title="All 2 branches missed.">                for (final Element element : elements) {</span>
-<span class="nc bnc" id="L47" title="All 2 branches missed.">                    if (element instanceof Ghost) {</span>
-<span class="nc" id="L48">                        Position newPos = shortestPathStrategy.getPrev(element.getPos());</span>
-<span class="nc" id="L49">                        executeCommand(new UpdateEnemyPosCommand(this.arenaModel, element,element.getPos(),newPos));</span>
-                    }
-<span class="nc" id="L51">                }</span>
+<span class="nc" id="L34">                executeCommand(new UpdateAllEnemyPosCommand(this.arenaModel));</span>
 
-<span class="nc" id="L53">                i = 1;</span>
+<span class="nc" id="L36">                i = 1;</span>
             }
-<span class="nc" id="L55">            ++i;</span>
+<span class="nc" id="L38">            ++i;</span>
 
-<span class="nc" id="L57">            ArenaView.COMMAND cmd = arenaView.pollCommand();</span>
-<span class="nc bnc" id="L58" title="All 2 branches missed.">            if(!(cmd == null)) {</span>
-<span class="nc bnc" id="L59" title="All 6 branches missed.">                switch (cmd) {</span>
+<span class="nc" id="L40">            ArenaView.COMMAND cmd = arenaView.pollCommand();</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">            if(!(cmd == null)) {</span>
+<span class="nc bnc" id="L42" title="All 6 branches missed.">                switch (cmd) {</span>
                     case EXIT:
-<span class="nc" id="L61">                        good = false;</span>
-<span class="nc" id="L62">                        break;</span>
+<span class="nc" id="L44">                        good = false;</span>
+<span class="nc" id="L45">                        break;</span>
                     case UP:
-<span class="nc" id="L64">                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.UP)); break;</span>
+<span class="nc" id="L47">                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.UP)); break;</span>
                     case DOWN:
-<span class="nc" id="L66">                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.DOWN)); break;</span>
+<span class="nc" id="L49">                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.DOWN)); break;</span>
                     case LEFT:
-<span class="nc" id="L68">                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.LEFT)); break;</span>
+<span class="nc" id="L51">                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.LEFT)); break;</span>
                     case RIGHT:
-<span class="nc" id="L70">                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.RIGHT)); break;</span>
+<span class="nc" id="L53">                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.RIGHT)); break;</span>
                 }
             }
-<span class="nc" id="L73">            arenaView.draw(arenaModel);</span>
-<span class="nc" id="L74">        }</span>
-<span class="nc" id="L75">    }</span>
+<span class="nc" id="L56">            arenaView.draw(arenaModel);</span>
+<span class="nc" id="L57">        }</span>
+<span class="nc" id="L58">    }</span>
 
     public void executeCommand(Command command)
     {
-<span class="nc" id="L79">        command.execute();</span>
-<span class="nc" id="L80">    }</span>
+<span class="nc" id="L62">        command.execute();</span>
+<span class="nc" id="L63">    }</span>
 
 
 
