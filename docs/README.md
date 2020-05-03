@@ -31,7 +31,7 @@ This project was developed for LPOO <sup>2019</sup>⁄<sub>20</sub> by:
 
 Her Majesty the Queen has requested the assistance of a noble knight to cleanse the catacombs of the Kingdom's capital of the terrible monsters that have been haunting her subjects for centuries. Unfortunately, because people are scared of the monsters that occasionally escape the catacombs, productivity is low and the Kingdom's coffers are empty (otherwise she would have hired a professional ghost-hunter team), but whoever answers Her Majesty's call will have rights over any treasure found in the catacombs.
 
-Having accepted the challenge, your goal is to kill all monsters, while collecting as many coins as possible so at to guarantee an alternative to the rather underfinanced Kingdom's Social Security system for yourself.
+Having accepted the challenge, your goal is to kill all monsters, while collecting as many coins as possible so at to guarantee an alternative to the rather under-financed Kingdom's Social Security system for yourself.
 
 The catacombs are full of treasures from ancient times, as well as weapons from those who once ventured into the depths of the city but never returned.
 
@@ -69,18 +69,13 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
 ![2020-04-26-image](images/pacman-20200428-202310.gif)
 
 - [x] Collisions
+- [x] Dynamic elements have life
 - [x] Information bar:
     - [x] Timer
     - [x] Life
     - [x] Money collected
-    
+
 ![2020-04-26-image](images/pacman-20200502-042816.gif)
-    
-- [ ] Dynamic elements have life
-- [ ] Weaponize enemies
-
-
-
 
 <a name="planned-features"><a/>
 ## Planned features
@@ -91,6 +86,7 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
     - [ ] Level editor (?)
 - [ ] Score system
 - [ ] Current game state can be saved and loaded
+- [ ] Weaponize enemies
 - [ ] Weaponize hero
 - [ ] Information bar:
     - [ ] Level number
@@ -101,7 +97,7 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
     - [ ] Ghost
     - [ ] Spider
     - [ ] Mummy
-- [ ] Collectables
+- [ ] Collectibles
     - [ ] Coin
     - [ ] Sword
     - [ ] Bullet
@@ -244,7 +240,7 @@ We will use the following state diagram to guide our implementation.
 ![](images/state-diagram.svg)
 
 #### Consequences
-This use of the State pattern has the benefit of changing the behaviour of `Game` in an orderly fashion, according to its current state (to have the appropriate input/output possibilities for a menu, a scoreboard, in-game, etc.)
+This use of the State pattern has the benefit of changing the behavior of `Game` in an orderly fashion, according to its current state (to have the appropriate input/output possibilities for a menu, a scoreboard, in-game, etc.)
 
 <a name="command-composite-arenacontroller"><a/>
 
@@ -252,7 +248,7 @@ This use of the State pattern has the benefit of changing the behaviour of `Game
 
 #### Problem in context
 
-To stay true to the MVC model without using any particular design pattern, `ArenaController` is the *God of Dynamics*, meaning it processes all dynamics and events (moving and collision handling, shooting projectiles, picking weapons, etc.). The issue is the excessive amount of responsibilities granted to ArenaController this way.
+To stay true to the MVC model without using any particular design pattern, `ArenaController` is the *God of Dynamics*, meaning it processes all dynamics and events (moving and collision handling, shooting projectiles, picking weapons, etc.). The issue is the excessive amount of responsibilities granted to `ArenaController` this way.
 
 #### The pattern
 
@@ -271,7 +267,7 @@ With this pattern, the ArenaController doesn't need to know how do everything an
 
 #### Problem in context
 
-Since some of the tasks the ArenaController needs to perform are quite complex, the commands used need to be able to support that complexity. 
+Since some of the tasks the ArenaController needs to perform are quite complex, the commands used need to be able to support that complexity.
 
 #### The pattern
 
