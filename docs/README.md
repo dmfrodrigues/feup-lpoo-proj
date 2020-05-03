@@ -334,6 +334,12 @@ In [TerminalArenaView](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/355eabbe3
 
 We will refactor this class by applying [Extract Method](https://refactoring.guru/extract-method) to extract a sprite-drawing routine, and call it from all places where sprites are drawn.
 
+#### In TerminalSpriteLoaderStream
+
+The [main cycle](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/ddfd734be4099c6e1620befe1de3c61017e60275/src/main/java/com/pacman/g60/View/TerminalSpriteLoaderStream.java#L9-L33) of [TerminalSpriteLoaderStream](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/ddfd734be4099c6e1620befe1de3c61017e60275/src/main/java/com/pacman/g60/View/TerminalSpriteLoaderStream.java) 's constructor not only makes it a long method, but also has duplicate code for importing color matrices.
+
+We will refactor this class by applying [Extract Method](https://refactoring.guru/extract-method) to extract a color-importing routine, and call it from all places where color matrices are imported.
+
 ### [Switch Statements](https://refactoring.guru/smells/switch-statements)
 
 This is a smell found in the ArenaController and MoveHeroCommand classes. In the first case, it may not be possible to get rid of the smell since the player input needs to be translated to actions in the code and conditional statements are the only way to do this. For the other situation, a possible solution would be to use the refactoring technique [Replace Conditional with Polymorphism](https://refactoring.guru/replace-conditional-with-polymorphism), although this may be a bit excessive.
