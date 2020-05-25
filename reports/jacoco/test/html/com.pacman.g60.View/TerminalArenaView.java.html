@@ -297,7 +297,8 @@ public class TerminalArenaView implements ArenaView {
 <span class="fc bfc" id="L297" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowLeft ) return COMMAND.LEFT;</span>
 <span class="fc bfc" id="L298" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowRight) return COMMAND.RIGHT;</span>
 <span class="fc bfc" id="L299" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.Escape    ) return COMMAND.EXIT;</span>
-<span class="fc" id="L300">        return null;</span>
+<span class="pc bpc" id="L300" title="1 of 2 branches missed.">        if(key.getKeyType() == KeyType.EOF       ) return COMMAND.EXIT;</span>
+<span class="fc" id="L301">        return null;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
