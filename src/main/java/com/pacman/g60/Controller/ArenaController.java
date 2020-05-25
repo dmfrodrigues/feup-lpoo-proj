@@ -33,7 +33,7 @@ public class ArenaController {
 
                 executeCommand(new UpdateAllEnemyPosCommand(this.arenaModel));
 
-                i = 1;
+                i = 0;
             }
             ++i;
 
