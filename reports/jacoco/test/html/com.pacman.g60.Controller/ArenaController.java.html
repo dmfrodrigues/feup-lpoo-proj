@@ -32,7 +32,7 @@ public class ArenaController {
 <span class="nc bnc" id="L32" title="All 2 branches missed.">            if(i%10 == 0) {</span>
 
 <span class="nc" id="L34">                executeCommand(new UpdateAllEnemyPosCommand(this.arenaModel));</span>
-<span class="nc" id="L35">                executeCommand(new CheckEnemyAdjacencyCommand(this.arenaModel));</span>
+<span class="nc" id="L35">                executeCommand(new CheckHeroAdjacencyCommand(this.arenaModel));</span>
 <span class="nc" id="L36">                executeCommand(new CheckForDeathCommand(this.arenaModel));</span>
 
 <span class="nc" id="L38">                i = 0;</span>
@@ -41,7 +41,7 @@ public class ArenaController {
 
 <span class="nc" id="L42">            ArenaView.COMMAND cmd = arenaView.pollCommand();</span>
 <span class="nc bnc" id="L43" title="All 2 branches missed.">            if(!(cmd == null)) {</span>
-<span class="nc bnc" id="L44" title="All 6 branches missed.">                switch (cmd) {</span>
+<span class="nc bnc" id="L44" title="All 7 branches missed.">                switch (cmd) {</span>
                     case EXIT:
 <span class="nc" id="L46">                        good = false;</span>
 <span class="nc" id="L47">                        break;</span>
@@ -53,16 +53,18 @@ public class ArenaController {
 <span class="nc" id="L53">                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.LEFT)); break;</span>
                     case RIGHT:
 <span class="nc" id="L55">                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.RIGHT)); break;</span>
+                    case ATTACK:
+<span class="nc" id="L57">                        executeCommand(new AttackCommand(this.arenaModel)); break;</span>
                 }
             }
-<span class="nc" id="L58">            arenaView.draw(arenaModel);</span>
-<span class="nc" id="L59">        }</span>
-<span class="nc" id="L60">    }</span>
+<span class="nc" id="L60">            arenaView.draw(arenaModel);</span>
+<span class="nc" id="L61">        }</span>
+<span class="nc" id="L62">    }</span>
 
     public void executeCommand(Command command)
     {
-<span class="nc" id="L64">        command.execute();</span>
-<span class="nc" id="L65">    }</span>
+<span class="nc" id="L66">        command.execute();</span>
+<span class="nc" id="L67">    }</span>
 
 
 

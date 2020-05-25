@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AttackCommand.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.Controller</a> &gt; <span class="el_source">AttackCommand.java</span></div><h1>AttackCommand.java</h1><pre class="source lang-java linenums">package com.pacman.g60.Controller;
+
+import com.pacman.g60.Model.ArenaModel;
+import com.pacman.g60.Model.Effect.DamageEffect;
+import com.pacman.g60.Model.Effect.Effect;
+import com.pacman.g60.Model.Elements.Element;
+import com.pacman.g60.Model.Elements.Enemy;
+import com.pacman.g60.Model.Elements.Hero;
+import com.pacman.g60.Model.Position;
+
+public class AttackCommand implements Command{
+    private ArenaModel arenaModel;
+
+<span class="nc" id="L14">    public AttackCommand(ArenaModel arenaModel) {</span>
+<span class="nc" id="L15">        this.arenaModel = arenaModel;</span>
+<span class="nc" id="L16">    }</span>
+
+    @Override
+    public void execute() {
+<span class="nc" id="L20">        Hero hero = arenaModel.getHero();</span>
+<span class="nc" id="L21">        Position heroPos = hero.getPos();</span>
+<span class="nc" id="L22">        Integer heroPosX = heroPos.getX(), heroPosY = heroPos.getY();</span>
+<span class="nc bnc" id="L23" title="All 2 branches missed.">        for (int i = heroPosX - 1; i &lt;= heroPosX + 1; i++)</span>
+        {
+<span class="nc bnc" id="L25" title="All 2 branches missed.">            for (int i2 = heroPosY - 1; i2 &lt;= heroPosY + 1; i2++)</span>
+            {
+<span class="nc" id="L27">                Position currentPos = new Position(i,i2);</span>
+<span class="nc" id="L28">                Element currentElemInPos = arenaModel.getElemFromPos(currentPos);</span>
+<span class="nc bnc" id="L29" title="All 2 branches missed.">                if (currentElemInPos instanceof Enemy)</span>
+                {
+<span class="nc" id="L31">                    Effect effect = new DamageEffect(1);</span>
+<span class="nc" id="L32">                    Command command = new ApplyEffectCommand(effect,currentElemInPos);</span>
+<span class="nc" id="L33">                    command.execute();</span>
+                }
+            }
+        }
+<span class="nc" id="L37">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -271,13 +271,14 @@ public class TerminalArenaView implements ArenaView {
     public COMMAND pollCommand() throws IOException{
 <span class="fc" id="L272">        KeyStroke key = terminalGUI.pollKey();</span>
 <span class="fc bfc" id="L273" title="All 2 branches covered.">        if(key == null) return null;</span>
-<span class="fc bfc" id="L274" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowUp   ) return COMMAND.UP;</span>
-<span class="fc bfc" id="L275" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowDown ) return COMMAND.DOWN;</span>
-<span class="fc bfc" id="L276" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowLeft ) return COMMAND.LEFT;</span>
-<span class="fc bfc" id="L277" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowRight) return COMMAND.RIGHT;</span>
-<span class="fc bfc" id="L278" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.Escape    ) return COMMAND.EXIT;</span>
-<span class="pc bpc" id="L279" title="1 of 2 branches missed.">        if(key.getKeyType() == KeyType.EOF       ) return COMMAND.EXIT;</span>
-<span class="fc" id="L280">        return null;</span>
+<span class="fc bfc" id="L274" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowUp                               ) return COMMAND.UP;</span>
+<span class="fc bfc" id="L275" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowDown                             ) return COMMAND.DOWN;</span>
+<span class="fc bfc" id="L276" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowLeft                             ) return COMMAND.LEFT;</span>
+<span class="fc bfc" id="L277" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowRight                            ) return COMMAND.RIGHT;</span>
+<span class="fc bfc" id="L278" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.Escape                                ) return COMMAND.EXIT;</span>
+<span class="pc bpc" id="L279" title="1 of 2 branches missed.">        if(key.getKeyType() == KeyType.EOF                                   ) return COMMAND.EXIT;</span>
+<span class="pc bpc" id="L280" title="2 of 4 branches missed.">        if(key.getKeyType() == KeyType.Character &amp;&amp; key.getCharacter() == ' ') return COMMAND.ATTACK;</span>
+<span class="fc" id="L281">        return null;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

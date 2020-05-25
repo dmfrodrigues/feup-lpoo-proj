@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CheckEnemyAdjacencyCommand.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.Controller</a> &gt; <span class="el_source">CheckEnemyAdjacencyCommand.java</span></div><h1>CheckEnemyAdjacencyCommand.java</h1><pre class="source lang-java linenums">package com.pacman.g60.Controller;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CheckHeroAdjacencyCommand.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.Controller</a> &gt; <span class="el_source">CheckHeroAdjacencyCommand.java</span></div><h1>CheckHeroAdjacencyCommand.java</h1><pre class="source lang-java linenums">package com.pacman.g60.Controller;
 
 import com.pacman.g60.Model.ArenaModel;
 import com.pacman.g60.Model.Effect.DamageEffect;
@@ -10,10 +10,10 @@ import com.pacman.g60.Model.Position;
 
 import java.util.List;
 
-public class CheckEnemyAdjacencyCommand implements Command {
+public class CheckHeroAdjacencyCommand implements Command {
     private ArenaModel arenaModel;
 
-<span class="nc" id="L16">    public CheckEnemyAdjacencyCommand(ArenaModel arenaModel) {</span>
+<span class="nc" id="L16">    public CheckHeroAdjacencyCommand(ArenaModel arenaModel) {</span>
 <span class="nc" id="L17">        this.arenaModel = arenaModel;</span>
 <span class="nc" id="L18">    }</span>
 
@@ -33,14 +33,10 @@ public class CheckEnemyAdjacencyCommand implements Command {
 <span class="nc" id="L33">                    Effect effect = ((Enemy)currentElemInPos).getEffect();</span>
 <span class="nc" id="L34">                    Command command = new ApplyEffectCommand(effect,hero);</span>
 <span class="nc" id="L35">                    command.execute();</span>
-
-<span class="nc" id="L37">                    Effect effect2 = new DamageEffect(1);</span>
-<span class="nc" id="L38">                    Command command2 = new ApplyEffectCommand(effect2,currentElemInPos);</span>
-<span class="nc" id="L39">                    command2.execute();</span>
                 }
             }
         }
 
-<span class="nc" id="L44">    }</span>
+<span class="nc" id="L40">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
