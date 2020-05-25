@@ -101,9 +101,10 @@ public class ArenaModel {
 
     public void removeElement(Element element)
     {
-<span class="nc" id="L104">        listElements.remove(element);</span>
-<span class="nc" id="L105">        availablePositions.remove(element.getPos());</span>
-<span class="nc" id="L106">    }</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">        if (element instanceof Coin) numCoins--;</span>
+<span class="nc" id="L105">        listElements.remove(element);</span>
+<span class="nc" id="L106">        availablePositions.remove(element.getPos());</span>
+<span class="nc" id="L107">    }</span>
 
     public interface Loader {
         public ArenaModel getArenaModel();
