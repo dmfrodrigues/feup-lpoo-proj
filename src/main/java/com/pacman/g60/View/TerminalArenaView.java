@@ -15,30 +15,6 @@ import java.util.List;
 import java.util.Map;
 
 public class TerminalArenaView implements ArenaView {
-    private class TextView{
-        TerminalFont font;
-        public TextView() throws FileNotFoundException{
-            TerminalFont.Loader loader = new TerminalFontLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/numbers-4-3.lan"));
-            font = loader.getTerminalFont();
-        }
-        public Integer getStringWidth(String s){ return s.length()*(font.getW()+1)-1; }
-        public Integer getStringHeight(String s){ return font.getH(); }
-        private void drawChar(int x0, int y0, Character c){
-            TerminalFont.TerminalCharacter tchar = font.getCharacter(c);
-            Integer W = tchar.getW();
-            Integer H = tchar.getH();
-            for(int x = 0; x < W; ++x){
-                for(int y = 0; y < H; ++y){
-                    terminalGUI.drawCharacter(x0+x, y0+y, tchar.getChar(x, y), Color.WHITE, Color.BLACK);
-                }
-            }
-        }
-        public void draw(int x0, int y0, String s){
-            for(int i = 0; i < s.length(); ++i){
-                drawChar(x0+i*(font.getW()+1), y0, s.charAt(i));
-            }
-        }
-    }
 
     private static final Integer HInfoBar = 5;
 
@@ -57,7 +33,7 @@ public class TerminalArenaView implements ArenaView {
         TerminalSprite heartSprite;
         TerminalSprite heartDeadSprite;
         TerminalSprite coinSprite;
-        TextView textView;
+        TerminalTextView textView;
         long startTime;
         public InfoBar() throws FileNotFoundException{
             TerminalSprite.Loader loader;
@@ -67,7 +43,10 @@ public class TerminalArenaView implements ArenaView {
             heartDeadSprite = loader.getTerminalSprite();
             loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/coin-6-3.lan"));
             coinSprite = loader.getTerminalSprite();
-            textView = new TextView();
+
+            TerminalFont.Loader fontLoader = new TerminalFontLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/numbers-4-3.lan"));
+            TerminalFont font = fontLoader.getTerminalFont();
+            textView = new TerminalTextView(terminalGUI, font);
             startTime = System.currentTimeMillis();
         }
         private void drawFrame(){
@@ -258,8 +237,8 @@ public class TerminalArenaView implements ArenaView {
     );
     
     private TerminalGUI terminalGUI;
-    ElementViewFactory elementViewFactory;
-    InfoBar infoBar;
+    private ElementViewFactory elementViewFactory;
+    private InfoBar infoBar;
     
     public TerminalArenaView(TerminalGUI terminalGUI) throws FileNotFoundException{
         this.terminalGUI = terminalGUI;
