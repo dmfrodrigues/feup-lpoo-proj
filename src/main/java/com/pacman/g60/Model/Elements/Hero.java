@@ -29,6 +29,8 @@ public class Hero extends DynamicElement implements ControlledByPlayer, LivingEl
         return coins;
     }
 
+    public void incCoins(){this.coins++;}
+
     public void setCoins(Integer coins) {
         this.coins = coins;
     }
