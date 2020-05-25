@@ -11,6 +11,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -64,7 +65,7 @@ public class TerminalFactoryTest {
     }
     
     @Test
-    public void test(){
+    public void test() throws FileNotFoundException {
         TerminalFactory factory = new TerminalFactory(terminalGUI);
         TerminalArenaView arenaView = factory.createArenaView();
         ArenaModel arenaModel = new ArenaModel(10, 10);
