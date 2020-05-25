@@ -10,14 +10,14 @@ import java.io.IOException;
 
 
 public class ArenaController {
-    ArenaModel arenaModel;
-    ArenaView arenaView;
-
-
-<span class="nc" id="L17">    public ArenaController(ArenaModel arenaModel, ArenaView arenaView){</span>
-<span class="nc" id="L18">        this.arenaModel = arenaModel;</span>
-<span class="nc" id="L19">        this.arenaView = arenaView;</span>
-<span class="nc" id="L20">    }</span>
+    private ArenaView arenaView;
+    private ArenaModel arenaModel;
+    
+<span class="nc" id="L16">    public ArenaController(ArenaModel arenaModel, ArenaView arenaView){</span>
+<span class="nc" id="L17">        this.arenaModel = arenaModel;</span>
+<span class="nc" id="L18">        this.arenaView = arenaView;</span>
+<span class="nc" id="L19">    }</span>
+    
     public void run() throws IOException {
 <span class="nc" id="L22">        boolean good = true;</span>
 <span class="nc" id="L23">        int i = 0;</span>
