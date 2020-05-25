@@ -271,12 +271,13 @@ public class TerminalArenaView implements ArenaView {
     public COMMAND pollCommand() throws IOException{
         KeyStroke key = terminalGUI.pollKey();
         if(key == null) return null;
-        if(key.getKeyType() == KeyType.ArrowUp   ) return COMMAND.UP;
-        if(key.getKeyType() == KeyType.ArrowDown ) return COMMAND.DOWN;
-        if(key.getKeyType() == KeyType.ArrowLeft ) return COMMAND.LEFT;
-        if(key.getKeyType() == KeyType.ArrowRight) return COMMAND.RIGHT;
-        if(key.getKeyType() == KeyType.Escape    ) return COMMAND.EXIT;
-        if(key.getKeyType() == KeyType.EOF       ) return COMMAND.EXIT;
+        if(key.getKeyType() == KeyType.ArrowUp                               ) return COMMAND.UP;
+        if(key.getKeyType() == KeyType.ArrowDown                             ) return COMMAND.DOWN;
+        if(key.getKeyType() == KeyType.ArrowLeft                             ) return COMMAND.LEFT;
+        if(key.getKeyType() == KeyType.ArrowRight                            ) return COMMAND.RIGHT;
+        if(key.getKeyType() == KeyType.Escape                                ) return COMMAND.EXIT;
+        if(key.getKeyType() == KeyType.EOF                                   ) return COMMAND.EXIT;
+        if(key.getKeyType() == KeyType.Character && key.getCharacter() == ' ') return COMMAND.ATTACK;
         return null;
     }
 }

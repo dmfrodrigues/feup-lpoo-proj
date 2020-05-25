@@ -8,12 +8,10 @@ import com.pacman.g60.Model.Elements.Enemy;
 import com.pacman.g60.Model.Elements.Hero;
 import com.pacman.g60.Model.Position;
 
-import java.util.List;
-
-public class CheckEnemyAdjacencyCommand implements Command {
+public class AttackCommand implements Command{
     private ArenaModel arenaModel;
 
-    public CheckEnemyAdjacencyCommand(ArenaModel arenaModel) {
+    public AttackCommand(ArenaModel arenaModel) {
         this.arenaModel = arenaModel;
     }
 
@@ -21,25 +19,20 @@ public class CheckEnemyAdjacencyCommand implements Command {
     public void execute() {
         Hero hero = arenaModel.getHero();
         Position heroPos = hero.getPos();
-        Integer heroX = heroPos.getX(), heroY = heroPos.getY();
-        for (int i = heroX - 1; i <= heroX + 1; i++)
+        Integer heroPosX = heroPos.getX(), heroPosY = heroPos.getY();
+        for (int i = heroPosX - 1; i <= heroPosX + 1; i++)
         {
-            for (int i2 = heroY - 1; i2 <= heroY + 1; i2++)
+            for (int i2 = heroPosY - 1; i2 <= heroPosY + 1; i2++)
             {
                 Position currentPos = new Position(i,i2);
                 Element currentElemInPos = arenaModel.getElemFromPos(currentPos);
                 if (currentElemInPos instanceof Enemy)
                 {
-                    Effect effect = ((Enemy)currentElemInPos).getEffect();
-                    Command command = new ApplyEffectCommand(effect,hero);
+                    Effect effect = new DamageEffect(1);
+                    Command command = new ApplyEffectCommand(effect,currentElemInPos);
                     command.execute();
-
-                    Effect effect2 = new DamageEffect(1);
-                    Command command2 = new ApplyEffectCommand(effect2,currentElemInPos);
-                    command2.execute();
                 }
             }
         }
-
     }
 }
