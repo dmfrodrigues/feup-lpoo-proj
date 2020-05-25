@@ -8,11 +8,29 @@ import com.pacman.g60.Model.Position;
 
 public abstract class Enemy extends DynamicElement implements LivingElement, AttackerElement {
     protected Effect effect;
+    private Integer health;
 
-    public Enemy(Position pos, Effect effect) {
-<span class="fc" id="L13">        super(pos);</span>
-<span class="fc" id="L14">        this.effect = effect;</span>
-<span class="fc" id="L15">    }</span>
+    public Enemy(Position pos, Effect effect, Integer health) {
+<span class="fc" id="L14">        super(pos);</span>
+<span class="fc" id="L15">        this.effect = effect;</span>
+<span class="fc" id="L16">        this.health = health;</span>
+<span class="fc" id="L17">    }</span>
+
+    public Effect getEffect() {
+<span class="nc" id="L20">        return effect;</span>
+    }
+
+    @Override
+    public void updateHealth(Integer diff)
+    {
+<span class="nc" id="L26">        this.health += diff;</span>
+<span class="nc" id="L27">    }</span>
+
+    @Override
+    public boolean isAlive()
+    {
+<span class="nc bnc" id="L32" title="All 2 branches missed.">        return health &gt; 0;</span>
+    }
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
