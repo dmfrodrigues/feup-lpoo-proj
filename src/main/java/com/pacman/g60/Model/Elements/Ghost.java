@@ -11,6 +11,7 @@ import com.pacman.g60.Model.Position;
 
 public class Ghost extends Enemy implements CanSharePosition, MeleeAttackerElement, OrientedElement {
     public Ghost(Position pos){
-        super(pos, new DamageEffect());
+        super(pos, new DamageEffect(1),5);
     }
+
 }
