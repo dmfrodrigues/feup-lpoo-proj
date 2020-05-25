@@ -297,6 +297,7 @@ public class TerminalArenaView implements ArenaView {
         if(key.getKeyType() == KeyType.ArrowLeft ) return COMMAND.LEFT;
         if(key.getKeyType() == KeyType.ArrowRight) return COMMAND.RIGHT;
         if(key.getKeyType() == KeyType.Escape    ) return COMMAND.EXIT;
+        if(key.getKeyType() == KeyType.EOF       ) return COMMAND.EXIT;
         return null;
     }
 }
