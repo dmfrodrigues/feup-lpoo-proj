@@ -14,15 +14,25 @@ public class Game {
     private ArenaModel arenaModel;
     private ArenaView arenaView;
     private ArenaController arenaController;
-    public Game(ViewFactory viewFactory) throws FileNotFoundException {
-        // arenaModel
+
+    private void processArenaModel() throws FileNotFoundException
+    {
         InputStream inputStream = new FileInputStream("src/main/resources/maps/map1.map");
         ArenaModel.Loader arenaModelLoader = new ArenaModelLoaderStream(inputStream);
         arenaModel = arenaModelLoader.getArenaModel();
-        // Others
+    }
+
+    private void processOthers(ViewFactory viewFactory)
+    {
         this.arenaView = viewFactory.createArenaView();
         this.arenaController = new ArenaController(arenaModel, arenaView);
     }
+
+    public Game(ViewFactory viewFactory) throws FileNotFoundException {
+        processArenaModel();
+        processOthers(viewFactory);
+    }
+
     public void run() throws IOException {
         arenaController.run();
     }
