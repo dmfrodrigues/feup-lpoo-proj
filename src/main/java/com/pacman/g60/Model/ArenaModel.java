@@ -101,6 +101,7 @@ public class ArenaModel {
 
     public void removeElement(Element element)
     {
+        if (element instanceof Coin) numCoins--;
         listElements.remove(element);
         availablePositions.remove(element.getPos());
     }
