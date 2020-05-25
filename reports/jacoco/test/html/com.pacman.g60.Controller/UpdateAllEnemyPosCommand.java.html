@@ -20,26 +20,38 @@ public class UpdateAllEnemyPosCommand extends CompositeCommand {
 <span class="nc" id="L20">        this.arenaModel = arenaModel;</span>
 <span class="nc" id="L21">    }</span>
 
-    public void setup()
+    public ShortestPathStrategy&lt;Position&gt; calcPath()
     {
-<span class="nc" id="L25">        Graph&lt;Position&gt; G = arenaModel.getGraph();</span>
+<span class="nc" id="L25">        Graph&lt;Position&gt; Graph = arenaModel.getGraph();</span>
 <span class="nc" id="L26">        ShortestPathStrategy&lt;Position&gt; shortestPathStrategy = new BFSShortestPathStrategy&lt;Position&gt;(new BFSTieBreakerDiag(arenaModel.getHero().getPos()));</span>
-<span class="nc" id="L27">        shortestPathStrategy.setGraph(G);</span>
+<span class="nc" id="L27">        shortestPathStrategy.setGraph(Graph);</span>
 <span class="nc" id="L28">        shortestPathStrategy.calcPaths(arenaModel.getHero().getPos());</span>
-<span class="nc" id="L29">        List&lt;Element&gt; elements = arenaModel.getElements();</span>
-<span class="nc bnc" id="L30" title="All 2 branches missed.">        for (final Element element : elements) {</span>
-<span class="nc bnc" id="L31" title="All 2 branches missed.">            if (element instanceof Ghost) {</span>
-<span class="nc" id="L32">                Position newPos = shortestPathStrategy.getPrev(element.getPos());</span>
-<span class="nc" id="L33">                this.addCommand(new UpdateEnemyPosCommand(this.arenaModel, element,element.getPos(),newPos));</span>
+
+<span class="nc" id="L30">        return shortestPathStrategy;</span>
+    }
+
+    public void setupCommands(ShortestPathStrategy&lt;Position&gt; shortestPathStrategy)
+    {
+<span class="nc" id="L35">        List&lt;Element&gt; elements = arenaModel.getElements();</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">        for (final Element element : elements) {</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">            if (element instanceof Ghost) {</span>
+<span class="nc" id="L38">                Position newPos = shortestPathStrategy.getPrev(element.getPos());</span>
+<span class="nc" id="L39">                this.addCommand(new UpdateEnemyPosCommand(this.arenaModel, element,element.getPos(),newPos));</span>
             }
-<span class="nc" id="L35">        }</span>
-<span class="nc" id="L36">    }</span>
+<span class="nc" id="L41">        }</span>
+<span class="nc" id="L42">    }</span>
+
+    public void setupExecution()
+    {
+<span class="nc" id="L46">        ShortestPathStrategy&lt;Position&gt; shortestPathStrategy = calcPath();</span>
+<span class="nc" id="L47">        setupCommands(shortestPathStrategy);</span>
+<span class="nc" id="L48">    }</span>
 
     @Override
     public void execute()
     {
-<span class="nc" id="L41">        setup();</span>
-<span class="nc" id="L42">        super.execute();</span>
-<span class="nc" id="L43">    }</span>
+<span class="nc" id="L53">        setupExecution();</span>
+<span class="nc" id="L54">        super.execute();</span>
+<span class="nc" id="L55">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

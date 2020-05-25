@@ -36,23 +36,23 @@ public abstract class DynamicElement extends Element implements MovableElement, 
     }
 
 <span class="fc" id="L38">    public Application.Direction getDirection() { return dir; }</span>
+
+    private void updateDir(Position newPos)
+    {
+<span class="fc" id="L42">        Position currentPos = this.getPos();</span>
+
+<span class="fc" id="L44">        Integer diffY = newPos.getY() - currentPos.getY();</span>
+<span class="fc" id="L45">        Integer diffX = newPos.getX() - currentPos.getX();</span>
+
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        if (diffY == 1) this.dir = Application.Direction.DOWN;</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        else if (diffY == -1 ) this.dir = Application.Direction.UP;</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        else if (diffX == 1) this.dir = Application.Direction.RIGHT;</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        else if (diffX == -1) this.dir = Application.Direction.LEFT;</span>
+<span class="fc" id="L51">    }</span>
     
     public void updatePos(Position newPos)
     {
-<span class="fc" id="L42">        Position currentPos = getPos();</span>
-<span class="fc" id="L43">        int currentX = currentPos.getX();</span>
-<span class="fc" id="L44">        int currentY = currentPos.getY();</span>
-<span class="fc" id="L45">        int newX = newPos.getX();</span>
-<span class="fc" id="L46">        int newY = newPos.getY();</span>
-
-<span class="fc" id="L48">        int diffY = newY - currentY;</span>
-<span class="fc bfc" id="L49" title="All 2 branches covered.">        if (diffY == 1) this.dir = Application.Direction.DOWN;</span>
-<span class="fc bfc" id="L50" title="All 2 branches covered.">        else if (diffY == -1 ) this.dir = Application.Direction.UP;</span>
-
-<span class="fc" id="L52">        int diffX = newX - currentX;</span>
-<span class="fc bfc" id="L53" title="All 2 branches covered.">        if (diffX == 1) this.dir = Application.Direction.RIGHT;</span>
-<span class="fc bfc" id="L54" title="All 2 branches covered.">        else if (diffX == -1) this.dir = Application.Direction.LEFT;</span>
-
+<span class="fc" id="L55">        updateDir(newPos);</span>
 <span class="fc" id="L56">        this.setPos(newPos);</span>
 <span class="fc" id="L57">    }</span>
 
