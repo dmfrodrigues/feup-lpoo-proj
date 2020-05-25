@@ -48,7 +48,7 @@ public class Game {
     }
 
     public void run() throws IOException {
-        menuController.run();
-        // arenaController.run();
+        //menuController.run();
+         arenaController.run();
     }
 }

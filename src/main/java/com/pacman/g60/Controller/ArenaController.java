@@ -32,7 +32,7 @@ public class ArenaController {
             if(i%10 == 0) {
 
                 executeCommand(new UpdateAllEnemyPosCommand(this.arenaModel));
-                executeCommand(new CheckEnemyAdjacencyCommand(this.arenaModel));
+                executeCommand(new CheckHeroAdjacencyCommand(this.arenaModel));
                 executeCommand(new CheckForDeathCommand(this.arenaModel));
 
                 i = 0;
@@ -53,6 +53,8 @@ public class ArenaController {
                         executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.LEFT)); break;
                     case RIGHT:
                         executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.RIGHT)); break;
+                    case ATTACK:
+                        executeCommand(new AttackCommand(this.arenaModel)); break;
                 }
             }
             arenaView.draw(arenaModel);
