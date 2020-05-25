@@ -32,6 +32,8 @@ public class ArenaController {
             if(i%10 == 0) {
 
                 executeCommand(new UpdateAllEnemyPosCommand(this.arenaModel));
+                executeCommand(new CheckEnemyAdjacencyCommand(this.arenaModel));
+                executeCommand(new CheckForDeathCommand(this.arenaModel));
 
                 i = 0;
             }

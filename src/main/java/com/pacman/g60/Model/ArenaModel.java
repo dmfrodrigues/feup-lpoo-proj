@@ -93,7 +93,18 @@ public class ArenaModel {
         this.availablePositions.remove(oldKey);
         this.availablePositions.put(newKey,element);
     }
-    
+
+    public Element getElemFromPos(Position position)
+    {
+        return availablePositions.get(position);
+    }
+
+    public void removeElement(Element element)
+    {
+        listElements.remove(element);
+        availablePositions.remove(element.getPos());
+    }
+
     public interface Loader {
         public ArenaModel getArenaModel();
     }
