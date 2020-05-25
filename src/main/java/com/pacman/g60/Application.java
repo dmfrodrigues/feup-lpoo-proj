@@ -20,10 +20,8 @@ public class Application {
             Game game = new Game(viewFactory);
             game.run();
             terminalGUI.close();
-        } catch(FileNotFoundException e){
-            System.err.println("FileNotFoundException: " + e.getMessage());
-        } catch(IOException e){
-            System.err.println("IOException: " + e.getMessage());
+        } catch(Exception e){
+            System.err.println("Exception (" + e.getClass().toString() + "): " + e.getMessage());
         }
     }
     public enum Direction {UP,DOWN,LEFT,RIGHT}
