@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TerminalMenuView.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.View</a> &gt; <span class="el_source">TerminalMenuView.java</span></div><h1>TerminalMenuView.java</h1><pre class="source lang-java linenums">package com.pacman.g60.View;
+
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
+import com.pacman.g60.Model.MenuModel;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+public class TerminalMenuView implements MenuView {
+    
+    public interface Loader {
+        TerminalSprite[][] getOuterEdge();
+        TerminalSprite[][] getInnerEdge();
+    }
+    
+    private TerminalGUI terminalGUI;
+
+    TerminalFont font;
+    
+<span class="nc" id="L22">    public TerminalMenuView(TerminalGUI terminalGUI) throws FileNotFoundException {</span>
+<span class="nc" id="L23">        this.terminalGUI = terminalGUI;</span>
+<span class="nc" id="L24">        TerminalFont.Loader loader = new TerminalFontLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/numbers-4-3.lan&quot;));</span>
+<span class="nc" id="L25">        font = loader.getTerminalFont();</span>
+<span class="nc" id="L26">    }</span>
+    
+    @Override
+    public COMMAND pollCommand() throws IOException {
+<span class="nc" id="L30">        KeyStroke key = terminalGUI.pollKey();</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">        if(key == null) return null;</span>
+<span class="nc bnc" id="L32" title="All 2 branches missed.">        if(key.getKeyType() == KeyType.ArrowUp  ) return COMMAND.UP;</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">        if(key.getKeyType() == KeyType.ArrowDown) return COMMAND.DOWN;</span>
+<span class="nc bnc" id="L34" title="All 2 branches missed.">        if(key.getKeyType() == KeyType.Enter    ) return COMMAND.ENTER;</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">        if(key.getKeyType() == KeyType.Escape   ) return COMMAND.EXIT;</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">        if(key.getKeyType() == KeyType.EOF      ) return COMMAND.EXIT;</span>
+<span class="nc" id="L37">        return null;</span>
+    }
+
+    @Override
+    public void draw(MenuModel menu) throws IOException {
+<span class="nc" id="L42">        terminalGUI.clear();</span>
+<span class="nc" id="L43">        MenuModel.Item selectedItem = menu.getSelectedItem();</span>
+<span class="nc" id="L44">        terminalGUI.drawString(0, 0, selectedItem.getText(), Color.WHITE, Color.BLACK);</span>
+<span class="nc" id="L45">        terminalGUI.refresh();</span>
+<span class="nc" id="L46">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

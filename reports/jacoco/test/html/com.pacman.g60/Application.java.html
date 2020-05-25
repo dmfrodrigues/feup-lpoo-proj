@@ -20,13 +20,11 @@ import java.io.*;
 <span class="nc" id="L20">            Game game = new Game(viewFactory);</span>
 <span class="nc" id="L21">            game.run();</span>
 <span class="nc" id="L22">            terminalGUI.close();</span>
-<span class="nc" id="L23">        } catch(FileNotFoundException e){</span>
-<span class="nc" id="L24">            System.err.println(&quot;FileNotFoundException: &quot; + e.getMessage());</span>
-<span class="nc" id="L25">        } catch(IOException e){</span>
-<span class="nc" id="L26">            System.err.println(&quot;IOException: &quot; + e.getMessage());</span>
-<span class="nc" id="L27">        }</span>
-<span class="nc" id="L28">    }</span>
-<span class="fc" id="L29">    public enum Direction {UP,DOWN,LEFT,RIGHT}</span>
+<span class="nc" id="L23">        } catch(Exception e){</span>
+<span class="nc" id="L24">            System.err.println(&quot;Exception (&quot; + e.getClass().toString() + &quot;): &quot; + e.getMessage());</span>
+<span class="nc" id="L25">        }</span>
+<span class="nc" id="L26">    }</span>
+<span class="fc" id="L27">    public enum Direction {UP,DOWN,LEFT,RIGHT}</span>
 }
 
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MenuModel.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.Model</a> &gt; <span class="el_source">MenuModel.java</span></div><h1>MenuModel.java</h1><pre class="source lang-java linenums">package com.pacman.g60.Model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class MenuModel {
+
+<span class="nc" id="L8">    public static abstract class Item {</span>
+        private String text;
+        private Integer id;
+        
+<span class="nc" id="L12">        public final String getText() { return text; }</span>
+<span class="nc" id="L13">        public final void setText(String text) { this.text = text; }</span>
+
+<span class="nc" id="L15">        public final Integer getId() { return id; }</span>
+<span class="nc" id="L16">        public final void setId(Integer id) { this.id = id; }</span>
+    }
+    
+    public static class NormalItem extends Item {
+<span class="nc" id="L20">        public NormalItem(Integer id, String text){</span>
+<span class="nc" id="L21">            setId(id);</span>
+<span class="nc" id="L22">            setText(text);</span>
+<span class="nc" id="L23">        }</span>
+    }
+    
+<span class="nc" id="L26">    List&lt;Item&gt; items = new ArrayList&lt;&gt;();</span>
+    int selected;
+    
+<span class="nc" id="L29">    public MenuModel(){}</span>
+
+    public void append(MenuModel.Item item) {
+<span class="nc" id="L32">        items.add(item);</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">        if(items.size() == 1) selected = 0;</span>
+<span class="nc" id="L34">    }</span>
+    
+    public void selectAbove(){
+<span class="nc bnc" id="L37" title="All 2 branches missed.">        if(items.size() == 0) throw new ArrayIndexOutOfBoundsException();</span>
+<span class="nc" id="L38">        --selected;</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">        if(selected &lt; 0) selected = items.size()-1;</span>
+<span class="nc" id="L40">    }</span>
+    
+    public void selectBelow(){
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        if(items.size() == 0) throw new ArrayIndexOutOfBoundsException();</span>
+<span class="nc" id="L44">        ++selected;</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">        if(selected &gt;= items.size()) selected = 0;</span>
+<span class="nc" id="L46">    }</span>
+    
+    public Item getSelectedItem() {
+<span class="nc" id="L49">        return items.get(selected);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
