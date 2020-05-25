@@ -36,23 +36,23 @@ public abstract class DynamicElement extends Element implements MovableElement, 
     }
 
     public Application.Direction getDirection() { return dir; }
+
+    private void updateDir(Position newPos)
+    {
+        Position currentPos = this.getPos();
+
+        Integer diffY = newPos.getY() - currentPos.getY();
+        Integer diffX = newPos.getX() - currentPos.getX();
+
+        if (diffY == 1) this.dir = Application.Direction.DOWN;
+        else if (diffY == -1 ) this.dir = Application.Direction.UP;
+        else if (diffX == 1) this.dir = Application.Direction.RIGHT;
+        else if (diffX == -1) this.dir = Application.Direction.LEFT;
+    }
     
     public void updatePos(Position newPos)
     {
-        Position currentPos = getPos();
-        int currentX = currentPos.getX();
-        int currentY = currentPos.getY();
-        int newX = newPos.getX();
-        int newY = newPos.getY();
-
-        int diffY = newY - currentY;
-        if (diffY == 1) this.dir = Application.Direction.DOWN;
-        else if (diffY == -1 ) this.dir = Application.Direction.UP;
-
-        int diffX = newX - currentX;
-        if (diffX == 1) this.dir = Application.Direction.RIGHT;
-        else if (diffX == -1) this.dir = Application.Direction.LEFT;
-
+        updateDir(newPos);
         this.setPos(newPos);
     }
 
