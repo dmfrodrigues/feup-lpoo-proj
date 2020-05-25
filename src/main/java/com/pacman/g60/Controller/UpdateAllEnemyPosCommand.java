@@ -20,12 +20,18 @@ public class UpdateAllEnemyPosCommand extends CompositeCommand {
         this.arenaModel = arenaModel;
     }
 
-    public void setup()
+    public ShortestPathStrategy<Position> calcPath()
     {
-        Graph<Position> G = arenaModel.getGraph();
+        Graph<Position> Graph = arenaModel.getGraph();
         ShortestPathStrategy<Position> shortestPathStrategy = new BFSShortestPathStrategy<Position>(new BFSTieBreakerDiag(arenaModel.getHero().getPos()));
-        shortestPathStrategy.setGraph(G);
+        shortestPathStrategy.setGraph(Graph);
         shortestPathStrategy.calcPaths(arenaModel.getHero().getPos());
+
+        return shortestPathStrategy;
+    }
+
+    public void setupCommands(ShortestPathStrategy<Position> shortestPathStrategy)
+    {
         List<Element> elements = arenaModel.getElements();
         for (final Element element : elements) {
             if (element instanceof Ghost) {
@@ -35,10 +41,16 @@ public class UpdateAllEnemyPosCommand extends CompositeCommand {
         }
     }
 
+    public void setupExecution()
+    {
+        ShortestPathStrategy<Position> shortestPathStrategy = calcPath();
+        setupCommands(shortestPathStrategy);
+    }
+
     @Override
     public void execute()
     {
-        setup();
+        setupExecution();
         super.execute();
     }
 }
