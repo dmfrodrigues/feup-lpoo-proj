@@ -10,7 +10,9 @@ import com.pacman.g60.Model.Elements.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TerminalArenaView implements ArenaView {
     private class TextView{
@@ -248,6 +250,13 @@ public class TerminalArenaView implements ArenaView {
         }
     }
     
+    final Map<Class, Integer> drawPriority = Map.of(
+            Hero .class, 3,
+            Ghost.class, 2,
+            Wall .class, 1,
+            Coin .class, 0
+    );
+    
     private TerminalGUI terminalGUI;
     ElementViewFactory elementViewFactory;
     InfoBar infoBar;
@@ -262,11 +271,19 @@ public class TerminalArenaView implements ArenaView {
     public void draw(ArenaModel arena) throws IOException {
         terminalGUI.clear();
         List<Element> listElements = arena.getElements();
-        elementViewFactory.setHeroPos(arena.getHero().getPos());
+        
+        Map<Position, Element> drawBuffer = new HashMap<>();
         for(final Element e : listElements){
+            final Element e_ = drawBuffer.get(e.getPos());
+            if(e_ == null || drawPriority.get(e.getClass()) > drawPriority.get(e_.getClass())) drawBuffer.put(e.getPos(), e);
+        }
+
+        elementViewFactory.setHeroPos(arena.getHero().getPos());
+        for(final Element e : drawBuffer.values()){
             ElementView elementView = elementViewFactory.factoryMethod(e);
             if(elementView != null) elementView.draw(e);
         }
+        
         infoBar.draw(arena);
         terminalGUI.refresh();
     }
