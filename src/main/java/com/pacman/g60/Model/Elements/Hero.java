@@ -37,4 +37,9 @@ public class Hero extends DynamicElement implements ControlledByPlayer, LivingEl
     {
         return this.maxHealth;
     }
+
+    @Override
+    public void updateHealth(Integer diff) {
+        this.health += diff;
+    }
 }
