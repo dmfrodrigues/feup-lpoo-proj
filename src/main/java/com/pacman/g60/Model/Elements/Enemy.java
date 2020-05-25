@@ -16,6 +16,10 @@ public abstract class Enemy extends DynamicElement implements LivingElement, Att
         this.health = health;
     }
 
+    public Effect getEffect() {
+        return effect;
+    }
+
     @Override
     public void updateHealth(Integer diff)
     {
