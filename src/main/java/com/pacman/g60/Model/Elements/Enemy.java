@@ -26,4 +26,10 @@ public abstract class Enemy extends DynamicElement implements LivingElement, Att
         this.health += diff;
     }
 
+    @Override
+    public boolean isAlive()
+    {
+        return health > 0;
+    }
+
 }

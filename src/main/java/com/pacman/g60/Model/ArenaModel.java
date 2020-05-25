@@ -99,6 +99,12 @@ public class ArenaModel {
         return availablePositions.get(position);
     }
 
+    public void removeElement(Element element)
+    {
+        listElements.remove(element);
+        availablePositions.remove(element.getPos());
+    }
+
     public interface Loader {
         public ArenaModel getArenaModel();
     }

@@ -1,6 +1,7 @@
 package com.pacman.g60.Controller;
 
 import com.pacman.g60.Model.ArenaModel;
+import com.pacman.g60.Model.Effect.DamageEffect;
 import com.pacman.g60.Model.Effect.Effect;
 import com.pacman.g60.Model.Elements.Element;
 import com.pacman.g60.Model.Elements.Enemy;
@@ -32,6 +33,10 @@ public class CheckEnemyAdjacencyCommand implements Command {
                     Effect effect = ((Enemy)currentElemInPos).getEffect();
                     Command command = new ApplyEffectCommand(effect,hero);
                     command.execute();
+
+                    Effect effect2 = new DamageEffect(1);
+                    Command command2 = new ApplyEffectCommand(effect2,currentElemInPos);
+                    command2.execute();
                 }
             }
         }
