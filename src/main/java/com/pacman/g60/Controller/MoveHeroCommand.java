@@ -2,7 +2,11 @@ package com.pacman.g60.Controller;
 
 import com.pacman.g60.Application;
 import com.pacman.g60.Model.ArenaModel;
+import com.pacman.g60.Model.Elements.Coin;
+import com.pacman.g60.Model.Elements.Element;
+import com.pacman.g60.Model.Elements.Hero;
 import com.pacman.g60.Model.Position;
+
 
 public class MoveHeroCommand implements Command {
     private ArenaModel arenaModel;
@@ -40,7 +44,16 @@ public class MoveHeroCommand implements Command {
 
         if (this.arenaModel.isPositionAvailable(newPos))
         {
-            Position currentHeroPos = this.arenaModel.getHero().getPos();
+            Hero hero = arenaModel.getHero();
+
+            Element elemInNewPos = arenaModel.getElemFromPos(newPos);
+            if (elemInNewPos instanceof Coin)
+            {
+                arenaModel.removeElement(elemInNewPos);
+                hero.incCoins();
+            }
+
+            Position currentHeroPos = hero.getPos();
             this.arenaModel.updateMapKey(currentHeroPos,newPos);
             this.arenaModel.getHero().updatePos(newPos);
         }
