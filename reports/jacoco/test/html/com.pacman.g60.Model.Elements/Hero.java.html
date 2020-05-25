@@ -29,23 +29,25 @@ public class Hero extends DynamicElement implements ControlledByPlayer, LivingEl
 <span class="fc" id="L29">        return coins;</span>
     }
 
+<span class="nc" id="L32">    public void incCoins(){this.coins++;}</span>
+
     public void setCoins(Integer coins) {
-<span class="nc" id="L33">        this.coins = coins;</span>
-<span class="nc" id="L34">    }</span>
+<span class="nc" id="L35">        this.coins = coins;</span>
+<span class="nc" id="L36">    }</span>
 
     public Integer getMaxHealth()
     {
-<span class="fc" id="L38">        return this.maxHealth;</span>
+<span class="fc" id="L40">        return this.maxHealth;</span>
     }
 
     @Override
     public void updateHealth(Integer diff) {
-<span class="nc" id="L43">        this.health += diff;</span>
-<span class="nc" id="L44">    }</span>
+<span class="nc" id="L45">        this.health += diff;</span>
+<span class="nc" id="L46">    }</span>
 
     @Override
     public boolean isAlive() {
-<span class="nc bnc" id="L48" title="All 2 branches missed.">        return health &gt; 0;</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">        return health &gt; 0;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

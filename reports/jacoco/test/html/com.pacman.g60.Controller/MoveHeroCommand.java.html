@@ -2,49 +2,62 @@
 
 import com.pacman.g60.Application;
 import com.pacman.g60.Model.ArenaModel;
+import com.pacman.g60.Model.Elements.Coin;
+import com.pacman.g60.Model.Elements.Element;
+import com.pacman.g60.Model.Elements.Hero;
 import com.pacman.g60.Model.Position;
+
 
 public class MoveHeroCommand implements Command {
     private ArenaModel arenaModel;
     private Application.Direction dir;
 
-<span class="fc" id="L11">    public MoveHeroCommand(ArenaModel arenaModel, Application.Direction dir){this.arenaModel = arenaModel; this.dir = dir;}</span>
+<span class="fc" id="L15">    public MoveHeroCommand(ArenaModel arenaModel, Application.Direction dir){this.arenaModel = arenaModel; this.dir = dir;}</span>
 
     @Override
     public void execute() {
-<span class="fc" id="L15">        Position newPos = new Position(0,0);</span>
-<span class="pc bpc" id="L16" title="1 of 5 branches missed.">        switch (this.dir)</span>
+<span class="fc" id="L19">        Position newPos = new Position(0,0);</span>
+<span class="pc bpc" id="L20" title="1 of 5 branches missed.">        switch (this.dir)</span>
         {
             case UP:
             {
-<span class="fc" id="L20">                newPos = this.arenaModel.getHero().moveUp();</span>
-<span class="fc" id="L21">                break;</span>
+<span class="fc" id="L24">                newPos = this.arenaModel.getHero().moveUp();</span>
+<span class="fc" id="L25">                break;</span>
             }
             case DOWN:
             {
-<span class="fc" id="L25">                newPos = this.arenaModel.getHero().moveDown();</span>
-<span class="fc" id="L26">                break;</span>
+<span class="fc" id="L29">                newPos = this.arenaModel.getHero().moveDown();</span>
+<span class="fc" id="L30">                break;</span>
             }
             case LEFT:
             {
-<span class="fc" id="L30">                newPos = this.arenaModel.getHero().moveLeft();</span>
-<span class="fc" id="L31">                break;</span>
+<span class="fc" id="L34">                newPos = this.arenaModel.getHero().moveLeft();</span>
+<span class="fc" id="L35">                break;</span>
             }
             case RIGHT:
             {
-<span class="fc" id="L35">                newPos = this.arenaModel.getHero().moveRight();</span>
+<span class="fc" id="L39">                newPos = this.arenaModel.getHero().moveRight();</span>
                 break;
             }
         }
 
 
-<span class="pc bpc" id="L41" title="1 of 2 branches missed.">        if (this.arenaModel.isPositionAvailable(newPos))</span>
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">        if (this.arenaModel.isPositionAvailable(newPos))</span>
         {
-<span class="fc" id="L43">            Position currentHeroPos = this.arenaModel.getHero().getPos();</span>
-<span class="fc" id="L44">            this.arenaModel.updateMapKey(currentHeroPos,newPos);</span>
-<span class="fc" id="L45">            this.arenaModel.getHero().updatePos(newPos);</span>
+<span class="fc" id="L47">            Hero hero = arenaModel.getHero();</span>
+
+<span class="fc" id="L49">            Element elemInNewPos = arenaModel.getElemFromPos(newPos);</span>
+<span class="pc bpc" id="L50" title="1 of 2 branches missed.">            if (elemInNewPos instanceof Coin)</span>
+            {
+<span class="nc" id="L52">                arenaModel.removeElement(elemInNewPos);</span>
+<span class="nc" id="L53">                hero.incCoins();</span>
+            }
+
+<span class="fc" id="L56">            Position currentHeroPos = hero.getPos();</span>
+<span class="fc" id="L57">            this.arenaModel.updateMapKey(currentHeroPos,newPos);</span>
+<span class="fc" id="L58">            this.arenaModel.getHero().updatePos(newPos);</span>
         }
 
-<span class="fc" id="L48">    }</span>
+<span class="fc" id="L61">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
