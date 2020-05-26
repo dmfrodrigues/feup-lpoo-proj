@@ -185,6 +185,26 @@ public class TerminalArenaView implements ArenaView {
             return spriteOrientable.getSprite(((DynamicElement) e).getDirection());
         }
     }
+    private class OgreView extends ElementView {
+        TerminalSpriteOrientable spriteOrientable;
+
+        public OgreView() throws FileNotFoundException {
+            TerminalSprite.Loader loader;
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/ogre-8-4-right.lan"));
+            spriteOrientable = new TerminalSpriteOrientable(loader.getTerminalSprite());
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/ogre-8-4-left.lan"));
+            spriteOrientable.setSpriteLeft(loader.getTerminalSprite());
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/ogre-8-4-up.lan"));
+            spriteOrientable.setSpriteUp(loader.getTerminalSprite());
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/ogre-8-4-down.lan"));
+            spriteOrientable.setSpriteDown(loader.getTerminalSprite());
+        }
+
+        @Override
+        protected TerminalSprite getSprite(Element e) {
+            return spriteOrientable.getSprite(((DynamicElement) e).getDirection());
+        }
+    }
     private class CoinView extends ElementView {
         TerminalSprite sprite;
 
@@ -204,11 +224,13 @@ public class TerminalArenaView implements ArenaView {
         private WallView wallView;
         private HeroView heroView;
         private GhostView ghostView;
+        private OgreView ogreView;
         private CoinView coinView;
         public ElementViewFactory() throws FileNotFoundException{
             wallView = new WallView();
             heroView = new HeroView();
             ghostView = new GhostView();
+            ogreView = new OgreView();
             coinView = new CoinView();
         }
 
@@ -217,6 +239,7 @@ public class TerminalArenaView implements ArenaView {
             wallView.setHeroPos(heroPos);
             heroView.setHeroPos(heroPos);
             ghostView.setHeroPos(heroPos);
+            ogreView.setHeroPos(heroPos);
             coinView.setHeroPos(heroPos);
         }
 
@@ -225,13 +248,15 @@ public class TerminalArenaView implements ArenaView {
             if     (e instanceof Wall) res = wallView;
             else if(e instanceof Hero) res = heroView;
             else if(e instanceof Ghost) res = ghostView;
+            else if(e instanceof Ogre) res = ogreView;
             else if(e instanceof Coin) res = coinView;
             return res;
         }
     }
     
     final Map<Class, Integer> drawPriority = Map.of(
-            Hero .class, 3,
+            Hero .class, 5,
+            Ogre.class , 4,
             Ghost.class, 2,
             Wall .class, 1,
             Coin .class, 0

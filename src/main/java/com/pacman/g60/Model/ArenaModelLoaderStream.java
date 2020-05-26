@@ -14,6 +14,7 @@ public class ArenaModelLoaderStream implements ArenaModel.Loader {
                 case 'W': return new Wall(pos);
                 case 'H': return new Hero(pos);
                 case 'G': return new Ghost(pos);
+                case 'O': return new Ogre(pos);
                 case 'C': return new Coin(pos);
                 case ' ': return null;
                 default: throw new IllegalArgumentException("Unknown character '" + c + "'");
