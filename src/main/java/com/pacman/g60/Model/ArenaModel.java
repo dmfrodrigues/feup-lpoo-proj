@@ -101,25 +101,17 @@ public class ArenaModel {
     {
         List<Element> elemsInDesiredPos = this.availablePositions.get(position);
         boolean isMovementPossible = false;
-        if (elemsInDesiredPos == null) return true;
+        if (elemsInDesiredPos == null || elemsInDesiredPos.size() == 0) return true;
         else
         {
             for (Element elem : elemsInDesiredPos)
             {
-                if (elem instanceof Hero) return false;
+                if (!(elem instanceof CanSharePosition)) return false;
                 if (elem instanceof CanSharePosition && elemWhichWantsToBeMoved instanceof CanSharePosition) isMovementPossible = true;
             }
         }
         return isMovementPossible;
-/*
-        Element element = this.availablePositions.get(position);
-        if (element instanceof Hero) return false;
-        if (elemWhichWantsToBeMoved instanceof Hero && element != null) return false;
-        boolean elementCanSharePosition = (element instanceof CanSharePosition);
-        boolean noElementOnPosition = (element == null);
-        if (elementCanSharePosition || noElementOnPosition) return true;
-        else return false;
-*/    }
+   }
 
     public void updateMapKey(Position oldKey, Position newKey, Element elemBeingMoved)
     {
@@ -139,7 +131,7 @@ public class ArenaModel {
         }
     }
 
-    public Element getElemFromPos(Position position)
+    public List<Element> getElemFromPos(Position position)
     {
         return availablePositions.get(position);
     }

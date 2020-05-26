@@ -27,12 +27,16 @@ public class CheckHeroAdjacencyCommand implements Command {
             for (int i2 = heroY - 1; i2 <= heroY + 1; i2++)
             {
                 Position currentPos = new Position(i,i2);
-                Element currentElemInPos = arenaModel.getElemFromPos(currentPos);
-                if (currentElemInPos instanceof Enemy)
+                List<Element> elemsInPos = arenaModel.getElemFromPos(currentPos);
+                if (elemsInPos == null) continue;
+                for (Element elem : elemsInPos)
                 {
-                    Effect effect = ((Enemy)currentElemInPos).getEffect();
-                    Command command = new ApplyEffectCommand(effect,hero);
-                    command.execute();
+                    if (elem instanceof Enemy)
+                    {
+                        Effect effect = ((Enemy)elem).getEffect();
+                        Command command = new ApplyEffectCommand(effect,hero);
+                        command.execute();
+                    }
                 }
             }
         }

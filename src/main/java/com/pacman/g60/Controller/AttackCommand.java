@@ -8,6 +8,8 @@ import com.pacman.g60.Model.Elements.Enemy;
 import com.pacman.g60.Model.Elements.Hero;
 import com.pacman.g60.Model.Position;
 
+import java.util.List;
+
 public class AttackCommand implements Command{
     private ArenaModel arenaModel;
 
@@ -25,13 +27,18 @@ public class AttackCommand implements Command{
             for (int i2 = heroPosY - 1; i2 <= heroPosY + 1; i2++)
             {
                 Position currentPos = new Position(i,i2);
-                Element currentElemInPos = arenaModel.getElemFromPos(currentPos);
-                if (currentElemInPos instanceof Enemy)
+                List<Element> elemsInPos = arenaModel.getElemFromPos(currentPos);
+                if (elemsInPos == null) continue;
+                for (Element elem : elemsInPos)
                 {
-                    Effect effect = new DamageEffect(1);
-                    Command command = new ApplyEffectCommand(effect,currentElemInPos);
-                    command.execute();
+                    if (elem instanceof Enemy)
+                    {
+                        Effect effect = new DamageEffect(1);
+                        Command command = new ApplyEffectCommand(effect,elem);
+                        command.execute();
+                    }
                 }
+
             }
         }
     }
