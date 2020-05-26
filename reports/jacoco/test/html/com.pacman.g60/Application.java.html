@@ -22,9 +22,10 @@ import java.io.*;
 <span class="nc" id="L22">            terminalGUI.close();</span>
 <span class="nc" id="L23">        } catch(Exception e){</span>
 <span class="nc" id="L24">            System.err.println(&quot;Exception (&quot; + e.getClass().toString() + &quot;): &quot; + e.getMessage());</span>
-<span class="nc" id="L25">        }</span>
-<span class="nc" id="L26">    }</span>
-<span class="fc" id="L27">    public enum Direction {UP,DOWN,LEFT,RIGHT}</span>
+<span class="nc" id="L25">            e.printStackTrace();</span>
+<span class="nc" id="L26">        }</span>
+<span class="nc" id="L27">    }</span>
+<span class="fc" id="L28">    public enum Direction {UP,DOWN,LEFT,RIGHT}</span>
 }
 
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
