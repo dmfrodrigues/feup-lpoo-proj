@@ -19,6 +19,8 @@ public class ArenaController {
     }
     
     public void run() throws IOException {
+        arenaView.start();
+        
         boolean good = true;
         int i = 0;
         while(good){

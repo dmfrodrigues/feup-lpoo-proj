@@ -75,7 +75,7 @@ public class TerminalFactoryTest {
         }catch(Exception e){
             fail();
         }
-        Mockito.verify(terminalGUI, times(324)).drawCharacter(
+        Mockito.verify(terminalGUI, times(345)).drawCharacter(
                 xCaptor.capture(),
                 yCaptor.capture(),
                 cCaptor.capture(),
@@ -99,7 +99,7 @@ public class TerminalFactoryTest {
             ));
         }
         
-        assertEquals(324, argHolders.size());
+        assertEquals(345, argHolders.size());
         
         try {
             Mockito.when(terminalGUI.pollKey()).thenReturn(null);

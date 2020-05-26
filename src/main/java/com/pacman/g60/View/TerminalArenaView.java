@@ -35,6 +35,7 @@ public class TerminalArenaView implements ArenaView {
         TerminalSprite coinSprite;
         TerminalTextView textView;
         long startTime;
+        public void startTime(){ startTime = System.currentTimeMillis(); }
         public InfoBar() throws FileNotFoundException{
             TerminalSprite.Loader loader;
             loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/heart-6-3.lan"));
@@ -47,7 +48,7 @@ public class TerminalArenaView implements ArenaView {
             TerminalFont.Loader fontLoader = new TerminalFontLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/numbers-4-3.lan"));
             TerminalFont font = fontLoader.getTerminalFont();
             textView = new TerminalTextView(terminalGUI, font);
-            startTime = System.currentTimeMillis();
+            startTime();
         }
         private void drawFrame(){
             for(Integer x = 1; x < terminalGUI.getW()-1; ++x){
@@ -244,6 +245,11 @@ public class TerminalArenaView implements ArenaView {
         this.terminalGUI = terminalGUI;
         elementViewFactory = new ElementViewFactory();
         infoBar = new InfoBar();
+    }
+
+    @Override
+    public void start() {
+        infoBar.startTime();
     }
 
     @Override

@@ -9,7 +9,16 @@ import com.pacman.g60.Model.Position;
 
 public class Hero extends DynamicElement implements ControlledByPlayer, LivingElement, MeleeAttackerElement, RangedAttackerElement, OrientedElement {
     private Integer health,coins;
-    final private Integer maxHealth = 10;
+    static final private Integer maxHealth = 10;
+
+    @Override
+    public Object clone() {
+        Hero res = (Hero)super.clone();
+        res.health = Integer.valueOf(health);
+        res.coins = Integer.valueOf(coins);
+        return res;
+    }
+
     public Hero(Position pos)
     {
         super(pos);
