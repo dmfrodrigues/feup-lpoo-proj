@@ -85,39 +85,41 @@ public class ArenaModel {
 
 <span class="fc" id="L86">    public Hero getHero() { return hero; }</span>
 
-    public boolean isPositionAvailable(Position position)
+    public boolean isPositionAvailable(Position position, Element elemWhichWantsToBeMoved)
     {
 <span class="fc" id="L90">        Element element = this.availablePositions.get(position);</span>
-<span class="fc" id="L91">        boolean elementCanSharePosition = (element instanceof CanSharePosition);</span>
-<span class="pc bpc" id="L92" title="1 of 2 branches missed.">        boolean noElementOnPosition = (element == null);</span>
-<span class="pc bpc" id="L93" title="2 of 4 branches missed.">        if (elementCanSharePosition || noElementOnPosition) return true;</span>
-<span class="nc" id="L94">        else return false;</span>
+<span class="pc bpc" id="L91" title="1 of 2 branches missed.">        if (element instanceof Hero) return false;</span>
+<span class="pc bpc" id="L92" title="1 of 4 branches missed.">        if (elemWhichWantsToBeMoved instanceof Hero &amp;&amp; element != null) return false;</span>
+<span class="fc" id="L93">        boolean elementCanSharePosition = (element instanceof CanSharePosition);</span>
+<span class="pc bpc" id="L94" title="1 of 2 branches missed.">        boolean noElementOnPosition = (element == null);</span>
+<span class="pc bpc" id="L95" title="2 of 4 branches missed.">        if (elementCanSharePosition || noElementOnPosition) return true;</span>
+<span class="nc" id="L96">        else return false;</span>
     }
 
     public void updateMapKey(Position oldKey, Position newKey)
     {
-<span class="fc" id="L99">        Element element = this.availablePositions.get(oldKey);</span>
-<span class="fc" id="L100">        this.availablePositions.remove(oldKey);</span>
-<span class="fc" id="L101">        this.availablePositions.put(newKey,element);</span>
-<span class="fc" id="L102">    }</span>
+<span class="fc" id="L101">        Element element = this.availablePositions.get(oldKey);</span>
+<span class="fc" id="L102">        this.availablePositions.remove(oldKey);</span>
+<span class="fc" id="L103">        this.availablePositions.put(newKey,element);</span>
+<span class="fc" id="L104">    }</span>
 
     public Element getElemFromPos(Position position)
     {
-<span class="fc" id="L106">        return availablePositions.get(position);</span>
+<span class="fc" id="L108">        return availablePositions.get(position);</span>
     }
 
     public void removeElement(Element element)
     {
-<span class="nc bnc" id="L111" title="All 2 branches missed.">        if (element instanceof Coin) numCoins--;</span>
-<span class="nc bnc" id="L112" title="All 2 branches missed.">        else if (element instanceof Enemy) numEnemies--;</span>
-<span class="nc bnc" id="L113" title="All 2 branches missed.">        if (numEnemies == 0) shouldGameContinue = false;</span>
-<span class="nc" id="L114">        listElements.remove(element);</span>
-<span class="nc" id="L115">        availablePositions.remove(element.getPos());</span>
-<span class="nc" id="L116">    }</span>
+<span class="nc bnc" id="L113" title="All 2 branches missed.">        if (element instanceof Coin) numCoins--;</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">        else if (element instanceof Enemy) numEnemies--;</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">        if (numEnemies == 0) shouldGameContinue = false;</span>
+<span class="nc" id="L116">        listElements.remove(element);</span>
+<span class="nc" id="L117">        availablePositions.remove(element.getPos());</span>
+<span class="nc" id="L118">    }</span>
 
     public boolean getShouldGameContinue()
     {
-<span class="nc" id="L120">        return this.shouldGameContinue;</span>
+<span class="nc" id="L122">        return this.shouldGameContinue;</span>
     }
 
     public interface Loader {

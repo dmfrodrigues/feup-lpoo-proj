@@ -40,11 +40,11 @@ public class MoveHeroCommand implements Command {
                 break;
             }
         }
+<span class="fc" id="L43">        Hero hero = arenaModel.getHero();</span>
 
-
-<span class="pc bpc" id="L45" title="1 of 2 branches missed.">        if (this.arenaModel.isPositionAvailable(newPos))</span>
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">        if (this.arenaModel.isPositionAvailable(newPos,hero))</span>
         {
-<span class="fc" id="L47">            Hero hero = arenaModel.getHero();</span>
+
 
 <span class="fc" id="L49">            Element elemInNewPos = arenaModel.getElemFromPos(newPos);</span>
 <span class="pc bpc" id="L50" title="1 of 2 branches missed.">            if (elemInNewPos instanceof Coin)</span>
