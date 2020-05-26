@@ -107,7 +107,7 @@ public class ArenaModel {
             for (Element elem : elemsInDesiredPos)
             {
                 if (!(elem instanceof CanSharePosition)) return false;
-                if (elem instanceof CanSharePosition && elemWhichWantsToBeMoved instanceof CanSharePosition) isMovementPossible = true;
+                if (elem instanceof CanSharePosition) isMovementPossible = true;
             }
         }
         return isMovementPossible;
@@ -116,7 +116,7 @@ public class ArenaModel {
     public void updateMapKey(Position oldKey, Position newKey, Element elemBeingMoved)
     {
         List<Element> elemsInOldPos = this.availablePositions.get(oldKey);
-        elemsInOldPos.remove(elemBeingMoved);
+        if (elemsInOldPos != null) elemsInOldPos.remove(elemBeingMoved);
 
         List<Element> elemsInNewPos = this.availablePositions.get(newKey);
         if (elemsInNewPos == null)

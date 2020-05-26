@@ -57,12 +57,13 @@ public class MoveHeroCommand implements Command {
                         arenaModel.removeElement(elemInNewPos);
                         hero.incCoins();
                     }
+                    if (elemInNewPos instanceof HealthPotion){
+                        hero.updateHealth(((HealthPotion)elemInNewPos).getHealth());
+                        arenaModel.removeElement(elemInNewPos);
+                    }
                 }
             }
-            if(elemInNewPos instanceof HealthPotion){
-                hero.updateHealth(((HealthPotion)elemInNewPos).getHealth());
-                arenaModel.removeElement(elemInNewPos);
-            }
+
 
 
 
