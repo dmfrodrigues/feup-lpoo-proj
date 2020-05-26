@@ -109,28 +109,6 @@ public class TerminalMenuView implements MenuView {
         for(int i = 0; i < items.size(); ++i){
             drawItem(items.get(i), i);
         }
-
-        //MenuModel.Item selectedItem = menu.getSelectedItem();
-        //terminalGUI.drawString(0, 0, selectedItem.getText(), Color.WHITE, Color.BLACK);
-        /*
-        List<String> toDraw = new ArrayList<>(Arrays.asList(
-                "╔════════════════════╗",
-                "║                    ║",
-                "║  ┌──────────────┐  ║",
-                "║  │     Play     │  ║",
-                "║  └──────────────┘  ║",
-                "║  ┌──────────────┐  ║",
-                "║  │  Scoreboard  │  ║",
-                "║  └──────────────┘  ║",
-                "║                    ║",
-                "╚════════════════════╝"
-        ));
-        
-        for(int i = 0; i < toDraw.size(); ++i){
-            textView.draw(0, i*textView.getStringHeight(toDraw.get(i)), toDraw.get(i));
-        }
-        
-         */
         
         terminalGUI.refresh();
     }

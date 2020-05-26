@@ -13,20 +13,19 @@ import com.pacman.g60.View.MenuView;
 import com.pacman.g60.View.ViewFactory;
 
 public class Game {
-    private ViewFactory viewFactory;
     private ArenaModel arenaModel;
     private ArenaView arenaView;
     private MenuModel menuModel;
     private MenuView menuView;
 
-    private void processArenaModel() throws FileNotFoundException
+    private void createArenaModel() throws FileNotFoundException
     {
         InputStream inputStream = new FileInputStream("src/main/resources/maps/map1.map");
         ArenaModel.Loader arenaModelLoader = new ArenaModelLoaderStream(inputStream);
         arenaModel = arenaModelLoader.getArenaModel();
     }
     
-    private void processMenu() {
+    private void createMenuModel() {
         menuModel = new MenuModel();
         menuModel.append(new MenuModel.NormalItem(menuModel,0, "Play"      ));
         menuModel.append(new MenuModel.NormalItem(menuModel,1, "Scoreboard"));
@@ -35,8 +34,8 @@ public class Game {
     public Game(ViewFactory viewFactory) throws Exception {
         arenaView = viewFactory.createArenaView();
         menuView = viewFactory.createMenuView();
-        processArenaModel();
-        processMenu();
+        createArenaModel();
+        createMenuModel();
     }
 
     public void run() throws Exception {

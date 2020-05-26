@@ -29,9 +29,6 @@ public class ArenaModel {
 
     public ArenaModel(ArenaModel arenaModel) {
         this(arenaModel.W, arenaModel.H);
-        numCoins = Integer.valueOf(arenaModel.numCoins);
-        hero = (Hero)arenaModel.hero.clone();
-        hero.setCoins(hero.getCoins()-1);
         for(Element e: arenaModel.listElements)
             addElement((Element)e.clone());
     }
