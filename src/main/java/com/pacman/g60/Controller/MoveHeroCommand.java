@@ -8,6 +8,8 @@ import com.pacman.g60.Model.Elements.HealthPotion;
 import com.pacman.g60.Model.Elements.Hero;
 import com.pacman.g60.Model.Position;
 
+import java.util.List;
+
 
 public class MoveHeroCommand implements Command {
     private ArenaModel arenaModel;
@@ -45,21 +47,28 @@ public class MoveHeroCommand implements Command {
 
         if (this.arenaModel.isPositionAvailable(newPos,hero))
         {
-
-
-            Element elemInNewPos = arenaModel.getElemFromPos(newPos);
-            if (elemInNewPos instanceof Coin)
+            List<Element> elemsInNewPos = arenaModel.getElemFromPos(newPos);
+            if (elemsInNewPos != null)
             {
-                arenaModel.removeElement(elemInNewPos);
-                hero.incCoins();
+                for (Element elemInNewPos : elemsInNewPos)
+                {
+                    if (elemInNewPos instanceof Coin)
+                    {
+                        arenaModel.removeElement(elemInNewPos);
+                        hero.incCoins();
+                    }
+                    if (elemInNewPos instanceof HealthPotion){
+                        hero.updateHealth(((HealthPotion)elemInNewPos).getHealth());
+                        arenaModel.removeElement(elemInNewPos);
+                    }
+                }
             }
-            if(elemInNewPos instanceof HealthPotion){
-                hero.updateHealth(((HealthPotion)elemInNewPos).getHealth());
-                arenaModel.removeElement(elemInNewPos);
-            }
+
+
+
 
             Position currentHeroPos = hero.getPos();
-            this.arenaModel.updateMapKey(currentHeroPos,newPos);
+            this.arenaModel.updateMapKey(currentHeroPos,newPos,hero);
             this.arenaModel.getHero().updatePos(newPos);
         }
 
