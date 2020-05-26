@@ -2,7 +2,7 @@ package com.pacman.g60.Controller;
 
 import com.pacman.g60.Model.ArenaModel;
 import com.pacman.g60.Model.Elements.Element;
-import com.pacman.g60.Model.Elements.Ghost;
+import com.pacman.g60.Model.Elements.Hierarchy.FollowHeroElement;
 import com.pacman.g60.Model.Path_Calculation.BFSShortestPathStrategy;
 import com.pacman.g60.Model.Path_Calculation.BFSTieBreakerDiag;
 import com.pacman.g60.Model.Path_Calculation.Graph;
@@ -34,7 +34,7 @@ public class UpdateAllEnemyPosCommand extends CompositeCommand {
     {
         List<Element> elements = arenaModel.getElements();
         for (final Element element : elements) {
-            if (element instanceof Ghost) {
+            if (element instanceof FollowHeroElement) {
                 Position newPos = shortestPathStrategy.getPrev(element.getPos());
                 this.addCommand(new UpdateEnemyPosCommand(this.arenaModel, element,element.getPos(),newPos));
             }
