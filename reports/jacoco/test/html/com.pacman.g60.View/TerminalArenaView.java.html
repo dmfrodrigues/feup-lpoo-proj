@@ -218,6 +218,19 @@ public class TerminalArenaView implements ArenaView {
 <span class="nc" id="L218">            return sprite;</span>
         }
     }
+    private class HealthPotionView extends ElementView {
+        TerminalSprite sprite;
+
+<span class="fc" id="L224">        public HealthPotionView() throws FileNotFoundException{</span>
+<span class="fc" id="L225">            TerminalSprite.Loader loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/healthpotion-8-4.lan&quot;));</span>
+<span class="fc" id="L226">            sprite = loader.getTerminalSprite();</span>
+<span class="fc" id="L227">        }</span>
+
+        @Override
+        protected TerminalSprite getSprite(Element e) {
+<span class="nc" id="L231">            return sprite;</span>
+        }
+    }
     
     private class ElementViewFactory {
         private Position heroPos;
@@ -226,90 +239,95 @@ public class TerminalArenaView implements ArenaView {
         private GhostView ghostView;
         private OgreView ogreView;
         private CoinView coinView;
-<span class="fc" id="L229">        public ElementViewFactory() throws FileNotFoundException{</span>
-<span class="fc" id="L230">            wallView = new WallView();</span>
-<span class="fc" id="L231">            heroView = new HeroView();</span>
-<span class="fc" id="L232">            ghostView = new GhostView();</span>
-<span class="fc" id="L233">            ogreView = new OgreView();</span>
-<span class="fc" id="L234">            coinView = new CoinView();</span>
-<span class="fc" id="L235">        }</span>
+        private HealthPotionView healthPotionView;
+<span class="fc" id="L243">        public ElementViewFactory() throws FileNotFoundException{</span>
+<span class="fc" id="L244">            wallView = new WallView();</span>
+<span class="fc" id="L245">            heroView = new HeroView();</span>
+<span class="fc" id="L246">            ghostView = new GhostView();</span>
+<span class="fc" id="L247">            ogreView = new OgreView();</span>
+<span class="fc" id="L248">            coinView = new CoinView();</span>
+<span class="fc" id="L249">            healthPotionView = new HealthPotionView();</span>
+<span class="fc" id="L250">        }</span>
 
         public void setHeroPos(Position heroPos) {
-<span class="fc" id="L238">            this.heroPos = heroPos;</span>
-<span class="fc" id="L239">            wallView.setHeroPos(heroPos);</span>
-<span class="fc" id="L240">            heroView.setHeroPos(heroPos);</span>
-<span class="fc" id="L241">            ghostView.setHeroPos(heroPos);</span>
-<span class="fc" id="L242">            ogreView.setHeroPos(heroPos);</span>
-<span class="fc" id="L243">            coinView.setHeroPos(heroPos);</span>
-<span class="fc" id="L244">        }</span>
+<span class="fc" id="L253">            this.heroPos = heroPos;</span>
+<span class="fc" id="L254">            wallView.setHeroPos(heroPos);</span>
+<span class="fc" id="L255">            heroView.setHeroPos(heroPos);</span>
+<span class="fc" id="L256">            ghostView.setHeroPos(heroPos);</span>
+<span class="fc" id="L257">            ogreView.setHeroPos(heroPos);</span>
+<span class="fc" id="L258">            coinView.setHeroPos(heroPos);</span>
+<span class="fc" id="L259">            healthPotionView.setHeroPos(heroPos);</span>
+<span class="fc" id="L260">        }</span>
 
         public ElementView factoryMethod(Element e){
-<span class="fc" id="L247">            ElementView res = null;</span>
-<span class="pc bpc" id="L248" title="1 of 2 branches missed.">            if     (e instanceof Wall) res = wallView;</span>
-<span class="pc bpc" id="L249" title="1 of 2 branches missed.">            else if(e instanceof Hero) res = heroView;</span>
-<span class="nc bnc" id="L250" title="All 2 branches missed.">            else if(e instanceof Ghost) res = ghostView;</span>
-<span class="nc bnc" id="L251" title="All 2 branches missed.">            else if(e instanceof Ogre) res = ogreView;</span>
-<span class="nc bnc" id="L252" title="All 2 branches missed.">            else if(e instanceof Coin) res = coinView;</span>
-<span class="fc" id="L253">            return res;</span>
+<span class="fc" id="L263">            ElementView res = null;</span>
+<span class="pc bpc" id="L264" title="1 of 2 branches missed.">            if     (e instanceof Wall) res = wallView;</span>
+<span class="pc bpc" id="L265" title="1 of 2 branches missed.">            else if(e instanceof Hero) res = heroView;</span>
+<span class="nc bnc" id="L266" title="All 2 branches missed.">            else if(e instanceof Ghost) res = ghostView;</span>
+<span class="nc bnc" id="L267" title="All 2 branches missed.">            else if(e instanceof Ogre) res = ogreView;</span>
+<span class="nc bnc" id="L268" title="All 2 branches missed.">            else if(e instanceof Coin) res = coinView;</span>
+<span class="nc bnc" id="L269" title="All 2 branches missed.">            else if(e instanceof HealthPotion) res = healthPotionView;</span>
+<span class="fc" id="L270">            return res;</span>
         }
     }
     
-<span class="fc" id="L257">    final Map&lt;Class, Integer&gt; drawPriority = Map.of(</span>
-<span class="fc" id="L258">            Hero .class, 5,</span>
-<span class="fc" id="L259">            Ogre.class , 4,</span>
-<span class="fc" id="L260">            Ghost.class, 2,</span>
-<span class="fc" id="L261">            Wall .class, 1,</span>
-<span class="fc" id="L262">            Coin .class, 0</span>
+<span class="fc" id="L274">    final Map&lt;Class, Integer&gt; drawPriority = Map.of(</span>
+<span class="fc" id="L275">            Hero .class, 5,</span>
+<span class="fc" id="L276">            Ogre.class , 4,</span>
+<span class="fc" id="L277">            Ghost.class, 2,</span>
+<span class="fc" id="L278">            Wall .class, 1,</span>
+<span class="fc" id="L279">            HealthPotion.class, 0,</span>
+<span class="fc" id="L280">            Coin .class, 0</span>
     );
     
     private TerminalGUI terminalGUI;
     private ElementViewFactory elementViewFactory;
     private InfoBar infoBar;
     
-<span class="fc" id="L269">    public TerminalArenaView(TerminalGUI terminalGUI) throws FileNotFoundException{</span>
-<span class="fc" id="L270">        this.terminalGUI = terminalGUI;</span>
-<span class="fc" id="L271">        elementViewFactory = new ElementViewFactory();</span>
-<span class="fc" id="L272">        infoBar = new InfoBar();</span>
-<span class="fc" id="L273">    }</span>
+<span class="fc" id="L287">    public TerminalArenaView(TerminalGUI terminalGUI) throws FileNotFoundException{</span>
+<span class="fc" id="L288">        this.terminalGUI = terminalGUI;</span>
+<span class="fc" id="L289">        elementViewFactory = new ElementViewFactory();</span>
+<span class="fc" id="L290">        infoBar = new InfoBar();</span>
+<span class="fc" id="L291">    }</span>
 
     @Override
     public void start() {
-<span class="nc" id="L277">        infoBar.startTime();</span>
-<span class="nc" id="L278">    }</span>
+<span class="nc" id="L295">        infoBar.startTime();</span>
+<span class="nc" id="L296">    }</span>
 
     @Override
     public void draw(ArenaModel arena) throws IOException {
-<span class="fc" id="L282">        terminalGUI.clear();</span>
-<span class="fc" id="L283">        List&lt;Element&gt; listElements = arena.getElements();</span>
+<span class="fc" id="L300">        terminalGUI.clear();</span>
+<span class="fc" id="L301">        List&lt;Element&gt; listElements = arena.getElements();</span>
         
-<span class="fc" id="L285">        Map&lt;Position, Element&gt; drawBuffer = new HashMap&lt;&gt;();</span>
-<span class="fc bfc" id="L286" title="All 2 branches covered.">        for(final Element e : listElements){</span>
-<span class="fc" id="L287">            final Element e_ = drawBuffer.get(e.getPos());</span>
-<span class="pc bpc" id="L288" title="3 of 4 branches missed.">            if(e_ == null || drawPriority.get(e.getClass()) &gt; drawPriority.get(e_.getClass())) drawBuffer.put(e.getPos(), e);</span>
-<span class="fc" id="L289">        }</span>
+<span class="fc" id="L303">        Map&lt;Position, Element&gt; drawBuffer = new HashMap&lt;&gt;();</span>
+<span class="fc bfc" id="L304" title="All 2 branches covered.">        for(final Element e : listElements){</span>
+<span class="fc" id="L305">            final Element e_ = drawBuffer.get(e.getPos());</span>
+<span class="pc bpc" id="L306" title="3 of 4 branches missed.">            if(e_ == null || drawPriority.get(e.getClass()) &gt; drawPriority.get(e_.getClass())) drawBuffer.put(e.getPos(), e);</span>
+<span class="fc" id="L307">        }</span>
 
-<span class="fc" id="L291">        elementViewFactory.setHeroPos(arena.getHero().getPos());</span>
-<span class="fc bfc" id="L292" title="All 2 branches covered.">        for(final Element e : drawBuffer.values()){</span>
-<span class="fc" id="L293">            ElementView elementView = elementViewFactory.factoryMethod(e);</span>
-<span class="pc bpc" id="L294" title="1 of 2 branches missed.">            if(elementView != null) elementView.draw(e);</span>
-<span class="fc" id="L295">        }</span>
+<span class="fc" id="L309">        elementViewFactory.setHeroPos(arena.getHero().getPos());</span>
+<span class="fc bfc" id="L310" title="All 2 branches covered.">        for(final Element e : drawBuffer.values()){</span>
+<span class="fc" id="L311">            ElementView elementView = elementViewFactory.factoryMethod(e);</span>
+<span class="pc bpc" id="L312" title="1 of 2 branches missed.">            if(elementView != null) elementView.draw(e);</span>
+<span class="fc" id="L313">        }</span>
         
-<span class="fc" id="L297">        infoBar.draw(arena);</span>
-<span class="fc" id="L298">        terminalGUI.refresh();</span>
-<span class="fc" id="L299">    }</span>
+<span class="fc" id="L315">        infoBar.draw(arena);</span>
+<span class="fc" id="L316">        terminalGUI.refresh();</span>
+<span class="fc" id="L317">    }</span>
 
     @Override
     public COMMAND pollCommand() throws IOException{
-<span class="fc" id="L303">        KeyStroke key = terminalGUI.pollKey();</span>
-<span class="fc bfc" id="L304" title="All 2 branches covered.">        if(key == null) return null;</span>
-<span class="fc bfc" id="L305" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowUp                               ) return COMMAND.UP;</span>
-<span class="fc bfc" id="L306" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowDown                             ) return COMMAND.DOWN;</span>
-<span class="fc bfc" id="L307" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowLeft                             ) return COMMAND.LEFT;</span>
-<span class="fc bfc" id="L308" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowRight                            ) return COMMAND.RIGHT;</span>
-<span class="fc bfc" id="L309" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.Escape                                ) return COMMAND.EXIT;</span>
-<span class="pc bpc" id="L310" title="1 of 2 branches missed.">        if(key.getKeyType() == KeyType.EOF                                   ) return COMMAND.EXIT;</span>
-<span class="pc bpc" id="L311" title="2 of 4 branches missed.">        if(key.getKeyType() == KeyType.Character &amp;&amp; key.getCharacter() == ' ') return COMMAND.ATTACK;</span>
-<span class="fc" id="L312">        return null;</span>
+<span class="fc" id="L321">        KeyStroke key = terminalGUI.pollKey();</span>
+<span class="fc bfc" id="L322" title="All 2 branches covered.">        if(key == null) return null;</span>
+<span class="fc bfc" id="L323" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowUp                               ) return COMMAND.UP;</span>
+<span class="fc bfc" id="L324" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowDown                             ) return COMMAND.DOWN;</span>
+<span class="fc bfc" id="L325" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowLeft                             ) return COMMAND.LEFT;</span>
+<span class="fc bfc" id="L326" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowRight                            ) return COMMAND.RIGHT;</span>
+<span class="fc bfc" id="L327" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.Escape                                ) return COMMAND.EXIT;</span>
+<span class="pc bpc" id="L328" title="1 of 2 branches missed.">        if(key.getKeyType() == KeyType.EOF                                   ) return COMMAND.EXIT;</span>
+<span class="pc bpc" id="L329" title="2 of 4 branches missed.">        if(key.getKeyType() == KeyType.Character &amp;&amp; key.getCharacter() == ' ') return COMMAND.ATTACK;</span>
+<span class="fc" id="L330">        return null;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
