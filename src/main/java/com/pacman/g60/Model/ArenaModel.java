@@ -7,6 +7,7 @@ import com.pacman.g60.Model.Path_Calculation.Graph;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ArenaModel {
@@ -15,7 +16,7 @@ public class ArenaModel {
     private Hero hero = null;
     private boolean shouldGameContinue;
     private ArrayList<Element> listElements;
-    private Map<Position,Element> availablePositions;
+    private Map<Position, List<Element>> availablePositions;
 
     public ArenaModel(int W, int H){
         this.W = W;
@@ -38,7 +39,18 @@ public class ArenaModel {
         if(element instanceof Hero) hero = (Hero)element;
         else if (element instanceof Coin) numCoins++;
         else if (element instanceof Enemy) numEnemies++;
-        this.availablePositions.put(element.getPos(),element);
+
+        List<Element> elemsInPos = this.availablePositions.get(element.getPos());
+        if (elemsInPos == null)
+        {
+            List<Element> elems = new ArrayList<>();
+            elems.add(element);
+            this.availablePositions.put(element.getPos(),elems);
+        }
+        else
+        {
+            elemsInPos.add(element);
+        }
     }
 
     public ArrayList<Element> getElements(){
@@ -87,6 +99,19 @@ public class ArenaModel {
 
     public boolean isPositionAvailable(Position position, Element elemWhichWantsToBeMoved)
     {
+        List<Element> elemsInDesiredPos = this.availablePositions.get(position);
+        boolean isMovementPossible = false;
+        if (elemsInDesiredPos == null) return true;
+        else
+        {
+            for (Element elem : elemsInDesiredPos)
+            {
+                if (elem instanceof Hero) return false;
+                if (elem instanceof CanSharePosition && elemWhichWantsToBeMoved instanceof CanSharePosition) isMovementPossible = true;
+            }
+        }
+        return isMovementPossible;
+/*
         Element element = this.availablePositions.get(position);
         if (element instanceof Hero) return false;
         if (elemWhichWantsToBeMoved instanceof Hero && element != null) return false;
@@ -94,13 +119,24 @@ public class ArenaModel {
         boolean noElementOnPosition = (element == null);
         if (elementCanSharePosition || noElementOnPosition) return true;
         else return false;
-    }
+*/    }
 
-    public void updateMapKey(Position oldKey, Position newKey)
+    public void updateMapKey(Position oldKey, Position newKey, Element elemBeingMoved)
     {
-        Element element = this.availablePositions.get(oldKey);
-        this.availablePositions.remove(oldKey);
-        this.availablePositions.put(newKey,element);
+        List<Element> elemsInOldPos = this.availablePositions.get(oldKey);
+        elemsInOldPos.remove(elemBeingMoved);
+
+        List<Element> elemsInNewPos = this.availablePositions.get(newKey);
+        if (elemsInNewPos == null)
+        {
+            List<Element> newElemList = new ArrayList<>();
+            newElemList.add(elemBeingMoved);
+            this.availablePositions.put(newKey,newElemList);
+        }
+        else
+        {
+            elemsInNewPos.add(elemBeingMoved);
+        }
     }
 
     public Element getElemFromPos(Position position)

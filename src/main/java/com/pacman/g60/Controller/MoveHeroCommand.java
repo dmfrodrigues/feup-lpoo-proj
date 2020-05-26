@@ -54,7 +54,7 @@ public class MoveHeroCommand implements Command {
             }
 
             Position currentHeroPos = hero.getPos();
-            this.arenaModel.updateMapKey(currentHeroPos,newPos);
+            this.arenaModel.updateMapKey(currentHeroPos,newPos,hero);
             this.arenaModel.getHero().updatePos(newPos);
         }
 

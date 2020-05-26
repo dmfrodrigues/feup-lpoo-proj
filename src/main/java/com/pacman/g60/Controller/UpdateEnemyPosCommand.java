@@ -31,7 +31,7 @@ public class UpdateEnemyPosCommand implements Command {
 
         if (newPos != null && isNewPosValid)
         {
-            arenaModel.updateMapKey(oldPos,newPos);
+            arenaModel.updateMapKey(oldPos,newPos,element);
             ((DynamicElement) element).updatePos(newPos);
         }
 
