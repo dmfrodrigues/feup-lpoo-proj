@@ -57,26 +57,34 @@ public class LanternaGUI implements TerminalGUI {
 <span class="nc" id="L57">        screen.doResizeIfNecessary();</span>
 <span class="nc" id="L58">        screen.clear();</span>
 <span class="nc" id="L59">    }</span>
-
+    
+<span class="nc" id="L61">    int refresh_count = 0;</span>
+    final static int REFRESH_ALL_COUNT = 200;
     @Override
     public void refresh() throws IOException {
-<span class="nc" id="L63">        screen.refresh(Screen.RefreshType.DELTA);</span>
-<span class="nc" id="L64">    }</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">        if(refresh_count &gt;= REFRESH_ALL_COUNT){</span>
+<span class="nc" id="L66">            refresh_count = 0;</span>
+<span class="nc" id="L67">            screen.refresh(Screen.RefreshType.DELTA);</span>
+        } else{
+<span class="nc" id="L69">            screen.refresh(Screen.RefreshType.COMPLETE);</span>
+        }
+<span class="nc" id="L71">        ++refresh_count;</span>
+<span class="nc" id="L72">    }</span>
 
     @Override
     public KeyStroke pollKey() throws IOException{
-<span class="nc" id="L68">        return screen.pollInput();</span>
+<span class="nc" id="L76">        return screen.pollInput();</span>
     }
 
     @Override
     public void close() throws IOException{
-<span class="nc" id="L73">        screen.close();</span>
-<span class="nc" id="L74">    }</span>
+<span class="nc" id="L81">        screen.close();</span>
+<span class="nc" id="L82">    }</span>
 
     @Override
-<span class="nc" id="L77">    public Integer getW() { return screen.getTerminalSize().getColumns(); }</span>
+<span class="nc" id="L85">    public Integer getW() { return screen.getTerminalSize().getColumns(); }</span>
 
     @Override
-<span class="nc" id="L80">    public Integer getH() { return screen.getTerminalSize().getRows(); }</span>
+<span class="nc" id="L88">    public Integer getH() { return screen.getTerminalSize().getRows(); }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
