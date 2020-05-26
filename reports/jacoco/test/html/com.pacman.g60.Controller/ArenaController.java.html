@@ -60,16 +60,17 @@ public class ArenaController {
                 }
             }
             
-<span class="nc bnc" id="L63" title="All 2 branches missed.">            if(arenaModel.getHero().getHealth() &lt;= 0) good = false;</span>
-            
-<span class="nc" id="L65">            arenaView.draw(arenaModel);</span>
-<span class="nc" id="L66">        }</span>
-<span class="nc" id="L67">    }</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">            if (arenaModel.getHero().getHealth() &lt;= 0) good = false;</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">            if (!arenaModel.getShouldGameContinue()  ) good = false;</span>
+
+<span class="nc" id="L66">            arenaView.draw(arenaModel);</span>
+<span class="nc" id="L67">        }</span>
+<span class="nc" id="L68">    }</span>
 
     public void executeCommand(Command command)
     {
-<span class="nc" id="L71">        command.execute();</span>
-<span class="nc" id="L72">    }</span>
+<span class="nc" id="L72">        command.execute();</span>
+<span class="nc" id="L73">    }</span>
 
 
 
