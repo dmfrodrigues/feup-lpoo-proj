@@ -218,6 +218,19 @@ public class TerminalArenaView implements ArenaView {
             return sprite;
         }
     }
+    private class HealthPotionView extends ElementView {
+        TerminalSprite sprite;
+
+        public HealthPotionView() throws FileNotFoundException{
+            TerminalSprite.Loader loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/healthpotion-8-4.lan"));
+            sprite = loader.getTerminalSprite();
+        }
+
+        @Override
+        protected TerminalSprite getSprite(Element e) {
+            return sprite;
+        }
+    }
     
     private class ElementViewFactory {
         private Position heroPos;
@@ -226,12 +239,14 @@ public class TerminalArenaView implements ArenaView {
         private GhostView ghostView;
         private OgreView ogreView;
         private CoinView coinView;
+        private HealthPotionView healthPotionView;
         public ElementViewFactory() throws FileNotFoundException{
             wallView = new WallView();
             heroView = new HeroView();
             ghostView = new GhostView();
             ogreView = new OgreView();
             coinView = new CoinView();
+            healthPotionView = new HealthPotionView();
         }
 
         public void setHeroPos(Position heroPos) {
@@ -241,6 +256,7 @@ public class TerminalArenaView implements ArenaView {
             ghostView.setHeroPos(heroPos);
             ogreView.setHeroPos(heroPos);
             coinView.setHeroPos(heroPos);
+            healthPotionView.setHeroPos(heroPos);
         }
 
         public ElementView factoryMethod(Element e){
@@ -250,6 +266,7 @@ public class TerminalArenaView implements ArenaView {
             else if(e instanceof Ghost) res = ghostView;
             else if(e instanceof Ogre) res = ogreView;
             else if(e instanceof Coin) res = coinView;
+            else if(e instanceof HealthPotion) res = healthPotionView;
             return res;
         }
     }
@@ -259,6 +276,7 @@ public class TerminalArenaView implements ArenaView {
             Ogre.class , 4,
             Ghost.class, 2,
             Wall .class, 1,
+            HealthPotion.class, 0,
             Coin .class, 0
     );
     

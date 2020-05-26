@@ -4,6 +4,7 @@ import com.pacman.g60.Application;
 import com.pacman.g60.Model.ArenaModel;
 import com.pacman.g60.Model.Elements.Coin;
 import com.pacman.g60.Model.Elements.Element;
+import com.pacman.g60.Model.Elements.HealthPotion;
 import com.pacman.g60.Model.Elements.Hero;
 import com.pacman.g60.Model.Position;
 
@@ -57,6 +58,10 @@ public class MoveHeroCommand implements Command {
                         hero.incCoins();
                     }
                 }
+            }
+            if(elemInNewPos instanceof HealthPotion){
+                hero.updateHealth(((HealthPotion)elemInNewPos).getHealth());
+                arenaModel.removeElement(elemInNewPos);
             }
 
 
