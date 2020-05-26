@@ -60,8 +60,9 @@ public class ArenaController {
                 }
             }
             
-            if(arenaModel.getHero().getHealth() <= 0) good = false;
-            
+            if (arenaModel.getHero().getHealth() <= 0) good = false;
+            if (!arenaModel.getShouldGameContinue()  ) good = false;
+
             arenaView.draw(arenaModel);
         }
     }

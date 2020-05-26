@@ -1,10 +1,7 @@
 package com.pacman.g60.Model;
 
-import com.pacman.g60.Model.Elements.Coin;
-import com.pacman.g60.Model.Elements.Element;
-import com.pacman.g60.Model.Elements.Hero;
+import com.pacman.g60.Model.Elements.*;
 import com.pacman.g60.Model.Elements.Hierarchy.CanSharePosition;
-import com.pacman.g60.Model.Elements.Wall;
 import com.pacman.g60.Model.Path_Calculation.AdjacencyGraph;
 import com.pacman.g60.Model.Path_Calculation.Graph;
 
@@ -14,8 +11,9 @@ import java.util.Map;
 
 public class ArenaModel {
     private int W, H;
-    private Integer numCoins;
+    private Integer numCoins, numEnemies;
     private Hero hero = null;
+    private boolean shouldGameContinue;
     private ArrayList<Element> listElements;
     private Map<Position,Element> availablePositions;
 
@@ -24,6 +22,8 @@ public class ArenaModel {
         this.H = H;
         listElements = new ArrayList<>();
         this.numCoins = 0;
+        this.numEnemies = 0;
+        this.shouldGameContinue = true;
         this.availablePositions = new HashMap<>();
     }
 
@@ -37,6 +37,7 @@ public class ArenaModel {
         listElements.add(element);
         if(element instanceof Hero) hero = (Hero)element;
         else if (element instanceof Coin) numCoins++;
+        else if (element instanceof Enemy) numEnemies++;
         this.availablePositions.put(element.getPos(),element);
     }
 
@@ -108,8 +109,15 @@ public class ArenaModel {
     public void removeElement(Element element)
     {
         if (element instanceof Coin) numCoins--;
+        else if (element instanceof Enemy) numEnemies--;
+        if (numEnemies == 0) shouldGameContinue = false;
         listElements.remove(element);
         availablePositions.remove(element.getPos());
+    }
+
+    public boolean getShouldGameContinue()
+    {
+        return this.shouldGameContinue;
     }
 
     public interface Loader {
