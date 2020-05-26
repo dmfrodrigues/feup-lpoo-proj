@@ -27,7 +27,7 @@ public class UpdateEnemyPosCommand implements Command {
     @Override
     public void execute()
     {
-        boolean isNewPosValid = arenaModel.isPositionAvailable(newPos);
+        boolean isNewPosValid = arenaModel.isPositionAvailable(newPos,element);
 
         if (newPos != null && isNewPosValid)
         {

@@ -85,9 +85,11 @@ public class ArenaModel {
 
     public Hero getHero() { return hero; }
 
-    public boolean isPositionAvailable(Position position)
+    public boolean isPositionAvailable(Position position, Element elemWhichWantsToBeMoved)
     {
         Element element = this.availablePositions.get(position);
+        if (element instanceof Hero) return false;
+        if (elemWhichWantsToBeMoved instanceof Hero && element != null) return false;
         boolean elementCanSharePosition = (element instanceof CanSharePosition);
         boolean noElementOnPosition = (element == null);
         if (elementCanSharePosition || noElementOnPosition) return true;

@@ -40,11 +40,11 @@ public class MoveHeroCommand implements Command {
                 break;
             }
         }
+        Hero hero = arenaModel.getHero();
 
-
-        if (this.arenaModel.isPositionAvailable(newPos))
+        if (this.arenaModel.isPositionAvailable(newPos,hero))
         {
-            Hero hero = arenaModel.getHero();
+
 
             Element elemInNewPos = arenaModel.getElemFromPos(newPos);
             if (elemInNewPos instanceof Coin)

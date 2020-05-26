@@ -7,8 +7,6 @@ import com.pacman.g60.View.ArenaView;
 
 import java.io.IOException;
 
-
-
 public class ArenaController {
     private ArenaView arenaView;
     private ArenaModel arenaModel;
