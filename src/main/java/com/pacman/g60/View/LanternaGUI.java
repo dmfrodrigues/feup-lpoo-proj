@@ -57,10 +57,18 @@ public class LanternaGUI implements TerminalGUI {
         screen.doResizeIfNecessary();
         screen.clear();
     }
-
+    
+    int refresh_count = 0;
+    final static int REFRESH_ALL_COUNT = 200;
     @Override
     public void refresh() throws IOException {
-        screen.refresh(Screen.RefreshType.DELTA);
+        if(refresh_count >= REFRESH_ALL_COUNT){
+            refresh_count = 0;
+            screen.refresh(Screen.RefreshType.DELTA);
+        } else{
+            screen.refresh(Screen.RefreshType.COMPLETE);
+        }
+        ++refresh_count;
     }
 
     @Override
