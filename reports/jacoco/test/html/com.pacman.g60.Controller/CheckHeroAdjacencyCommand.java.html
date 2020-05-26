@@ -27,16 +27,20 @@ public class CheckHeroAdjacencyCommand implements Command {
 <span class="nc bnc" id="L27" title="All 2 branches missed.">            for (int i2 = heroY - 1; i2 &lt;= heroY + 1; i2++)</span>
             {
 <span class="nc" id="L29">                Position currentPos = new Position(i,i2);</span>
-<span class="nc" id="L30">                Element currentElemInPos = arenaModel.getElemFromPos(currentPos);</span>
-<span class="nc bnc" id="L31" title="All 2 branches missed.">                if (currentElemInPos instanceof Enemy)</span>
+<span class="nc" id="L30">                List&lt;Element&gt; elemsInPos = arenaModel.getElemFromPos(currentPos);</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">                if (elemsInPos == null) continue;</span>
+<span class="nc bnc" id="L32" title="All 2 branches missed.">                for (Element elem : elemsInPos)</span>
                 {
-<span class="nc" id="L33">                    Effect effect = ((Enemy)currentElemInPos).getEffect();</span>
-<span class="nc" id="L34">                    Command command = new ApplyEffectCommand(effect,hero);</span>
-<span class="nc" id="L35">                    command.execute();</span>
-                }
+<span class="nc bnc" id="L34" title="All 2 branches missed.">                    if (elem instanceof Enemy)</span>
+                    {
+<span class="nc" id="L36">                        Effect effect = ((Enemy)elem).getEffect();</span>
+<span class="nc" id="L37">                        Command command = new ApplyEffectCommand(effect,hero);</span>
+<span class="nc" id="L38">                        command.execute();</span>
+                    }
+<span class="nc" id="L40">                }</span>
             }
         }
 
-<span class="nc" id="L40">    }</span>
+<span class="nc" id="L44">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
