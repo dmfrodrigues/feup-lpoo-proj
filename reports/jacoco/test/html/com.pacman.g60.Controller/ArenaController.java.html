@@ -59,14 +59,17 @@ public class ArenaController {
 <span class="nc" id="L59">                        executeCommand(new AttackCommand(this.arenaModel)); break;</span>
                 }
             }
-<span class="nc" id="L62">            arenaView.draw(arenaModel);</span>
-<span class="nc" id="L63">        }</span>
-<span class="nc" id="L64">    }</span>
+            
+<span class="nc bnc" id="L63" title="All 2 branches missed.">            if(arenaModel.getHero().getHealth() &lt;= 0) good = false;</span>
+            
+<span class="nc" id="L65">            arenaView.draw(arenaModel);</span>
+<span class="nc" id="L66">        }</span>
+<span class="nc" id="L67">    }</span>
 
     public void executeCommand(Command command)
     {
-<span class="nc" id="L68">        command.execute();</span>
-<span class="nc" id="L69">    }</span>
+<span class="nc" id="L71">        command.execute();</span>
+<span class="nc" id="L72">    }</span>
 
 
 
