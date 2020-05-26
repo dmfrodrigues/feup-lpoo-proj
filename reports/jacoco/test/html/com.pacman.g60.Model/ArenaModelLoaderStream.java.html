@@ -10,39 +10,40 @@ public class ArenaModelLoaderStream implements ArenaModel.Loader {
         private Position pos;
 <span class="fc" id="L11">        public Factory(Position pos){ this.pos = new Position(pos); }</span>
         public Element factoryMethod(Character c) throws IllegalArgumentException {
-<span class="pc bpc" id="L13" title="1 of 6 branches missed.">            switch(c){</span>
+<span class="pc bpc" id="L13" title="2 of 7 branches missed.">            switch(c){</span>
 <span class="fc" id="L14">                case 'W': return new Wall(pos);</span>
 <span class="fc" id="L15">                case 'H': return new Hero(pos);</span>
 <span class="fc" id="L16">                case 'G': return new Ghost(pos);</span>
-<span class="nc" id="L17">                case 'C': return new Coin(pos);</span>
-<span class="fc" id="L18">                case ' ': return null;</span>
-<span class="fc" id="L19">                default: throw new IllegalArgumentException(&quot;Unknown character '&quot; + c + &quot;'&quot;);</span>
+<span class="nc" id="L17">                case 'O': return new Ogre(pos);</span>
+<span class="nc" id="L18">                case 'C': return new Coin(pos);</span>
+<span class="fc" id="L19">                case ' ': return null;</span>
+<span class="fc" id="L20">                default: throw new IllegalArgumentException(&quot;Unknown character '&quot; + c + &quot;'&quot;);</span>
             }
         }
     }
 
     private ArenaModel arenaModel;
 
-<span class="fc" id="L26">    public ArenaModelLoaderStream(InputStream inputStream) {</span>
-<span class="fc" id="L27">        Scanner scanner = new Scanner(inputStream);</span>
-<span class="fc" id="L28">        String[] firstLine = scanner.nextLine().split(&quot; &quot;);</span>
-<span class="fc" id="L29">        Integer W = Integer.parseInt(firstLine[0]);</span>
-<span class="fc" id="L30">        Integer H = Integer.parseInt(firstLine[1]);</span>
-<span class="fc" id="L31">        arenaModel = new ArenaModel(W, H);</span>
+<span class="fc" id="L27">    public ArenaModelLoaderStream(InputStream inputStream) {</span>
+<span class="fc" id="L28">        Scanner scanner = new Scanner(inputStream);</span>
+<span class="fc" id="L29">        String[] firstLine = scanner.nextLine().split(&quot; &quot;);</span>
+<span class="fc" id="L30">        Integer W = Integer.parseInt(firstLine[0]);</span>
+<span class="fc" id="L31">        Integer H = Integer.parseInt(firstLine[1]);</span>
+<span class="fc" id="L32">        arenaModel = new ArenaModel(W, H);</span>
         Position pos;
-<span class="fc bfc" id="L33" title="All 2 branches covered.">        for(Integer y = 0; y &lt; H; ++y){</span>
-<span class="fc" id="L34">            String line = scanner.nextLine();</span>
-<span class="fc bfc" id="L35" title="All 2 branches covered.">            for(Integer x = 0; x &lt; W; ++x){</span>
-<span class="fc" id="L36">                ArenaModelLoaderStream.Factory factory = new ArenaModelLoaderStream.Factory(new Position(x, y));</span>
-<span class="fc" id="L37">                Element element = factory.factoryMethod(line.charAt(x));</span>
-<span class="fc bfc" id="L38" title="All 2 branches covered.">                if(element != null) arenaModel.addElement(element);</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        for(Integer y = 0; y &lt; H; ++y){</span>
+<span class="fc" id="L35">            String line = scanner.nextLine();</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">            for(Integer x = 0; x &lt; W; ++x){</span>
+<span class="fc" id="L37">                ArenaModelLoaderStream.Factory factory = new ArenaModelLoaderStream.Factory(new Position(x, y));</span>
+<span class="fc" id="L38">                Element element = factory.factoryMethod(line.charAt(x));</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">                if(element != null) arenaModel.addElement(element);</span>
             }
         }
-<span class="fc" id="L41">    }</span>
+<span class="fc" id="L42">    }</span>
 
     @Override
     public ArenaModel getArenaModel() {
-<span class="fc" id="L45">        return arenaModel;</span>
+<span class="fc" id="L46">        return arenaModel;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
