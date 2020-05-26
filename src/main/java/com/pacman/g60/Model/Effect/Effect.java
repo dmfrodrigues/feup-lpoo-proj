@@ -4,6 +4,7 @@ import com.pacman.g60.Model.Elements.Element;
 
 ;
 
-public interface Effect {
-    public void apply(Element target);
+public interface Effect extends Cloneable{
+    void apply(Element target);
+    Object clone();
 }

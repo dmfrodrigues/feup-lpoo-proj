@@ -9,6 +9,14 @@ import com.pacman.g60.Model.Position;
 
 public abstract class DynamicElement extends Element implements MovableElement, OrientedElement {
     protected Application.Direction dir;
+
+    @Override
+    public Object clone() {
+        DynamicElement res = (DynamicElement)super.clone();
+        res.dir = dir;
+        return res;
+    }
+
     public DynamicElement(Position pos){
         super(pos);
         dir = Application.Direction.RIGHT;

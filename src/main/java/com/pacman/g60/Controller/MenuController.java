@@ -14,21 +14,21 @@ public class MenuController {
         this.menuView = menuView;
     }
     
-    public void run() throws IOException {
-        boolean good = true;
-        while(good){
+    public int run() throws IOException {
+        while(true){
             MenuView.COMMAND cmd = menuView.pollCommand();
             if(!(cmd == null)) {
                 switch (cmd) {
                     case EXIT:
-                        good = false;
-                        break;
+                        return -1;
                     case UP:
                         menuModel.selectAbove();
                         break;
                     case DOWN:
                         menuModel.selectBelow();
                         break;
+                    case ENTER:
+                        return menuModel.getSelectedItem().getId();
                 }
             }
             menuView.draw(menuModel);

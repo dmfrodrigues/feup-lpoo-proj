@@ -3,9 +3,22 @@ package com.pacman.g60.Model.Elements;
 
 import com.pacman.g60.Model.Position;
 
-public abstract class Element {
+import java.lang.reflect.InvocationTargetException;
+
+public abstract class Element implements Cloneable{
 
     private Position pos;
+
+    @Override
+    public Object clone() {
+        try {
+            return getClass().getDeclaredConstructor(Position.class).newInstance(pos);
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public Element(Position pos){
         this.pos = pos;
     }

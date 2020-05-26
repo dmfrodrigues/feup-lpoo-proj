@@ -13,12 +13,11 @@ import com.pacman.g60.View.MenuView;
 import com.pacman.g60.View.ViewFactory;
 
 public class Game {
+    private ViewFactory viewFactory;
     private ArenaModel arenaModel;
     private ArenaView arenaView;
-    private ArenaController arenaController;
     private MenuModel menuModel;
     private MenuView menuView;
-    private MenuController menuController;
 
     private void processArenaModel() throws FileNotFoundException
     {
@@ -26,29 +25,33 @@ public class Game {
         ArenaModel.Loader arenaModelLoader = new ArenaModelLoaderStream(inputStream);
         arenaModel = arenaModelLoader.getArenaModel();
     }
-
-    private void processOthers(ViewFactory viewFactory) throws Exception {
-        this.arenaView = viewFactory.createArenaView();
-        this.arenaController = new ArenaController(arenaModel, arenaView);
-    }
     
-    private void processMenu(ViewFactory viewFactory) throws Exception {
+    private void processMenu() {
         menuModel = new MenuModel();
-        menuModel.append(new MenuModel.NormalItem(0, "Play"      ));
-        menuModel.append(new MenuModel.NormalItem(1, "Scoreboard"));
-
-        menuView = viewFactory.createMenuView();
-        menuController = new MenuController(menuModel, menuView);
+        menuModel.append(new MenuModel.NormalItem(menuModel,0, "Play"      ));
+        menuModel.append(new MenuModel.NormalItem(menuModel,1, "Scoreboard"));
     }
 
     public Game(ViewFactory viewFactory) throws Exception {
+        arenaView = viewFactory.createArenaView();
+        menuView = viewFactory.createMenuView();
         processArenaModel();
-        processOthers(viewFactory);
-        processMenu(viewFactory);
+        processMenu();
     }
 
-    public void run() throws IOException {
-        //menuController.run();
-         arenaController.run();
+    public void run() throws Exception {
+        MenuModel menuModel_ = new MenuModel(menuModel);
+        MenuController menuController = new MenuController(menuModel_, menuView);
+        int r;
+        while((r = menuController.run()) != -1){
+            switch(r){
+                case 0:
+                    ArenaModel arenaModel_ = new ArenaModel(arenaModel);
+                    ArenaController arenaController = new ArenaController(arenaModel_, arenaView);
+                    arenaController.run();
+                    break;
+                case 1: break;
+            }
+        }
     }
 }

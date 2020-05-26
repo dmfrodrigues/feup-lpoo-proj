@@ -27,6 +27,15 @@ public class ArenaModel {
         this.availablePositions = new HashMap<>();
     }
 
+    public ArenaModel(ArenaModel arenaModel) {
+        this(arenaModel.W, arenaModel.H);
+        numCoins = Integer.valueOf(arenaModel.numCoins);
+        hero = (Hero)arenaModel.hero.clone();
+        hero.setCoins(hero.getCoins()-1);
+        for(Element e: arenaModel.listElements)
+            addElement((Element)e.clone());
+    }
+
     public void addElement(Element element){
         listElements.add(element);
         if(element instanceof Hero) hero = (Hero)element;
