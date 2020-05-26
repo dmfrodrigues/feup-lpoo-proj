@@ -58,8 +58,8 @@ public class LanternaGUI implements TerminalGUI {
 <span class="nc" id="L58">        screen.clear();</span>
 <span class="nc" id="L59">    }</span>
     
-<span class="nc" id="L61">    int refresh_count = 0;</span>
     final static int REFRESH_ALL_COUNT = 200;
+<span class="nc" id="L62">    int refresh_count = REFRESH_ALL_COUNT;</span>
     @Override
     public void refresh() throws IOException {
 <span class="nc bnc" id="L65" title="All 2 branches missed.">        if(refresh_count &gt;= REFRESH_ALL_COUNT){</span>
