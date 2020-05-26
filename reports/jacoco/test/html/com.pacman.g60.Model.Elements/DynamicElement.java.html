@@ -9,52 +9,60 @@ import com.pacman.g60.Model.Position;
 
 public abstract class DynamicElement extends Element implements MovableElement, OrientedElement {
     protected Application.Direction dir;
+
+    @Override
+    public Object clone() {
+<span class="nc" id="L15">        DynamicElement res = (DynamicElement)super.clone();</span>
+<span class="nc" id="L16">        res.dir = dir;</span>
+<span class="nc" id="L17">        return res;</span>
+    }
+
     public DynamicElement(Position pos){
-<span class="fc" id="L13">        super(pos);</span>
-<span class="fc" id="L14">        dir = Application.Direction.RIGHT;</span>
-<span class="fc" id="L15">    }</span>
+<span class="fc" id="L21">        super(pos);</span>
+<span class="fc" id="L22">        dir = Application.Direction.RIGHT;</span>
+<span class="fc" id="L23">    }</span>
 
     public Position moveUp(){
-<span class="fc" id="L18">        Position pos = getPos();</span>
-<span class="fc" id="L19">        pos.setY(pos.getY()-1);</span>
-<span class="fc" id="L20">        return pos;</span>
+<span class="fc" id="L26">        Position pos = getPos();</span>
+<span class="fc" id="L27">        pos.setY(pos.getY()-1);</span>
+<span class="fc" id="L28">        return pos;</span>
     }
     public Position moveDown(){
-<span class="fc" id="L23">        Position pos = getPos();</span>
-<span class="fc" id="L24">        pos.setY(pos.getY()+1);</span>
-<span class="fc" id="L25">        return pos;</span>
+<span class="fc" id="L31">        Position pos = getPos();</span>
+<span class="fc" id="L32">        pos.setY(pos.getY()+1);</span>
+<span class="fc" id="L33">        return pos;</span>
     }
     public Position moveLeft(){
-<span class="fc" id="L28">        Position pos = getPos();</span>
-<span class="fc" id="L29">        pos.setX(pos.getX()-1);</span>
-<span class="fc" id="L30">        return pos;</span>
+<span class="fc" id="L36">        Position pos = getPos();</span>
+<span class="fc" id="L37">        pos.setX(pos.getX()-1);</span>
+<span class="fc" id="L38">        return pos;</span>
     }
     public Position moveRight(){
-<span class="fc" id="L33">        Position pos = getPos();</span>
-<span class="fc" id="L34">        pos.setX(pos.getX()+1);</span>
-<span class="fc" id="L35">        return pos;</span>
+<span class="fc" id="L41">        Position pos = getPos();</span>
+<span class="fc" id="L42">        pos.setX(pos.getX()+1);</span>
+<span class="fc" id="L43">        return pos;</span>
     }
 
-<span class="fc" id="L38">    public Application.Direction getDirection() { return dir; }</span>
+<span class="fc" id="L46">    public Application.Direction getDirection() { return dir; }</span>
 
     private void updateDir(Position newPos)
     {
-<span class="fc" id="L42">        Position currentPos = this.getPos();</span>
+<span class="fc" id="L50">        Position currentPos = this.getPos();</span>
 
-<span class="fc" id="L44">        Integer diffY = newPos.getY() - currentPos.getY();</span>
-<span class="fc" id="L45">        Integer diffX = newPos.getX() - currentPos.getX();</span>
+<span class="fc" id="L52">        Integer diffY = newPos.getY() - currentPos.getY();</span>
+<span class="fc" id="L53">        Integer diffX = newPos.getX() - currentPos.getX();</span>
 
-<span class="fc bfc" id="L47" title="All 2 branches covered.">        if (diffY == 1) this.dir = Application.Direction.DOWN;</span>
-<span class="fc bfc" id="L48" title="All 2 branches covered.">        else if (diffY == -1 ) this.dir = Application.Direction.UP;</span>
-<span class="fc bfc" id="L49" title="All 2 branches covered.">        else if (diffX == 1) this.dir = Application.Direction.RIGHT;</span>
-<span class="fc bfc" id="L50" title="All 2 branches covered.">        else if (diffX == -1) this.dir = Application.Direction.LEFT;</span>
-<span class="fc" id="L51">    }</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        if (diffY == 1) this.dir = Application.Direction.DOWN;</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        else if (diffY == -1 ) this.dir = Application.Direction.UP;</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">        else if (diffX == 1) this.dir = Application.Direction.RIGHT;</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        else if (diffX == -1) this.dir = Application.Direction.LEFT;</span>
+<span class="fc" id="L59">    }</span>
     
     public void updatePos(Position newPos)
     {
-<span class="fc" id="L55">        updateDir(newPos);</span>
-<span class="fc" id="L56">        this.setPos(newPos);</span>
-<span class="fc" id="L57">    }</span>
+<span class="fc" id="L63">        updateDir(newPos);</span>
+<span class="fc" id="L64">        this.setPos(newPos);</span>
+<span class="fc" id="L65">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

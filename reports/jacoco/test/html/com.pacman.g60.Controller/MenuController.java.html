@@ -14,25 +14,25 @@ public class MenuController {
 <span class="nc" id="L14">        this.menuView = menuView;</span>
 <span class="nc" id="L15">    }</span>
     
-    public void run() throws IOException {
-<span class="nc" id="L18">        boolean good = true;</span>
-<span class="nc bnc" id="L19" title="All 2 branches missed.">        while(good){</span>
-<span class="nc" id="L20">            MenuView.COMMAND cmd = menuView.pollCommand();</span>
-<span class="nc bnc" id="L21" title="All 2 branches missed.">            if(!(cmd == null)) {</span>
-<span class="nc bnc" id="L22" title="All 4 branches missed.">                switch (cmd) {</span>
+    public int run() throws IOException {
+        while(true){
+<span class="nc" id="L19">            MenuView.COMMAND cmd = menuView.pollCommand();</span>
+<span class="nc bnc" id="L20" title="All 2 branches missed.">            if(!(cmd == null)) {</span>
+<span class="nc bnc" id="L21" title="All 5 branches missed.">                switch (cmd) {</span>
                     case EXIT:
-<span class="nc" id="L24">                        good = false;</span>
-<span class="nc" id="L25">                        break;</span>
+<span class="nc" id="L23">                        return -1;</span>
                     case UP:
-<span class="nc" id="L27">                        menuModel.selectAbove();</span>
-<span class="nc" id="L28">                        break;</span>
+<span class="nc" id="L25">                        menuModel.selectAbove();</span>
+<span class="nc" id="L26">                        break;</span>
                     case DOWN:
-<span class="nc" id="L30">                        menuModel.selectBelow();</span>
-                        break;
+<span class="nc" id="L28">                        menuModel.selectBelow();</span>
+<span class="nc" id="L29">                        break;</span>
+                    case ENTER:
+<span class="nc" id="L31">                        return menuModel.getSelectedItem().getId();</span>
                 }
             }
 <span class="nc" id="L34">            menuView.draw(menuModel);</span>
 <span class="nc" id="L35">        }</span>
-<span class="nc" id="L36">    }</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

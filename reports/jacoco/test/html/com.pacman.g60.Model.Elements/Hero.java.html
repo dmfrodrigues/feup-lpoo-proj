@@ -9,45 +9,54 @@ import com.pacman.g60.Model.Position;
 
 public class Hero extends DynamicElement implements ControlledByPlayer, LivingElement, MeleeAttackerElement, RangedAttackerElement, OrientedElement {
     private Integer health,coins;
-<span class="fc" id="L12">    final private Integer maxHealth = 10;</span>
+<span class="fc" id="L12">    static final private Integer maxHealth = 10;</span>
+
+    @Override
+    public Object clone() {
+<span class="nc" id="L16">        Hero res = (Hero)super.clone();</span>
+<span class="nc" id="L17">        res.health = Integer.valueOf(health);</span>
+<span class="nc" id="L18">        res.coins = Integer.valueOf(coins);</span>
+<span class="nc" id="L19">        return res;</span>
+    }
+
     public Hero(Position pos)
     {
-<span class="fc" id="L15">        super(pos);</span>
-<span class="fc" id="L16">        this.health = maxHealth;</span>
-<span class="fc" id="L17">        this.coins = 0;</span>
-<span class="fc" id="L18">    }</span>
+<span class="fc" id="L24">        super(pos);</span>
+<span class="fc" id="L25">        this.health = maxHealth;</span>
+<span class="fc" id="L26">        this.coins = 0;</span>
+<span class="fc" id="L27">    }</span>
 
     public Integer getHealth() {
-<span class="fc" id="L21">        return health;</span>
+<span class="fc" id="L30">        return health;</span>
     }
 
     public void setHealth(Integer health) {
-<span class="nc" id="L25">        this.health = health;</span>
-<span class="nc" id="L26">    }</span>
+<span class="nc" id="L34">        this.health = health;</span>
+<span class="nc" id="L35">    }</span>
 
     public Integer getCoins() {
-<span class="fc" id="L29">        return coins;</span>
+<span class="fc" id="L38">        return coins;</span>
     }
 
-<span class="nc" id="L32">    public void incCoins(){this.coins++;}</span>
+<span class="nc" id="L41">    public void incCoins(){this.coins++;}</span>
 
     public void setCoins(Integer coins) {
-<span class="nc" id="L35">        this.coins = coins;</span>
-<span class="nc" id="L36">    }</span>
+<span class="nc" id="L44">        this.coins = coins;</span>
+<span class="nc" id="L45">    }</span>
 
     public Integer getMaxHealth()
     {
-<span class="fc" id="L40">        return this.maxHealth;</span>
+<span class="fc" id="L49">        return this.maxHealth;</span>
     }
 
     @Override
     public void updateHealth(Integer diff) {
-<span class="nc" id="L45">        this.health += diff;</span>
-<span class="nc" id="L46">    }</span>
+<span class="nc" id="L54">        this.health += diff;</span>
+<span class="nc" id="L55">    }</span>
 
     @Override
     public boolean isAlive() {
-<span class="nc bnc" id="L50" title="All 2 branches missed.">        return health &gt; 0;</span>
+<span class="nc bnc" id="L59" title="All 2 branches missed.">        return health &gt; 0;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

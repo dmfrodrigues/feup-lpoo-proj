@@ -6,16 +6,22 @@ import com.pacman.g60.Model.Elements.Hierarchy.LivingElement;
 public class DamageEffect implements Effect{
     private Integer damage;
 
-<span class="fc" id="L9">    public DamageEffect(Integer damage) {</span>
-<span class="fc" id="L10">        this.damage = damage;</span>
-<span class="fc" id="L11">    }</span>
-
+    @Override
+    public Object clone() {
+<span class="nc" id="L11">        DamageEffect res = new DamageEffect(this);</span>
+<span class="nc" id="L12">        return res;</span>
+    }
+<span class="fc" id="L14">    public DamageEffect(Integer damage) {</span>
+<span class="fc" id="L15">        this.damage = damage;</span>
+<span class="fc" id="L16">    }</span>
+<span class="nc" id="L17">    public DamageEffect(DamageEffect damageEffect){ this(damageEffect.damage); }</span>
+    
     @Override
     public void apply(Element target) {
-<span class="nc bnc" id="L15" title="All 2 branches missed.">        if (target instanceof LivingElement)</span>
+<span class="nc bnc" id="L21" title="All 2 branches missed.">        if (target instanceof LivingElement)</span>
         {
-<span class="nc" id="L17">            ((LivingElement) target).updateHealth(-damage);</span>
+<span class="nc" id="L23">            ((LivingElement) target).updateHealth(-damage);</span>
         }
-<span class="nc" id="L19">    }</span>
+<span class="nc" id="L25">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

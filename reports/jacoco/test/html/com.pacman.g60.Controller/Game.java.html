@@ -15,41 +15,43 @@ import com.pacman.g60.View.ViewFactory;
 public class Game {
     private ArenaModel arenaModel;
     private ArenaView arenaView;
-    private ArenaController arenaController;
     private MenuModel menuModel;
     private MenuView menuView;
-    private MenuController menuController;
 
-    private void processArenaModel() throws FileNotFoundException
+    private void createArenaModel() throws FileNotFoundException
     {
-<span class="nc" id="L25">        InputStream inputStream = new FileInputStream(&quot;src/main/resources/maps/map1.map&quot;);</span>
-<span class="nc" id="L26">        ArenaModel.Loader arenaModelLoader = new ArenaModelLoaderStream(inputStream);</span>
-<span class="nc" id="L27">        arenaModel = arenaModelLoader.getArenaModel();</span>
-<span class="nc" id="L28">    }</span>
-
-    private void processOthers(ViewFactory viewFactory) throws Exception {
-<span class="nc" id="L31">        this.arenaView = viewFactory.createArenaView();</span>
-<span class="nc" id="L32">        this.arenaController = new ArenaController(arenaModel, arenaView);</span>
-<span class="nc" id="L33">    }</span>
+<span class="nc" id="L23">        InputStream inputStream = new FileInputStream(&quot;src/main/resources/maps/map1.map&quot;);</span>
+<span class="nc" id="L24">        ArenaModel.Loader arenaModelLoader = new ArenaModelLoaderStream(inputStream);</span>
+<span class="nc" id="L25">        arenaModel = arenaModelLoader.getArenaModel();</span>
+<span class="nc" id="L26">    }</span>
     
-    private void processMenu(ViewFactory viewFactory) throws Exception {
-<span class="nc" id="L36">        menuModel = new MenuModel();</span>
-<span class="nc" id="L37">        menuModel.append(new MenuModel.NormalItem(0, &quot;Play&quot;      ));</span>
-<span class="nc" id="L38">        menuModel.append(new MenuModel.NormalItem(1, &quot;Scoreboard&quot;));</span>
+    private void createMenuModel() {
+<span class="nc" id="L29">        menuModel = new MenuModel();</span>
+<span class="nc" id="L30">        menuModel.append(new MenuModel.NormalItem(menuModel,0, &quot;Play&quot;      ));</span>
+<span class="nc" id="L31">        menuModel.append(new MenuModel.NormalItem(menuModel,1, &quot;Scoreboard&quot;));</span>
+<span class="nc" id="L32">    }</span>
 
-<span class="nc" id="L40">        menuView = viewFactory.createMenuView();</span>
-<span class="nc" id="L41">        menuController = new MenuController(menuModel, menuView);</span>
-<span class="nc" id="L42">    }</span>
+<span class="nc" id="L34">    public Game(ViewFactory viewFactory) throws Exception {</span>
+<span class="nc" id="L35">        arenaView = viewFactory.createArenaView();</span>
+<span class="nc" id="L36">        menuView = viewFactory.createMenuView();</span>
+<span class="nc" id="L37">        createArenaModel();</span>
+<span class="nc" id="L38">        createMenuModel();</span>
+<span class="nc" id="L39">    }</span>
 
-<span class="nc" id="L44">    public Game(ViewFactory viewFactory) throws Exception {</span>
-<span class="nc" id="L45">        processArenaModel();</span>
-<span class="nc" id="L46">        processOthers(viewFactory);</span>
-<span class="nc" id="L47">        processMenu(viewFactory);</span>
-<span class="nc" id="L48">    }</span>
-
-    public void run() throws IOException {
-        //menuController.run();
-<span class="nc" id="L52">         arenaController.run();</span>
-<span class="nc" id="L53">    }</span>
+    public void run() throws Exception {
+<span class="nc" id="L42">        MenuModel menuModel_ = new MenuModel(menuModel);</span>
+<span class="nc" id="L43">        MenuController menuController = new MenuController(menuModel_, menuView);</span>
+        int r;
+<span class="nc bnc" id="L45" title="All 2 branches missed.">        while((r = menuController.run()) != -1){</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">            switch(r){</span>
+                case 0:
+<span class="nc" id="L48">                    ArenaModel arenaModel_ = new ArenaModel(arenaModel);</span>
+<span class="nc" id="L49">                    ArenaController arenaController = new ArenaController(arenaModel_, arenaView);</span>
+<span class="nc" id="L50">                    arenaController.run();</span>
+<span class="nc" id="L51">                    break;</span>
+<span class="nc" id="L52">                case 1: break;</span>
+            }
+        }
+<span class="nc" id="L55">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

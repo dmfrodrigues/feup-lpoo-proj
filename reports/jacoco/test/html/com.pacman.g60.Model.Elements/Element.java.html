@@ -3,18 +3,31 @@
 
 import com.pacman.g60.Model.Position;
 
-public abstract class Element {
+import java.lang.reflect.InvocationTargetException;
+
+public abstract class Element implements Cloneable{
 
     private Position pos;
-<span class="fc" id="L9">    public Element(Position pos){</span>
-<span class="fc" id="L10">        this.pos = pos;</span>
-<span class="fc" id="L11">    }</span>
 
-    public Position getPos(){
-<span class="fc" id="L14">        return new Position(pos);</span>
+    @Override
+    public Object clone() {
+        try {
+<span class="nc" id="L15">            return getClass().getDeclaredConstructor(Position.class).newInstance(pos);</span>
+<span class="nc" id="L16">        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {</span>
+<span class="nc" id="L17">            e.printStackTrace();</span>
+        }
+<span class="nc" id="L19">        return null;</span>
     }
 
-<span class="fc" id="L17">    public void setPos(Position position) { this.pos = position; }</span>
+<span class="fc" id="L22">    public Element(Position pos){</span>
+<span class="fc" id="L23">        this.pos = pos;</span>
+<span class="fc" id="L24">    }</span>
+
+    public Position getPos(){
+<span class="fc" id="L27">        return new Position(pos);</span>
+    }
+
+<span class="fc" id="L30">    public void setPos(Position position) { this.pos = position; }</span>
 
     /**
      * Override of equals. Also checks if they are the same class.
@@ -23,8 +36,8 @@ public abstract class Element {
      */
     @Override
     public boolean equals(Object obj) {
-<span class="fc bfc" id="L26" title="All 2 branches covered.">        return (getClass().equals(obj.getClass()) &amp;&amp;</span>
-<span class="fc bfc" id="L27" title="All 2 branches covered.">                pos.equals(((Element)obj).pos));</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        return (getClass().equals(obj.getClass()) &amp;&amp;</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">                pos.equals(((Element)obj).pos));</span>
     }
 
 }

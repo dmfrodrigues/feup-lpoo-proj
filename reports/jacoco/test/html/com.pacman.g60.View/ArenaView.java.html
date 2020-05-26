@@ -8,6 +8,7 @@ import java.io.IOException;
 
 public interface ArenaView {
 <span class="fc" id="L10">    enum COMMAND {UP, DOWN, LEFT, RIGHT, ATTACK, EXIT}</span>
+    void start();
     void draw(ArenaModel arena) throws IOException;
     COMMAND pollCommand() throws IOException;
 }
