@@ -59,6 +59,9 @@ public class ArenaController {
                         executeCommand(new AttackCommand(this.arenaModel)); break;
                 }
             }
+            
+            if(arenaModel.getHero().getHealth() <= 0) good = false;
+            
             arenaView.draw(arenaModel);
         }
     }
