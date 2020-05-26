@@ -22,6 +22,7 @@ public class Application {
             terminalGUI.close();
         } catch(Exception e){
             System.err.println("Exception (" + e.getClass().toString() + "): " + e.getMessage());
+            e.printStackTrace();
         }
     }
     public enum Direction {UP,DOWN,LEFT,RIGHT}
