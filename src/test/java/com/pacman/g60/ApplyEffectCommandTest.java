@@ -28,7 +28,6 @@ public class ApplyEffectCommandTest {
     @Test
     public void test1()
     {
-
         hero.setHealth(10);
 
         Mockito.doAnswer(invocation -> {
