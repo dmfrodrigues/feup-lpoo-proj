@@ -28,6 +28,16 @@ public abstract class Enemy extends DynamicElement implements LivingElement, Att
         return effect;
     }
 
+    public void setHealth(Integer health)
+    {
+        this.health = health;
+    }
+
+    public Integer getHealth()
+    {
+        return this.health;
+    }
+
     @Override
     public void updateHealth(Integer diff)
     {
