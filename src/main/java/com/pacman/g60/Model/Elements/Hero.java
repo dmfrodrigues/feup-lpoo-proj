@@ -9,6 +9,7 @@ import com.pacman.g60.Model.Position;
 
 public class Hero extends DynamicElement implements ControlledByPlayer, LivingElement, MeleeAttackerElement, RangedAttackerElement, OrientedElement {
     private Integer health,coins,ammo;
+    private Weapon weapon;
     static final private Integer maxHealth = 10;
 
     @Override
@@ -17,6 +18,7 @@ public class Hero extends DynamicElement implements ControlledByPlayer, LivingEl
         res.health = Integer.valueOf(health);
         res.coins = Integer.valueOf(coins);
         res.ammo = Integer.valueOf(ammo);
+        res.weapon = this.weapon;
         return res;
     }
 
@@ -26,6 +28,7 @@ public class Hero extends DynamicElement implements ControlledByPlayer, LivingEl
         this.health = maxHealth;
         this.coins = 0;
         this.ammo = 0;
+        this.weapon = null;
     }
 
     public Integer getHealth() {
@@ -43,6 +46,16 @@ public class Hero extends DynamicElement implements ControlledByPlayer, LivingEl
     public void incCoins(){this.coins++;}
 
     public void incAmmo(){this.ammo++;}
+
+    public void setWeapon(Weapon weapon)
+    {
+        this.weapon = weapon;
+    }
+
+    public Weapon getWeapon()
+    {
+        return this.weapon;
+    }
 
     public void setCoins(Integer coins) {
         this.coins = coins;
