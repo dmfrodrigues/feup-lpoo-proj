@@ -19,6 +19,7 @@ public class ArenaModelLoaderStream implements ArenaModel.Loader {
                 case 'C': return new Coin(pos);
                 case 'P': return new HealthPotion(pos);
                 case 'M': return new Mummy(pos);
+                case 'U': return new Guard(pos);
                 case ' ': return null;
                 default: throw new IllegalArgumentException("Unknown character '" + c + "'");
             }

@@ -247,6 +247,22 @@ public class TerminalArenaView implements ArenaView {
             return sprite;
         }
     }
+
+    private class GuardView extends ElementView
+    {
+        TerminalSprite sprite;
+
+        public GuardView() throws FileNotFoundException
+        {
+            TerminalSprite.Loader loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/guard.lan"));
+            sprite = loader.getTerminalSprite();
+        }
+
+        @Override
+        protected TerminalSprite getSprite(Element e) {
+            return sprite;
+        }
+    }
     
     private class ElementViewFactory {
         private Position heroPos;
@@ -257,6 +273,7 @@ public class TerminalArenaView implements ArenaView {
         private CoinView coinView;
         private HealthPotionView healthPotionView;
         private MummyView mummyView;
+        private GuardView guardView;
         public ElementViewFactory() throws FileNotFoundException{
             wallView = new WallView();
             heroView = new HeroView();
@@ -265,6 +282,7 @@ public class TerminalArenaView implements ArenaView {
             coinView = new CoinView();
             healthPotionView = new HealthPotionView();
             mummyView = new MummyView();
+            guardView = new GuardView();
         }
 
         public void setHeroPos(Position heroPos) {
@@ -276,6 +294,7 @@ public class TerminalArenaView implements ArenaView {
             coinView.setHeroPos(heroPos);
             healthPotionView.setHeroPos(heroPos);
             mummyView.setHeroPos(heroPos);
+            guardView.setHeroPos(heroPos);
         }
 
         public ElementView factoryMethod(Element e){
@@ -287,6 +306,7 @@ public class TerminalArenaView implements ArenaView {
             else if(e instanceof Coin) res = coinView;
             else if(e instanceof HealthPotion) res = healthPotionView;
             else if(e instanceof Mummy) res = mummyView;
+            else if(e instanceof Guard) res = guardView;
             return res;
         }
     }
@@ -295,6 +315,7 @@ public class TerminalArenaView implements ArenaView {
             Hero .class, 5,
             Ogre.class , 4,
             Mummy.class, 4,
+            Guard.class, 4,
             Ghost.class, 2,
             Wall .class, 1,
             HealthPotion.class, 0,
