@@ -1,5 +1,6 @@
 package com.pacman.g60.Model;
 
+import com.pacman.g60.Model.Effect.DamageEffect;
 import com.pacman.g60.Model.Elements.*;
 
 import java.io.InputStream;
@@ -17,6 +18,7 @@ public class ArenaModelLoaderStream implements ArenaModel.Loader {
                 case 'O': return new Ogre(pos);
                 case 'C': return new Coin(pos);
                 case 'P': return new HealthPotion(pos);
+                case 'M': return new Mummy(pos);
                 case ' ': return null;
                 default: throw new IllegalArgumentException("Unknown character '" + c + "'");
             }
