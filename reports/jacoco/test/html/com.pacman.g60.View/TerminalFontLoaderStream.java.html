@@ -19,7 +19,7 @@ public class TerminalFontLoaderStream implements TerminalFont.Loader {
 <span class="fc" id="L19">            TerminalFont.TerminalCharacter tchar = new TerminalFont.TerminalCharacter(W, H);</span>
 <span class="fc bfc" id="L20" title="All 2 branches covered.">            for (Integer y = 0; y &lt; H; ++y) {</span>
 <span class="fc" id="L21">                line = scanner.nextLine();</span>
-<span class="pc bpc" id="L22" title="1 of 2 branches missed.">                if (line.length() != W) throw new IllegalArgumentException(&quot;Invalid file content&quot;);</span>
+<span class="pc bpc" id="L22" title="1 of 2 branches missed.">                if (line.length() != W) throw new IllegalArgumentException(&quot;Invalid file content (on reading character '&quot; + c + &quot;')&quot;);</span>
 <span class="fc bfc" id="L23" title="All 2 branches covered.">                for (Integer x = 0; x &lt; W; ++x)</span>
 <span class="fc" id="L24">                    tchar.setChar(x, y, line.charAt(x));</span>
             }

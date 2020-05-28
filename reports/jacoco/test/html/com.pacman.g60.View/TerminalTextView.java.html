@@ -11,20 +11,21 @@ public class TerminalTextView{
 <span class="fc" id="L11">    public Integer getStringHeight(String s){ return font.getH(); }</span>
     private void drawChar(int x0, int y0, Character c, Color f, Color b){
 <span class="fc" id="L13">        TerminalFont.TerminalCharacter tchar = font.getCharacter(c);</span>
-<span class="fc" id="L14">        Integer W = tchar.getW();</span>
-<span class="fc" id="L15">        Integer H = tchar.getH();</span>
-<span class="fc bfc" id="L16" title="All 2 branches covered.">        for(int x = 0; x &lt; W; ++x){</span>
-<span class="fc bfc" id="L17" title="All 2 branches covered.">            for(int y = 0; y &lt; H; ++y){</span>
-<span class="fc" id="L18">                terminalGUI.drawCharacter(x0+x, y0+y, tchar.getChar(x, y), f, b);</span>
+<span class="pc bpc" id="L14" title="1 of 2 branches missed.">        if(tchar == null) throw new NullPointerException(&quot;No char for '&quot; + c + &quot;'&quot;);</span>
+<span class="fc" id="L15">        Integer W = tchar.getW();</span>
+<span class="fc" id="L16">        Integer H = tchar.getH();</span>
+<span class="fc bfc" id="L17" title="All 2 branches covered.">        for(int x = 0; x &lt; W; ++x){</span>
+<span class="fc bfc" id="L18" title="All 2 branches covered.">            for(int y = 0; y &lt; H; ++y){</span>
+<span class="fc" id="L19">                terminalGUI.drawCharacter(x0+x, y0+y, tchar.getChar(x, y), f, b);</span>
             }
         }
-<span class="fc" id="L21">    }</span>
+<span class="fc" id="L22">    }</span>
     public void draw(int x0, int y0, String s, Color f, Color b){
-<span class="fc bfc" id="L23" title="All 2 branches covered.">        for(int i = 0; i &lt; s.length(); ++i){</span>
-<span class="fc" id="L24">            drawChar(x0+i*font.getW(), y0, s.charAt(i), f, b);</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">        for(int i = 0; i &lt; s.length(); ++i){</span>
+<span class="fc" id="L25">            drawChar(x0+i*font.getW(), y0, s.charAt(i), f, b);</span>
         }
-<span class="fc" id="L26">    }</span>
-<span class="fc" id="L27">    public void draw(int x0, int y0, String s, Color f){ draw(x0, y0, s, f, Color.BLACK); }</span>
-<span class="fc" id="L28">    public void draw(int x0, int y0, String s){ draw(x0, y0, s, Color.WHITE); }</span>
+<span class="fc" id="L27">    }</span>
+<span class="fc" id="L28">    public void draw(int x0, int y0, String s, Color f){ draw(x0, y0, s, f, Color.BLACK); }</span>
+<span class="fc" id="L29">    public void draw(int x0, int y0, String s){ draw(x0, y0, s, Color.WHITE); }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
