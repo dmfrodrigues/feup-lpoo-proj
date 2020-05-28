@@ -8,10 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.pacman.g60.Model.ArenaModel;
-import com.pacman.g60.Model.ArenaModelLoaderStream;
-import com.pacman.g60.Model.LevelModel;
-import com.pacman.g60.Model.MenuModel;
+import com.pacman.g60.Model.*;
 import com.pacman.g60.View.ArenaView;
 import com.pacman.g60.View.MenuView;
 import com.pacman.g60.View.ViewFactory;
