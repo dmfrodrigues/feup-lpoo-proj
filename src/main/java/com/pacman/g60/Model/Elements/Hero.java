@@ -28,7 +28,7 @@ public class Hero extends DynamicElement implements ControlledByPlayer, LivingEl
         this.health = maxHealth;
         this.coins = 0;
         this.ammo = 0;
-        this.weapon = null;
+        this.weapon = new Knife();
     }
 
     public Integer getHealth() {

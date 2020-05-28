@@ -33,7 +33,7 @@ public class AttackCommand implements Command{
                 {
                     if (elem instanceof Enemy)
                     {
-                        Effect effect = new DamageEffect(1);
+                        Effect effect = hero.getWeapon().getEffect();
                         Command command = new ApplyEffectCommand(effect,elem);
                         command.execute();
                     }

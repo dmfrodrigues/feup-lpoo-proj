@@ -57,6 +57,8 @@ public class MoveHeroCommand implements Command {
 
                     if (elemInNewPos instanceof Bullet) hero.incAmmo();
 
+                    if (elemInNewPos instanceof Weapon) hero.setWeapon((Weapon) elemInNewPos);
+
                 }
             }
 
