@@ -4,25 +4,33 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.pacman.g60.Model.ArenaModel;
 import com.pacman.g60.Model.ArenaModelLoaderStream;
+import com.pacman.g60.Model.LevelModel;
 import com.pacman.g60.Model.MenuModel;
 import com.pacman.g60.View.ArenaView;
 import com.pacman.g60.View.MenuView;
 import com.pacman.g60.View.ViewFactory;
 
 public class Game {
-    private ArenaModel arenaModel;
+    private List<LevelModel> levelModels;
     private ArenaView arenaView;
     private MenuModel menuModel;
     private MenuView menuView;
 
-    private void createArenaModel() throws FileNotFoundException
-    {
-        InputStream inputStream = new FileInputStream("src/main/resources/maps/map1.map");
-        ArenaModel.Loader arenaModelLoader = new ArenaModelLoaderStream(inputStream);
-        arenaModel = arenaModelLoader.getArenaModel();
+    private void createLevels() throws FileNotFoundException {
+        final String[] levelPaths = {
+                "src/main/resources/maps/map1.map"
+        };
+        levelModels = ArrayList<>();
+        for(Integer i = 0; i < levelPaths.length; ++i){
+            InputStream inputStream = new FileInputStream(levelPaths[i]);
+            ArenaModel.Loader arenaModelLoader = new ArenaModelLoaderStream(inputStream);
+            levelModels.add(new LevelModel(arenaModelLoader.getArenaModel()));
+        }
     }
     
     private void createMenuModel() {
@@ -34,7 +42,7 @@ public class Game {
     public Game(ViewFactory viewFactory) throws Exception {
         arenaView = viewFactory.createArenaView();
         menuView = viewFactory.createMenuView();
-        createArenaModel();
+        createLevels();
         createMenuModel();
     }
 
@@ -45,8 +53,8 @@ public class Game {
         while((r = menuController.run()) != -1){
             switch(r){
                 case 0:
-                    ArenaModel arenaModel_ = new ArenaModel(arenaModel);
-                    ArenaController arenaController = new ArenaController(arenaModel_, arenaView);
+                    ArenaModel arenaModel = levelModels.get(0).getArenaModelClone();
+                    ArenaController arenaController = new ArenaController(arenaModel, arenaView);
                     arenaController.run();
                     break;
                 case 1: break;
