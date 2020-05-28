@@ -55,6 +55,8 @@ public class ArenaController {
                         executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.RIGHT)); break;
                     case ATTACK:
                         executeCommand(new AttackCommand(this.arenaModel)); break;
+                    case FIRE:
+                        executeCommand(new FireBulletCommand(this.arenaModel)); break;
                 }
             }
             

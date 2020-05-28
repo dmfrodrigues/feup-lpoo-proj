@@ -369,6 +369,7 @@ public class TerminalArenaView implements ArenaView {
         if(key.getKeyType() == KeyType.Escape                                ) return COMMAND.EXIT;
         if(key.getKeyType() == KeyType.EOF                                   ) return COMMAND.EXIT;
         if(key.getKeyType() == KeyType.Character && key.getCharacter() == ' ') return COMMAND.ATTACK;
+        if(key.getKeyType() == KeyType.Character && key.getCharacter() == 'f') return COMMAND.FIRE;
         return null;
     }
 }
