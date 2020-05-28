@@ -260,7 +260,7 @@ public class TerminalArenaView implements ArenaView {
 
         @Override
         protected TerminalSprite getSprite(Element e) {
-            return null;
+            return sprite;
         }
     }
     
