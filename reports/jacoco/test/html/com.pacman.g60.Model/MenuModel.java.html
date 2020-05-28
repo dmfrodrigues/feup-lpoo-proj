@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.List;
 
 public class MenuModel {
-    
+
     public static abstract class Item implements Cloneable {
         private MenuModel parent;
         private String text;
@@ -50,46 +50,79 @@ public class MenuModel {
 <span class="nc" id="L50">            super(parent, id, text);</span>
 <span class="nc" id="L51">        }</span>
     }
+
+<span class="nc" id="L54">    public enum VerticalAlign {</span>
+<span class="nc" id="L55">        TOP,</span>
+<span class="nc" id="L56">        CENTER,</span>
+<span class="nc" id="L57">        BOTTOM</span>
+    }
     
-<span class="nc" id="L54">    List&lt;Item&gt; items = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L60">    public enum HorizontalAlign {</span>
+<span class="nc" id="L61">        LEFT,</span>
+<span class="nc" id="L62">        CENTER,</span>
+<span class="nc" id="L63">        RIGHT</span>
+    }
+    
+<span class="nc" id="L66">    List&lt;Item&gt; items = new ArrayList&lt;&gt;();</span>
     int selected;
+<span class="nc" id="L68">    boolean frame = false;</span>
+<span class="nc" id="L69">    RelativePosition position = new RelativePosition(0, 0);</span>
+<span class="nc" id="L70">    VerticalAlign verticalAlign = VerticalAlign.TOP;</span>
+<span class="nc" id="L71">    HorizontalAlign horizontalAlign = HorizontalAlign.LEFT;</span>
     
-<span class="nc" id="L57">    public MenuModel(){}</span>
+<span class="nc" id="L73">    public MenuModel(){}</span>
 
     public MenuModel(MenuModel menuModel) {
-<span class="nc" id="L60">        this();</span>
-<span class="nc bnc" id="L61" title="All 2 branches missed.">        for(Item item: menuModel.items) {</span>
-<span class="nc" id="L62">            Item item_ = (Item)item.clone();</span>
-<span class="nc" id="L63">            item_.setParent(this);</span>
-<span class="nc" id="L64">            append(item_);</span>
-<span class="nc" id="L65">        }</span>
-<span class="nc" id="L66">        selected = menuModel.selected;</span>
-<span class="nc" id="L67">    }</span>
-
-
-    public List&lt;Item&gt; getItems() {
-<span class="nc" id="L71">        return items;</span>
+<span class="nc" id="L76">        this();</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">        for(Item item: menuModel.items) {</span>
+<span class="nc" id="L78">            Item item_ = (Item)item.clone();</span>
+<span class="nc" id="L79">            item_.setParent(this);</span>
+<span class="nc" id="L80">            append(item_);</span>
+<span class="nc" id="L81">        }</span>
+<span class="nc" id="L82">        selected = menuModel.selected;</span>
+<span class="nc" id="L83">        setFrame(menuModel.hasFrame());</span>
+<span class="nc" id="L84">        setRelativePosition(menuModel.getRelativePosition());</span>
+<span class="nc" id="L85">        setHorizontalAlign(menuModel.getHorizontalAlign());</span>
+<span class="nc" id="L86">        setVerticalAlign(menuModel.getVerticalAlign());</span>
+<span class="nc" id="L87">    }</span>
+    
+    public void setFrame(boolean frame){
+<span class="nc" id="L90">        this.frame = frame;</span>
+<span class="nc" id="L91">    }</span>
+    public boolean hasFrame() {
+<span class="nc" id="L93">        return frame;</span>
     }
 
+    public List&lt;Item&gt; getItems() {
+<span class="nc" id="L97">        return items;</span>
+    }
     public void append(MenuModel.Item item) {
-<span class="nc" id="L75">        items.add(item);</span>
-<span class="nc bnc" id="L76" title="All 2 branches missed.">        if(items.size() == 1) selected = 0;</span>
-<span class="nc" id="L77">    }</span>
+<span class="nc" id="L100">        items.add(item);</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">        if(items.size() == 1) selected = 0;</span>
+<span class="nc" id="L102">    }</span>
     
-    public void selectAbove(){
-<span class="nc bnc" id="L80" title="All 2 branches missed.">        if(items.size() == 0) throw new ArrayIndexOutOfBoundsException();</span>
-<span class="nc" id="L81">        --selected;</span>
-<span class="nc bnc" id="L82" title="All 2 branches missed.">        if(selected &lt; 0) selected = items.size()-1;</span>
-<span class="nc" id="L83">    }</span>
-    
+    public void selectAbove() {
+<span class="nc bnc" id="L105" title="All 2 branches missed.">        if (items.size() == 0) throw new ArrayIndexOutOfBoundsException();</span>
+<span class="nc" id="L106">        --selected;</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">        if (selected &lt; 0) selected = items.size() - 1;</span>
+<span class="nc" id="L108">    }</span>
     public void selectBelow(){
-<span class="nc bnc" id="L86" title="All 2 branches missed.">        if(items.size() == 0) throw new ArrayIndexOutOfBoundsException();</span>
-<span class="nc" id="L87">        ++selected;</span>
-<span class="nc bnc" id="L88" title="All 2 branches missed.">        if(selected &gt;= items.size()) selected = 0;</span>
-<span class="nc" id="L89">    }</span>
+<span class="nc bnc" id="L110" title="All 2 branches missed.">        if(items.size() == 0) throw new ArrayIndexOutOfBoundsException();</span>
+<span class="nc" id="L111">        ++selected;</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">        if(selected &gt;= items.size()) selected = 0;</span>
+<span class="nc" id="L113">    }</span>
+<span class="nc" id="L114">    public Item getSelectedItem() { return items.get(selected); }</span>
+
+<span class="nc" id="L116">    public void setVerticalAlign(VerticalAlign verticalAlign) { this.verticalAlign = verticalAlign; }</span>
+<span class="nc" id="L117">    public VerticalAlign getVerticalAlign(){ return verticalAlign; }</span>
+<span class="nc" id="L118">    public void setHorizontalAlign(HorizontalAlign horizontalAlign) { this.horizontalAlign = horizontalAlign; }</span>
+<span class="nc" id="L119">    public HorizontalAlign getHorizontalAlign(){ return horizontalAlign; }</span>
     
-    public Item getSelectedItem() {
-<span class="nc" id="L92">        return items.get(selected);</span>
+    public void setRelativePosition(RelativePosition position){
+<span class="nc" id="L122">        this.position = position;</span>
+<span class="nc" id="L123">    }</span>
+    public RelativePosition getRelativePosition(){
+<span class="nc" id="L125">        return position;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
