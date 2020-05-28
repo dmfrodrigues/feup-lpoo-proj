@@ -2,10 +2,7 @@ package com.pacman.g60.Controller;
 
 import com.pacman.g60.Application;
 import com.pacman.g60.Model.ArenaModel;
-import com.pacman.g60.Model.Elements.Coin;
-import com.pacman.g60.Model.Elements.Element;
-import com.pacman.g60.Model.Elements.HealthPotion;
-import com.pacman.g60.Model.Elements.Hero;
+import com.pacman.g60.Model.Elements.*;
 import com.pacman.g60.Model.Position;
 
 import java.util.List;
@@ -52,15 +49,14 @@ public class MoveHeroCommand implements Command {
             {
                 for (Element elemInNewPos : elemsInNewPos)
                 {
-                    if (elemInNewPos instanceof Coin)
-                    {
-                        arenaModel.removeElement(elemInNewPos);
-                        hero.incCoins();
-                    }
-                    if (elemInNewPos instanceof HealthPotion){
-                        hero.updateHealth(((HealthPotion)elemInNewPos).getHealth());
-                        arenaModel.removeElement(elemInNewPos);
-                    }
+                    if (elemInNewPos instanceof Collectable) arenaModel.removeElement(elemInNewPos);
+
+                    if (elemInNewPos instanceof Coin) hero.incCoins();
+
+                    if (elemInNewPos instanceof HealthPotion) hero.updateHealth(((HealthPotion)elemInNewPos).getHealth());
+
+                    if (elemInNewPos instanceof Bullet) hero.incAmmo();
+
                 }
             }
 
