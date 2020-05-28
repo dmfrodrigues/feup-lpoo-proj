@@ -19,7 +19,7 @@ public class TerminalFontLoaderStream implements TerminalFont.Loader {
             TerminalFont.TerminalCharacter tchar = new TerminalFont.TerminalCharacter(W, H);
             for (Integer y = 0; y < H; ++y) {
                 line = scanner.nextLine();
-                if (line.length() != W) throw new IllegalArgumentException("Invalid file content");
+                if (line.length() != W) throw new IllegalArgumentException("Invalid file content (on reading character '" + c + "')");
                 for (Integer x = 0; x < W; ++x)
                     tchar.setChar(x, y, line.charAt(x));
             }
