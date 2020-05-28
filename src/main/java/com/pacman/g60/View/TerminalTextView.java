@@ -11,6 +11,7 @@ public class TerminalTextView{
     public Integer getStringHeight(String s){ return font.getH(); }
     private void drawChar(int x0, int y0, Character c, Color f, Color b){
         TerminalFont.TerminalCharacter tchar = font.getCharacter(c);
+        if(tchar == null) throw new NullPointerException("No char for '" + c + "'");
         Integer W = tchar.getW();
         Integer H = tchar.getH();
         for(int x = 0; x < W; ++x){

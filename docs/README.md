@@ -50,6 +50,10 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
 |------------|------------|
 |![2020-04-26-image](images/2020-04-26_21-31-01.png)|![2020-05-02-image](images/2020-05-02_04-43-23.png)|
 
+| 2020-05-28 |
+|------------|
+| ![](images/2020-05-28_20-12-43.png) |
+
 <a name="animations"><a/>
 #### Animations
 
