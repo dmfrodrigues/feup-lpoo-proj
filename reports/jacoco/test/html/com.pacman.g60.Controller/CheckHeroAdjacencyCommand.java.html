@@ -13,34 +13,34 @@ import java.util.List;
 public class CheckHeroAdjacencyCommand implements Command {
     private ArenaModel arenaModel;
 
-<span class="nc" id="L16">    public CheckHeroAdjacencyCommand(ArenaModel arenaModel) {</span>
-<span class="nc" id="L17">        this.arenaModel = arenaModel;</span>
-<span class="nc" id="L18">    }</span>
+<span class="fc" id="L16">    public CheckHeroAdjacencyCommand(ArenaModel arenaModel) {</span>
+<span class="fc" id="L17">        this.arenaModel = arenaModel;</span>
+<span class="fc" id="L18">    }</span>
 
     @Override
     public void execute() {
-<span class="nc" id="L22">        Hero hero = arenaModel.getHero();</span>
-<span class="nc" id="L23">        Position heroPos = hero.getPos();</span>
-<span class="nc" id="L24">        Integer heroX = heroPos.getX(), heroY = heroPos.getY();</span>
-<span class="nc bnc" id="L25" title="All 2 branches missed.">        for (int i = heroX - 1; i &lt;= heroX + 1; i++)</span>
+<span class="fc" id="L22">        Hero hero = arenaModel.getHero();</span>
+<span class="fc" id="L23">        Position heroPos = hero.getPos();</span>
+<span class="fc" id="L24">        Integer heroX = heroPos.getX(), heroY = heroPos.getY();</span>
+<span class="fc bfc" id="L25" title="All 2 branches covered.">        for (int i = heroX - 1; i &lt;= heroX + 1; i++)</span>
         {
-<span class="nc bnc" id="L27" title="All 2 branches missed.">            for (int i2 = heroY - 1; i2 &lt;= heroY + 1; i2++)</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">            for (int i2 = heroY - 1; i2 &lt;= heroY + 1; i2++)</span>
             {
-<span class="nc" id="L29">                Position currentPos = new Position(i,i2);</span>
-<span class="nc" id="L30">                List&lt;Element&gt; elemsInPos = arenaModel.getElemFromPos(currentPos);</span>
-<span class="nc bnc" id="L31" title="All 2 branches missed.">                if (elemsInPos == null) continue;</span>
-<span class="nc bnc" id="L32" title="All 2 branches missed.">                for (Element elem : elemsInPos)</span>
+<span class="fc" id="L29">                Position currentPos = new Position(i,i2);</span>
+<span class="fc" id="L30">                List&lt;Element&gt; elemsInPos = arenaModel.getElemFromPos(currentPos);</span>
+<span class="pc bpc" id="L31" title="1 of 2 branches missed.">                if (elemsInPos == null) continue;</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">                for (Element elem : elemsInPos)</span>
                 {
-<span class="nc bnc" id="L34" title="All 2 branches missed.">                    if (elem instanceof Enemy)</span>
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">                    if (elem instanceof Enemy)</span>
                     {
-<span class="nc" id="L36">                        Effect effect = ((Enemy)elem).getEffect();</span>
-<span class="nc" id="L37">                        Command command = new ApplyEffectCommand(effect,hero);</span>
-<span class="nc" id="L38">                        command.execute();</span>
+<span class="fc" id="L36">                        Effect effect = ((Enemy)elem).getEffect();</span>
+<span class="fc" id="L37">                        Command command = new ApplyEffectCommand(effect,hero);</span>
+<span class="fc" id="L38">                        command.execute();</span>
                     }
-<span class="nc" id="L40">                }</span>
+<span class="fc" id="L40">                }</span>
             }
         }
 
-<span class="nc" id="L44">    }</span>
+<span class="fc" id="L44">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
