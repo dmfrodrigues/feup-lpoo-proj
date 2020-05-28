@@ -36,6 +36,10 @@ public class Game {
         MenuView menuView;
         public StateMainMenu(MenuView menuView){
             menuModel = new MenuModel();
+            menuModel.setFrame(true);
+            menuModel.setRelativePosition(new RelativePosition(0.5, 0.5));
+            menuModel.setVerticalAlign(MenuModel.VerticalAlign.CENTER);
+            menuModel.setHorizontalAlign(MenuModel.HorizontalAlign.CENTER);
             menuModel.append(new MenuModel.NormalItem(menuModel,0, "Play"      ));
             menuModel.append(new MenuModel.NormalItem(menuModel,1, "Controls"  ));
             menuModel.append(new MenuModel.NormalItem(menuModel,2, "Scoreboard"));
