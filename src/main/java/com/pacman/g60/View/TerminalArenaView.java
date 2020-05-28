@@ -231,6 +231,8 @@ public class TerminalArenaView implements ArenaView {
             return sprite;
         }
     }
+
+    private
     
     private class ElementViewFactory {
         private Position heroPos;
