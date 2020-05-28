@@ -10,14 +10,22 @@ import java.io.IOException;
 public class ArenaController {
     private ArenaView arenaView;
     private ArenaModel arenaModel;
+    private boolean win;
+    private boolean over;
     
     public ArenaController(ArenaModel arenaModel, ArenaView arenaView){
         this.arenaModel = arenaModel;
         this.arenaView = arenaView;
     }
     
-    public void run() throws IOException {
+    private void start(){
+        win = false;
+        over = false;
         arenaView.start();
+    }
+    
+    public void run() throws IOException {
+        start();
         
         boolean good = true;
         int i = 0;
@@ -58,13 +66,27 @@ public class ArenaController {
                 }
             }
             
-            if (arenaModel.getHero().getHealth() <= 0) good = false;
-            if (!arenaModel.getShouldGameContinue()  ) good = false;
+            if (arenaModel.getHero().getHealth() <= 0){ lose(); good = false; }
+            if (!arenaModel.getShouldGameContinue()  ){ win(); good = false; }
 
             arenaView.draw(arenaModel);
         }
     }
+    
+    private void lose(){
+        win = false;
+        over = true;
+    }
+    
+    private void win(){
+        win = true;
+        over = true;
+    }
 
+    public boolean isOver() { return over; }
+
+    public boolean isWin() { return win; }
+    
     public void executeCommand(Command command)
     {
         command.execute();
