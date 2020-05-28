@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.List;
 
 public class MenuModel {
-    
+
     public static abstract class Item implements Cloneable {
         private MenuModel parent;
         private String text;
@@ -50,9 +50,25 @@ public class MenuModel {
             super(parent, id, text);
         }
     }
+
+    public enum VerticalAlign {
+        TOP,
+        CENTER,
+        BOTTOM
+    }
+    
+    public enum HorizontalAlign {
+        LEFT,
+        CENTER,
+        RIGHT
+    }
     
     List<Item> items = new ArrayList<>();
     int selected;
+    boolean frame = false;
+    RelativePosition position = new RelativePosition(0, 0);
+    VerticalAlign verticalAlign = VerticalAlign.TOP;
+    HorizontalAlign horizontalAlign = HorizontalAlign.LEFT;
     
     public MenuModel(){}
 
@@ -64,31 +80,48 @@ public class MenuModel {
             append(item_);
         }
         selected = menuModel.selected;
+        setFrame(menuModel.hasFrame());
+        setRelativePosition(menuModel.getRelativePosition());
+        setHorizontalAlign(menuModel.getHorizontalAlign());
+        setVerticalAlign(menuModel.getVerticalAlign());
     }
-
+    
+    public void setFrame(boolean frame){
+        this.frame = frame;
+    }
+    public boolean hasFrame() {
+        return frame;
+    }
 
     public List<Item> getItems() {
         return items;
     }
-
     public void append(MenuModel.Item item) {
         items.add(item);
         if(items.size() == 1) selected = 0;
     }
     
-    public void selectAbove(){
-        if(items.size() == 0) throw new ArrayIndexOutOfBoundsException();
+    public void selectAbove() {
+        if (items.size() == 0) throw new ArrayIndexOutOfBoundsException();
         --selected;
-        if(selected < 0) selected = items.size()-1;
+        if (selected < 0) selected = items.size() - 1;
     }
-    
     public void selectBelow(){
         if(items.size() == 0) throw new ArrayIndexOutOfBoundsException();
         ++selected;
         if(selected >= items.size()) selected = 0;
     }
+    public Item getSelectedItem() { return items.get(selected); }
+
+    public void setVerticalAlign(VerticalAlign verticalAlign) { this.verticalAlign = verticalAlign; }
+    public VerticalAlign getVerticalAlign(){ return verticalAlign; }
+    public void setHorizontalAlign(HorizontalAlign horizontalAlign) { this.horizontalAlign = horizontalAlign; }
+    public HorizontalAlign getHorizontalAlign(){ return horizontalAlign; }
     
-    public Item getSelectedItem() {
-        return items.get(selected);
+    public void setRelativePosition(RelativePosition position){
+        this.position = position;
+    }
+    public RelativePosition getRelativePosition(){
+        return position;
     }
 }

@@ -8,10 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.pacman.g60.Model.ArenaModel;
-import com.pacman.g60.Model.ArenaModelLoaderStream;
-import com.pacman.g60.Model.LevelModel;
-import com.pacman.g60.Model.MenuModel;
+import com.pacman.g60.Model.*;
 import com.pacman.g60.View.ArenaView;
 import com.pacman.g60.View.MenuView;
 import com.pacman.g60.View.ViewFactory;
@@ -36,6 +33,10 @@ public class Game {
         MenuView menuView;
         public StateMainMenu(MenuView menuView){
             menuModel = new MenuModel();
+            menuModel.setFrame(true);
+            menuModel.setRelativePosition(new RelativePosition(0.5, 0.5));
+            menuModel.setVerticalAlign(MenuModel.VerticalAlign.CENTER);
+            menuModel.setHorizontalAlign(MenuModel.HorizontalAlign.CENTER);
             menuModel.append(new MenuModel.NormalItem(menuModel,0, "Play"      ));
             menuModel.append(new MenuModel.NormalItem(menuModel,1, "Controls"  ));
             menuModel.append(new MenuModel.NormalItem(menuModel,2, "Scoreboard"));
