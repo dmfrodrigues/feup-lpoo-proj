@@ -33,6 +33,7 @@ public class TerminalArenaView implements ArenaView {
         TerminalSprite heartSprite;
         TerminalSprite heartDeadSprite;
         TerminalSprite coinSprite;
+        TerminalSprite swordSprite;
         TerminalTextView textView;
         long startTime;
         public void startTime(){ startTime = System.currentTimeMillis(); }
@@ -44,6 +45,8 @@ public class TerminalArenaView implements ArenaView {
             heartDeadSprite = loader.getTerminalSprite();
             loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/coin-6-3.lan"));
             coinSprite = loader.getTerminalSprite();
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/sword-6-8.lan"));
+            swordSprite = loader.getTerminalSprite();
 
             TerminalFont.Loader fontLoader = new TerminalFontLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/numbers-4-3.lan"));
             TerminalFont font = fontLoader.getTerminalFont();
@@ -277,7 +280,8 @@ public class TerminalArenaView implements ArenaView {
             Ghost.class, 2,
             Wall .class, 1,
             HealthPotion.class, 0,
-            Coin .class, 0
+            Coin .class, 0,
+            Sword.class, 0
     );
     
     private TerminalGUI terminalGUI;
