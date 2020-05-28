@@ -238,7 +238,7 @@ public class TerminalArenaView implements ArenaView {
 
         public SwordView() throws FileNotFoundException
         {
-            TerminalSprite.Loader loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/sword-6-4.lan"));
+            TerminalSprite.Loader loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/sword-8-4.lan"));
             sprite = loader.getTerminalSprite();
         }
 
@@ -254,7 +254,7 @@ public class TerminalArenaView implements ArenaView {
 
         public BulletView() throws FileNotFoundException
         {
-            TerminalSprite.Loader loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/bullet-2-4.lan"));
+            TerminalSprite.Loader loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/bullet-8-4.lan"));
             sprite = loader.getTerminalSprite();
         }
 
