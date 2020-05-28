@@ -23,6 +23,10 @@ public class Game {
     }
 
     private final StateMainMenu stateMainMenu;
+    private final StateControls stateControls;
+    private final StateScoreboard stateScoreboard;
+    private final StateSave stateSave;
+    private final StateLoad stateLoad;
     private final StateLevelSelector stateLevelSelect;
     private final StateArena stateArena;
     private final StateExit stateExit;
@@ -33,7 +37,11 @@ public class Game {
         public StateMainMenu(MenuView menuView){
             menuModel = new MenuModel();
             menuModel.append(new MenuModel.NormalItem(menuModel,0, "Play"      ));
-            menuModel.append(new MenuModel.NormalItem(menuModel,1, "Scoreboard"));
+            menuModel.append(new MenuModel.NormalItem(menuModel,1, "Controls"  ));
+            menuModel.append(new MenuModel.NormalItem(menuModel,2, "Scoreboard"));
+            menuModel.append(new MenuModel.NormalItem(menuModel,3, "Save game" ));
+            menuModel.append(new MenuModel.NormalItem(menuModel,4, "Load game" ));
+
 
             this.menuView = menuView;
         }
@@ -41,15 +49,44 @@ public class Game {
         public State run() throws IOException {
             MenuModel menuModel_ = new MenuModel(menuModel);
             MenuController menuController = new MenuController(menuModel_, menuView);
-            int r;
-            while((r = menuController.run()) != -1){
-                switch(r){
-                    case 0:
-                        return stateLevelSelect;
-                    case 1: break;
-                }
+            int r = menuController.run();
+            switch(r){
+                case -1: return stateExit;
+                case 0: return stateLevelSelect;
+                case 1: return stateControls;
+                case 2: return stateScoreboard;
+                case 3: return stateSave;
+                case 4: return stateLoad;
+                default: throw new IndexOutOfBoundsException();
             }
-            return stateExit;
+        }
+    }
+    
+    private class StateControls implements State {
+        @Override
+        public State run() {
+            return stateMainMenu;
+        }
+    }
+    
+    private class StateScoreboard implements State {
+        @Override
+        public State run() {
+            return stateMainMenu;
+        }
+    }
+
+    private class StateSave implements State {
+        @Override
+        public State run() {
+            return stateMainMenu;
+        }
+    }
+
+    private class StateLoad implements State {
+        @Override
+        public State run() {
+            return stateMainMenu;
         }
     }
     
@@ -101,10 +138,14 @@ public class Game {
     private State state;
 
     public Game(ViewFactory viewFactory) throws Exception {
-        stateMainMenu = new StateMainMenu(viewFactory.createMenuView());
-        stateLevelSelect = new StateLevelSelector();
-        stateArena = new StateArena(viewFactory.createArenaView());
-        stateExit  = new StateExit();
+        stateMainMenu       = new StateMainMenu(viewFactory.createMenuView());
+        stateControls       = new StateControls();
+        stateScoreboard     = new StateScoreboard();
+        stateSave           = new StateSave();
+        stateLoad           = new StateLoad();
+        stateLevelSelect    = new StateLevelSelector();
+        stateArena          = new StateArena(viewFactory.createArenaView());
+        stateExit           = new StateExit();
     }
     
     public void run() throws Exception {
