@@ -1,27 +1,26 @@
 package com.pacman.g60.Controller;
 
 import com.pacman.g60.Model.MenuModel;
-import com.pacman.g60.View.MenuView;
+import com.pacman.g60.View.GUIView;
 
 import java.io.IOException;
 
 public class MenuController {
     private MenuModel menuModel;
-    private MenuView menuView;
+    private GUIView view;
     
-    public MenuController(MenuModel menuModel, MenuView menuView){
+    public MenuController(MenuModel menuModel, GUIView view){
         this.menuModel = menuModel;
-        this.menuView = menuView;
+        this.view = view;
     }
-    
-    protected void draw() { }
     
     public int run() throws IOException {
         while(true){
-            MenuView.COMMAND cmd = menuView.pollCommand();
+            GUIView.COMMAND cmd = view.pollCommand();
             if(!(cmd == null)) {
                 switch (cmd) {
-                    case EXIT:
+                    case EOF:
+                    case ESC:
                         return -1;
                     case UP:
                         menuModel.selectAbove();
@@ -33,8 +32,9 @@ public class MenuController {
                         return menuModel.getSelectedItem().getId();
                 }
             }
-            menuView.draw(menuModel);
-            draw();
+            view.clear();
+            view.draw();
+            view.refresh();
         }
     }
 }

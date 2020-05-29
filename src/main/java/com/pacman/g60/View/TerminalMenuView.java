@@ -9,31 +9,20 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
-public class TerminalMenuView implements MenuView {
+public class TerminalMenuView extends MenuView {
     
     private TerminalGUI terminalGUI;
     TerminalFont font;
     TerminalTextView textView;
     
     public TerminalMenuView(TerminalGUI terminalGUI) throws FileNotFoundException {
+        super(terminalGUI);
         this.terminalGUI = terminalGUI;
         TerminalFont.Loader loader = new TerminalFontLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/numbers-4-3.lan"));
         font = loader.getTerminalFont();
         textView = new TerminalTextView(terminalGUI, font);
     }
     
-    @Override
-    public COMMAND pollCommand() throws IOException {
-        KeyStroke key = terminalGUI.pollKey();
-        if(key == null) return null;
-        if(key.getKeyType() == KeyType.ArrowUp  ) return COMMAND.UP;
-        if(key.getKeyType() == KeyType.ArrowDown) return COMMAND.DOWN;
-        if(key.getKeyType() == KeyType.Enter    ) return COMMAND.ENTER;
-        if(key.getKeyType() == KeyType.Escape   ) return COMMAND.EXIT;
-        if(key.getKeyType() == KeyType.EOF      ) return COMMAND.EXIT;
-        return null;
-    }
-
     int Wbutton;
     final int Wbutton_margin = 5;
     final int Wframe_margin = 10;
@@ -105,8 +94,8 @@ public class TerminalMenuView implements MenuView {
     }
     
     @Override
-    public void draw(MenuModel menu) throws IOException {
-        terminalGUI.clear();
+    public void draw() {
+        MenuModel menu = getMenuModel();
 
         frame = menu.hasFrame();
         
@@ -144,7 +133,5 @@ public class TerminalMenuView implements MenuView {
         for(int i = 0; i < items.size(); ++i){
             drawItem(x0, y0, items.get(i), i);
         }
-        
-        terminalGUI.refresh();
     }
 }
