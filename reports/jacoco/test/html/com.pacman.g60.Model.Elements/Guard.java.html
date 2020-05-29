@@ -5,40 +5,48 @@ import com.pacman.g60.Model.Effect.Effect;
 import com.pacman.g60.Model.Elements.Hierarchy.MeleeAttackerElement;
 import com.pacman.g60.Model.Position;
 
-import java.util.LinkedList;
-import java.util.Queue;
 
 public class Guard extends Enemy implements MeleeAttackerElement {
-    private GuardMovement movement;
+    private GuardMovementStrategy movement;
+<span class="nc" id="L11">    public enum MovementType</span>
+    {
+<span class="nc" id="L13">        HORIZONTAL,</span>
+<span class="nc" id="L14">        VERTICAL</span>
+    }
+    private MovementType moveType;
 
     public Guard(Position pos)
     {
-<span class="nc" id="L16">        super(pos,new DamageEffect(1),10);</span>
-<span class="nc" id="L17">        initMovement();</span>
-<span class="nc" id="L18">    }</span>
+<span class="nc" id="L20">        super(pos,new DamageEffect(1),10);</span>
+<span class="nc" id="L21">        this.moveType = MovementType.HORIZONTAL;</span>
+<span class="nc" id="L22">        initMovement(pos);</span>
+<span class="nc" id="L23">    }</span>
 
-    private void initMovement()
+    public Guard(Position pos, MovementType moveType)
     {
-<span class="nc" id="L22">        Position pos1 = new Position(33,13);</span>
-<span class="nc" id="L23">        Position pos2 = new Position(33,12);</span>
-<span class="nc" id="L24">        Position pos3 = new Position(33,11);</span>
-<span class="nc" id="L25">        Position pos4 = new Position(33,12);</span>
+<span class="nc" id="L27">        super(pos,new DamageEffect(1),10);</span>
+<span class="nc" id="L28">        this.moveType = moveType;</span>
+<span class="nc" id="L29">        initMovement(pos);</span>
+<span class="nc" id="L30">    }</span>
 
-<span class="nc" id="L27">        Queue&lt;Position&gt; path = new LinkedList&lt;&gt;();</span>
-<span class="nc" id="L28">        path.add(pos1);</span>
-<span class="nc" id="L29">        path.add(pos2);</span>
-<span class="nc" id="L30">        path.add(pos3);</span>
-<span class="nc" id="L31">        path.add(pos4);</span>
-<span class="nc" id="L32">        movement = new GuardMovement(path);</span>
-<span class="nc" id="L33">    }</span>
-
-    public Guard(Position pos, Effect effect, Integer health) {
-<span class="nc" id="L36">        super(pos, effect, health);</span>
-<span class="nc" id="L37">    }</span>
+    private void initMovement(Position position)
+    {
+<span class="nc bnc" id="L34" title="All 2 branches missed.">        if (moveType == MovementType.HORIZONTAL) this.movement = new HorizontalGuardMovementStrategy(position);</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">        if (moveType == MovementType.VERTICAL  ) this.movement = new VerticalGuardMovementStrategy(position);</span>
+<span class="nc" id="L36">    }</span>
 
     public Position getNextPos()
     {
-<span class="nc" id="L41">        return movement.move();</span>
+<span class="nc" id="L40">        return movement.move();</span>
+    }
+
+    @Override
+    public Object clone()
+    {
+<span class="nc" id="L46">        Guard guard = (Guard) super.clone();</span>
+<span class="nc" id="L47">        guard.moveType = this.moveType;</span>
+<span class="nc" id="L48">        guard.movement = this.movement;</span>
+<span class="nc" id="L49">        return guard;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ArenaModelLoaderStream.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.Model</a> &gt; <span class="el_source">ArenaModelLoaderStream.java</span></div><h1>ArenaModelLoaderStream.java</h1><pre class="source lang-java linenums">package com.pacman.g60.Model;
 
-import com.pacman.g60.Model.Effect.DamageEffect;
 import com.pacman.g60.Model.Elements.*;
 
 import java.io.InputStream;
@@ -9,19 +8,20 @@ import java.util.Scanner;
 public class ArenaModelLoaderStream implements ArenaModel.Loader {
     private class Factory {
         private Position pos;
-<span class="fc" id="L12">        public Factory(Position pos){ this.pos = new Position(pos); }</span>
+<span class="fc" id="L11">        public Factory(Position pos){ this.pos = new Position(pos); }</span>
         public Element factoryMethod(Character c) throws IllegalArgumentException {
-<span class="pc bpc" id="L14" title="7 of 12 branches missed.">            switch(c){</span>
-<span class="fc" id="L15">                case 'W': return new Wall(pos);</span>
-<span class="fc" id="L16">                case 'H': return new Hero(pos);</span>
-<span class="fc" id="L17">                case 'G': return new Ghost(pos);</span>
-<span class="nc" id="L18">                case 'O': return new Ogre(pos);</span>
-<span class="nc" id="L19">                case 'C': return new Coin(pos);</span>
-<span class="nc" id="L20">                case 'P': return new HealthPotion(pos);</span>
-<span class="nc" id="L21">                case 'S': return new Sword(pos);</span>
-<span class="nc" id="L22">                case 'B': return new Bullet(pos);</span>
-<span class="nc" id="L23">                case 'M': return new Mummy(pos);</span>
-<span class="nc" id="L24">                case 'U': return new Guard(pos);</span>
+<span class="pc bpc" id="L13" title="8 of 13 branches missed.">            switch(c){</span>
+<span class="fc" id="L14">                case 'W': return new Wall(pos);</span>
+<span class="fc" id="L15">                case 'H': return new Hero(pos);</span>
+<span class="fc" id="L16">                case 'G': return new Ghost(pos);</span>
+<span class="nc" id="L17">                case 'O': return new Ogre(pos);</span>
+<span class="nc" id="L18">                case 'C': return new Coin(pos);</span>
+<span class="nc" id="L19">                case 'P': return new HealthPotion(pos);</span>
+<span class="nc" id="L20">                case 'S': return new Sword(pos);</span>
+<span class="nc" id="L21">                case 'B': return new Bullet(pos);</span>
+<span class="nc" id="L22">                case 'M': return new Mummy(pos);</span>
+<span class="nc" id="L23">                case 'V': return new Guard(pos, Guard.MovementType.VERTICAL);</span>
+<span class="nc" id="L24">                case 'R': return new Guard(pos, Guard.MovementType.HORIZONTAL);</span>
 <span class="fc" id="L25">                case ' ': return null;</span>
 <span class="fc" id="L26">                default: throw new IllegalArgumentException(&quot;Unknown character '&quot; + c + &quot;'&quot;);</span>
             }
