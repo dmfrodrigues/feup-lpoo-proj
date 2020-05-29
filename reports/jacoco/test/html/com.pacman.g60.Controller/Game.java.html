@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Game.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.Controller</a> &gt; <span class="el_source">Game.java</span></div><h1>Game.java</h1><pre class="source lang-java linenums">package com.pacman.g60.Controller;
 
-import java.awt.*;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import com.pacman.g60.Model.*;
-import com.pacman.g60.View.ArenaView;
-import com.pacman.g60.View.MenuView;
-import com.pacman.g60.View.ViewFactory;
+import com.pacman.g60.View.*;
 
 public class Game {
 
@@ -34,235 +28,296 @@ public class Game {
 
     private class StateMainMenu implements State {
         MenuModel menuModel;
+        TextModel title;
         MenuView menuView;
-<span class="nc" id="L38">        public StateMainMenu(MenuView menuView){</span>
-<span class="nc" id="L39">            this.menuView = menuView;</span>
+        GUIViewComposite view;
+<span class="nc" id="L34">        public StateMainMenu(MenuView menuView, TextView textView){</span>
+<span class="nc" id="L35">            this.menuView = menuView;</span>
+
+<span class="nc" id="L37">            view = new GUIViewComposite(menuView.getGUI());</span>
+<span class="nc" id="L38">            view.addView(textView);</span>
+<span class="nc" id="L39">            view.addView(menuView);</span>
             
 <span class="nc" id="L41">            menuModel = new MenuModel();</span>
 <span class="nc" id="L42">            menuModel.setFrame(true);</span>
-<span class="nc" id="L43">            menuModel.setRelativePosition(new RelativePosition(0.5, 0.5));</span>
-<span class="nc" id="L44">            menuModel.setVerticalAlign(MenuModel.VerticalAlign.CENTER);</span>
+<span class="nc" id="L43">            menuModel.setRelativePosition(new PositionReal(0.5, 0.18));</span>
+<span class="nc" id="L44">            menuModel.setVerticalAlign(MenuModel.VerticalAlign.TOP);</span>
 <span class="nc" id="L45">            menuModel.setHorizontalAlign(MenuModel.HorizontalAlign.CENTER);</span>
 <span class="nc" id="L46">            menuModel.append(new MenuModel.NormalItem(menuModel,0, &quot;Play&quot;      ));</span>
 <span class="nc" id="L47">            menuModel.append(new MenuModel.NormalItem(menuModel,1, &quot;Controls&quot;  ));</span>
 <span class="nc" id="L48">            menuModel.append(new MenuModel.NormalItem(menuModel,2, &quot;Scoreboard&quot;));</span>
 <span class="nc" id="L49">            menuModel.append(new MenuModel.NormalItem(menuModel,3, &quot;Save game&quot; ));</span>
 <span class="nc" id="L50">            menuModel.append(new MenuModel.NormalItem(menuModel,4, &quot;Load game&quot; ));</span>
-<span class="nc" id="L51">        }</span>
+<span class="nc" id="L51">            menuModel.append(new MenuModel.NormalItem(menuModel,5, &quot;Exit&quot;      ));</span>
+
+<span class="nc" id="L53">            title = new TextModel(&quot;The Cursed Catacombs&quot;);</span>
+<span class="nc" id="L54">            title.setPosition(new PositionReal(0.5, 0.10));</span>
+<span class="nc" id="L55">            title.setVerticalAlign(Alignable.VerticalAlign.TOP);</span>
+<span class="nc" id="L56">            title.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);</span>
+<span class="nc" id="L57">            textView.setTextModel(title);</span>
+<span class="nc" id="L58">        }</span>
         @Override
         public State run() throws IOException {
-<span class="nc" id="L54">            MenuModel menuModel_ = new MenuModel(menuModel);</span>
-<span class="nc" id="L55">            menuView.setMenuModel(menuModel_);</span>
-<span class="nc" id="L56">            MenuController menuController = new MenuController(menuModel_, menuView);</span>
-<span class="nc" id="L57">            int r = menuController.run();</span>
-<span class="nc bnc" id="L58" title="All 7 branches missed.">            switch(r){</span>
-<span class="nc" id="L59">                case -1: return stateExit;</span>
-<span class="nc" id="L60">                case 0: return stateLevelSelect;</span>
-<span class="nc" id="L61">                case 1: return stateControls;</span>
-<span class="nc" id="L62">                case 2: return stateScoreboard;</span>
-<span class="nc" id="L63">                case 3: return stateSave;</span>
-<span class="nc" id="L64">                case 4: return stateLoad;</span>
-<span class="nc" id="L65">                default: throw new IndexOutOfBoundsException();</span>
-            }
+<span class="nc" id="L61">            MenuModel menuModel_ = new MenuModel(menuModel);</span>
+<span class="nc" id="L62">            menuView.setMenuModel(menuModel_);</span>
+<span class="nc" id="L63">            MenuController menuController = new MenuController(menuModel_, view);</span>
+            while(true) {
+<span class="nc" id="L65">                int r = menuController.run();</span>
+<span class="nc bnc" id="L66" title="All 8 branches missed.">                switch (r) {</span>
+<span class="nc" id="L67">                    case -1: break;</span>
+<span class="nc" id="L68">                    case  0: return stateLevelSelect;</span>
+<span class="nc" id="L69">                    case  1: return stateControls;</span>
+<span class="nc" id="L70">                    case  2: return stateScoreboard;</span>
+<span class="nc" id="L71">                    case  3: return stateSave;</span>
+<span class="nc" id="L72">                    case  4: return stateLoad;</span>
+<span class="nc" id="L73">                    case  5: return stateExit;</span>
+<span class="nc" id="L74">                    default: throw new IndexOutOfBoundsException();</span>
+                }
+<span class="nc" id="L76">            }</span>
         }
     }
     
-<span class="nc" id="L70">    private class StateControls implements State {</span>
+<span class="nc" id="L80">    private class StateControls implements State {</span>
         @Override
         public State run() {
-<span class="nc" id="L73">            return stateMainMenu;</span>
+<span class="nc" id="L83">            return stateMainMenu;</span>
         }
     }
     
-<span class="nc" id="L77">    private class StateScoreboard implements State {</span>
+<span class="nc" id="L87">    private class StateScoreboard implements State {</span>
         @Override
         public State run() {
-<span class="nc" id="L80">            return stateMainMenu;</span>
+<span class="nc" id="L90">            return stateMainMenu;</span>
         }
     }
 
-<span class="nc" id="L84">    private class StateSave implements State {</span>
+<span class="nc" id="L94">    private class StateSave implements State {</span>
         @Override
         public State run() {
-<span class="nc" id="L87">            return stateMainMenu;</span>
+<span class="nc" id="L97">            return stateMainMenu;</span>
         }
     }
 
-<span class="nc" id="L91">    private class StateLoad implements State {</span>
+<span class="nc" id="L101">    private class StateLoad implements State {</span>
         @Override
         public State run() {
-<span class="nc" id="L94">            return stateMainMenu;</span>
+<span class="nc" id="L104">            return stateMainMenu;</span>
         }
     }
     
     private class StateLevelSelector implements State {
         List&lt;LevelModel&gt; levelModels;
-<span class="nc" id="L100">        public StateLevelSelector() throws FileNotFoundException {</span>
-<span class="nc" id="L101">            List&lt;String&gt; levelPaths = new ArrayList&lt;&gt;(Arrays.asList(</span>
+<span class="nc" id="L110">        public StateLevelSelector() throws FileNotFoundException {</span>
+<span class="nc" id="L111">            List&lt;String&gt; levelPaths = new ArrayList&lt;&gt;(Arrays.asList(</span>
                     &quot;src/main/resources/maps/map1.map&quot;
             ));
-<span class="nc" id="L104">            levelModels = new ArrayList&lt;&gt;();</span>
-<span class="nc bnc" id="L105" title="All 2 branches missed.">            for(Integer i = 0; i &lt; levelPaths.size(); ++i){</span>
-<span class="nc" id="L106">                InputStream inputStream = new FileInputStream(levelPaths.get(i));</span>
-<span class="nc" id="L107">                ArenaModel.Loader arenaModelLoader = new ArenaModelLoaderStream(inputStream);</span>
-<span class="nc" id="L108">                levelModels.add(new LevelModel(arenaModelLoader.getArenaModel()));</span>
+<span class="nc" id="L114">            levelModels = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">            for(Integer i = 0; i &lt; levelPaths.size(); ++i){</span>
+<span class="nc" id="L116">                InputStream inputStream = new FileInputStream(levelPaths.get(i));</span>
+<span class="nc" id="L117">                ArenaModel.Loader arenaModelLoader = new ArenaModelLoaderStream(inputStream);</span>
+<span class="nc" id="L118">                levelModels.add(new LevelModel(arenaModelLoader.getArenaModel()));</span>
             }
-<span class="nc" id="L110">        }</span>
+<span class="nc" id="L120">        }</span>
         @Override
         public State run() throws IOException, NoSuchMethodException {
-<span class="nc" id="L113">            stateArena.setArenaModel(levelModels.get(0).getArenaModelClone());</span>
-<span class="nc" id="L114">            return stateArena;</span>
+<span class="nc" id="L123">            stateArena.setArenaModel(levelModels.get(0).getArenaModelClone());</span>
+<span class="nc" id="L124">            return stateArena;</span>
         }
     }
     
     private class StateArena implements State {
         ArenaModel arenaModel;
         ArenaView arenaView;
-<span class="nc" id="L121">        ArenaController arenaController = null;</span>
-<span class="nc" id="L122">        boolean mustContinueRunning = false;</span>
-<span class="nc" id="L123">        public StateArena(ArenaView arenaView){</span>
-<span class="nc" id="L124">            this.arenaView = arenaView;</span>
-<span class="nc" id="L125">        }</span>
+<span class="nc" id="L131">        ArenaController arenaController = null;</span>
+<span class="nc" id="L132">        boolean mustContinueRunning = false;</span>
+<span class="nc" id="L133">        public StateArena(ArenaView arenaView){</span>
+<span class="nc" id="L134">            this.arenaView = arenaView;</span>
+<span class="nc" id="L135">        }</span>
         @Override
         public State run() throws IOException {
-<span class="nc bnc" id="L128" title="All 2 branches missed.">            if(arenaController == null) arenaController = new ArenaController(arenaModel, arenaView);</span>
-<span class="nc bnc" id="L129" title="All 2 branches missed.">            if(mustContinueRunning) {</span>
-<span class="nc" id="L130">                arenaController.continueRunning();</span>
+<span class="nc bnc" id="L138" title="All 2 branches missed.">            if(arenaController == null) arenaController = new ArenaController(arenaModel, arenaView);</span>
+<span class="nc bnc" id="L139" title="All 2 branches missed.">            if(mustContinueRunning) {</span>
+<span class="nc" id="L140">                arenaController.continueRunning();</span>
             }
-<span class="nc" id="L132">            arenaController.run();</span>
-            
-<span class="nc bnc" id="L134" title="All 2 branches missed.">            if(!arenaController.isOver()) return statePause;</span>
-<span class="nc bnc" id="L135" title="All 2 branches missed.">            if(arenaController.isWin()) return stateWin;</span>
-<span class="nc" id="L136">            else                        return stateLose;</span>
+<span class="nc" id="L142">            arenaController.run();</span>
+<span class="nc bnc" id="L143" title="All 2 branches missed.">            if(arenaController.wasTerminated()) return stateExit;</span>
+<span class="nc bnc" id="L144" title="All 2 branches missed.">            if(!arenaController.isOver()) return statePause;</span>
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            if(arenaController.isWin()) return stateWin;</span>
+<span class="nc" id="L146">            else                        return stateLose;</span>
         }
 
         public void setArenaModel(ArenaModel arenaModel) {
-<span class="nc" id="L140">            this.arenaModel = arenaModel;</span>
-<span class="nc" id="L141">            arenaController = null;</span>
-<span class="nc" id="L142">            mustContinueRunning = false;</span>
-<span class="nc" id="L143">        }</span>
+<span class="nc" id="L150">            this.arenaModel = arenaModel;</span>
+<span class="nc" id="L151">            arenaController = null;</span>
+<span class="nc" id="L152">            mustContinueRunning = false;</span>
+<span class="nc" id="L153">        }</span>
 
         public void continueRunning() {
-<span class="nc" id="L146">            mustContinueRunning = true;</span>
-<span class="nc" id="L147">        }</span>
+<span class="nc" id="L156">            mustContinueRunning = true;</span>
+<span class="nc" id="L157">        }</span>
     }
     
     private class StateWin implements State {
         MenuModel menuModel;
+        TextModel title;
         MenuView menuView;
-<span class="nc" id="L153">        public StateWin(MenuView menuView){</span>
-<span class="nc" id="L154">            this.menuView = menuView;</span>
+        GUIViewComposite view;
+<span class="nc" id="L165">        public StateWin(MenuView menuView, TextView textView){</span>
+<span class="nc" id="L166">            this.menuView = menuView;</span>
             
-<span class="nc" id="L156">            menuModel = new MenuModel();</span>
-<span class="nc" id="L157">            menuModel.setRelativePosition(new RelativePosition(0.5, 0.4));</span>
-<span class="nc" id="L158">            menuModel.setVerticalAlign(MenuModel.VerticalAlign.TOP);</span>
-<span class="nc" id="L159">            menuModel.setHorizontalAlign(MenuModel.HorizontalAlign.CENTER);</span>
-<span class="nc" id="L160">            menuModel.append(new MenuModel.NormalItem(menuModel, 0, &quot;Continue playing&quot;));</span>
-<span class="nc" id="L161">            menuModel.append(new MenuModel.NormalItem(menuModel, 1, &quot;Back to main menu&quot;));</span>
-<span class="nc" id="L162">        }</span>
+<span class="nc" id="L168">            view = new GUIViewComposite(menuView.getGUI());</span>
+<span class="nc" id="L169">            view.addView(textView);</span>
+<span class="nc" id="L170">            view.addView(menuView);</span>
+            
+<span class="nc" id="L172">            menuModel = new MenuModel();</span>
+<span class="nc" id="L173">            menuModel.setRelativePosition(new PositionReal(0.5, 0.4));</span>
+<span class="nc" id="L174">            menuModel.setVerticalAlign(Alignable.VerticalAlign.TOP);</span>
+<span class="nc" id="L175">            menuModel.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);</span>
+<span class="nc" id="L176">            menuModel.append(new MenuModel.NormalItem(menuModel, 0, &quot;Continue playing&quot;));</span>
+<span class="nc" id="L177">            menuModel.append(new MenuModel.NormalItem(menuModel, 1, &quot;Back to main menu&quot;));</span>
+        
+<span class="nc" id="L179">            title = new TextModel(&quot;Level completed!&quot;);</span>
+<span class="nc" id="L180">            title.setPosition(new PositionReal(0.5, 0.3));</span>
+<span class="nc" id="L181">            title.setVerticalAlign(Alignable.VerticalAlign.BOTTOM);</span>
+<span class="nc" id="L182">            title.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);</span>
+<span class="nc" id="L183">            textView.setTextModel(title);</span>
+<span class="nc" id="L184">        }</span>
         @Override
         public State run() throws IOException {
-<span class="nc" id="L165">            MenuModel menuModel_ = new MenuModel(menuModel);</span>
-<span class="nc" id="L166">            menuView.setMenuModel(menuModel_);</span>
-<span class="nc" id="L167">            MenuController menuController = new MenuController(menuModel_, menuView);</span>
-<span class="nc" id="L168">            int r = menuController.run();</span>
-<span class="nc bnc" id="L169" title="All 4 branches missed.">            switch(r){</span>
-<span class="nc" id="L170">                case -1: return stateExit;</span>
+<span class="nc" id="L187">            MenuModel menuModel_ = new MenuModel(menuModel);</span>
+<span class="nc" id="L188">            menuView.setMenuModel(menuModel_);</span>
+<span class="nc" id="L189">            MenuController menuController = new MenuController(menuModel_, view);</span>
+<span class="nc" id="L190">            int r = menuController.run();</span>
+<span class="nc bnc" id="L191" title="All 4 branches missed.">            switch(r){</span>
+<span class="nc" id="L192">                case -1: return stateMainMenu;</span>
                 case 0:
-<span class="nc" id="L172">                    stateArena.continueRunning();</span>
-<span class="nc" id="L173">                    return stateArena;</span>
-<span class="nc" id="L174">                case 1: return stateMainMenu;</span>
-<span class="nc" id="L175">                default: throw new IndexOutOfBoundsException();</span>
+<span class="nc" id="L194">                    stateArena.continueRunning();</span>
+<span class="nc" id="L195">                    return stateArena;</span>
+<span class="nc" id="L196">                case 1: return stateMainMenu;</span>
+<span class="nc" id="L197">                default: throw new IndexOutOfBoundsException();</span>
             }
         }
     }
 
     private class StateLose implements State {
         MenuModel menuModel;
+        TextModel title;
         MenuView menuView;
-<span class="nc" id="L183">        public StateLose(MenuView menuView){</span>
-<span class="nc" id="L184">            this.menuView = menuView;</span>
+        GUIViewComposite view;
+<span class="nc" id="L207">        public StateLose(MenuView menuView, TextView textView){</span>
+<span class="nc" id="L208">            this.menuView = menuView;</span>
 
-<span class="nc" id="L186">            menuModel = new MenuModel();</span>
-<span class="nc" id="L187">            menuModel.setRelativePosition(new RelativePosition(0.5, 0.5));</span>
-<span class="nc" id="L188">            menuModel.setVerticalAlign(MenuModel.VerticalAlign.CENTER);</span>
-<span class="nc" id="L189">            menuModel.setHorizontalAlign(MenuModel.HorizontalAlign.CENTER);</span>
-<span class="nc" id="L190">            menuModel.append(new MenuModel.NormalItem(menuModel, 0, &quot;To level selector&quot;));</span>
-<span class="nc" id="L191">            menuModel.append(new MenuModel.NormalItem(menuModel, 1, &quot;Back to main menu&quot;));</span>
-<span class="nc" id="L192">        }</span>
+<span class="nc" id="L210">            view = new GUIViewComposite(menuView.getGUI());</span>
+<span class="nc" id="L211">            view.addView(textView);</span>
+<span class="nc" id="L212">            view.addView(menuView);</span>
+
+<span class="nc" id="L214">            menuModel = new MenuModel();</span>
+<span class="nc" id="L215">            menuModel.setRelativePosition(new PositionReal(0.5, 0.5));</span>
+<span class="nc" id="L216">            menuModel.setVerticalAlign(MenuModel.VerticalAlign.CENTER);</span>
+<span class="nc" id="L217">            menuModel.setHorizontalAlign(MenuModel.HorizontalAlign.CENTER);</span>
+<span class="nc" id="L218">            menuModel.append(new MenuModel.NormalItem(menuModel, 0, &quot;To level selector&quot;));</span>
+<span class="nc" id="L219">            menuModel.append(new MenuModel.NormalItem(menuModel, 1, &quot;Back to main menu&quot;));</span>
+
+<span class="nc" id="L221">            title = new TextModel(&quot;You lost...&quot;);</span>
+<span class="nc" id="L222">            title.setPosition(new PositionReal(0.5, 0.3));</span>
+<span class="nc" id="L223">            title.setVerticalAlign(Alignable.VerticalAlign.BOTTOM);</span>
+<span class="nc" id="L224">            title.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);</span>
+<span class="nc" id="L225">            textView.setTextModel(title);</span>
+<span class="nc" id="L226">        }</span>
         @Override
         public State run() throws IOException {
-<span class="nc" id="L195">            MenuModel menuModel_ = new MenuModel(menuModel);</span>
-<span class="nc" id="L196">            menuView.setMenuModel(menuModel_);</span>
-<span class="nc" id="L197">            MenuController menuController = new MenuController(menuModel_, menuView);</span>
-<span class="nc" id="L198">            int r = menuController.run();</span>
-<span class="nc bnc" id="L199" title="All 4 branches missed.">            switch(r){</span>
-<span class="nc" id="L200">                case -1: return stateExit;</span>
-<span class="nc" id="L201">                case 0: return stateLevelSelect;</span>
-<span class="nc" id="L202">                case 1: return stateMainMenu;</span>
-<span class="nc" id="L203">                default: throw new IndexOutOfBoundsException();</span>
+<span class="nc" id="L229">            MenuModel menuModel_ = new MenuModel(menuModel);</span>
+<span class="nc" id="L230">            menuView.setMenuModel(menuModel_);</span>
+<span class="nc" id="L231">            MenuController menuController = new MenuController(menuModel_, view);</span>
+<span class="nc" id="L232">            int r = menuController.run();</span>
+<span class="nc bnc" id="L233" title="All 4 branches missed.">            switch(r){</span>
+<span class="nc" id="L234">                case -1: return stateMainMenu;</span>
+<span class="nc" id="L235">                case 0: return stateLevelSelect;</span>
+<span class="nc" id="L236">                case 1: return stateMainMenu;</span>
+<span class="nc" id="L237">                default: throw new IndexOutOfBoundsException();</span>
             }
         }
     }
 
     private class StatePause implements State {
         MenuModel menuModel;
+        TextModel title;
         MenuView menuView;
-<span class="nc" id="L211">        public StatePause(MenuView menuView){</span>
-<span class="nc" id="L212">            this.menuView = menuView;</span>
+        GUIViewComposite view;
+<span class="nc" id="L247">        public StatePause(MenuView menuView, TextView textView){</span>
+<span class="nc" id="L248">            this.menuView = menuView;</span>
 
-<span class="nc" id="L214">            menuModel = new MenuModel();</span>
-<span class="nc" id="L215">            menuModel.setRelativePosition(new RelativePosition(0.5, 0.5));</span>
-<span class="nc" id="L216">            menuModel.setVerticalAlign(MenuModel.VerticalAlign.CENTER);</span>
-<span class="nc" id="L217">            menuModel.setHorizontalAlign(MenuModel.HorizontalAlign.CENTER);</span>
-<span class="nc" id="L218">            menuModel.append(new MenuModel.NormalItem(menuModel, 0, &quot;Unpause game&quot;));</span>
-<span class="nc" id="L219">            menuModel.append(new MenuModel.NormalItem(menuModel, 1, &quot;Back to main menu&quot;));</span>
-<span class="nc" id="L220">        }</span>
+<span class="nc" id="L250">            view = new GUIViewComposite(menuView.getGUI());</span>
+<span class="nc" id="L251">            view.addView(textView);</span>
+<span class="nc" id="L252">            view.addView(menuView);</span>
+
+<span class="nc" id="L254">            menuModel = new MenuModel();</span>
+<span class="nc" id="L255">            menuModel.setRelativePosition(new PositionReal(0.5, 0.5));</span>
+<span class="nc" id="L256">            menuModel.setVerticalAlign(MenuModel.VerticalAlign.CENTER);</span>
+<span class="nc" id="L257">            menuModel.setHorizontalAlign(MenuModel.HorizontalAlign.CENTER);</span>
+<span class="nc" id="L258">            menuModel.append(new MenuModel.NormalItem(menuModel, 0, &quot;Unpause game&quot;));</span>
+<span class="nc" id="L259">            menuModel.append(new MenuModel.NormalItem(menuModel, 1, &quot;Back to main menu&quot;));</span>
+
+<span class="nc" id="L261">            title = new TextModel(&quot;Paused&quot;);</span>
+<span class="nc" id="L262">            title.setPosition(new PositionReal(0.5, 0.3));</span>
+<span class="nc" id="L263">            title.setVerticalAlign(Alignable.VerticalAlign.BOTTOM);</span>
+<span class="nc" id="L264">            title.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);</span>
+<span class="nc" id="L265">            textView.setTextModel(title);</span>
+<span class="nc" id="L266">        }</span>
         @Override
         public State run() throws IOException {
-<span class="nc" id="L223">            MenuModel menuModel_ = new MenuModel(menuModel);</span>
-<span class="nc" id="L224">            menuView.setMenuModel(menuModel_);</span>
-<span class="nc" id="L225">            MenuController menuController = new MenuController(menuModel_, menuView);</span>
-<span class="nc" id="L226">            int r = menuController.run();</span>
-<span class="nc bnc" id="L227" title="All 4 branches missed.">            switch(r){</span>
-<span class="nc" id="L228">                case -1: return stateExit;</span>
+<span class="nc" id="L269">            MenuModel menuModel_ = new MenuModel(menuModel);</span>
+<span class="nc" id="L270">            menuView.setMenuModel(menuModel_);</span>
+<span class="nc" id="L271">            MenuController menuController = new MenuController(menuModel_, view);</span>
+<span class="nc" id="L272">            int r = menuController.run();</span>
+<span class="nc bnc" id="L273" title="All 4 branches missed.">            switch(r){</span>
+<span class="nc" id="L274">                case -1: return stateArena;</span>
                 case 0:
-<span class="nc bnc" id="L230" title="All 2 branches missed.">                    if(!stateArena.arenaModel.getShouldGameContinue()) stateArena.continueRunning();</span>
-<span class="nc" id="L231">                    return stateArena;</span>
-<span class="nc" id="L232">                case 1: return stateMainMenu;</span>
-<span class="nc" id="L233">                default: throw new IndexOutOfBoundsException();</span>
+<span class="nc bnc" id="L276" title="All 2 branches missed.">                    if(!stateArena.arenaModel.getShouldGameContinue()) stateArena.continueRunning();</span>
+<span class="nc" id="L277">                    return stateArena;</span>
+<span class="nc" id="L278">                case 1: return stateMainMenu;</span>
+<span class="nc" id="L279">                default: throw new IndexOutOfBoundsException();</span>
             }
         }
     }
     
-<span class="nc" id="L238">    private class StateExit implements State {</span>
+<span class="nc" id="L284">    private class StateExit implements State {</span>
         @Override
         public State run() throws NoSuchMethodException {
-<span class="nc" id="L241">            throw new NoSuchMethodException();</span>
+<span class="nc" id="L287">            throw new NoSuchMethodException();</span>
         }
     }
     
     private State state;
 
-<span class="nc" id="L247">    public Game(ViewFactory viewFactory) throws Exception {</span>
-<span class="nc" id="L248">        stateMainMenu       = new StateMainMenu(viewFactory.createMenuView());</span>
-<span class="nc" id="L249">        stateControls       = new StateControls();</span>
-<span class="nc" id="L250">        stateScoreboard     = new StateScoreboard();</span>
-<span class="nc" id="L251">        stateSave           = new StateSave();</span>
-<span class="nc" id="L252">        stateLoad           = new StateLoad();</span>
-<span class="nc" id="L253">        stateLevelSelect    = new StateLevelSelector();</span>
-<span class="nc" id="L254">        stateArena          = new StateArena(viewFactory.createArenaView());</span>
-<span class="nc" id="L255">        stateWin            = new StateWin(viewFactory.createMenuView());</span>
-<span class="nc" id="L256">        stateLose           = new StateLose(viewFactory.createMenuView());</span>
-<span class="nc" id="L257">        statePause          = new StatePause(viewFactory.createMenuView());</span>
-<span class="nc" id="L258">        stateExit           = new StateExit();</span>
-<span class="nc" id="L259">    }</span>
+<span class="nc" id="L293">    public Game(ViewFactory viewFactory) throws Exception {</span>
+<span class="nc" id="L294">        stateMainMenu       = new StateMainMenu(viewFactory.createMenuView(), viewFactory.createTextView());</span>
+<span class="nc" id="L295">        stateControls       = new StateControls();</span>
+<span class="nc" id="L296">        stateScoreboard     = new StateScoreboard();</span>
+<span class="nc" id="L297">        stateSave           = new StateSave();</span>
+<span class="nc" id="L298">        stateLoad           = new StateLoad();</span>
+<span class="nc" id="L299">        stateLevelSelect    = new StateLevelSelector();</span>
+<span class="nc" id="L300">        stateArena          = new StateArena(viewFactory.createArenaView());</span>
+<span class="nc" id="L301">        stateWin            = new StateWin(viewFactory.createMenuView(), viewFactory.createTextView());</span>
+<span class="nc" id="L302">        stateLose           = new StateLose(viewFactory.createMenuView(), viewFactory.createTextView());</span>
+<span class="nc" id="L303">        statePause          = new StatePause(viewFactory.createMenuView(), viewFactory.createTextView());</span>
+<span class="nc" id="L304">        stateExit           = new StateExit();</span>
+<span class="nc" id="L305">    }</span>
     
-    public void run() throws Exception {
-<span class="nc" id="L262">        state = stateMainMenu;</span>
-<span class="nc bnc" id="L263" title="All 2 branches missed.">        while(! (state instanceof StateExit)){</span>
-<span class="nc" id="L264">            state = state.run();</span>
-        }
-<span class="nc" id="L266">    }</span>
+    public void run() {
+<span class="nc" id="L308">        state = stateMainMenu;</span>
+        try {
+<span class="nc bnc" id="L310" title="All 2 branches missed.">            while (!(state instanceof StateExit)) {</span>
+<span class="nc" id="L311">                state = state.run();</span>
+            }
+<span class="nc" id="L313">        } catch(Exception e){</span>
+<span class="nc bnc" id="L314" title="All 2 branches missed.">            if(e instanceof EOFException) {</span>
+<span class="nc" id="L315">                System.out.println(&quot;Application closed after receiving exception (&quot; + e.getClass().toString() + &quot;): &quot; + e.getMessage());</span>
+            } else {
+<span class="nc" id="L317">                System.out.println(&quot;Application closed unexpectedly after receiving exception (&quot; + e.getClass().toString() + &quot;): &quot; + e.getMessage());</span>
+<span class="nc" id="L318">                e.printStackTrace();</span>
+            }
+<span class="nc" id="L320">        }</span>
+<span class="nc" id="L321">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

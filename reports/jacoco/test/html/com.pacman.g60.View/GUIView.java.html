@@ -6,29 +6,31 @@ import com.googlecode.lanterna.input.KeyType;
 import java.io.IOException;
 
 public abstract class GUIView {
-<span class="fc" id="L9">    public enum COMMAND{ UP, DOWN, LEFT, RIGHT, ESC, EOF, SPACEBAR, P, ENTER }</span>
+    
+<span class="fc" id="L10">    public enum COMMAND{ UP, DOWN, LEFT, RIGHT, ESC, SPACEBAR, P, ENTER }</span>
     
     GUI gui;
-<span class="fc" id="L12">    public GUIView(GUI gui){</span>
-<span class="fc" id="L13">        this.gui = gui;</span>
-<span class="fc" id="L14">    }</span>
-    
-<span class="nc" id="L16">    public final void clear(){ gui.clear(); }</span>
+<span class="fc" id="L13">    public GUIView(GUI gui){</span>
+<span class="fc" id="L14">        this.gui = gui;</span>
+<span class="fc" id="L15">    }</span>
+
+<span class="nc" id="L17">    public GUI getGUI() { return gui; }</span>
+
+<span class="nc" id="L19">    public final void clear(){ gui.clear(); }</span>
     public abstract  void draw();
-<span class="nc" id="L18">    public final void refresh() throws IOException { gui.refresh(); }</span>
+<span class="nc" id="L21">    public final void refresh() throws IOException { gui.refresh(); }</span>
     public final COMMAND pollCommand() throws IOException {
-<span class="fc" id="L20">        KeyStroke key = gui.pollKey();</span>
-<span class="fc bfc" id="L21" title="All 2 branches covered.">        if(key == null) return null;</span>
-<span class="fc bfc" id="L22" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowUp                                                      ) return COMMAND.UP;</span>
-<span class="fc bfc" id="L23" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowDown                                                    ) return COMMAND.DOWN;</span>
-<span class="fc bfc" id="L24" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowLeft                                                    ) return COMMAND.LEFT;</span>
-<span class="fc bfc" id="L25" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowRight                                                   ) return COMMAND.RIGHT;</span>
-<span class="fc bfc" id="L26" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.Escape                                                       ) return COMMAND.ESC;</span>
-<span class="pc bpc" id="L27" title="1 of 2 branches missed.">        if(key.getKeyType() == KeyType.EOF                                                          ) return COMMAND.EOF;</span>
-<span class="pc bpc" id="L28" title="1 of 2 branches missed.">        if(key.getKeyType() == KeyType.Enter                                                        ) return COMMAND.ENTER;</span>
-<span class="pc bpc" id="L29" title="2 of 4 branches missed.">        if(key.getKeyType() == KeyType.Character &amp;&amp; Character.toUpperCase(key.getCharacter()) == ' ') return COMMAND.SPACEBAR;</span>
-<span class="pc bpc" id="L30" title="2 of 4 branches missed.">        if(key.getKeyType() == KeyType.Character &amp;&amp; Character.toUpperCase(key.getCharacter()) == 'P') return COMMAND.P;</span>
-<span class="fc" id="L31">        return null;</span>
+<span class="fc" id="L23">        KeyStroke key = gui.pollKey();</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">        if(key == null) return null;</span>
+<span class="fc bfc" id="L25" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowUp                                                      ) return COMMAND.UP;</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowDown                                                    ) return COMMAND.DOWN;</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowLeft                                                    ) return COMMAND.LEFT;</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowRight                                                   ) return COMMAND.RIGHT;</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.Escape                                                       ) return COMMAND.ESC;</span>
+<span class="pc bpc" id="L30" title="1 of 2 branches missed.">        if(key.getKeyType() == KeyType.Enter                                                        ) return COMMAND.ENTER;</span>
+<span class="pc bpc" id="L31" title="2 of 4 branches missed.">        if(key.getKeyType() == KeyType.Character &amp;&amp; Character.toUpperCase(key.getCharacter()) == ' ') return COMMAND.SPACEBAR;</span>
+<span class="pc bpc" id="L32" title="2 of 4 branches missed.">        if(key.getKeyType() == KeyType.Character &amp;&amp; Character.toUpperCase(key.getCharacter()) == 'P') return COMMAND.P;</span>
+<span class="fc" id="L33">        return null;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

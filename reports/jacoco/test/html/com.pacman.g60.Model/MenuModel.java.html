@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MenuModel.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.Model</a> &gt; <span class="el_source">MenuModel.java</span></div><h1>MenuModel.java</h1><pre class="source lang-java linenums">package com.pacman.g60.Model;
 
-import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class MenuModel extends Alignable {
@@ -16,97 +14,97 @@ public class MenuModel extends Alignable {
         @Override
         public Object clone() {
             try {
-<span class="nc" id="L19">                return getClass().getDeclaredConstructor(MenuModel.class, Integer.class, String.class).newInstance(parent, id, text);</span>
-<span class="nc" id="L20">            } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {</span>
-<span class="nc" id="L21">                e.printStackTrace();</span>
+<span class="nc" id="L17">                return getClass().getDeclaredConstructor(MenuModel.class, Integer.class, String.class).newInstance(parent, id, text);</span>
+<span class="nc" id="L18">            } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {</span>
+<span class="nc" id="L19">                e.printStackTrace();</span>
             }
-<span class="nc" id="L23">            return null;</span>
+<span class="nc" id="L21">            return null;</span>
         }
 
-<span class="nc" id="L26">        public Item(MenuModel parent, Integer id, String text){</span>
-<span class="nc" id="L27">            this.parent = parent;</span>
-<span class="nc" id="L28">            this.text = text;</span>
-<span class="nc" id="L29">            this.id = Integer.valueOf(id);</span>
-<span class="nc" id="L30">        }</span>
+<span class="nc" id="L24">        public Item(MenuModel parent, Integer id, String text){</span>
+<span class="nc" id="L25">            this.parent = parent;</span>
+<span class="nc" id="L26">            this.text = text;</span>
+<span class="nc" id="L27">            this.id = Integer.valueOf(id);</span>
+<span class="nc" id="L28">        }</span>
 
         public void setParent(MenuModel parent) {
-<span class="nc" id="L33">            this.parent = parent;</span>
-<span class="nc" id="L34">        }</span>
+<span class="nc" id="L31">            this.parent = parent;</span>
+<span class="nc" id="L32">        }</span>
         
-<span class="nc" id="L36">        public final String getText() { return text; }</span>
+<span class="nc" id="L34">        public final String getText() { return text; }</span>
         //public final void setText(String text) { this.text = text; }
 
-<span class="nc" id="L39">        public final Integer getId() { return id; }</span>
+<span class="nc" id="L37">        public final Integer getId() { return id; }</span>
         //public final void setId(Integer id) { this.id = id; }
 
         public boolean isSelected() {
-<span class="nc" id="L43">            return (id.equals(parent.getSelectedItem().getId()));</span>
+<span class="nc" id="L41">            return (id.equals(parent.getSelectedItem().getId()));</span>
         }
         
     }
     
     public static class NormalItem extends Item {
         public NormalItem(MenuModel parent, Integer id, String text){
-<span class="nc" id="L50">            super(parent, id, text);</span>
-<span class="nc" id="L51">        }</span>
+<span class="nc" id="L48">            super(parent, id, text);</span>
+<span class="nc" id="L49">        }</span>
     }
     
-<span class="nc" id="L54">    List&lt;Item&gt; items = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L52">    List&lt;Item&gt; items = new ArrayList&lt;&gt;();</span>
     int selected;
-<span class="nc" id="L56">    boolean frame = false;</span>
-<span class="nc" id="L57">    RelativePosition position = new RelativePosition(0, 0);</span>
+<span class="nc" id="L54">    boolean frame = false;</span>
+<span class="nc" id="L55">    PositionReal position = new PositionReal(0, 0);</span>
     
-<span class="nc" id="L59">    public MenuModel(){</span>
-<span class="nc" id="L60">        setVerticalAlign(VerticalAlign.TOP);</span>
-<span class="nc" id="L61">        setHorizontalAlign(HorizontalAlign.LEFT);</span>
-<span class="nc" id="L62">    }</span>
+<span class="nc" id="L57">    public MenuModel(){</span>
+<span class="nc" id="L58">        setVerticalAlign(VerticalAlign.TOP);</span>
+<span class="nc" id="L59">        setHorizontalAlign(HorizontalAlign.LEFT);</span>
+<span class="nc" id="L60">    }</span>
 
     public MenuModel(MenuModel menuModel) {
-<span class="nc" id="L65">        this();</span>
-<span class="nc bnc" id="L66" title="All 2 branches missed.">        for(Item item: menuModel.items) {</span>
-<span class="nc" id="L67">            Item item_ = (Item)item.clone();</span>
-<span class="nc" id="L68">            item_.setParent(this);</span>
-<span class="nc" id="L69">            append(item_);</span>
-<span class="nc" id="L70">        }</span>
-<span class="nc" id="L71">        selected = menuModel.selected;</span>
-<span class="nc" id="L72">        setFrame(menuModel.hasFrame());</span>
-<span class="nc" id="L73">        setRelativePosition(menuModel.getRelativePosition());</span>
-<span class="nc" id="L74">        setHorizontalAlign(menuModel.getHorizontalAlign());</span>
-<span class="nc" id="L75">        setVerticalAlign(menuModel.getVerticalAlign());</span>
-<span class="nc" id="L76">    }</span>
+<span class="nc" id="L63">        this();</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">        for(Item item: menuModel.items) {</span>
+<span class="nc" id="L65">            Item item_ = (Item)item.clone();</span>
+<span class="nc" id="L66">            item_.setParent(this);</span>
+<span class="nc" id="L67">            append(item_);</span>
+<span class="nc" id="L68">        }</span>
+<span class="nc" id="L69">        selected = menuModel.selected;</span>
+<span class="nc" id="L70">        setFrame(menuModel.hasFrame());</span>
+<span class="nc" id="L71">        setRelativePosition(menuModel.getRelativePosition());</span>
+<span class="nc" id="L72">        setHorizontalAlign(menuModel.getHorizontalAlign());</span>
+<span class="nc" id="L73">        setVerticalAlign(menuModel.getVerticalAlign());</span>
+<span class="nc" id="L74">    }</span>
     
     public void setFrame(boolean frame){
-<span class="nc" id="L79">        this.frame = frame;</span>
-<span class="nc" id="L80">    }</span>
+<span class="nc" id="L77">        this.frame = frame;</span>
+<span class="nc" id="L78">    }</span>
     public boolean hasFrame() {
-<span class="nc" id="L82">        return frame;</span>
+<span class="nc" id="L80">        return frame;</span>
     }
 
     public List&lt;Item&gt; getItems() {
-<span class="nc" id="L86">        return items;</span>
+<span class="nc" id="L84">        return items;</span>
     }
     public void append(MenuModel.Item item) {
-<span class="nc" id="L89">        items.add(item);</span>
-<span class="nc bnc" id="L90" title="All 2 branches missed.">        if(items.size() == 1) selected = 0;</span>
-<span class="nc" id="L91">    }</span>
+<span class="nc" id="L87">        items.add(item);</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">        if(items.size() == 1) selected = 0;</span>
+<span class="nc" id="L89">    }</span>
     
     public void selectAbove() {
-<span class="nc bnc" id="L94" title="All 2 branches missed.">        if (items.size() == 0) throw new ArrayIndexOutOfBoundsException();</span>
-<span class="nc" id="L95">        --selected;</span>
-<span class="nc bnc" id="L96" title="All 2 branches missed.">        if (selected &lt; 0) selected = items.size() - 1;</span>
-<span class="nc" id="L97">    }</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">        if (items.size() == 0) throw new ArrayIndexOutOfBoundsException();</span>
+<span class="nc" id="L93">        --selected;</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">        if (selected &lt; 0) selected = items.size() - 1;</span>
+<span class="nc" id="L95">    }</span>
     public void selectBelow(){
-<span class="nc bnc" id="L99" title="All 2 branches missed.">        if(items.size() == 0) throw new ArrayIndexOutOfBoundsException();</span>
-<span class="nc" id="L100">        ++selected;</span>
-<span class="nc bnc" id="L101" title="All 2 branches missed.">        if(selected &gt;= items.size()) selected = 0;</span>
-<span class="nc" id="L102">    }</span>
-<span class="nc" id="L103">    public Item getSelectedItem() { return items.get(selected); }</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">        if(items.size() == 0) throw new ArrayIndexOutOfBoundsException();</span>
+<span class="nc" id="L98">        ++selected;</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">        if(selected &gt;= items.size()) selected = 0;</span>
+<span class="nc" id="L100">    }</span>
+<span class="nc" id="L101">    public Item getSelectedItem() { return items.get(selected); }</span>
     
-    public void setRelativePosition(RelativePosition position){
-<span class="nc" id="L106">        this.position = position;</span>
-<span class="nc" id="L107">    }</span>
-    public RelativePosition getRelativePosition(){
-<span class="nc" id="L109">        return position;</span>
+    public void setRelativePosition(PositionReal position){
+<span class="nc" id="L104">        this.position = position;</span>
+<span class="nc" id="L105">    }</span>
+    public PositionReal getRelativePosition(){
+<span class="nc" id="L107">        return position;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

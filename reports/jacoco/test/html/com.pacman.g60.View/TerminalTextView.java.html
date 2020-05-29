@@ -26,21 +26,27 @@ public class TerminalTextView extends TextView{
     public void draw(){
 <span class="fc" id="L27">        TextModel text = getTextModel();</span>
 <span class="pc bpc" id="L28" title="1 of 2 branches missed.">        if(text == null) return;</span>
-<span class="fc" id="L29">        int x0 = text.getPosition().getX();</span>
-<span class="fc" id="L30">        int y0 = text.getPosition().getY();</span>
-<span class="pc bpc" id="L31" title="2 of 4 branches missed.">        switch(text.getHorizontalAlign()){</span>
-<span class="fc" id="L32">            case LEFT  : break;</span>
-<span class="fc" id="L33">            case CENTER: x0 -= getStringWidth(text.getText())/2; break;</span>
-<span class="nc" id="L34">            case RIGHT : x0 -= getStringWidth(text.getText())  ; break;</span>
+        int x0, y0;
+<span class="pc bpc" id="L30" title="1 of 2 branches missed.">        if(text.getUnit() == TextModel.UNIT.ABSOLUTE) {</span>
+<span class="fc" id="L31">            x0 = (int) text.getPosition().getX();</span>
+<span class="fc" id="L32">            y0 = (int) text.getPosition().getY();</span>
+        } else {
+<span class="nc" id="L34">            x0 = (int)(text.getPosition().getX() * terminalGUI.getW());</span>
+<span class="nc" id="L35">            y0 = (int)(text.getPosition().getY() * terminalGUI.getH());</span>
         }
-<span class="pc bpc" id="L36" title="3 of 4 branches missed.">        switch(text.getVerticalAlign()){</span>
-<span class="fc" id="L37">            case TOP  : break;</span>
-<span class="nc" id="L38">            case CENTER: y0 -= getStringHeight(text.getText())/2; break;</span>
-<span class="nc" id="L39">            case BOTTOM : y0 -= getStringHeight(text.getText())  ; break;</span>
+<span class="pc bpc" id="L37" title="2 of 4 branches missed.">        switch(text.getHorizontalAlign()){</span>
+<span class="fc" id="L38">            case LEFT  : break;</span>
+<span class="fc" id="L39">            case CENTER: x0 -= getStringWidth(text.getText())/2; break;</span>
+<span class="nc" id="L40">            case RIGHT : x0 -= getStringWidth(text.getText())  ; break;</span>
         }
-<span class="fc bfc" id="L41" title="All 2 branches covered.">        for(int i = 0; i &lt; text.getText().length(); ++i){</span>
-<span class="fc" id="L42">            drawChar(x0+i*font.getW(), y0, text.getText().charAt(i), text.getForegroundColor(), text.getBackgroundColor());</span>
+<span class="pc bpc" id="L42" title="3 of 4 branches missed.">        switch(text.getVerticalAlign()){</span>
+<span class="fc" id="L43">            case TOP  : break;</span>
+<span class="nc" id="L44">            case CENTER: y0 -= getStringHeight(text.getText())/2; break;</span>
+<span class="nc" id="L45">            case BOTTOM : y0 -= getStringHeight(text.getText())  ; break;</span>
         }
-<span class="fc" id="L44">    }</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        for(int i = 0; i &lt; text.getText().length(); ++i){</span>
+<span class="fc" id="L48">            drawChar(x0+i*font.getW(), y0, text.getText().charAt(i), text.getForegroundColor(), text.getBackgroundColor());</span>
+        }
+<span class="fc" id="L50">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

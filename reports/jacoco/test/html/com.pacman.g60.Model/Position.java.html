@@ -7,50 +7,51 @@ public class Position implements Comparable&lt;Position&gt;{
 <span class="fc" id="L7">        this.x = pos.x;</span>
 <span class="fc" id="L8">        this.y = pos.y;</span>
 <span class="fc" id="L9">    }</span>
+<span class="nc" id="L10">    public Position(PositionReal pos){ this((int)pos.getX(), (int)pos.getY()); }</span>
 
-<span class="fc" id="L11">    public Position(Integer x, Integer y) {</span>
-<span class="fc" id="L12">        this.x = x;</span>
-<span class="fc" id="L13">        this.y = y;</span>
-<span class="fc" id="L14">    }</span>
+<span class="fc" id="L12">    public Position(Integer x, Integer y) {</span>
+<span class="fc" id="L13">        this.x = x;</span>
+<span class="fc" id="L14">        this.y = y;</span>
+<span class="fc" id="L15">    }</span>
 
     public Integer getX() {
-<span class="fc" id="L17">        return x;</span>
+<span class="fc" id="L18">        return x;</span>
     }
 
     public void setX(Integer x) {
-<span class="fc" id="L21">        this.x = x;</span>
-<span class="fc" id="L22">    }</span>
+<span class="fc" id="L22">        this.x = x;</span>
+<span class="fc" id="L23">    }</span>
 
     public Integer getY() {
-<span class="fc" id="L25">        return y;</span>
+<span class="fc" id="L26">        return y;</span>
     }
 
     public void setY(Integer y) {
-<span class="fc" id="L29">        this.y = y;</span>
-<span class="fc" id="L30">    }</span>
+<span class="fc" id="L30">        this.y = y;</span>
+<span class="fc" id="L31">    }</span>
 
     @Override
     public boolean equals(Object obj) {
-<span class="fc bfc" id="L34" title="All 2 branches covered.">        if(obj == null) return false;</span>
-<span class="fc bfc" id="L35" title="All 2 branches covered.">        if (obj.getClass() != this.getClass()) return false;</span>
-<span class="fc bfc" id="L36" title="All 2 branches covered.">        return (compareTo((Position)obj) == 0);</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        if(obj == null) return false;</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        if (obj.getClass() != this.getClass()) return false;</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        return (compareTo((Position)obj) == 0);</span>
     }
 
     @Override
     public int compareTo(Position position) {
-<span class="fc bfc" id="L41" title="All 2 branches covered.">        if(this == position) return 0;</span>
-<span class="fc bfc" id="L42" title="All 2 branches covered.">        if(!this.x.equals(position.x)) return this.x - position.x;</span>
-<span class="fc" id="L43">        return this.y - position.y;</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        if(this == position) return 0;</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        if(!this.x.equals(position.x)) return this.x - position.x;</span>
+<span class="fc" id="L44">        return this.y - position.y;</span>
     }
 
     @Override
     public int hashCode() {
-<span class="fc" id="L48">        return x.hashCode() + y.hashCode();</span>
+<span class="fc" id="L49">        return x.hashCode() + y.hashCode();</span>
     }
 
     @Override
     public String toString() {
-<span class="fc" id="L53">        return &quot;(&quot; + x + &quot;, &quot; + y + &quot;)&quot;;</span>
+<span class="fc" id="L54">        return &quot;(&quot; + x + &quot;, &quot; + y + &quot;)&quot;;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

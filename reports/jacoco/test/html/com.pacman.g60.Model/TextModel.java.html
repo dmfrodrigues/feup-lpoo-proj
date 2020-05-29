@@ -3,26 +3,31 @@
 import com.pacman.g60.View.Color;
 
 public class TextModel extends Alignable {
-    String text;
-<span class="fc" id="L7">    double relativeFontSize = 1.0;</span>
-<span class="fc" id="L8">    Color f = Color.WHITE, b = Color.BLACK;</span>
-<span class="fc" id="L9">    Position position = new Position(0, 0);</span>
+<span class="fc" id="L6">    public enum UNIT { ABSOLUTE, RELATIVE }</span>
     
-<span class="fc" id="L11">    public TextModel(String text) {</span>
-<span class="fc" id="L12">        this.text = text;</span>
-<span class="fc" id="L13">    }</span>
-<span class="fc" id="L14">    public void setText(String text){ this.text = text; }</span>
-<span class="fc" id="L15">    public String getText(){ return text; }</span>
+    String text;
+<span class="fc" id="L9">    double relativeFontSize = 1.0;</span>
+<span class="fc" id="L10">    Color f = Color.WHITE, b = Color.BLACK;</span>
+<span class="fc" id="L11">    PositionReal position = new PositionReal(0, 0);</span>
+<span class="fc" id="L12">    private UNIT unit = UNIT.ABSOLUTE;</span>
+    
+<span class="fc" id="L14">    public TextModel(String text) {</span>
+<span class="fc" id="L15">        this.text = text;</span>
+<span class="fc" id="L16">    }</span>
+<span class="fc" id="L17">    public void setText(String text){ this.text = text; }</span>
+<span class="fc" id="L18">    public String getText(){ return text; }</span>
 
-<span class="nc" id="L17">    public void setRelativeFontSize(double relativeFontSize){ this.relativeFontSize = relativeFontSize; }</span>
-<span class="nc" id="L18">    public double getRelativeFontSize(){ return relativeFontSize; }</span>
+<span class="nc" id="L20">    public void setRelativeFontSize(double relativeFontSize){ this.relativeFontSize = relativeFontSize; }</span>
+<span class="nc" id="L21">    public double getRelativeFontSize(){ return relativeFontSize; }</span>
 
-<span class="nc" id="L20">    public final void setForegroundColor(Color f){ this.f = f; }</span>
-<span class="fc" id="L21">    public final Color getForegroundColor(){ return f; }</span>
-<span class="nc" id="L22">    public final void setBackgroundColor(Color b){ this.b = b; }</span>
-<span class="fc" id="L23">    public final Color getBackgroundColor(){ return b; }</span>
+<span class="nc" id="L23">    public final void setForegroundColor(Color f){ this.f = f; }</span>
+<span class="fc" id="L24">    public final Color getForegroundColor(){ return f; }</span>
+<span class="nc" id="L25">    public final void setBackgroundColor(Color b){ this.b = b; }</span>
+<span class="fc" id="L26">    public final Color getBackgroundColor(){ return b; }</span>
 
-<span class="fc" id="L25">    public void setPosition(Position position){ this.position = position; }</span>
-<span class="fc" id="L26">    public Position getPosition(){ return position; }</span>
+<span class="fc" id="L28">    public void setPosition(Position position){ this.position = new PositionReal(position); unit = UNIT.ABSOLUTE; }</span>
+<span class="nc" id="L29">    public void setPosition(PositionReal position){ this.position = position; unit = UNIT.RELATIVE; }</span>
+<span class="fc" id="L30">    public PositionReal getPosition(){ return position; }</span>
+<span class="fc" id="L31">    public UNIT getUnit(){ return unit; }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
