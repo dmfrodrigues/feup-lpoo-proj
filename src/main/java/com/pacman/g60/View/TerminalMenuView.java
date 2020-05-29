@@ -1,12 +1,11 @@
 package com.pacman.g60.View;
 
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 import com.pacman.g60.Model.MenuModel;
+import com.pacman.g60.Model.Position;
+import com.pacman.g60.Model.TextModel;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.List;
 
 public class TerminalMenuView extends MenuView {
@@ -37,17 +36,22 @@ public class TerminalMenuView extends MenuView {
         int Wtotal_chars = Wtotal/font.getW();
         int Htotal_chars = Htotal/font.getH();
         
-        textView.draw(x0, y0, "╔");
-        textView.draw(x0+font.getW(), y0, "═".repeat(Wtotal_chars-2));
-        textView.draw(x0+(Wtotal_chars-1)*font.getW(), y0, "╗");
+        TextModel textModel = new TextModel("");
+        textView.setTextModel(textModel);
+        
+        textModel.setText("╔" + "═".repeat(Wtotal_chars-2) + "╗");
+        textModel.setPosition(new Position(x0, y0));
+        textView.draw();
+        
         for(int y = 1; y < Htotal_chars-1; ++y) {
-            textView.draw(x0, y0+y*font.getH(), "║");
-            textView.draw(x0+(Wtotal_chars-1)*font.getW(), y0+y*font.getH(), "║");
+            textModel.setText("║" + " ".repeat(Wtotal_chars-2) + "║");
+            textModel.setPosition(new Position(x0, y0+y*font.getH()));
+            textView.draw();
         }
 
-        textView.draw(x0, y0+(Htotal_chars-1)*font.getH(), "╚");
-        textView.draw(x0+font.getW(), y0+(Htotal_chars-1)*font.getH(), "═".repeat(Wtotal_chars-2));
-        textView.draw(x0+(Wtotal_chars-1)*font.getW(), y0+(Htotal_chars-1)*font.getH(), "╝");
+        textModel.setText("╚" + "═".repeat(Wtotal_chars-2) + "╝");
+        textModel.setPosition(new Position(x0, y0+(Htotal_chars-1)*font.getH()));
+        textView.draw();
     }
     
     boolean frame = false;
@@ -65,19 +69,23 @@ public class TerminalMenuView extends MenuView {
         
         int Wbutton_chars = Wbutton/font.getW();
         int Hbutton_chars = Hbutton/font.getH();
-        
-        textView.draw(x1, y1, "┌");
-        textView.draw(x1+font.getW(), y1, "─".repeat(Wbutton_chars-2));
-        textView.draw(x1+(Wbutton_chars-1)*font.getW(), y1, "┐");
+
+        TextModel textModel = new TextModel("");
+        textView.setTextModel(textModel);
+
+        textModel.setText("┌" + "─".repeat(Wbutton_chars-2) + "┐");
+        textModel.setPosition(new Position(x1, y1));
+        textView.draw();
 
         for(int y = 1; y < Hbutton_chars-1; ++y) {
-            textView.draw(x1, y1+y*font.getH(), "│");
-            textView.draw(x1+(Wbutton_chars-1)*font.getW(), y1+y*font.getH(), "│");
+            textModel.setText("│" + " ".repeat(Wbutton_chars-2) + "│");
+            textModel.setPosition(new Position(x1, y1+y*font.getH()));
+            textView.draw();
         }
 
-        textView.draw(x1, y1+(Hbutton_chars-1)*font.getH(), "└");
-        textView.draw(x1+font.getW(), y1+(Hbutton_chars-1)*font.getH(), "─".repeat(Wbutton_chars-2));
-        textView.draw(x1+(Wbutton_chars-1)*font.getW(), y1+(Hbutton_chars-1)*font.getH(), "┘");
+        textModel.setText("└" + "─".repeat(Wbutton_chars-2) + "┘");
+        textModel.setPosition(new Position(x1, y1+(Hbutton_chars-1)*font.getH()));
+        textView.draw();
 
         int x2 = x1 + (Wbutton - textView.getStringWidth (item.getText()))/2;
         int y2 = y1 + (Hbutton - textView.getStringHeight(item.getText()))/2;
@@ -87,10 +95,11 @@ public class TerminalMenuView extends MenuView {
                     terminalGUI.drawCharacter(x, y, ' ', Color.WHITE, Color.GREY);
                 }
             }
-            textView.draw(x2, y2, item.getText(), Color.WHITE, Color.GREY);
-        } else {
-            textView.draw(x2, y2, item.getText());
+            textModel.setBackgroundColor(Color.GREY);
         }
+        textModel.setPosition(new Position(x2, y2));
+        textModel.setText(item.getText());
+        textView.draw();
     }
     
     @Override

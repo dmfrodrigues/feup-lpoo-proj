@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class MenuModel {
+public class MenuModel extends Alignable {
 
     public static abstract class Item implements Cloneable {
         private MenuModel parent;
@@ -50,27 +50,16 @@ public class MenuModel {
             super(parent, id, text);
         }
     }
-
-    public enum VerticalAlign {
-        TOP,
-        CENTER,
-        BOTTOM
-    }
-    
-    public enum HorizontalAlign {
-        LEFT,
-        CENTER,
-        RIGHT
-    }
     
     List<Item> items = new ArrayList<>();
     int selected;
     boolean frame = false;
     RelativePosition position = new RelativePosition(0, 0);
-    VerticalAlign verticalAlign = VerticalAlign.TOP;
-    HorizontalAlign horizontalAlign = HorizontalAlign.LEFT;
     
-    public MenuModel(){}
+    public MenuModel(){
+        setVerticalAlign(VerticalAlign.TOP);
+        setHorizontalAlign(HorizontalAlign.LEFT);
+    }
 
     public MenuModel(MenuModel menuModel) {
         this();
@@ -112,11 +101,6 @@ public class MenuModel {
         if(selected >= items.size()) selected = 0;
     }
     public Item getSelectedItem() { return items.get(selected); }
-
-    public void setVerticalAlign(VerticalAlign verticalAlign) { this.verticalAlign = verticalAlign; }
-    public VerticalAlign getVerticalAlign(){ return verticalAlign; }
-    public void setHorizontalAlign(HorizontalAlign horizontalAlign) { this.horizontalAlign = horizontalAlign; }
-    public HorizontalAlign getHorizontalAlign(){ return horizontalAlign; }
     
     public void setRelativePosition(RelativePosition position){
         this.position = position;
