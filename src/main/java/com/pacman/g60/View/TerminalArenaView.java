@@ -222,6 +222,27 @@ public class TerminalArenaView extends ArenaView {
             return spriteOrientable.getSprite(((DynamicElement) e).getDirection());
         }
     }
+
+    private class BulletView extends ElementView {
+        TerminalSpriteOrientable spriteOrientable;
+
+        public BulletView() throws FileNotFoundException {
+            TerminalSprite.Loader loader;
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/bullet-8-4-right.lan"));
+            spriteOrientable = new TerminalSpriteOrientable(loader.getTerminalSprite());
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/bullet-8-4-left.lan"));
+            spriteOrientable.setSpriteLeft(loader.getTerminalSprite());
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/bullet-8-4-up.lan"));
+            spriteOrientable.setSpriteUp(loader.getTerminalSprite());
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/bullet-8-4-down.lan"));
+            spriteOrientable.setSpriteDown(loader.getTerminalSprite());
+        }
+
+        @Override
+        protected TerminalSprite getSprite(Element e) {
+            return spriteOrientable.getSprite(((DynamicElement) e).getDirection());
+        }
+    }
     private class CoinView extends ElementView {
         TerminalSprite sprite;
 
@@ -279,22 +300,6 @@ public class TerminalArenaView extends ArenaView {
 
         @Override
         protected TerminalSprite getSprite(Element e) {
-            return sprite;
-        }
-    }
-
-
-    private class BulletView extends ElementView {
-        TerminalSprite sprite;
-
-        public BulletView() throws FileNotFoundException {
-            TerminalSprite.Loader loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/bullet-8-4-up.lan"));
-            sprite = loader.getTerminalSprite();
-        }
-
-        @Override
-        protected TerminalSprite getSprite(Element e)
-        {
             return sprite;
         }
     }
