@@ -28,13 +28,19 @@ public class Game {
 
     private class StateMainMenu implements State {
         MenuModel menuModel;
+        TextModel title;
         MenuView menuView;
-        public StateMainMenu(MenuView menuView){
+        GUIViewComposite view;
+        public StateMainMenu(MenuView menuView, TextView textView){
             this.menuView = menuView;
+
+            view = new GUIViewComposite(menuView.getGUI());
+            view.addView(textView);
+            view.addView(menuView);
             
             menuModel = new MenuModel();
             menuModel.setFrame(true);
-            menuModel.setRelativePosition(new RelativePosition(0.5, 0.5));
+            menuModel.setRelativePosition(new PositionReal(0.5, 0.55));
             menuModel.setVerticalAlign(MenuModel.VerticalAlign.CENTER);
             menuModel.setHorizontalAlign(MenuModel.HorizontalAlign.CENTER);
             menuModel.append(new MenuModel.NormalItem(menuModel,0, "Play"      ));
@@ -43,12 +49,18 @@ public class Game {
             menuModel.append(new MenuModel.NormalItem(menuModel,3, "Save game" ));
             menuModel.append(new MenuModel.NormalItem(menuModel,4, "Load game" ));
             menuModel.append(new MenuModel.NormalItem(menuModel,5, "Exit"      ));
+
+            title = new TextModel("The Cursed Catacombs");
+            title.setPosition(new PositionReal(0.5, 0.1));
+            title.setVerticalAlign(Alignable.VerticalAlign.BOTTOM);
+            title.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);
+            textView.setTextModel(title);
         }
         @Override
         public State run() throws IOException {
             MenuModel menuModel_ = new MenuModel(menuModel);
             menuView.setMenuModel(menuModel_);
-            MenuController menuController = new MenuController(menuModel_, menuView);
+            MenuController menuController = new MenuController(menuModel_, view);
             while(true) {
                 int r = menuController.run();
                 switch (r) {
@@ -154,17 +166,18 @@ public class Game {
             this.menuView = menuView;
             
             view = new GUIViewComposite(menuView.getGUI());
-            view.addView(menuView);
             view.addView(textView);
+            view.addView(menuView);
             
             menuModel = new MenuModel();
-            menuModel.setRelativePosition(new RelativePosition(0.5, 0.4));
+            menuModel.setRelativePosition(new PositionReal(0.5, 0.4));
             menuModel.setVerticalAlign(Alignable.VerticalAlign.TOP);
             menuModel.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);
             menuModel.append(new MenuModel.NormalItem(menuModel, 0, "Continue playing"));
             menuModel.append(new MenuModel.NormalItem(menuModel, 1, "Back to main menu"));
         
-            title = new TextModel("The Cursed Catacombs");
+            title = new TextModel("Level completed!");
+            title.setPosition(new PositionReal(0.5, 0.3));
             title.setVerticalAlign(Alignable.VerticalAlign.BOTTOM);
             title.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);
             textView.setTextModel(title);
@@ -188,22 +201,34 @@ public class Game {
 
     private class StateLose implements State {
         MenuModel menuModel;
+        TextModel title;
         MenuView menuView;
-        public StateLose(MenuView menuView){
+        GUIViewComposite view;
+        public StateLose(MenuView menuView, TextView textView){
             this.menuView = menuView;
 
+            view = new GUIViewComposite(menuView.getGUI());
+            view.addView(textView);
+            view.addView(menuView);
+
             menuModel = new MenuModel();
-            menuModel.setRelativePosition(new RelativePosition(0.5, 0.5));
+            menuModel.setRelativePosition(new PositionReal(0.5, 0.5));
             menuModel.setVerticalAlign(MenuModel.VerticalAlign.CENTER);
             menuModel.setHorizontalAlign(MenuModel.HorizontalAlign.CENTER);
             menuModel.append(new MenuModel.NormalItem(menuModel, 0, "To level selector"));
             menuModel.append(new MenuModel.NormalItem(menuModel, 1, "Back to main menu"));
+
+            title = new TextModel("You lost...");
+            title.setPosition(new PositionReal(0.5, 0.3));
+            title.setVerticalAlign(Alignable.VerticalAlign.BOTTOM);
+            title.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);
+            textView.setTextModel(title);
         }
         @Override
         public State run() throws IOException {
             MenuModel menuModel_ = new MenuModel(menuModel);
             menuView.setMenuModel(menuModel_);
-            MenuController menuController = new MenuController(menuModel_, menuView);
+            MenuController menuController = new MenuController(menuModel_, view);
             int r = menuController.run();
             switch(r){
                 case -1: return stateMainMenu;
@@ -216,22 +241,34 @@ public class Game {
 
     private class StatePause implements State {
         MenuModel menuModel;
+        TextModel title;
         MenuView menuView;
-        public StatePause(MenuView menuView){
+        GUIViewComposite view;
+        public StatePause(MenuView menuView, TextView textView){
             this.menuView = menuView;
 
+            view = new GUIViewComposite(menuView.getGUI());
+            view.addView(textView);
+            view.addView(menuView);
+
             menuModel = new MenuModel();
-            menuModel.setRelativePosition(new RelativePosition(0.5, 0.5));
+            menuModel.setRelativePosition(new PositionReal(0.5, 0.5));
             menuModel.setVerticalAlign(MenuModel.VerticalAlign.CENTER);
             menuModel.setHorizontalAlign(MenuModel.HorizontalAlign.CENTER);
             menuModel.append(new MenuModel.NormalItem(menuModel, 0, "Unpause game"));
             menuModel.append(new MenuModel.NormalItem(menuModel, 1, "Back to main menu"));
+
+            title = new TextModel("Paused");
+            title.setPosition(new PositionReal(0.5, 0.3));
+            title.setVerticalAlign(Alignable.VerticalAlign.BOTTOM);
+            title.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);
+            textView.setTextModel(title);
         }
         @Override
         public State run() throws IOException {
             MenuModel menuModel_ = new MenuModel(menuModel);
             menuView.setMenuModel(menuModel_);
-            MenuController menuController = new MenuController(menuModel_, menuView);
+            MenuController menuController = new MenuController(menuModel_, view);
             int r = menuController.run();
             switch(r){
                 case -1: return stateArena;
@@ -254,7 +291,7 @@ public class Game {
     private State state;
 
     public Game(ViewFactory viewFactory) throws Exception {
-        stateMainMenu       = new StateMainMenu(viewFactory.createMenuView());
+        stateMainMenu       = new StateMainMenu(viewFactory.createMenuView(), viewFactory.createTextView());
         stateControls       = new StateControls();
         stateScoreboard     = new StateScoreboard();
         stateSave           = new StateSave();
@@ -262,8 +299,8 @@ public class Game {
         stateLevelSelect    = new StateLevelSelector();
         stateArena          = new StateArena(viewFactory.createArenaView());
         stateWin            = new StateWin(viewFactory.createMenuView(), viewFactory.createTextView());
-        stateLose           = new StateLose(viewFactory.createMenuView());
-        statePause          = new StatePause(viewFactory.createMenuView());
+        stateLose           = new StateLose(viewFactory.createMenuView(), viewFactory.createTextView());
+        statePause          = new StatePause(viewFactory.createMenuView(), viewFactory.createTextView());
         stateExit           = new StateExit();
     }
     

@@ -19,7 +19,7 @@ public class TerminalFactory implements ViewFactory {
     }
 
     @Override
-    public MenuView createMenuView() throws FileNotFoundException {
+    public MenuView createMenuView() {
         return new TerminalMenuView(terminalGUI, font);
     }
 

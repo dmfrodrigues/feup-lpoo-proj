@@ -27,7 +27,7 @@ public class LanternaGUI implements TerminalGUI {
             SwingTerminalFontConfiguration cfg = SwingTerminalFontConfiguration.newInstance(font);
 
             DefaultTerminalFactory factory = new DefaultTerminalFactory();
-            factory.setInitialTerminalSize(new TerminalSize(280, 80));
+            factory.setInitialTerminalSize(new TerminalSize(320, 86));
             factory.setTerminalEmulatorFontConfiguration(cfg);
             Terminal terminal = factory.createTerminal();
             screen = new TerminalScreen(terminal);
