@@ -231,13 +231,31 @@ public class TerminalArenaView implements ArenaView {
         }
     }
 
+
     private class SwordView extends ElementView
     {
         TerminalSprite sprite;
 
-        public SwordView() throws FileNotFoundException
-        {
+        public SwordView() throws FileNotFoundException {
             TerminalSprite.Loader loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/sword-8-4.lan"));
+            sprite = loader.getTerminalSprite();
+        }
+
+        @Override
+        protected TerminalSprite getSprite(Element e)
+        {
+            return sprite;
+        }
+
+    }
+
+    private class MummyView extends ElementView
+    {
+        TerminalSprite sprite;
+
+        public MummyView() throws FileNotFoundException
+        {
+            TerminalSprite.Loader loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/mummy.lan"));
             sprite = loader.getTerminalSprite();
         }
 
@@ -247,13 +265,29 @@ public class TerminalArenaView implements ArenaView {
         }
     }
 
-    private class BulletView extends ElementView
+
+    private class BulletView extends ElementView {
+        TerminalSprite sprite;
+
+        public BulletView() throws FileNotFoundException {
+            TerminalSprite.Loader loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/bullet-8-4.lan"));
+            sprite = loader.getTerminalSprite();
+        }
+
+        @Override
+        protected TerminalSprite getSprite(Element e)
+        {
+            return sprite;
+        }
+    }
+
+    private class GuardView extends ElementView
     {
         TerminalSprite sprite;
 
-        public BulletView() throws FileNotFoundException
+        public GuardView() throws FileNotFoundException
         {
-            TerminalSprite.Loader loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/bullet-8-4.lan"));
+            TerminalSprite.Loader loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/guard.lan"));
             sprite = loader.getTerminalSprite();
         }
 
@@ -273,6 +307,9 @@ public class TerminalArenaView implements ArenaView {
         private HealthPotionView healthPotionView;
         private SwordView swordView;
         private BulletView bulletView;
+        private MummyView mummyView;
+        private GuardView guardView;
+
         public ElementViewFactory() throws FileNotFoundException{
             wallView = new WallView();
             heroView = new HeroView();
@@ -282,6 +319,8 @@ public class TerminalArenaView implements ArenaView {
             healthPotionView = new HealthPotionView();
             swordView = new SwordView();
             bulletView = new BulletView();
+            mummyView = new MummyView();
+            guardView = new GuardView();
         }
 
         public void setHeroPos(Position heroPos) {
@@ -294,6 +333,8 @@ public class TerminalArenaView implements ArenaView {
             healthPotionView.setHeroPos(heroPos);
             swordView.setHeroPos(heroPos);
             bulletView.setHeroPos(heroPos);
+            mummyView.setHeroPos(heroPos);
+            guardView.setHeroPos(heroPos);
         }
 
         public ElementView factoryMethod(Element e){
@@ -306,6 +347,8 @@ public class TerminalArenaView implements ArenaView {
             else if(e instanceof HealthPotion) res = healthPotionView;
             else if(e instanceof Sword) res = swordView;
             else if(e instanceof Bullet) res = bulletView;
+            else if(e instanceof Mummy) res = mummyView;
+            else if(e instanceof Guard) res = guardView;
             return res;
         }
     }
@@ -313,6 +356,8 @@ public class TerminalArenaView implements ArenaView {
     final Map<Class, Integer> drawPriority = Map.of(
             Hero .class, 5,
             Ogre.class , 4,
+            Mummy.class, 4,
+            Guard.class, 4,
             Ghost.class, 2,
             Wall .class, 1,
             HealthPotion.class, 0,
