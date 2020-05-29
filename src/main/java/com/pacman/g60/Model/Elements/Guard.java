@@ -5,15 +5,19 @@ import com.pacman.g60.Model.Effect.Effect;
 import com.pacman.g60.Model.Elements.Hierarchy.MeleeAttackerElement;
 import com.pacman.g60.Model.Position;
 
-import java.util.LinkedList;
-import java.util.Queue;
+public class Guard extends Enemy implements MeleeAttackerElement {
+    private GuardMovementStrategy movement;
+    public enum MovementType
+    {
+        HORIZONTAL,
+        VERTICAL
+    }
+    private MovementType moveType;
 
-public abstract class Guard extends Enemy implements MeleeAttackerElement {
-    protected GuardMovement movement;
-
-    public Guard(Position pos)
+    public Guard(Position pos, MovementType moveType)
     {
         super(pos,new DamageEffect(1),10);
+        this.moveType = moveType;
     }
 
     public Position getNextPos()

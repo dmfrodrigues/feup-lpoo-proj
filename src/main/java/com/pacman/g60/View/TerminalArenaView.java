@@ -378,7 +378,7 @@ public class TerminalArenaView extends ArenaView {
             Hero .class, 5,
             Ogre.class , 4,
             Mummy.class, 4,
-            VerticalGuard.class, 4,
+            Guard.class, 4,
             Ghost.class, 2,
             Wall .class, 1,
             HealthPotion.class, 0,
