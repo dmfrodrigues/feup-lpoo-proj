@@ -5,39 +5,47 @@ import com.pacman.g60.Model.Effect.Effect;
 import com.pacman.g60.Model.Elements.Hierarchy.MeleeAttackerElement;
 import com.pacman.g60.Model.Position;
 
-import java.util.LinkedList;
-import java.util.Queue;
 
 public class Guard extends Enemy implements MeleeAttackerElement {
-    private GuardMovement movement;
+    private GuardMovementStrategy movement;
+    public enum MovementType
+    {
+        HORIZONTAL,
+        VERTICAL
+    }
+    private MovementType moveType;
 
     public Guard(Position pos)
     {
         super(pos,new DamageEffect(1),10);
-        initMovement();
+        this.moveType = MovementType.HORIZONTAL;
+        initMovement(pos);
     }
 
-    private void initMovement()
+    public Guard(Position pos, MovementType moveType)
     {
-        Position pos1 = new Position(33,13);
-        Position pos2 = new Position(33,12);
-        Position pos3 = new Position(33,11);
-        Position pos4 = new Position(33,12);
-
-        Queue<Position> path = new LinkedList<>();
-        path.add(pos1);
-        path.add(pos2);
-        path.add(pos3);
-        path.add(pos4);
-        movement = new GuardMovement(path);
+        super(pos,new DamageEffect(1),10);
+        this.moveType = moveType;
+        initMovement(pos);
     }
 
-    public Guard(Position pos, Effect effect, Integer health) {
-        super(pos, effect, health);
+    private void initMovement(Position position)
+    {
+        if (moveType == MovementType.HORIZONTAL) this.movement = new HorizontalGuardMovementStrategy(position);
+        if (moveType == MovementType.VERTICAL  ) this.movement = new VerticalGuardMovementStrategy(position);
     }
 
     public Position getNextPos()
     {
         return movement.move();
+    }
+
+    @Override
+    public Object clone()
+    {
+        Guard guard = (Guard) super.clone();
+        guard.moveType = this.moveType;
+        guard.movement = this.movement;
+        return guard;
     }
 }

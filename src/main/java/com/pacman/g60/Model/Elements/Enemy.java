@@ -15,7 +15,7 @@ public abstract class Enemy extends DynamicElement implements LivingElement, Att
         Enemy res = (Enemy)super.clone();
         res.effect = (Effect)effect.clone();
         res.health = Integer.valueOf(health);
-        return super.clone();
+        return res;
     }
 
     public Enemy(Position pos, Effect effect, Integer health) {
