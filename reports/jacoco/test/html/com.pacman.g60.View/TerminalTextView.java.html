@@ -1,31 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TerminalTextView.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.View</a> &gt; <span class="el_source">TerminalTextView.java</span></div><h1>TerminalTextView.java</h1><pre class="source lang-java linenums">package com.pacman.g60.View;
 
-public class TerminalTextView{
+import com.pacman.g60.Model.TextModel;
+
+public class TerminalTextView extends TextView{
     TerminalGUI terminalGUI;
     TerminalFont font;
-<span class="fc" id="L6">    public TerminalTextView(TerminalGUI terminalGUI, TerminalFont font){</span>
-<span class="fc" id="L7">        this.terminalGUI = terminalGUI;</span>
-<span class="fc" id="L8">        this.font = font;</span>
-<span class="fc" id="L9">    }</span>
-<span class="fc" id="L10">    public Integer getStringWidth(String s){ return s.length()*font.getW(); }</span>
-<span class="fc" id="L11">    public Integer getStringHeight(String s){ return font.getH(); }</span>
+    public TerminalTextView(TerminalGUI terminalGUI, TerminalFont font){
+<span class="fc" id="L9">        super(terminalGUI);</span>
+<span class="fc" id="L10">        this.terminalGUI = terminalGUI;</span>
+<span class="fc" id="L11">        this.font = font;</span>
+<span class="fc" id="L12">    }</span>
+<span class="fc" id="L13">    public Integer getStringWidth(String s){ return s.length()*font.getW(); }</span>
+<span class="fc" id="L14">    public Integer getStringHeight(String s){ return font.getH(); }</span>
     private void drawChar(int x0, int y0, Character c, Color f, Color b){
-<span class="fc" id="L13">        TerminalFont.TerminalCharacter tchar = font.getCharacter(c);</span>
-<span class="pc bpc" id="L14" title="1 of 2 branches missed.">        if(tchar == null) throw new NullPointerException(&quot;No char for '&quot; + c + &quot;'&quot;);</span>
-<span class="fc" id="L15">        Integer W = tchar.getW();</span>
-<span class="fc" id="L16">        Integer H = tchar.getH();</span>
-<span class="fc bfc" id="L17" title="All 2 branches covered.">        for(int x = 0; x &lt; W; ++x){</span>
-<span class="fc bfc" id="L18" title="All 2 branches covered.">            for(int y = 0; y &lt; H; ++y){</span>
-<span class="fc" id="L19">                terminalGUI.drawCharacter(x0+x, y0+y, tchar.getChar(x, y), f, b);</span>
+<span class="fc" id="L16">        TerminalFont.TerminalCharacter tchar = font.getCharacter(c);</span>
+<span class="pc bpc" id="L17" title="1 of 2 branches missed.">        if(tchar == null) throw new NullPointerException(&quot;No char for '&quot; + c + &quot;'&quot;);</span>
+<span class="fc" id="L18">        Integer W = tchar.getW();</span>
+<span class="fc" id="L19">        Integer H = tchar.getH();</span>
+<span class="fc bfc" id="L20" title="All 2 branches covered.">        for(int x = 0; x &lt; W; ++x){</span>
+<span class="fc bfc" id="L21" title="All 2 branches covered.">            for(int y = 0; y &lt; H; ++y){</span>
+<span class="fc" id="L22">                terminalGUI.drawCharacter(x0+x, y0+y, tchar.getChar(x, y), f, b);</span>
             }
         }
-<span class="fc" id="L22">    }</span>
-    public void draw(int x0, int y0, String s, Color f, Color b){
-<span class="fc bfc" id="L24" title="All 2 branches covered.">        for(int i = 0; i &lt; s.length(); ++i){</span>
-<span class="fc" id="L25">            drawChar(x0+i*font.getW(), y0, s.charAt(i), f, b);</span>
+<span class="fc" id="L25">    }</span>
+    public void draw(){
+<span class="fc" id="L27">        TextModel text = getTextModel();</span>
+<span class="pc bpc" id="L28" title="1 of 2 branches missed.">        if(text == null) return;</span>
+<span class="fc" id="L29">        int x0 = text.getPosition().getX();</span>
+<span class="fc" id="L30">        int y0 = text.getPosition().getY();</span>
+<span class="pc bpc" id="L31" title="2 of 4 branches missed.">        switch(text.getHorizontalAlign()){</span>
+<span class="fc" id="L32">            case LEFT  : break;</span>
+<span class="fc" id="L33">            case CENTER: x0 -= getStringWidth(text.getText())/2; break;</span>
+<span class="nc" id="L34">            case RIGHT : x0 -= getStringWidth(text.getText())  ; break;</span>
         }
-<span class="fc" id="L27">    }</span>
-<span class="fc" id="L28">    public void draw(int x0, int y0, String s, Color f){ draw(x0, y0, s, f, Color.BLACK); }</span>
-<span class="fc" id="L29">    public void draw(int x0, int y0, String s){ draw(x0, y0, s, Color.WHITE); }</span>
+<span class="pc bpc" id="L36" title="3 of 4 branches missed.">        switch(text.getVerticalAlign()){</span>
+<span class="fc" id="L37">            case TOP  : break;</span>
+<span class="nc" id="L38">            case CENTER: y0 -= getStringHeight(text.getText())/2; break;</span>
+<span class="nc" id="L39">            case BOTTOM : y0 -= getStringHeight(text.getText())  ; break;</span>
+        }
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        for(int i = 0; i &lt; text.getText().length(); ++i){</span>
+<span class="fc" id="L42">            drawChar(x0+i*font.getW(), y0, text.getText().charAt(i), text.getForegroundColor(), text.getBackgroundColor());</span>
+        }
+<span class="fc" id="L44">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
