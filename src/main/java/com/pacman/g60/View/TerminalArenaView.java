@@ -270,7 +270,7 @@ public class TerminalArenaView extends ArenaView {
         TerminalSprite sprite;
 
         public BulletView() throws FileNotFoundException {
-            TerminalSprite.Loader loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/bullet-8-4.lan"));
+            TerminalSprite.Loader loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/bullet-8-4-up.lan"));
             sprite = loader.getTerminalSprite();
         }
 
