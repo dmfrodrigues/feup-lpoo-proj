@@ -1,9 +1,12 @@
 package com.pacman.g60.View;
 
-public class TerminalTextView{
+import com.pacman.g60.Model.TextModel;
+
+public class TerminalTextView extends TextView{
     TerminalGUI terminalGUI;
     TerminalFont font;
     public TerminalTextView(TerminalGUI terminalGUI, TerminalFont font){
+        super(terminalGUI);
         this.terminalGUI = terminalGUI;
         this.font = font;
     }
@@ -20,11 +23,23 @@ public class TerminalTextView{
             }
         }
     }
-    public void draw(int x0, int y0, String s, Color f, Color b){
-        for(int i = 0; i < s.length(); ++i){
-            drawChar(x0+i*font.getW(), y0, s.charAt(i), f, b);
+    public void draw(){
+        TextModel text = getTextModel();
+        if(text == null) return;
+        int x0 = text.getPosition().getX();
+        int y0 = text.getPosition().getY();
+        switch(text.getHorizontalAlign()){
+            case LEFT  : break;
+            case CENTER: x0 -= getStringWidth(text.getText())/2; break;
+            case RIGHT : x0 -= getStringWidth(text.getText())  ; break;
+        }
+        switch(text.getVerticalAlign()){
+            case TOP  : break;
+            case CENTER: y0 -= getStringHeight(text.getText())/2; break;
+            case BOTTOM : y0 -= getStringHeight(text.getText())  ; break;
+        }
+        for(int i = 0; i < text.getText().length(); ++i){
+            drawChar(x0+i*font.getW(), y0, text.getText().charAt(i), text.getForegroundColor(), text.getBackgroundColor());
         }
     }
-    public void draw(int x0, int y0, String s, Color f){ draw(x0, y0, s, f, Color.BLACK); }
-    public void draw(int x0, int y0, String s){ draw(x0, y0, s, Color.WHITE); }
 }
