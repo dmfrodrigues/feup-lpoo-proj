@@ -2,9 +2,7 @@ package com.pacman.g60;
 
 import com.pacman.g60.Controller.AttackCommand;
 import com.pacman.g60.Model.ArenaModel;
-import com.pacman.g60.Model.Elements.Element;
-import com.pacman.g60.Model.Elements.Ghost;
-import com.pacman.g60.Model.Elements.Hero;
+import com.pacman.g60.Model.Elements.*;
 import com.pacman.g60.Model.Position;
 import org.junit.Before;
 import org.junit.Test;
@@ -48,6 +46,11 @@ public class AttackCommandTest {
             }
         }).when(ghost).updateHealth(Mockito.anyInt());
 
+        Knife knife = new Knife();
+
+        Mockito.doCallRealMethod().when(hero).setWeapon(knife);
+
+        Mockito.when(hero.getWeapon()).thenReturn(knife);
 
         List<Element> elems = new ArrayList<>();
         elems.add(ghost);
