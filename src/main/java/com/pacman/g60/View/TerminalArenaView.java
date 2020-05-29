@@ -1,15 +1,12 @@
 package com.pacman.g60.View;
 
 
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 import com.pacman.g60.Model.*;
 import com.pacman.g60.Model.Elements.*;
 
 import javax.swing.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
