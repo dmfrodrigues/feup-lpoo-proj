@@ -52,6 +52,7 @@ public class Game {
         @Override
         public State run() throws IOException {
             MenuModel menuModel_ = new MenuModel(menuModel);
+            menuView.setMenuModel(menuModel_);
             MenuController menuController = new MenuController(menuModel_, menuView);
             int r = menuController.run();
             switch(r){
@@ -162,6 +163,7 @@ public class Game {
         @Override
         public State run() throws IOException {
             MenuModel menuModel_ = new MenuModel(menuModel);
+            menuView.setMenuModel(menuModel_);
             MenuController menuController = new MenuController(menuModel_, menuView);
             int r = menuController.run();
             switch(r){
@@ -191,6 +193,7 @@ public class Game {
         @Override
         public State run() throws IOException {
             MenuModel menuModel_ = new MenuModel(menuModel);
+            menuView.setMenuModel(menuModel_);
             MenuController menuController = new MenuController(menuModel_, menuView);
             int r = menuController.run();
             switch(r){
@@ -218,6 +221,7 @@ public class Game {
         @Override
         public State run() throws IOException {
             MenuModel menuModel_ = new MenuModel(menuModel);
+            menuView.setMenuModel(menuModel_);
             MenuController menuController = new MenuController(menuModel_, menuView);
             int r = menuController.run();
             switch(r){
