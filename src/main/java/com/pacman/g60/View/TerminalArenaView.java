@@ -230,6 +230,38 @@ public class TerminalArenaView implements ArenaView {
             return sprite;
         }
     }
+
+    private class SwordView extends ElementView
+    {
+        TerminalSprite sprite;
+
+        public SwordView() throws FileNotFoundException
+        {
+            TerminalSprite.Loader loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/sword-8-4.lan"));
+            sprite = loader.getTerminalSprite();
+        }
+
+        @Override
+        protected TerminalSprite getSprite(Element e) {
+            return sprite;
+        }
+    }
+
+    private class BulletView extends ElementView
+    {
+        TerminalSprite sprite;
+
+        public BulletView() throws FileNotFoundException
+        {
+            TerminalSprite.Loader loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/bullet-8-4.lan"));
+            sprite = loader.getTerminalSprite();
+        }
+
+        @Override
+        protected TerminalSprite getSprite(Element e) {
+            return sprite;
+        }
+    }
     
     private class ElementViewFactory {
         private Position heroPos;
@@ -239,6 +271,8 @@ public class TerminalArenaView implements ArenaView {
         private OgreView ogreView;
         private CoinView coinView;
         private HealthPotionView healthPotionView;
+        private SwordView swordView;
+        private BulletView bulletView;
         public ElementViewFactory() throws FileNotFoundException{
             wallView = new WallView();
             heroView = new HeroView();
@@ -246,6 +280,8 @@ public class TerminalArenaView implements ArenaView {
             ogreView = new OgreView();
             coinView = new CoinView();
             healthPotionView = new HealthPotionView();
+            swordView = new SwordView();
+            bulletView = new BulletView();
         }
 
         public void setHeroPos(Position heroPos) {
@@ -256,6 +292,8 @@ public class TerminalArenaView implements ArenaView {
             ogreView.setHeroPos(heroPos);
             coinView.setHeroPos(heroPos);
             healthPotionView.setHeroPos(heroPos);
+            swordView.setHeroPos(heroPos);
+            bulletView.setHeroPos(heroPos);
         }
 
         public ElementView factoryMethod(Element e){
@@ -266,6 +304,8 @@ public class TerminalArenaView implements ArenaView {
             else if(e instanceof Ogre) res = ogreView;
             else if(e instanceof Coin) res = coinView;
             else if(e instanceof HealthPotion) res = healthPotionView;
+            else if(e instanceof Sword) res = swordView;
+            else if(e instanceof Bullet) res = bulletView;
             return res;
         }
     }
@@ -276,7 +316,9 @@ public class TerminalArenaView implements ArenaView {
             Ghost.class, 2,
             Wall .class, 1,
             HealthPotion.class, 0,
-            Coin .class, 0
+            Coin .class, 0,
+            Sword.class, 0,
+            Bullet.class, 0
     );
     
     private TerminalGUI terminalGUI;
