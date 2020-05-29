@@ -9,143 +9,130 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
-public class TerminalMenuView implements MenuView {
+public class TerminalMenuView extends MenuView {
     
     private TerminalGUI terminalGUI;
     TerminalFont font;
     TerminalTextView textView;
     
-<span class="nc" id="L18">    public TerminalMenuView(TerminalGUI terminalGUI) throws FileNotFoundException {</span>
-<span class="nc" id="L19">        this.terminalGUI = terminalGUI;</span>
-<span class="nc" id="L20">        TerminalFont.Loader loader = new TerminalFontLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/numbers-4-3.lan&quot;));</span>
-<span class="nc" id="L21">        font = loader.getTerminalFont();</span>
-<span class="nc" id="L22">        textView = new TerminalTextView(terminalGUI, font);</span>
-<span class="nc" id="L23">    }</span>
+    public TerminalMenuView(TerminalGUI terminalGUI) throws FileNotFoundException {
+<span class="nc" id="L19">        super(terminalGUI);</span>
+<span class="nc" id="L20">        this.terminalGUI = terminalGUI;</span>
+<span class="nc" id="L21">        TerminalFont.Loader loader = new TerminalFontLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/numbers-4-3.lan&quot;));</span>
+<span class="nc" id="L22">        font = loader.getTerminalFont();</span>
+<span class="nc" id="L23">        textView = new TerminalTextView(terminalGUI, font);</span>
+<span class="nc" id="L24">    }</span>
     
-    @Override
-    public COMMAND pollCommand() throws IOException {
-<span class="nc" id="L27">        KeyStroke key = terminalGUI.pollKey();</span>
-<span class="nc bnc" id="L28" title="All 2 branches missed.">        if(key == null) return null;</span>
-<span class="nc bnc" id="L29" title="All 2 branches missed.">        if(key.getKeyType() == KeyType.ArrowUp  ) return COMMAND.UP;</span>
-<span class="nc bnc" id="L30" title="All 2 branches missed.">        if(key.getKeyType() == KeyType.ArrowDown) return COMMAND.DOWN;</span>
-<span class="nc bnc" id="L31" title="All 2 branches missed.">        if(key.getKeyType() == KeyType.Enter    ) return COMMAND.ENTER;</span>
-<span class="nc bnc" id="L32" title="All 2 branches missed.">        if(key.getKeyType() == KeyType.Escape   ) return COMMAND.EXIT;</span>
-<span class="nc bnc" id="L33" title="All 2 branches missed.">        if(key.getKeyType() == KeyType.EOF      ) return COMMAND.EXIT;</span>
-<span class="nc" id="L34">        return null;</span>
-    }
-
     int Wbutton;
-<span class="nc" id="L38">    final int Wbutton_margin = 5;</span>
-<span class="nc" id="L39">    final int Wframe_margin = 10;</span>
+<span class="nc" id="L27">    final int Wbutton_margin = 5;</span>
+<span class="nc" id="L28">    final int Wframe_margin = 10;</span>
     
     int Htotal;
-<span class="nc" id="L42">    final int Hbutton_margin = 0;</span>
-<span class="nc" id="L43">    final int Hframe_margin = 3;</span>
+<span class="nc" id="L31">    final int Hbutton_margin = 0;</span>
+<span class="nc" id="L32">    final int Hframe_margin = 3;</span>
     
     private void drawFrame(int x0, int y0, MenuModel menu){
         
-<span class="nc" id="L47">        int Wtotal = Wbutton + 2*font.getW() + 2*Wframe_margin;</span>
-<span class="nc" id="L48">        int Wtotal_chars = Wtotal/font.getW();</span>
-<span class="nc" id="L49">        int Htotal_chars = Htotal/font.getH();</span>
+<span class="nc" id="L36">        int Wtotal = Wbutton + 2*font.getW() + 2*Wframe_margin;</span>
+<span class="nc" id="L37">        int Wtotal_chars = Wtotal/font.getW();</span>
+<span class="nc" id="L38">        int Htotal_chars = Htotal/font.getH();</span>
         
-<span class="nc" id="L51">        textView.draw(x0, y0, &quot;╔&quot;);</span>
-<span class="nc" id="L52">        textView.draw(x0+font.getW(), y0, &quot;═&quot;.repeat(Wtotal_chars-2));</span>
-<span class="nc" id="L53">        textView.draw(x0+(Wtotal_chars-1)*font.getW(), y0, &quot;╗&quot;);</span>
-<span class="nc bnc" id="L54" title="All 2 branches missed.">        for(int y = 1; y &lt; Htotal_chars-1; ++y) {</span>
-<span class="nc" id="L55">            textView.draw(x0, y0+y*font.getH(), &quot;║&quot;);</span>
-<span class="nc" id="L56">            textView.draw(x0+(Wtotal_chars-1)*font.getW(), y0+y*font.getH(), &quot;║&quot;);</span>
+<span class="nc" id="L40">        textView.draw(x0, y0, &quot;╔&quot;);</span>
+<span class="nc" id="L41">        textView.draw(x0+font.getW(), y0, &quot;═&quot;.repeat(Wtotal_chars-2));</span>
+<span class="nc" id="L42">        textView.draw(x0+(Wtotal_chars-1)*font.getW(), y0, &quot;╗&quot;);</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        for(int y = 1; y &lt; Htotal_chars-1; ++y) {</span>
+<span class="nc" id="L44">            textView.draw(x0, y0+y*font.getH(), &quot;║&quot;);</span>
+<span class="nc" id="L45">            textView.draw(x0+(Wtotal_chars-1)*font.getW(), y0+y*font.getH(), &quot;║&quot;);</span>
         }
 
-<span class="nc" id="L59">        textView.draw(x0, y0+(Htotal_chars-1)*font.getH(), &quot;╚&quot;);</span>
-<span class="nc" id="L60">        textView.draw(x0+font.getW(), y0+(Htotal_chars-1)*font.getH(), &quot;═&quot;.repeat(Wtotal_chars-2));</span>
-<span class="nc" id="L61">        textView.draw(x0+(Wtotal_chars-1)*font.getW(), y0+(Htotal_chars-1)*font.getH(), &quot;╝&quot;);</span>
-<span class="nc" id="L62">    }</span>
+<span class="nc" id="L48">        textView.draw(x0, y0+(Htotal_chars-1)*font.getH(), &quot;╚&quot;);</span>
+<span class="nc" id="L49">        textView.draw(x0+font.getW(), y0+(Htotal_chars-1)*font.getH(), &quot;═&quot;.repeat(Wtotal_chars-2));</span>
+<span class="nc" id="L50">        textView.draw(x0+(Wtotal_chars-1)*font.getW(), y0+(Htotal_chars-1)*font.getH(), &quot;╝&quot;);</span>
+<span class="nc" id="L51">    }</span>
     
-<span class="nc" id="L64">    boolean frame = false;</span>
+<span class="nc" id="L53">    boolean frame = false;</span>
     private void drawItem(int x0, int y0, MenuModel.Item item, int index){
 
-<span class="nc" id="L67">        final int Hbutton = 3*font.getH();</span>
+<span class="nc" id="L56">        final int Hbutton = 3*font.getH();</span>
         
-<span class="nc" id="L69">        int x1 = x0;</span>
-<span class="nc" id="L70">        int y1 = y0 + index*(Hbutton+Hbutton_margin);</span>
+<span class="nc" id="L58">        int x1 = x0;</span>
+<span class="nc" id="L59">        int y1 = y0 + index*(Hbutton+Hbutton_margin);</span>
 
-<span class="nc bnc" id="L72" title="All 2 branches missed.">        if(frame){</span>
-<span class="nc" id="L73">            x1 += font.getW() + Wframe_margin;</span>
-<span class="nc" id="L74">            y1 += font.getH() + Hframe_margin;</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">        if(frame){</span>
+<span class="nc" id="L62">            x1 += font.getW() + Wframe_margin;</span>
+<span class="nc" id="L63">            y1 += font.getH() + Hframe_margin;</span>
         }
         
-<span class="nc" id="L77">        int Wbutton_chars = Wbutton/font.getW();</span>
-<span class="nc" id="L78">        int Hbutton_chars = Hbutton/font.getH();</span>
+<span class="nc" id="L66">        int Wbutton_chars = Wbutton/font.getW();</span>
+<span class="nc" id="L67">        int Hbutton_chars = Hbutton/font.getH();</span>
         
-<span class="nc" id="L80">        textView.draw(x1, y1, &quot;┌&quot;);</span>
-<span class="nc" id="L81">        textView.draw(x1+font.getW(), y1, &quot;─&quot;.repeat(Wbutton_chars-2));</span>
-<span class="nc" id="L82">        textView.draw(x1+(Wbutton_chars-1)*font.getW(), y1, &quot;┐&quot;);</span>
+<span class="nc" id="L69">        textView.draw(x1, y1, &quot;┌&quot;);</span>
+<span class="nc" id="L70">        textView.draw(x1+font.getW(), y1, &quot;─&quot;.repeat(Wbutton_chars-2));</span>
+<span class="nc" id="L71">        textView.draw(x1+(Wbutton_chars-1)*font.getW(), y1, &quot;┐&quot;);</span>
 
-<span class="nc bnc" id="L84" title="All 2 branches missed.">        for(int y = 1; y &lt; Hbutton_chars-1; ++y) {</span>
-<span class="nc" id="L85">            textView.draw(x1, y1+y*font.getH(), &quot;│&quot;);</span>
-<span class="nc" id="L86">            textView.draw(x1+(Wbutton_chars-1)*font.getW(), y1+y*font.getH(), &quot;│&quot;);</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">        for(int y = 1; y &lt; Hbutton_chars-1; ++y) {</span>
+<span class="nc" id="L74">            textView.draw(x1, y1+y*font.getH(), &quot;│&quot;);</span>
+<span class="nc" id="L75">            textView.draw(x1+(Wbutton_chars-1)*font.getW(), y1+y*font.getH(), &quot;│&quot;);</span>
         }
 
-<span class="nc" id="L89">        textView.draw(x1, y1+(Hbutton_chars-1)*font.getH(), &quot;└&quot;);</span>
-<span class="nc" id="L90">        textView.draw(x1+font.getW(), y1+(Hbutton_chars-1)*font.getH(), &quot;─&quot;.repeat(Wbutton_chars-2));</span>
-<span class="nc" id="L91">        textView.draw(x1+(Wbutton_chars-1)*font.getW(), y1+(Hbutton_chars-1)*font.getH(), &quot;┘&quot;);</span>
+<span class="nc" id="L78">        textView.draw(x1, y1+(Hbutton_chars-1)*font.getH(), &quot;└&quot;);</span>
+<span class="nc" id="L79">        textView.draw(x1+font.getW(), y1+(Hbutton_chars-1)*font.getH(), &quot;─&quot;.repeat(Wbutton_chars-2));</span>
+<span class="nc" id="L80">        textView.draw(x1+(Wbutton_chars-1)*font.getW(), y1+(Hbutton_chars-1)*font.getH(), &quot;┘&quot;);</span>
 
-<span class="nc" id="L93">        int x2 = x1 + (Wbutton - textView.getStringWidth (item.getText()))/2;</span>
-<span class="nc" id="L94">        int y2 = y1 + (Hbutton - textView.getStringHeight(item.getText()))/2;</span>
-<span class="nc bnc" id="L95" title="All 2 branches missed.">        if(item.isSelected()) {</span>
-<span class="nc bnc" id="L96" title="All 2 branches missed.">            for (int x = x1 + font.getW(); x &lt; x1 + (Wbutton_chars - 1) * font.getW(); ++x) {</span>
-<span class="nc bnc" id="L97" title="All 2 branches missed.">                for (int y = y1 + font.getH(); y &lt; y1 + (Hbutton_chars - 1) * font.getH(); ++y) {</span>
-<span class="nc" id="L98">                    terminalGUI.drawCharacter(x, y, ' ', Color.WHITE, Color.GREY);</span>
+<span class="nc" id="L82">        int x2 = x1 + (Wbutton - textView.getStringWidth (item.getText()))/2;</span>
+<span class="nc" id="L83">        int y2 = y1 + (Hbutton - textView.getStringHeight(item.getText()))/2;</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">        if(item.isSelected()) {</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">            for (int x = x1 + font.getW(); x &lt; x1 + (Wbutton_chars - 1) * font.getW(); ++x) {</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">                for (int y = y1 + font.getH(); y &lt; y1 + (Hbutton_chars - 1) * font.getH(); ++y) {</span>
+<span class="nc" id="L87">                    terminalGUI.drawCharacter(x, y, ' ', Color.WHITE, Color.GREY);</span>
                 }
             }
-<span class="nc" id="L101">            textView.draw(x2, y2, item.getText(), Color.WHITE, Color.GREY);</span>
+<span class="nc" id="L90">            textView.draw(x2, y2, item.getText(), Color.WHITE, Color.GREY);</span>
         } else {
-<span class="nc" id="L103">            textView.draw(x2, y2, item.getText());</span>
+<span class="nc" id="L92">            textView.draw(x2, y2, item.getText());</span>
         }
-<span class="nc" id="L105">    }</span>
+<span class="nc" id="L94">    }</span>
     
     @Override
-    public void draw(MenuModel menu) throws IOException {
-<span class="nc" id="L109">        terminalGUI.clear();</span>
+    public void draw() {
+<span class="nc" id="L98">        MenuModel menu = getMenuModel();</span>
 
-<span class="nc" id="L111">        frame = menu.hasFrame();</span>
+<span class="nc" id="L100">        frame = menu.hasFrame();</span>
         
-<span class="nc" id="L113">        Wbutton = 0;</span>
-<span class="nc" id="L114">        Htotal  = 0;</span>
-<span class="nc bnc" id="L115" title="All 2 branches missed.">        for(final MenuModel.Item i: menu.getItems()) {</span>
-<span class="nc" id="L116">            Wbutton = Math.max(Wbutton, 2*font.getW() + 2*Wbutton_margin + textView.getStringWidth(i.getText()));</span>
-<span class="nc" id="L117">            Htotal += textView.getStringHeight(i.getText()) + Hbutton_margin + 2*font.getH();</span>
-<span class="nc" id="L118">        }</span>
-<span class="nc bnc" id="L119" title="All 2 branches missed.">        if(!menu.getItems().isEmpty()) Htotal -= Hbutton_margin;</span>
-<span class="nc bnc" id="L120" title="All 2 branches missed.">        if(frame) {</span>
-<span class="nc" id="L121">            Htotal  += 2 * font.getH() + 2 * Hframe_margin;</span>
+<span class="nc" id="L102">        Wbutton = 0;</span>
+<span class="nc" id="L103">        Htotal  = 0;</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">        for(final MenuModel.Item i: menu.getItems()) {</span>
+<span class="nc" id="L105">            Wbutton = Math.max(Wbutton, 2*font.getW() + 2*Wbutton_margin + textView.getStringWidth(i.getText()));</span>
+<span class="nc" id="L106">            Htotal += textView.getStringHeight(i.getText()) + Hbutton_margin + 2*font.getH();</span>
+<span class="nc" id="L107">        }</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">        if(!menu.getItems().isEmpty()) Htotal -= Hbutton_margin;</span>
+<span class="nc bnc" id="L109" title="All 2 branches missed.">        if(frame) {</span>
+<span class="nc" id="L110">            Htotal  += 2 * font.getH() + 2 * Hframe_margin;</span>
         }
-<span class="nc bnc" id="L123" title="All 2 branches missed.">        int Wtotal = Wbutton + (frame ? 2*font.getW() + 2*Wframe_margin : 0 );</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">        int Wtotal = Wbutton + (frame ? 2*font.getW() + 2*Wframe_margin : 0 );</span>
         
-<span class="nc" id="L125">        int x0 = (int)(terminalGUI.getW()*menu.getRelativePosition().getX());</span>
-<span class="nc bnc" id="L126" title="All 4 branches missed.">        switch(menu.getHorizontalAlign()){</span>
-<span class="nc" id="L127">            case LEFT: break;</span>
-<span class="nc" id="L128">            case CENTER: x0 = x0 - Wtotal/2; break;</span>
-<span class="nc" id="L129">            case RIGHT: x0 = x0 - Wtotal; break;</span>
+<span class="nc" id="L114">        int x0 = (int)(terminalGUI.getW()*menu.getRelativePosition().getX());</span>
+<span class="nc bnc" id="L115" title="All 4 branches missed.">        switch(menu.getHorizontalAlign()){</span>
+<span class="nc" id="L116">            case LEFT: break;</span>
+<span class="nc" id="L117">            case CENTER: x0 = x0 - Wtotal/2; break;</span>
+<span class="nc" id="L118">            case RIGHT: x0 = x0 - Wtotal; break;</span>
         }
 
-<span class="nc" id="L132">        int y0 = (int)(terminalGUI.getH()*menu.getRelativePosition().getY());</span>
-<span class="nc bnc" id="L133" title="All 4 branches missed.">        switch(menu.getVerticalAlign()){</span>
-<span class="nc" id="L134">            case TOP: break;</span>
-<span class="nc" id="L135">            case CENTER: y0 = y0 - Htotal/2; break;</span>
-<span class="nc" id="L136">            case BOTTOM: y0 = y0 - Htotal; break;</span>
+<span class="nc" id="L121">        int y0 = (int)(terminalGUI.getH()*menu.getRelativePosition().getY());</span>
+<span class="nc bnc" id="L122" title="All 4 branches missed.">        switch(menu.getVerticalAlign()){</span>
+<span class="nc" id="L123">            case TOP: break;</span>
+<span class="nc" id="L124">            case CENTER: y0 = y0 - Htotal/2; break;</span>
+<span class="nc" id="L125">            case BOTTOM: y0 = y0 - Htotal; break;</span>
         }
         
-<span class="nc bnc" id="L139" title="All 2 branches missed.">        if(frame) {            </span>
-<span class="nc" id="L140">            drawFrame(x0, y0, menu);</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">        if(frame) {            </span>
+<span class="nc" id="L129">            drawFrame(x0, y0, menu);</span>
         }
         
-<span class="nc" id="L143">        List&lt;MenuModel.Item&gt; items = menu.getItems();</span>
-<span class="nc bnc" id="L144" title="All 2 branches missed.">        for(int i = 0; i &lt; items.size(); ++i){</span>
-<span class="nc" id="L145">            drawItem(x0, y0, items.get(i), i);</span>
+<span class="nc" id="L132">        List&lt;MenuModel.Item&gt; items = menu.getItems();</span>
+<span class="nc bnc" id="L133" title="All 2 branches missed.">        for(int i = 0; i &lt; items.size(); ++i){</span>
+<span class="nc" id="L134">            drawItem(x0, y0, items.get(i), i);</span>
         }
-        
-<span class="nc" id="L148">        terminalGUI.refresh();</span>
-<span class="nc" id="L149">    }</span>
+<span class="nc" id="L136">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

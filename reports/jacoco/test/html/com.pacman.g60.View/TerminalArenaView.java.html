@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TerminalArenaView implements ArenaView {
+public class TerminalArenaView extends ArenaView {
 
 <span class="fc" id="L18">    private static final Integer HInfoBar = 5;</span>
 
@@ -325,53 +325,37 @@ public class TerminalArenaView implements ArenaView {
     private ElementViewFactory elementViewFactory;
     private InfoBar infoBar;
     
-<span class="fc" id="L328">    public TerminalArenaView(TerminalGUI terminalGUI) throws FileNotFoundException{</span>
-<span class="fc" id="L329">        this.terminalGUI = terminalGUI;</span>
-<span class="fc" id="L330">        elementViewFactory = new ElementViewFactory();</span>
-<span class="fc" id="L331">        infoBar = new InfoBar();</span>
-<span class="fc" id="L332">    }</span>
+    public TerminalArenaView(TerminalGUI terminalGUI) throws FileNotFoundException{
+<span class="fc" id="L329">        super(terminalGUI);</span>
+<span class="fc" id="L330">        this.terminalGUI = terminalGUI;</span>
+<span class="fc" id="L331">        elementViewFactory = new ElementViewFactory();</span>
+<span class="fc" id="L332">        infoBar = new InfoBar();</span>
+<span class="fc" id="L333">    }</span>
 
     @Override
     public void start() {
-<span class="nc" id="L336">        infoBar.startTime();</span>
-<span class="nc" id="L337">    }</span>
-
+<span class="nc" id="L337">        infoBar.startTime();</span>
+<span class="nc" id="L338">    }</span>
+    
     @Override
-    public void draw(ArenaModel arena) throws IOException {
-<span class="fc" id="L341">        terminalGUI.clear();</span>
-<span class="fc" id="L342">        List&lt;Element&gt; listElements = arena.getElements();</span>
+    public void draw() {
+<span class="fc" id="L342">        ArenaModel arena = getArenaModel();</span>
         
-<span class="fc" id="L344">        Map&lt;Position, Element&gt; drawBuffer = new HashMap&lt;&gt;();</span>
-<span class="fc bfc" id="L345" title="All 2 branches covered.">        for(final Element e : listElements){</span>
-<span class="fc" id="L346">            final Element e_ = drawBuffer.get(e.getPos());</span>
-<span class="pc bpc" id="L347" title="3 of 4 branches missed.">            if(e_ == null || drawPriority.get(e.getClass()) &gt; drawPriority.get(e_.getClass())) drawBuffer.put(e.getPos(), e);</span>
-<span class="fc" id="L348">        }</span>
-
-<span class="fc" id="L350">        elementViewFactory.setHeroPos(arena.getHero().getPos());</span>
-<span class="fc bfc" id="L351" title="All 2 branches covered.">        for(final Element e : drawBuffer.values()){</span>
-<span class="fc" id="L352">            ElementView elementView = elementViewFactory.factoryMethod(e);</span>
-<span class="pc bpc" id="L353" title="1 of 2 branches missed.">            if(elementView != null) elementView.draw(e);</span>
-<span class="fc" id="L354">        }</span>
+<span class="fc" id="L344">        List&lt;Element&gt; listElements = arena.getElements();</span>
         
-<span class="fc" id="L356">        infoBar.draw(arena);</span>
-<span class="fc" id="L357">        terminalGUI.refresh();</span>
-<span class="fc" id="L358">    }</span>
+<span class="fc" id="L346">        Map&lt;Position, Element&gt; drawBuffer = new HashMap&lt;&gt;();</span>
+<span class="fc bfc" id="L347" title="All 2 branches covered.">        for(final Element e : listElements){</span>
+<span class="fc" id="L348">            final Element e_ = drawBuffer.get(e.getPos());</span>
+<span class="pc bpc" id="L349" title="3 of 4 branches missed.">            if(e_ == null || drawPriority.get(e.getClass()) &gt; drawPriority.get(e_.getClass())) drawBuffer.put(e.getPos(), e);</span>
+<span class="fc" id="L350">        }</span>
 
-    @Override
-    public COMMAND pollCommand() throws IOException{
-<span class="fc" id="L362">        KeyStroke key = terminalGUI.pollKey();</span>
-<span class="fc bfc" id="L363" title="All 2 branches covered.">        if(key == null) return null;</span>
-<span class="fc bfc" id="L364" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowUp                               ) return COMMAND.UP;</span>
-<span class="fc bfc" id="L365" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowDown                             ) return COMMAND.DOWN;</span>
-<span class="fc bfc" id="L366" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowLeft                             ) return COMMAND.LEFT;</span>
-<span class="fc bfc" id="L367" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowRight                            ) return COMMAND.RIGHT;</span>
-<span class="fc bfc" id="L368" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.Escape                                ) return COMMAND.EXIT;</span>
-<span class="pc bpc" id="L369" title="1 of 2 branches missed.">        if(key.getKeyType() == KeyType.EOF                                   ) return COMMAND.EXIT;</span>
-<span class="pc bpc" id="L370" title="1 of 2 branches missed.">        if(key.getKeyType() == KeyType.Character){</span>
-<span class="pc bpc" id="L371" title="1 of 2 branches missed.">            if(Character.toUpperCase(key.getCharacter()) == ' ') return COMMAND.ATTACK;</span>
-<span class="pc bpc" id="L372" title="1 of 2 branches missed.">            if(Character.toUpperCase(key.getCharacter()) == 'P') return COMMAND.PAUSE;</span>
-        }
-<span class="fc" id="L374">        return null;</span>
-    }
+<span class="fc" id="L352">        elementViewFactory.setHeroPos(arena.getHero().getPos());</span>
+<span class="fc bfc" id="L353" title="All 2 branches covered.">        for(final Element e : drawBuffer.values()){</span>
+<span class="fc" id="L354">            ElementView elementView = elementViewFactory.factoryMethod(e);</span>
+<span class="pc bpc" id="L355" title="1 of 2 branches missed.">            if(elementView != null) elementView.draw(e);</span>
+<span class="fc" id="L356">        }</span>
+        
+<span class="fc" id="L358">        infoBar.draw(arena);</span>
+<span class="fc" id="L359">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

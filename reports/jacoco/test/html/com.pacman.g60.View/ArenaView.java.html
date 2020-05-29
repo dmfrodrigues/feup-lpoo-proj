@@ -6,12 +6,16 @@ import com.pacman.g60.Model.ArenaModel;
 
 import java.io.IOException;
 
-public interface ArenaView {
-
-<span class="fc" id="L11">    enum COMMAND {UP, DOWN, LEFT, RIGHT, ATTACK, EXIT, PAUSE}</span>
-
-    void start();
-    void draw(ArenaModel arena) throws IOException;
-    COMMAND pollCommand() throws IOException;
+public abstract class ArenaView extends GUIView {
+<span class="fc" id="L10">    ArenaModel arenaModel = null;</span>
+    
+    public ArenaView(GUI gui){
+<span class="fc" id="L13">        super(gui);</span>
+<span class="fc" id="L14">    }</span>
+    
+<span class="fc" id="L16">    public void setArenaModel(ArenaModel arenaModel){ this.arenaModel = arenaModel; }</span>
+<span class="fc" id="L17">    protected ArenaModel getArenaModel(){ return arenaModel; }</span>
+    
+    public abstract void start();
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

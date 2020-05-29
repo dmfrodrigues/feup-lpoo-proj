@@ -2,11 +2,12 @@
 
 import com.pacman.g60.Model.MenuModel;
 
-import java.io.IOException;
-
-public interface MenuView {
-<span class="nc" id="L8">    enum COMMAND {UP, DOWN, ENTER, EXIT}</span>
-    void draw(MenuModel menu) throws IOException;
-    COMMAND pollCommand() throws IOException;
+public abstract class MenuView extends GUIView {
+<span class="nc" id="L6">    MenuModel menuModel = null;</span>
+    
+<span class="nc" id="L8">    public MenuView(GUI gui){ super(gui); }</span>
+    
+<span class="nc" id="L10">    public final void setMenuModel(MenuModel menuModel){ this.menuModel = menuModel; }</span>
+<span class="nc" id="L11">    public final MenuModel getMenuModel(){ return menuModel; }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

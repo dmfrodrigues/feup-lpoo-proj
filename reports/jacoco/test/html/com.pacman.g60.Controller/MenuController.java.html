@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MenuController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.Controller</a> &gt; <span class="el_source">MenuController.java</span></div><h1>MenuController.java</h1><pre class="source lang-java linenums">package com.pacman.g60.Controller;
 
 import com.pacman.g60.Model.MenuModel;
-import com.pacman.g60.View.MenuView;
+import com.pacman.g60.View.GUIView;
 
 import java.io.IOException;
 
 public class MenuController {
     private MenuModel menuModel;
-    private MenuView menuView;
+    private GUIView view;
     
-<span class="nc" id="L12">    public MenuController(MenuModel menuModel, MenuView menuView){</span>
+<span class="nc" id="L12">    public MenuController(MenuModel menuModel, GUIView view){</span>
 <span class="nc" id="L13">        this.menuModel = menuModel;</span>
-<span class="nc" id="L14">        this.menuView = menuView;</span>
+<span class="nc" id="L14">        this.view = view;</span>
 <span class="nc" id="L15">    }</span>
-    
-<span class="nc" id="L17">    protected void draw() { }</span>
     
     public int run() throws IOException {
         while(true){
-<span class="nc" id="L21">            MenuView.COMMAND cmd = menuView.pollCommand();</span>
-<span class="nc bnc" id="L22" title="All 2 branches missed.">            if(!(cmd == null)) {</span>
-<span class="nc bnc" id="L23" title="All 5 branches missed.">                switch (cmd) {</span>
-                    case EXIT:
-<span class="nc" id="L25">                        return -1;</span>
+<span class="nc" id="L19">            GUIView.COMMAND cmd = view.pollCommand();</span>
+<span class="nc bnc" id="L20" title="All 2 branches missed.">            if(!(cmd == null)) {</span>
+<span class="nc bnc" id="L21" title="All 5 branches missed.">                switch (cmd) {</span>
+                    case EOF:
+                    case ESC:
+<span class="nc" id="L24">                        return -1;</span>
                     case UP:
-<span class="nc" id="L27">                        menuModel.selectAbove();</span>
-<span class="nc" id="L28">                        break;</span>
+<span class="nc" id="L26">                        menuModel.selectAbove();</span>
+<span class="nc" id="L27">                        break;</span>
                     case DOWN:
-<span class="nc" id="L30">                        menuModel.selectBelow();</span>
-<span class="nc" id="L31">                        break;</span>
+<span class="nc" id="L29">                        menuModel.selectBelow();</span>
+<span class="nc" id="L30">                        break;</span>
                     case ENTER:
-<span class="nc" id="L33">                        return menuModel.getSelectedItem().getId();</span>
+<span class="nc" id="L32">                        return menuModel.getSelectedItem().getId();</span>
                 }
             }
-<span class="nc" id="L36">            menuView.draw(menuModel);</span>
-<span class="nc" id="L37">            draw();</span>
+<span class="nc" id="L35">            view.clear();</span>
+<span class="nc" id="L36">            view.draw();</span>
+<span class="nc" id="L37">            view.refresh();</span>
 <span class="nc" id="L38">        }</span>
     }
 }
