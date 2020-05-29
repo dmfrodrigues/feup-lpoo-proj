@@ -6,6 +6,7 @@ import com.googlecode.lanterna.input.KeyType;
 import com.pacman.g60.Model.*;
 import com.pacman.g60.Model.Elements.*;
 
+import javax.swing.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -15,10 +16,17 @@ import java.util.Map;
 
 public class TerminalArenaView extends ArenaView {
 
+    private static final Integer MILLIS_TO_SECONDS = 1000;
+    
     private static final Integer HInfoBar = 5;
 
     private class InfoBar {
         private final Integer Wmargin = 2;
+        private TextModel textModelCoin;
+        private TerminalTextView textViewCoin;
+        private TextModel textModelTimer;
+        private TerminalTextView textViewTimer;
+
         private void drawSprite(TerminalSprite sprite, int x0, int y0){
             for(int x = 0; x < sprite.getW(); ++x) {
                 for (int y = 0; y < sprite.getH(); ++y) {
@@ -32,7 +40,7 @@ public class TerminalArenaView extends ArenaView {
         TerminalSprite heartSprite;
         TerminalSprite heartDeadSprite;
         TerminalSprite coinSprite;
-        TerminalTextView textView;
+        
         long startTime;
         public void startTime(){ startTime = System.currentTimeMillis(); }
         public InfoBar() throws FileNotFoundException{
@@ -46,7 +54,19 @@ public class TerminalArenaView extends ArenaView {
 
             TerminalFont.Loader fontLoader = new TerminalFontLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/numbers-4-3.lan"));
             TerminalFont font = fontLoader.getTerminalFont();
-            textView = new TerminalTextView(terminalGUI, font);
+            
+            textModelCoin = new TextModel("");
+            textModelCoin.setVerticalAlign(Alignable.VerticalAlign.TOP);
+            textModelCoin.setHorizontalAlign(Alignable.HorizontalAlign.LEFT);
+            textViewCoin = new TerminalTextView(terminalGUI, font);
+            textViewCoin.setTextModel(textModelCoin);
+            
+            textModelTimer = new TextModel("");
+            textModelTimer.setVerticalAlign(Alignable.VerticalAlign.TOP);
+            textModelTimer.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);
+            textViewTimer = new TerminalTextView(terminalGUI, font);
+            textViewTimer.setTextModel(textModelTimer);
+
             startTime();
         }
         private void drawFrame(){
@@ -87,25 +107,29 @@ public class TerminalArenaView extends ArenaView {
         }
         private void drawCoins(int coins, int totalCoins){
             String coinsStr = String.format("%d/%d", coins, totalCoins);
-            int coinsStrX = terminalGUI.getW()-Wmargin-textView.getStringWidth(coinsStr);
-            textView.draw(coinsStrX, 1+coinSprite.getH()-textView.getStringHeight(coinsStr), coinsStr);
+            int coinsStrX = terminalGUI.getW()-Wmargin-textViewCoin.getStringWidth(coinsStr);
+            textModelCoin.setText(coinsStr);
+            textModelCoin.setPosition(new Position(coinsStrX, 1+coinSprite.getH()-textViewCoin.getStringHeight(textModelCoin.getText())));
+            textViewCoin.draw();
             int coinsSpriteX = coinsStrX - coinSprite.getW() -1;
             drawSprite(coinSprite, coinsSpriteX, 1);
         }
-        private void drawTimer(long time){
+        private void drawTimer(){
+            long time = (System.currentTimeMillis() - startTime)/MILLIS_TO_SECONDS;
             long sec = time%60;
             long min = time/60;
             String sSec = String.format("%02d", sec);
             String sMin = String.format("%d", min);
-            String s = sMin + ":" + sSec;
-            textView.draw(terminalGUI.getW()/2-textView.getStringWidth(sMin), 1, s);
+            String timerString = sMin + ":" + sSec;
+            textModelTimer.setText(sMin + ":" + sSec);
+            textModelTimer.setPosition(new Position(terminalGUI.getW()/2, 1+coinSprite.getH()-textViewCoin.getStringHeight(textModelTimer.getText())));
+            textViewTimer.draw();
         }
         public void draw(ArenaModel arenaModel){
             drawFrame();
             drawHealth(arenaModel.getHero().getHealth(), arenaModel.getHero().getMaxHealth());
             drawCoins(arenaModel.getHero().getCoins(), arenaModel.getNumCoins() + arenaModel.getHero().getCoins());
-            long now = System.currentTimeMillis();
-            drawTimer((now-startTime)/1000);
+            drawTimer();
         }
     }
     
