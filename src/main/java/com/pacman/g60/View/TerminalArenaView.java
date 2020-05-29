@@ -48,9 +48,6 @@ public class TerminalArenaView extends ArenaView {
             heartDeadSprite = loader.getTerminalSprite();
             loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/coin-6-3.lan"));
             coinSprite = loader.getTerminalSprite();
-
-            TerminalFont.Loader fontLoader = new TerminalFontLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/numbers-4-3.lan"));
-            TerminalFont font = fontLoader.getTerminalFont();
             
             textModelCoin = new TextModel("");
             textModelCoin.setVerticalAlign(Alignable.VerticalAlign.TOP);
@@ -390,10 +387,12 @@ public class TerminalArenaView extends ArenaView {
     private TerminalGUI terminalGUI;
     private ElementViewFactory elementViewFactory;
     private InfoBar infoBar;
+    private TerminalFont font;
     
-    public TerminalArenaView(TerminalGUI terminalGUI) throws FileNotFoundException{
+    public TerminalArenaView(TerminalGUI terminalGUI, TerminalFont font) throws FileNotFoundException{
         super(terminalGUI);
         this.terminalGUI = terminalGUI;
+        this.font = font;
         elementViewFactory = new ElementViewFactory();
         infoBar = new InfoBar();
     }

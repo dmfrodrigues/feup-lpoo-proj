@@ -6,9 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.pacman.g60.Model.*;
-import com.pacman.g60.View.ArenaView;
-import com.pacman.g60.View.MenuView;
-import com.pacman.g60.View.ViewFactory;
+import com.pacman.g60.View.*;
 
 public class Game {
 
@@ -149,22 +147,33 @@ public class Game {
     
     private class StateWin implements State {
         MenuModel menuModel;
+        TextModel title;
         MenuView menuView;
-        public StateWin(MenuView menuView){
+        GUIViewComposite view;
+        public StateWin(MenuView menuView, TextView textView){
             this.menuView = menuView;
+            
+            view = new GUIViewComposite(menuView.getGUI());
+            view.addView(menuView);
+            view.addView(textView);
             
             menuModel = new MenuModel();
             menuModel.setRelativePosition(new RelativePosition(0.5, 0.4));
-            menuModel.setVerticalAlign(MenuModel.VerticalAlign.TOP);
-            menuModel.setHorizontalAlign(MenuModel.HorizontalAlign.CENTER);
+            menuModel.setVerticalAlign(Alignable.VerticalAlign.TOP);
+            menuModel.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);
             menuModel.append(new MenuModel.NormalItem(menuModel, 0, "Continue playing"));
             menuModel.append(new MenuModel.NormalItem(menuModel, 1, "Back to main menu"));
+        
+            title = new TextModel("The Cursed Catacombs");
+            title.setVerticalAlign(Alignable.VerticalAlign.BOTTOM);
+            title.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);
+            textView.setTextModel(title);
         }
         @Override
         public State run() throws IOException {
             MenuModel menuModel_ = new MenuModel(menuModel);
             menuView.setMenuModel(menuModel_);
-            MenuController menuController = new MenuController(menuModel_, menuView);
+            MenuController menuController = new MenuController(menuModel_, view);
             int r = menuController.run();
             switch(r){
                 case -1: return stateMainMenu;
@@ -252,7 +261,7 @@ public class Game {
         stateLoad           = new StateLoad();
         stateLevelSelect    = new StateLevelSelector();
         stateArena          = new StateArena(viewFactory.createArenaView());
-        stateWin            = new StateWin(viewFactory.createMenuView());
+        stateWin            = new StateWin(viewFactory.createMenuView(), viewFactory.createTextView());
         stateLose           = new StateLose(viewFactory.createMenuView());
         statePause          = new StatePause(viewFactory.createMenuView());
         stateExit           = new StateExit();

@@ -4,8 +4,6 @@ import com.pacman.g60.Model.MenuModel;
 import com.pacman.g60.Model.Position;
 import com.pacman.g60.Model.TextModel;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.List;
 
 public class TerminalMenuView extends MenuView {
@@ -14,12 +12,11 @@ public class TerminalMenuView extends MenuView {
     TerminalFont font;
     TerminalTextView textView;
     
-    public TerminalMenuView(TerminalGUI terminalGUI) throws FileNotFoundException {
+    public TerminalMenuView(TerminalGUI terminalGUI, TerminalFont font) {
         super(terminalGUI);
         this.terminalGUI = terminalGUI;
-        TerminalFont.Loader loader = new TerminalFontLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/numbers-4-3.lan"));
-        font = loader.getTerminalFont();
-        textView = new TerminalTextView(terminalGUI, font);
+        this.font = font;
+        textView = new TerminalTextView(terminalGUI, this.font);
     }
     
     int Wbutton;

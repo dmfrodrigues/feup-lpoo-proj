@@ -6,13 +6,16 @@ import com.googlecode.lanterna.input.KeyType;
 import java.io.IOException;
 
 public abstract class GUIView {
-    public enum COMMAND{ UP, DOWN, LEFT, RIGHT, ESC, EOF, SPACEBAR, P, ENTER }
+    
+    public enum COMMAND{ UP, DOWN, LEFT, RIGHT, ESC, SPACEBAR, P, ENTER }
     
     GUI gui;
     public GUIView(GUI gui){
         this.gui = gui;
     }
-    
+
+    public GUI getGUI() { return gui; }
+
     public final void clear(){ gui.clear(); }
     public abstract  void draw();
     public final void refresh() throws IOException { gui.refresh(); }

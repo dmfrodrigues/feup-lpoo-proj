@@ -5,4 +5,5 @@ import java.io.FileNotFoundException;
 public interface ViewFactory {
     ArenaView createArenaView() throws Exception;
     MenuView createMenuView() throws Exception;
+    TextView createTextView();
 }
