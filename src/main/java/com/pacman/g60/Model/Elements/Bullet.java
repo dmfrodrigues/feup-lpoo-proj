@@ -16,6 +16,11 @@ public class Bullet extends Collectable implements OrientedElement {
         this.dir = Application.Direction.UP;
     }
 
+    public void setDir(Application.Direction newDir)
+    {
+        this.dir = newDir;
+    }
+
     @Override
     public Application.Direction getDirection() {
         return dir;
