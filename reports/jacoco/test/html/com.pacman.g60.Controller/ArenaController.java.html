@@ -68,9 +68,9 @@ public class ArenaController extends Controller {
 <span class="nc" id="L68">                        executeCommand(new AttackCommand(this.arenaModel)); break;</span>
                 }
             }
-
-<span class="nc bnc" id="L72" title="All 2 branches missed.">            if (arenaModel.getHero().getHealth() &lt;= 0){ lose(); good = false; }</span>
-<span class="nc bnc" id="L73" title="All 4 branches missed.">            if (!mustContinueRunning &amp;&amp; !arenaModel.getShouldGameContinue() ){ win(); good = false; }</span>
+            
+<span class="nc bnc" id="L72" title="All 2 branches missed.">            if (arenaModel.getHero().getHealth() &lt;= 0){ lose(); return; }</span>
+<span class="nc bnc" id="L73" title="All 4 branches missed.">            if (!mustContinueRunning &amp;&amp; !arenaModel.getShouldGameContinue() ){ win(); return; }</span>
 
 <span class="nc" id="L75">            arenaView.clear();</span>
 <span class="nc" id="L76">            arenaView.draw();</span>
