@@ -14,6 +14,8 @@ public class MenuController {
         this.menuView = menuView;
     }
     
+    protected void draw() { }
+    
     public int run() throws IOException {
         while(true){
             MenuView.COMMAND cmd = menuView.pollCommand();
@@ -32,6 +34,7 @@ public class MenuController {
                 }
             }
             menuView.draw(menuModel);
+            draw();
         }
     }
 }
