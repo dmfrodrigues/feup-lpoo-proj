@@ -20,6 +20,5 @@ public class FireBulletCommand implements Command {
         {
             Application.Direction heroDir = hero.getDirection();
         }
-
     }
 }
