@@ -11,7 +11,7 @@ import com.pacman.g60.View.ViewFactory;
 import java.io.*;
 
 public class Application {
-    public static void main(String[] argv){
+    public static void main(String[] argv) throws Exception {
         // ViewFactory
         TerminalGUI terminalGUI = new LanternaGUI();
         ViewFactory viewFactory = new TerminalFactory(terminalGUI);

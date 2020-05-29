@@ -1,9 +1,7 @@
 package com.pacman.g60.Model;
 
-import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class MenuModel extends Alignable {
@@ -54,7 +52,7 @@ public class MenuModel extends Alignable {
     List<Item> items = new ArrayList<>();
     int selected;
     boolean frame = false;
-    RelativePosition position = new RelativePosition(0, 0);
+    PositionReal position = new PositionReal(0, 0);
     
     public MenuModel(){
         setVerticalAlign(VerticalAlign.TOP);
@@ -102,10 +100,10 @@ public class MenuModel extends Alignable {
     }
     public Item getSelectedItem() { return items.get(selected); }
     
-    public void setRelativePosition(RelativePosition position){
+    public void setRelativePosition(PositionReal position){
         this.position = position;
     }
-    public RelativePosition getRelativePosition(){
+    public PositionReal getRelativePosition(){
         return position;
     }
 }

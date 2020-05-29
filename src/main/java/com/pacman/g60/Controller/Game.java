@@ -1,18 +1,12 @@
 package com.pacman.g60.Controller;
 
-import java.awt.*;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import com.pacman.g60.Model.*;
-import com.pacman.g60.View.ArenaView;
-import com.pacman.g60.View.MenuView;
-import com.pacman.g60.View.ViewFactory;
+import com.pacman.g60.View.*;
 
 public class Game {
 
@@ -34,35 +28,51 @@ public class Game {
 
     private class StateMainMenu implements State {
         MenuModel menuModel;
+        TextModel title;
         MenuView menuView;
-        public StateMainMenu(MenuView menuView){
+        GUIViewComposite view;
+        public StateMainMenu(MenuView menuView, TextView textView){
             this.menuView = menuView;
+
+            view = new GUIViewComposite(menuView.getGUI());
+            view.addView(textView);
+            view.addView(menuView);
             
             menuModel = new MenuModel();
             menuModel.setFrame(true);
-            menuModel.setRelativePosition(new RelativePosition(0.5, 0.5));
-            menuModel.setVerticalAlign(MenuModel.VerticalAlign.CENTER);
+            menuModel.setRelativePosition(new PositionReal(0.5, 0.18));
+            menuModel.setVerticalAlign(MenuModel.VerticalAlign.TOP);
             menuModel.setHorizontalAlign(MenuModel.HorizontalAlign.CENTER);
             menuModel.append(new MenuModel.NormalItem(menuModel,0, "Play"      ));
             menuModel.append(new MenuModel.NormalItem(menuModel,1, "Controls"  ));
             menuModel.append(new MenuModel.NormalItem(menuModel,2, "Scoreboard"));
             menuModel.append(new MenuModel.NormalItem(menuModel,3, "Save game" ));
             menuModel.append(new MenuModel.NormalItem(menuModel,4, "Load game" ));
+            menuModel.append(new MenuModel.NormalItem(menuModel,5, "Exit"      ));
+
+            title = new TextModel("The Cursed Catacombs");
+            title.setPosition(new PositionReal(0.5, 0.10));
+            title.setVerticalAlign(Alignable.VerticalAlign.TOP);
+            title.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);
+            textView.setTextModel(title);
         }
         @Override
         public State run() throws IOException {
             MenuModel menuModel_ = new MenuModel(menuModel);
             menuView.setMenuModel(menuModel_);
-            MenuController menuController = new MenuController(menuModel_, menuView);
-            int r = menuController.run();
-            switch(r){
-                case -1: return stateExit;
-                case 0: return stateLevelSelect;
-                case 1: return stateControls;
-                case 2: return stateScoreboard;
-                case 3: return stateSave;
-                case 4: return stateLoad;
-                default: throw new IndexOutOfBoundsException();
+            MenuController menuController = new MenuController(menuModel_, view);
+            while(true) {
+                int r = menuController.run();
+                switch (r) {
+                    case -1: break;
+                    case  0: return stateLevelSelect;
+                    case  1: return stateControls;
+                    case  2: return stateScoreboard;
+                    case  3: return stateSave;
+                    case  4: return stateLoad;
+                    case  5: return stateExit;
+                    default: throw new IndexOutOfBoundsException();
+                }
             }
         }
     }
@@ -130,7 +140,7 @@ public class Game {
                 arenaController.continueRunning();
             }
             arenaController.run();
-            
+            if(arenaController.wasTerminated()) return stateExit;
             if(!arenaController.isOver()) return statePause;
             if(arenaController.isWin()) return stateWin;
             else                        return stateLose;
@@ -149,25 +159,37 @@ public class Game {
     
     private class StateWin implements State {
         MenuModel menuModel;
+        TextModel title;
         MenuView menuView;
-        public StateWin(MenuView menuView){
+        GUIViewComposite view;
+        public StateWin(MenuView menuView, TextView textView){
             this.menuView = menuView;
             
+            view = new GUIViewComposite(menuView.getGUI());
+            view.addView(textView);
+            view.addView(menuView);
+            
             menuModel = new MenuModel();
-            menuModel.setRelativePosition(new RelativePosition(0.5, 0.4));
-            menuModel.setVerticalAlign(MenuModel.VerticalAlign.TOP);
-            menuModel.setHorizontalAlign(MenuModel.HorizontalAlign.CENTER);
+            menuModel.setRelativePosition(new PositionReal(0.5, 0.4));
+            menuModel.setVerticalAlign(Alignable.VerticalAlign.TOP);
+            menuModel.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);
             menuModel.append(new MenuModel.NormalItem(menuModel, 0, "Continue playing"));
             menuModel.append(new MenuModel.NormalItem(menuModel, 1, "Back to main menu"));
+        
+            title = new TextModel("Level completed!");
+            title.setPosition(new PositionReal(0.5, 0.3));
+            title.setVerticalAlign(Alignable.VerticalAlign.BOTTOM);
+            title.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);
+            textView.setTextModel(title);
         }
         @Override
         public State run() throws IOException {
             MenuModel menuModel_ = new MenuModel(menuModel);
             menuView.setMenuModel(menuModel_);
-            MenuController menuController = new MenuController(menuModel_, menuView);
+            MenuController menuController = new MenuController(menuModel_, view);
             int r = menuController.run();
             switch(r){
-                case -1: return stateExit;
+                case -1: return stateMainMenu;
                 case 0:
                     stateArena.continueRunning();
                     return stateArena;
@@ -179,25 +201,37 @@ public class Game {
 
     private class StateLose implements State {
         MenuModel menuModel;
+        TextModel title;
         MenuView menuView;
-        public StateLose(MenuView menuView){
+        GUIViewComposite view;
+        public StateLose(MenuView menuView, TextView textView){
             this.menuView = menuView;
 
+            view = new GUIViewComposite(menuView.getGUI());
+            view.addView(textView);
+            view.addView(menuView);
+
             menuModel = new MenuModel();
-            menuModel.setRelativePosition(new RelativePosition(0.5, 0.5));
+            menuModel.setRelativePosition(new PositionReal(0.5, 0.5));
             menuModel.setVerticalAlign(MenuModel.VerticalAlign.CENTER);
             menuModel.setHorizontalAlign(MenuModel.HorizontalAlign.CENTER);
             menuModel.append(new MenuModel.NormalItem(menuModel, 0, "To level selector"));
             menuModel.append(new MenuModel.NormalItem(menuModel, 1, "Back to main menu"));
+
+            title = new TextModel("You lost...");
+            title.setPosition(new PositionReal(0.5, 0.3));
+            title.setVerticalAlign(Alignable.VerticalAlign.BOTTOM);
+            title.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);
+            textView.setTextModel(title);
         }
         @Override
         public State run() throws IOException {
             MenuModel menuModel_ = new MenuModel(menuModel);
             menuView.setMenuModel(menuModel_);
-            MenuController menuController = new MenuController(menuModel_, menuView);
+            MenuController menuController = new MenuController(menuModel_, view);
             int r = menuController.run();
             switch(r){
-                case -1: return stateExit;
+                case -1: return stateMainMenu;
                 case 0: return stateLevelSelect;
                 case 1: return stateMainMenu;
                 default: throw new IndexOutOfBoundsException();
@@ -207,25 +241,37 @@ public class Game {
 
     private class StatePause implements State {
         MenuModel menuModel;
+        TextModel title;
         MenuView menuView;
-        public StatePause(MenuView menuView){
+        GUIViewComposite view;
+        public StatePause(MenuView menuView, TextView textView){
             this.menuView = menuView;
 
+            view = new GUIViewComposite(menuView.getGUI());
+            view.addView(textView);
+            view.addView(menuView);
+
             menuModel = new MenuModel();
-            menuModel.setRelativePosition(new RelativePosition(0.5, 0.5));
+            menuModel.setRelativePosition(new PositionReal(0.5, 0.5));
             menuModel.setVerticalAlign(MenuModel.VerticalAlign.CENTER);
             menuModel.setHorizontalAlign(MenuModel.HorizontalAlign.CENTER);
             menuModel.append(new MenuModel.NormalItem(menuModel, 0, "Unpause game"));
             menuModel.append(new MenuModel.NormalItem(menuModel, 1, "Back to main menu"));
+
+            title = new TextModel("Paused");
+            title.setPosition(new PositionReal(0.5, 0.3));
+            title.setVerticalAlign(Alignable.VerticalAlign.BOTTOM);
+            title.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);
+            textView.setTextModel(title);
         }
         @Override
         public State run() throws IOException {
             MenuModel menuModel_ = new MenuModel(menuModel);
             menuView.setMenuModel(menuModel_);
-            MenuController menuController = new MenuController(menuModel_, menuView);
+            MenuController menuController = new MenuController(menuModel_, view);
             int r = menuController.run();
             switch(r){
-                case -1: return stateExit;
+                case -1: return stateArena;
                 case 0:
                     if(!stateArena.arenaModel.getShouldGameContinue()) stateArena.continueRunning();
                     return stateArena;
@@ -245,23 +291,32 @@ public class Game {
     private State state;
 
     public Game(ViewFactory viewFactory) throws Exception {
-        stateMainMenu       = new StateMainMenu(viewFactory.createMenuView());
+        stateMainMenu       = new StateMainMenu(viewFactory.createMenuView(), viewFactory.createTextView());
         stateControls       = new StateControls();
         stateScoreboard     = new StateScoreboard();
         stateSave           = new StateSave();
         stateLoad           = new StateLoad();
         stateLevelSelect    = new StateLevelSelector();
         stateArena          = new StateArena(viewFactory.createArenaView());
-        stateWin            = new StateWin(viewFactory.createMenuView());
-        stateLose           = new StateLose(viewFactory.createMenuView());
-        statePause          = new StatePause(viewFactory.createMenuView());
+        stateWin            = new StateWin(viewFactory.createMenuView(), viewFactory.createTextView());
+        stateLose           = new StateLose(viewFactory.createMenuView(), viewFactory.createTextView());
+        statePause          = new StatePause(viewFactory.createMenuView(), viewFactory.createTextView());
         stateExit           = new StateExit();
     }
     
-    public void run() throws Exception {
+    public void run() {
         state = stateMainMenu;
-        while(! (state instanceof StateExit)){
-            state = state.run();
+        try {
+            while (!(state instanceof StateExit)) {
+                state = state.run();
+            }
+        } catch(Exception e){
+            if(e instanceof EOFException) {
+                System.out.println("Application closed after receiving exception (" + e.getClass().toString() + "): " + e.getMessage());
+            } else {
+                System.out.println("Application closed unexpectedly after receiving exception (" + e.getClass().toString() + "): " + e.getMessage());
+                e.printStackTrace();
+            }
         }
     }
 }

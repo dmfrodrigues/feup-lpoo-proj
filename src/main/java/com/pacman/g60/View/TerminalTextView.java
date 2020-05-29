@@ -26,8 +26,14 @@ public class TerminalTextView extends TextView{
     public void draw(){
         TextModel text = getTextModel();
         if(text == null) return;
-        int x0 = text.getPosition().getX();
-        int y0 = text.getPosition().getY();
+        int x0, y0;
+        if(text.getUnit() == TextModel.UNIT.ABSOLUTE) {
+            x0 = (int) text.getPosition().getX();
+            y0 = (int) text.getPosition().getY();
+        } else {
+            x0 = (int)(text.getPosition().getX() * terminalGUI.getW());
+            y0 = (int)(text.getPosition().getY() * terminalGUI.getH());
+        }
         switch(text.getHorizontalAlign()){
             case LEFT  : break;
             case CENTER: x0 -= getStringWidth(text.getText())/2; break;
