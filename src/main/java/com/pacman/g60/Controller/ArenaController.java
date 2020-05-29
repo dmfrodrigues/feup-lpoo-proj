@@ -12,10 +12,12 @@ public class ArenaController {
     private ArenaModel arenaModel;
     private boolean win;
     private boolean over;
-    
+    private boolean mustContinueRunning = false;
+
     public ArenaController(ArenaModel arenaModel, ArenaView arenaView){
         this.arenaModel = arenaModel;
         this.arenaView = arenaView;
+        start();
     }
     
     private void start(){
@@ -25,7 +27,7 @@ public class ArenaController {
     }
     
     public void run() throws IOException {
-        start();
+        //if(!mustContinueRunning) start();
         
         boolean good = true;
         int i = 0;
@@ -52,6 +54,9 @@ public class ArenaController {
                 switch (cmd) {
                     case EXIT:
                         good = false;
+                        break;      
+                    case PAUSE:
+                        good = false;
                         break;
                     case UP:
                         executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.UP)); break;
@@ -65,9 +70,9 @@ public class ArenaController {
                         executeCommand(new AttackCommand(this.arenaModel)); break;
                 }
             }
-            
+
             if (arenaModel.getHero().getHealth() <= 0){ lose(); good = false; }
-            if (!arenaModel.getShouldGameContinue()  ){ win(); good = false; }
+            if (!mustContinueRunning && !arenaModel.getShouldGameContinue() ){ win(); good = false; }
 
             arenaView.draw(arenaModel);
         }
@@ -93,7 +98,7 @@ public class ArenaController {
     }
 
 
-
-
-
+    public void continueRunning() {
+        mustContinueRunning = true;
+    }
 }
