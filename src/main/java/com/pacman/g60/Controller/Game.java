@@ -26,6 +26,8 @@ public class Game {
     private final StateLoad stateLoad;
     private final StateLevelSelector stateLevelSelect;
     private final StateArena stateArena;
+    private final StateWin stateWin;
+    private final StateLose stateLose;
     private final StateExit stateExit;
 
     private class StateMainMenu implements State {
@@ -121,11 +123,27 @@ public class Game {
         public State run() throws IOException {
             ArenaController arenaController = new ArenaController(arenaModel, arenaView);
             arenaController.run();
-            return stateMainMenu;
+            if(!arenaController.isOver()) return stateExit;
+            if(arenaController.isWin()) return stateWin;
+            else                        return stateLose;
         }
 
         public void setArenaModel(ArenaModel arenaModel) {
             this.arenaModel = arenaModel;
+        }
+    }
+    
+    private class StateWin implements State {
+        @Override
+        public State run() {
+            return stateMainMenu;
+        }
+    }
+
+    private class StateLose implements State {
+        @Override
+        public State run() {
+            return stateMainMenu;
         }
     }
 
@@ -146,6 +164,8 @@ public class Game {
         stateLoad           = new StateLoad();
         stateLevelSelect    = new StateLevelSelector();
         stateArena          = new StateArena(viewFactory.createArenaView());
+        stateWin            = new StateWin();
+        stateLose           = new StateLose();
         stateExit           = new StateExit();
     }
     
