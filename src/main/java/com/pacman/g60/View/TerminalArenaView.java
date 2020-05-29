@@ -1,14 +1,11 @@
 package com.pacman.g60.View;
 
 
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 import com.pacman.g60.Model.*;
 import com.pacman.g60.Model.Elements.*;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -357,7 +354,7 @@ public class TerminalArenaView extends ArenaView {
             Hero .class, 5,
             Ogre.class , 4,
             Mummy.class, 4,
-            Guard.class, 4,
+            VerticalGuard.class, 4,
             Ghost.class, 2,
             Wall .class, 1,
             HealthPotion.class, 0,
