@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TerminalArenaView implements ArenaView {
+public class TerminalArenaView extends ArenaView {
 
     private static final Integer HInfoBar = 5;
 
@@ -371,6 +371,7 @@ public class TerminalArenaView implements ArenaView {
     private InfoBar infoBar;
     
     public TerminalArenaView(TerminalGUI terminalGUI) throws FileNotFoundException{
+        super(terminalGUI);
         this.terminalGUI = terminalGUI;
         elementViewFactory = new ElementViewFactory();
         infoBar = new InfoBar();
@@ -380,10 +381,11 @@ public class TerminalArenaView implements ArenaView {
     public void start() {
         infoBar.startTime();
     }
-
+    
     @Override
-    public void draw(ArenaModel arena) throws IOException {
-        terminalGUI.clear();
+    public void draw() {
+        ArenaModel arena = getArenaModel();
+        
         List<Element> listElements = arena.getElements();
         
         Map<Position, Element> drawBuffer = new HashMap<>();
@@ -399,23 +401,5 @@ public class TerminalArenaView implements ArenaView {
         }
         
         infoBar.draw(arena);
-        terminalGUI.refresh();
-    }
-
-    @Override
-    public COMMAND pollCommand() throws IOException{
-        KeyStroke key = terminalGUI.pollKey();
-        if(key == null) return null;
-        if(key.getKeyType() == KeyType.ArrowUp                               ) return COMMAND.UP;
-        if(key.getKeyType() == KeyType.ArrowDown                             ) return COMMAND.DOWN;
-        if(key.getKeyType() == KeyType.ArrowLeft                             ) return COMMAND.LEFT;
-        if(key.getKeyType() == KeyType.ArrowRight                            ) return COMMAND.RIGHT;
-        if(key.getKeyType() == KeyType.Escape                                ) return COMMAND.EXIT;
-        if(key.getKeyType() == KeyType.EOF                                   ) return COMMAND.EXIT;
-        if(key.getKeyType() == KeyType.Character){
-            if(Character.toUpperCase(key.getCharacter()) == ' ') return COMMAND.ATTACK;
-            if(Character.toUpperCase(key.getCharacter()) == 'P') return COMMAND.PAUSE;
-        }
-        return null;
     }
 }

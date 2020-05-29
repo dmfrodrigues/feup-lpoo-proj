@@ -324,6 +324,8 @@ This use of the Strategy pattern has the benefits of:
 
 <a name="code-smells"><a/>
 
+### Composite in Views
+
 ## Code smells and refactoring suggestions
 
 ### [Shotgun surgery](https://refactoring.guru/smells/shotgun-surgery)
