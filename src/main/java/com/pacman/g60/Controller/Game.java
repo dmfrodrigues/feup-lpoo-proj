@@ -191,7 +191,7 @@ public class Game {
         @Override
         public State run() throws IOException {
             MenuModel menuModel_ = new MenuModel(menuModel);
-            MenuController menuController = new MenuControllerPause(menuModel_, menuView);
+            MenuController menuController = new MenuController(menuModel_, menuView);
             int r = menuController.run();
             switch(r){
                 case -1: return stateExit;
@@ -218,7 +218,7 @@ public class Game {
         @Override
         public State run() throws IOException {
             MenuModel menuModel_ = new MenuModel(menuModel);
-            MenuController menuController = new MenuControllerPause(menuModel_, menuView);
+            MenuController menuController = new MenuController(menuModel_, menuView);
             int r = menuController.run();
             switch(r){
                 case -1: return stateExit;
