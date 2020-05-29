@@ -3,6 +3,7 @@ package com.pacman.g60.View;
 
 import com.pacman.g60.Model.*;
 import com.pacman.g60.Model.Elements.*;
+import com.pacman.g60.Model.Elements.Hierarchy.OrientedElement;
 
 import javax.swing.*;
 import java.io.FileInputStream;
@@ -240,7 +241,7 @@ public class TerminalArenaView extends ArenaView {
 
         @Override
         protected TerminalSprite getSprite(Element e) {
-            return spriteOrientable.getSprite(((DynamicElement) e).getDirection());
+            return spriteOrientable.getSprite(((OrientedElement) e).getDirection());
         }
     }
     private class CoinView extends ElementView {
