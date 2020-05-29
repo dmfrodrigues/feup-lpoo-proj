@@ -5,6 +5,7 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
@@ -12,6 +13,7 @@ import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
 
 import java.awt.*;
+import java.io.EOFException;
 import java.io.IOException;
 
 public class LanternaGUI implements TerminalGUI {
@@ -68,7 +70,9 @@ public class LanternaGUI implements TerminalGUI {
 
     @Override
     public KeyStroke pollKey() throws IOException {
-        return screen.pollInput();
+        KeyStroke key = screen.pollInput();
+        if(key != null && key.getKeyType() == KeyType.EOF) throw new EOFException("");
+        return key;
     }
 
     @Override

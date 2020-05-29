@@ -1,10 +1,6 @@
 package com.pacman.g60.Controller;
 
-import java.awt.*;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -48,21 +44,25 @@ public class Game {
             menuModel.append(new MenuModel.NormalItem(menuModel,2, "Scoreboard"));
             menuModel.append(new MenuModel.NormalItem(menuModel,3, "Save game" ));
             menuModel.append(new MenuModel.NormalItem(menuModel,4, "Load game" ));
+            menuModel.append(new MenuModel.NormalItem(menuModel,5, "Exit"      ));
         }
         @Override
         public State run() throws IOException {
             MenuModel menuModel_ = new MenuModel(menuModel);
             menuView.setMenuModel(menuModel_);
             MenuController menuController = new MenuController(menuModel_, menuView);
-            int r = menuController.run();
-            switch(r){
-                case -1: return stateExit;
-                case 0: return stateLevelSelect;
-                case 1: return stateControls;
-                case 2: return stateScoreboard;
-                case 3: return stateSave;
-                case 4: return stateLoad;
-                default: throw new IndexOutOfBoundsException();
+            while(true) {
+                int r = menuController.run();
+                switch (r) {
+                    case -1: break;
+                    case  0: return stateLevelSelect;
+                    case  1: return stateControls;
+                    case  2: return stateScoreboard;
+                    case  3: return stateSave;
+                    case  4: return stateLoad;
+                    case  5: return stateExit;
+                    default: throw new IndexOutOfBoundsException();
+                }
             }
         }
     }
@@ -130,7 +130,7 @@ public class Game {
                 arenaController.continueRunning();
             }
             arenaController.run();
-            
+            if(arenaController.wasTerminated()) return stateExit;
             if(!arenaController.isOver()) return statePause;
             if(arenaController.isWin()) return stateWin;
             else                        return stateLose;
@@ -167,7 +167,7 @@ public class Game {
             MenuController menuController = new MenuController(menuModel_, menuView);
             int r = menuController.run();
             switch(r){
-                case -1: return stateExit;
+                case -1: return stateMainMenu;
                 case 0:
                     stateArena.continueRunning();
                     return stateArena;
@@ -197,7 +197,7 @@ public class Game {
             MenuController menuController = new MenuController(menuModel_, menuView);
             int r = menuController.run();
             switch(r){
-                case -1: return stateExit;
+                case -1: return stateMainMenu;
                 case 0: return stateLevelSelect;
                 case 1: return stateMainMenu;
                 default: throw new IndexOutOfBoundsException();
@@ -225,7 +225,7 @@ public class Game {
             MenuController menuController = new MenuController(menuModel_, menuView);
             int r = menuController.run();
             switch(r){
-                case -1: return stateExit;
+                case -1: return stateArena;
                 case 0:
                     if(!stateArena.arenaModel.getShouldGameContinue()) stateArena.continueRunning();
                     return stateArena;
@@ -258,10 +258,19 @@ public class Game {
         stateExit           = new StateExit();
     }
     
-    public void run() throws Exception {
+    public void run() {
         state = stateMainMenu;
-        while(! (state instanceof StateExit)){
-            state = state.run();
+        try {
+            while (!(state instanceof StateExit)) {
+                state = state.run();
+            }
+        } catch(Exception e){
+            if(e instanceof EOFException) {
+                System.out.println("Application closed after receiving exception (" + e.getClass().toString() + "): " + e.getMessage());
+            } else {
+                System.out.println("Application closed unexpectedly after receiving exception (" + e.getClass().toString() + "): " + e.getMessage());
+                e.printStackTrace();
+            }
         }
     }
 }

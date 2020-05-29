@@ -24,7 +24,6 @@ public abstract class GUIView {
         if(key.getKeyType() == KeyType.ArrowLeft                                                    ) return COMMAND.LEFT;
         if(key.getKeyType() == KeyType.ArrowRight                                                   ) return COMMAND.RIGHT;
         if(key.getKeyType() == KeyType.Escape                                                       ) return COMMAND.ESC;
-        if(key.getKeyType() == KeyType.EOF                                                          ) return COMMAND.EOF;
         if(key.getKeyType() == KeyType.Enter                                                        ) return COMMAND.ENTER;
         if(key.getKeyType() == KeyType.Character && Character.toUpperCase(key.getCharacter()) == ' ') return COMMAND.SPACEBAR;
         if(key.getKeyType() == KeyType.Character && Character.toUpperCase(key.getCharacter()) == 'P') return COMMAND.P;

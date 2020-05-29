@@ -7,7 +7,7 @@ import com.pacman.g60.View.ArenaView;
 
 import java.io.IOException;
 
-public class ArenaController {
+public class ArenaController extends Controller {
     private ArenaView arenaView;
     private ArenaModel arenaModel;
     private boolean win;
@@ -33,7 +33,7 @@ public class ArenaController {
         
         boolean good = true;
         int i = 0;
-        while(good){
+        while(true){
             
             try {
                 Thread.sleep(10);
@@ -55,9 +55,7 @@ public class ArenaController {
             if(!(cmd == null)) {
                 switch (cmd) {
                     case ESC:
-                    case P:
-                        good = false;
-                        break;
+                    case P: return;
                     case UP:
                         executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.UP)); break;
                     case DOWN:
