@@ -19,7 +19,6 @@ public class MenuController {
             GUIView.COMMAND cmd = view.pollCommand();
             if(!(cmd == null)) {
                 switch (cmd) {
-                    case EOF:
                     case ESC:
                         return -1;
                     case UP:

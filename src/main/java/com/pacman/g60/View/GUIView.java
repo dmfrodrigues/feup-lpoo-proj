@@ -6,13 +6,16 @@ import com.googlecode.lanterna.input.KeyType;
 import java.io.IOException;
 
 public abstract class GUIView {
-    public enum COMMAND{ UP, DOWN, LEFT, RIGHT, ESC, EOF, SPACEBAR, P, ENTER }
+    
+    public enum COMMAND{ UP, DOWN, LEFT, RIGHT, ESC, SPACEBAR, P, ENTER }
     
     GUI gui;
     public GUIView(GUI gui){
         this.gui = gui;
     }
-    
+
+    public GUI getGUI() { return gui; }
+
     public final void clear(){ gui.clear(); }
     public abstract  void draw();
     public final void refresh() throws IOException { gui.refresh(); }
@@ -24,7 +27,6 @@ public abstract class GUIView {
         if(key.getKeyType() == KeyType.ArrowLeft                                                    ) return COMMAND.LEFT;
         if(key.getKeyType() == KeyType.ArrowRight                                                   ) return COMMAND.RIGHT;
         if(key.getKeyType() == KeyType.Escape                                                       ) return COMMAND.ESC;
-        if(key.getKeyType() == KeyType.EOF                                                          ) return COMMAND.EOF;
         if(key.getKeyType() == KeyType.Enter                                                        ) return COMMAND.ENTER;
         if(key.getKeyType() == KeyType.Character && Character.toUpperCase(key.getCharacter()) == ' ') return COMMAND.SPACEBAR;
         if(key.getKeyType() == KeyType.Character && Character.toUpperCase(key.getCharacter()) == 'P') return COMMAND.P;
