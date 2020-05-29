@@ -67,7 +67,7 @@ public class LanternaGUI implements TerminalGUI {
     }
 
     @Override
-    public KeyStroke pollKey() throws IOException{
+    public KeyStroke pollKey() throws IOException {
         return screen.pollInput();
     }
 
