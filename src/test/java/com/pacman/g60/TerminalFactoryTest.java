@@ -71,7 +71,8 @@ public class TerminalFactoryTest {
         ArenaModel arenaModel = new ArenaModel(10, 10);
         arenaModel.addElement(new Hero(new Position(2, 2)));
         try {
-            arenaView.draw(arenaModel);
+            arenaView.setArenaModel(arenaModel);
+            arenaView.draw();
         }catch(Exception e){
             fail();
         }
@@ -113,7 +114,7 @@ public class TerminalFactoryTest {
             Mockito.when(terminalGUI.pollKey()).thenReturn(new KeyStroke(KeyType.ArrowLeft));
             assertEquals(ArenaView.COMMAND.LEFT, arenaView.pollCommand());
             Mockito.when(terminalGUI.pollKey()).thenReturn(new KeyStroke(KeyType.Escape));
-            assertEquals(ArenaView.COMMAND.EXIT, arenaView.pollCommand());
+            assertEquals(ArenaView.COMMAND.ESC, arenaView.pollCommand());
             Mockito.when(terminalGUI.pollKey()).thenReturn(new KeyStroke('a', false, false));
             assertEquals(null, arenaView.pollCommand());
         } catch(Exception e){
