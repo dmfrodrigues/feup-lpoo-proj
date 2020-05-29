@@ -3,7 +3,6 @@ package com.pacman.g60.View;
 
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
-import com.googlecode.lanterna.terminal.Terminal;
 import com.pacman.g60.Model.*;
 import com.pacman.g60.Model.Elements.*;
 
@@ -368,8 +367,10 @@ public class TerminalArenaView implements ArenaView {
         if(key.getKeyType() == KeyType.ArrowRight                            ) return COMMAND.RIGHT;
         if(key.getKeyType() == KeyType.Escape                                ) return COMMAND.EXIT;
         if(key.getKeyType() == KeyType.EOF                                   ) return COMMAND.EXIT;
-        if(key.getKeyType() == KeyType.Character && key.getCharacter() == ' ') return COMMAND.ATTACK;
-        if(key.getKeyType() == KeyType.Character && key.getCharacter() == 'f') return COMMAND.FIRE;
+        if(key.getKeyType() == KeyType.Character){
+            if(Character.toUpperCase(key.getCharacter()) == ' ') return COMMAND.ATTACK;
+            if(Character.toUpperCase(key.getCharacter()) == 'P') return COMMAND.PAUSE;
+        }
         return null;
     }
 }

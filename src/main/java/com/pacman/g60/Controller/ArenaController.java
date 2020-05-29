@@ -10,14 +10,24 @@ import java.io.IOException;
 public class ArenaController {
     private ArenaView arenaView;
     private ArenaModel arenaModel;
-    
+    private boolean win;
+    private boolean over;
+    private boolean mustContinueRunning = false;
+
     public ArenaController(ArenaModel arenaModel, ArenaView arenaView){
         this.arenaModel = arenaModel;
         this.arenaView = arenaView;
+        start();
+    }
+    
+    private void start(){
+        win = false;
+        over = false;
+        arenaView.start();
     }
     
     public void run() throws IOException {
-        arenaView.start();
+        //if(!mustContinueRunning) start();
         
         boolean good = true;
         int i = 0;
@@ -44,6 +54,9 @@ public class ArenaController {
                 switch (cmd) {
                     case EXIT:
                         good = false;
+                        break;      
+                    case PAUSE:
+                        good = false;
                         break;
                     case UP:
                         executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.UP)); break;
@@ -59,21 +72,35 @@ public class ArenaController {
                         executeCommand(new FireBulletCommand(this.arenaModel)); break;
                 }
             }
-            
-            if (arenaModel.getHero().getHealth() <= 0) good = false;
-            if (!arenaModel.getShouldGameContinue()  ) good = false;
+
+            if (arenaModel.getHero().getHealth() <= 0){ lose(); good = false; }
+            if (!mustContinueRunning && !arenaModel.getShouldGameContinue() ){ win(); good = false; }
 
             arenaView.draw(arenaModel);
         }
     }
+    
+    private void lose(){
+        win = false;
+        over = true;
+    }
+    
+    private void win(){
+        win = true;
+        over = true;
+    }
 
+    public boolean isOver() { return over; }
+
+    public boolean isWin() { return win; }
+    
     public void executeCommand(Command command)
     {
         command.execute();
     }
 
 
-
-
-
+    public void continueRunning() {
+        mustContinueRunning = true;
+    }
 }
