@@ -5,6 +5,7 @@ import com.pacman.g60.Model.Effect.Effect;
 import com.pacman.g60.Model.Elements.Hierarchy.MeleeAttackerElement;
 import com.pacman.g60.Model.Position;
 
+
 public class Guard extends Enemy implements MeleeAttackerElement {
     private GuardMovementStrategy movement;
     public enum MovementType
@@ -18,6 +19,13 @@ public class Guard extends Enemy implements MeleeAttackerElement {
     {
         super(pos,new DamageEffect(1),10);
         this.moveType = moveType;
+        initMovement(pos);
+    }
+
+    private void initMovement(Position position)
+    {
+        if (moveType == MovementType.HORIZONTAL) this.movement = new HorizontalGuardMovementStrategy(position);
+        if (moveType == MovementType.VERTICAL  ) this.movement = new VerticalGuardMovementStrategy(position);
     }
 
     public Position getNextPos()
@@ -25,7 +33,12 @@ public class Guard extends Enemy implements MeleeAttackerElement {
         return movement.move();
     }
 
-    public Guard(Position pos, Effect effect, Integer health) {
-        super(pos, effect, health);
+    @Override
+    public Object clone()
+    {
+        Guard guard = (Guard) super.clone();
+        guard.moveType = this.moveType;
+        guard.movement = this.movement;
+        return guard;
     }
 }

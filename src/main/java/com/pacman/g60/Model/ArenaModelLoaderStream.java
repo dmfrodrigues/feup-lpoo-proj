@@ -20,7 +20,7 @@ public class ArenaModelLoaderStream implements ArenaModel.Loader {
                 case 'S': return new Sword(pos);
                 case 'B': return new Bullet(pos);
                 case 'M': return new Mummy(pos);
-                case 'V': return new Guard(pos,Guard.MovementType.VERTICAL);
+                case 'V': return new Guard(pos, Guard.MovementType.VERTICAL);
                 case 'R': return new Guard(pos, Guard.MovementType.HORIZONTAL);
                 case ' ': return null;
                 default: throw new IllegalArgumentException("Unknown character '" + c + "'");

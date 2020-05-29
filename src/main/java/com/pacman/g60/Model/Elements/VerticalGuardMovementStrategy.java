@@ -6,8 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class VerticalGuardMovementStrategy {
-    private Queue<Position> positions;
+public class VerticalGuardMovementStrategy extends GuardMovementStrategy {
 
     public VerticalGuardMovementStrategy(Position initialPos)
     {
@@ -17,8 +16,17 @@ public class VerticalGuardMovementStrategy {
 
     private void initPos(Position initialPos)
     {
+        Position pos1 = initialPos;
+        int initialX = initialPos.getX();
+        int initialY = initialPos.getY();
 
+        Position pos2 = new Position(initialX,initialY - 1);
+        Position pos3 = new Position(initialX,initialY - 2);
+        Position pos4 = new Position(initialX,initialY - 1);
+
+        this.positions.add(pos1);
+        this.positions.add(pos2);
+        this.positions.add(pos3);
+        this.positions.add(pos4);
     }
-
-
 }
