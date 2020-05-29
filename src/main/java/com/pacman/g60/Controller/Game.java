@@ -40,8 +40,8 @@ public class Game {
             
             menuModel = new MenuModel();
             menuModel.setFrame(true);
-            menuModel.setRelativePosition(new PositionReal(0.5, 0.55));
-            menuModel.setVerticalAlign(MenuModel.VerticalAlign.CENTER);
+            menuModel.setRelativePosition(new PositionReal(0.5, 0.18));
+            menuModel.setVerticalAlign(MenuModel.VerticalAlign.TOP);
             menuModel.setHorizontalAlign(MenuModel.HorizontalAlign.CENTER);
             menuModel.append(new MenuModel.NormalItem(menuModel,0, "Play"      ));
             menuModel.append(new MenuModel.NormalItem(menuModel,1, "Controls"  ));
@@ -51,8 +51,8 @@ public class Game {
             menuModel.append(new MenuModel.NormalItem(menuModel,5, "Exit"      ));
 
             title = new TextModel("The Cursed Catacombs");
-            title.setPosition(new PositionReal(0.5, 0.1));
-            title.setVerticalAlign(Alignable.VerticalAlign.BOTTOM);
+            title.setPosition(new PositionReal(0.5, 0.10));
+            title.setVerticalAlign(Alignable.VerticalAlign.TOP);
             title.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);
             textView.setTextModel(title);
         }
