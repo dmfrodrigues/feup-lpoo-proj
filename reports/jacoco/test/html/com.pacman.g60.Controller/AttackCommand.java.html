@@ -33,7 +33,7 @@ public class AttackCommand implements Command{
                 {
 <span class="pc bpc" id="L34" title="1 of 2 branches missed.">                    if (elem instanceof Enemy)</span>
                     {
-<span class="fc" id="L36">                        Effect effect = new DamageEffect(1);</span>
+<span class="fc" id="L36">                        Effect effect = hero.getWeapon().getEffect();</span>
 <span class="fc" id="L37">                        Command command = new ApplyEffectCommand(effect,elem);</span>
 <span class="fc" id="L38">                        command.execute();</span>
                     }

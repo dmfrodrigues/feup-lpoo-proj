@@ -2,10 +2,7 @@
 
 import com.pacman.g60.Application;
 import com.pacman.g60.Model.ArenaModel;
-import com.pacman.g60.Model.Elements.Coin;
-import com.pacman.g60.Model.Elements.Element;
-import com.pacman.g60.Model.Elements.HealthPotion;
-import com.pacman.g60.Model.Elements.Hero;
+import com.pacman.g60.Model.Elements.*;
 import com.pacman.g60.Model.Position;
 
 import java.util.List;
@@ -15,63 +12,64 @@ public class MoveHeroCommand implements Command {
     private ArenaModel arenaModel;
     private Application.Direction dir;
 
-<span class="fc" id="L18">    public MoveHeroCommand(ArenaModel arenaModel, Application.Direction dir){this.arenaModel = arenaModel; this.dir = dir;}</span>
+<span class="fc" id="L15">    public MoveHeroCommand(ArenaModel arenaModel, Application.Direction dir){this.arenaModel = arenaModel; this.dir = dir;}</span>
 
     @Override
     public void execute() {
-<span class="fc" id="L22">        Position newPos = new Position(0,0);</span>
-<span class="pc bpc" id="L23" title="1 of 5 branches missed.">        switch (this.dir)</span>
+<span class="fc" id="L19">        Position newPos = new Position(0,0);</span>
+<span class="pc bpc" id="L20" title="1 of 5 branches missed.">        switch (this.dir)</span>
         {
             case UP:
             {
-<span class="fc" id="L27">                newPos = this.arenaModel.getHero().moveUp();</span>
-<span class="fc" id="L28">                break;</span>
+<span class="fc" id="L24">                newPos = this.arenaModel.getHero().moveUp();</span>
+<span class="fc" id="L25">                break;</span>
             }
             case DOWN:
             {
-<span class="fc" id="L32">                newPos = this.arenaModel.getHero().moveDown();</span>
-<span class="fc" id="L33">                break;</span>
+<span class="fc" id="L29">                newPos = this.arenaModel.getHero().moveDown();</span>
+<span class="fc" id="L30">                break;</span>
             }
             case LEFT:
             {
-<span class="fc" id="L37">                newPos = this.arenaModel.getHero().moveLeft();</span>
-<span class="fc" id="L38">                break;</span>
+<span class="fc" id="L34">                newPos = this.arenaModel.getHero().moveLeft();</span>
+<span class="fc" id="L35">                break;</span>
             }
             case RIGHT:
             {
-<span class="fc" id="L42">                newPos = this.arenaModel.getHero().moveRight();</span>
+<span class="fc" id="L39">                newPos = this.arenaModel.getHero().moveRight();</span>
                 break;
             }
         }
-<span class="fc" id="L46">        Hero hero = arenaModel.getHero();</span>
+<span class="fc" id="L43">        Hero hero = arenaModel.getHero();</span>
 
-<span class="pc bpc" id="L48" title="1 of 2 branches missed.">        if (this.arenaModel.isPositionAvailable(newPos,hero))</span>
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">        if (this.arenaModel.isPositionAvailable(newPos,hero))</span>
         {
-<span class="fc" id="L50">            List&lt;Element&gt; elemsInNewPos = arenaModel.getElemFromPos(newPos);</span>
-<span class="pc bpc" id="L51" title="1 of 2 branches missed.">            if (elemsInNewPos != null)</span>
+<span class="fc" id="L47">            List&lt;Element&gt; elemsInNewPos = arenaModel.getElemFromPos(newPos);</span>
+<span class="pc bpc" id="L48" title="1 of 2 branches missed.">            if (elemsInNewPos != null)</span>
             {
-<span class="nc bnc" id="L53" title="All 2 branches missed.">                for (Element elemInNewPos : elemsInNewPos)</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">                for (Element elemInNewPos : elemsInNewPos)</span>
                 {
-<span class="nc bnc" id="L55" title="All 2 branches missed.">                    if (elemInNewPos instanceof Coin)</span>
-                    {
-<span class="nc" id="L57">                        arenaModel.removeElement(elemInNewPos);</span>
-<span class="nc" id="L58">                        hero.incCoins();</span>
-                    }
-<span class="nc bnc" id="L60" title="All 2 branches missed.">                    if (elemInNewPos instanceof HealthPotion){</span>
-<span class="nc" id="L61">                        hero.updateHealth(((HealthPotion)elemInNewPos).getHealth());</span>
-<span class="nc" id="L62">                        arenaModel.removeElement(elemInNewPos);</span>
-                    }
-<span class="nc" id="L64">                }</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">                    if (elemInNewPos instanceof Collectable) arenaModel.removeElement(elemInNewPos);</span>
+
+<span class="nc bnc" id="L54" title="All 2 branches missed.">                    if (elemInNewPos instanceof Coin) hero.incCoins();</span>
+
+<span class="nc bnc" id="L56" title="All 2 branches missed.">                    if (elemInNewPos instanceof HealthPotion) hero.updateHealth(((HealthPotion)elemInNewPos).getHealth());</span>
+
+<span class="nc bnc" id="L58" title="All 2 branches missed.">                    if (elemInNewPos instanceof Bullet) hero.incAmmo();</span>
+
+<span class="nc bnc" id="L60" title="All 2 branches missed.">                    if (elemInNewPos instanceof Weapon) hero.setWeapon((Weapon) elemInNewPos);</span>
+
+<span class="nc" id="L62">                }</span>
             }
 
 
 
 
-<span class="fc" id="L70">            Position currentHeroPos = hero.getPos();</span>
-<span class="fc" id="L71">            this.arenaModel.updateMapKey(currentHeroPos,newPos,hero);</span>
-<span class="fc" id="L72">            this.arenaModel.getHero().updatePos(newPos);</span>
+<span class="fc" id="L68">            Position currentHeroPos = hero.getPos();</span>
+<span class="fc" id="L69">            this.arenaModel.updateMapKey(currentHeroPos,newPos,hero);</span>
+<span class="fc" id="L70">            this.arenaModel.getHero().updatePos(newPos);</span>
         }
 
-<span class="fc" id="L75">    }</span>
+<span class="fc" id="L73">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -7,7 +7,9 @@ import com.pacman.g60.Model.ArenaModel;
 import java.io.IOException;
 
 public interface ArenaView {
-<span class="fc" id="L10">    enum COMMAND {UP, DOWN, LEFT, RIGHT, ATTACK, EXIT, PAUSE}</span>
+
+<span class="fc" id="L11">    enum COMMAND {UP, DOWN, LEFT, RIGHT, ATTACK, EXIT, PAUSE}</span>
+
     void start();
     void draw(ArenaModel arena) throws IOException;
     COMMAND pollCommand() throws IOException;
