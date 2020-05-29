@@ -68,9 +68,9 @@ public class ArenaController extends Controller {
                         executeCommand(new AttackCommand(this.arenaModel)); break;
                 }
             }
-
-            if (arenaModel.getHero().getHealth() <= 0){ lose(); good = false; }
-            if (!mustContinueRunning && !arenaModel.getShouldGameContinue() ){ win(); good = false; }
+            
+            if (arenaModel.getHero().getHealth() <= 0){ lose(); return; }
+            if (!mustContinueRunning && !arenaModel.getShouldGameContinue() ){ win(); return; }
 
             arenaView.clear();
             arenaView.draw();
