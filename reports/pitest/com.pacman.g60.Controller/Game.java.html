@@ -144,7 +144,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>import com.pacman.g60.View.*;</span></pre></td></tr>
+<td class=''><pre><span  class=''>import com.pacman.g60.Model.Models.*;</span></pre></td></tr>
 
 
 <tr>
@@ -159,7 +159,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>import com.pacman.g60.View.Views.*;</span></pre></td></tr>
 
 
 <tr>
@@ -174,7 +174,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>public class Game {</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -189,7 +189,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>public class Game {</span></pre></td></tr>
 
 
 <tr>
@@ -204,7 +204,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private interface State {</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -219,7 +219,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        State run() throws IOException, NoSuchMethodException;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    private interface State {</span></pre></td></tr>
 
 
 <tr>
@@ -234,7 +234,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+<td class=''><pre><span  class=''>        State run() throws IOException, NoSuchMethodException;</span></pre></td></tr>
 
 
 <tr>
@@ -249,7 +249,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -264,7 +264,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private final StateMainMenu stateMainMenu;</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -279,7 +279,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private final StateControls stateControls;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    private final StateMainMenu stateMainMenu;</span></pre></td></tr>
 
 
 <tr>
@@ -294,7 +294,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private final StateScoreboard stateScoreboard;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    private final StateControls stateControls;</span></pre></td></tr>
 
 
 <tr>
@@ -309,7 +309,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private final StateSave stateSave;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    private final StateScoreboard stateScoreboard;</span></pre></td></tr>
 
 
 <tr>
@@ -324,7 +324,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private final StateLoad stateLoad;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    private final StateSave stateSave;</span></pre></td></tr>
 
 
 <tr>
@@ -339,7 +339,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private final StateLevelSelector stateLevelSelect;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    private final StateLoad stateLoad;</span></pre></td></tr>
 
 
 <tr>
@@ -354,7 +354,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private final StateArena stateArena;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    private final StateLevelSelector stateLevelSelect;</span></pre></td></tr>
 
 
 <tr>
@@ -369,7 +369,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private final StateWin stateWin;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    private final StateArena stateArena;</span></pre></td></tr>
 
 
 <tr>
@@ -384,7 +384,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private final StateLose stateLose;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    private final StateWin stateWin;</span></pre></td></tr>
 
 
 <tr>
@@ -399,7 +399,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private final StatePause statePause;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    private final StateLose stateLose;</span></pre></td></tr>
 
 
 <tr>
@@ -414,7 +414,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private final StateExit stateExit;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    private final StatePause statePause;</span></pre></td></tr>
 
 
 <tr>
@@ -429,7 +429,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    private final StateExit stateExit;</span></pre></td></tr>
 
 
 <tr>
@@ -444,7 +444,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private class StateMainMenu implements State {</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -459,7 +459,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        MenuModel menuModel;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    private class StateMainMenu implements State {</span></pre></td></tr>
 
 
 <tr>
@@ -474,7 +474,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        TextModel title;</span></pre></td></tr>
+<td class=''><pre><span  class=''>        MenuModel menuModel;</span></pre></td></tr>
 
 
 <tr>
@@ -489,7 +489,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        MenuView menuView;</span></pre></td></tr>
+<td class=''><pre><span  class=''>        TextModel title;</span></pre></td></tr>
 
 
 <tr>
@@ -504,11 +504,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        GUIViewComposite view;</span></pre></td></tr>
+<td class=''><pre><span  class=''>        MenuView menuView;</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_34'/>
 34
 </td>
@@ -519,7 +519,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        public StateMainMenu(MenuView menuView, TextView textView){</span></pre></td></tr>
+<td class=''><pre><span  class=''>        GUIViewComposite view;</span></pre></td></tr>
 
 
 <tr>
@@ -534,11 +534,11 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            this.menuView = menuView;</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        public StateMainMenu(MenuView menuView, TextView textView){</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_36'/>
 36
 </td>
@@ -549,11 +549,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            this.menuView = menuView;</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_37'/>
 37
 </td>
@@ -564,7 +564,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            view = new GUIViewComposite(menuView.getGUI());</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -572,16 +572,14 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_38'/>
 38
 </td>
-<td class='survived'>
+<td class=''>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_38'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_38'></a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/View/GUIViewComposite::addView &rarr; NO_COVERAGE<br/>
-
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            view.addView(textView);</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            view = new GUIViewComposite(menuView.getGUI());</span></pre></td></tr>
 
 
 <tr>
@@ -593,7 +591,24 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_39'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/View/GUIViewComposite::addView &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/View/Views/GUIViewComposite::addView &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            view.addView(textView);</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_40'/>
+40
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_40'>1</a>
+<span>
+1. &#60;init&#62; : removed call to com/pacman/g60/View/Views/GUIViewComposite::addView &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
@@ -603,21 +618,6 @@
 
 <tr>
 <td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_40'/>
-40
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_40'></a>
-<span>
-</span>
-</span>
-</td>
-<td class=''><pre><span  class=''>            </span></pre></td></tr>
-
-
-<tr>
-<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_41'/>
 41
 </td>
@@ -628,7 +628,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            menuModel = new MenuModel();</span></pre></td></tr>
+<td class=''><pre><span  class=''>            </span></pre></td></tr>
 
 
 <tr>
@@ -636,16 +636,14 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_42'/>
 42
 </td>
-<td class='survived'>
+<td class=''>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_42'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_42'></a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/MenuModel::setFrame &rarr; NO_COVERAGE<br/>
-
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            menuModel.setFrame(true);</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            menuModel = new MenuModel();</span></pre></td></tr>
 
 
 <tr>
@@ -657,12 +655,12 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_43'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/MenuModel::setRelativePosition &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/MenuModel::setFrame &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            menuModel.setRelativePosition(new PositionReal(0.5, 0.18));</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>            menuModel.setFrame(true);</span></pre></td></tr>
 
 
 <tr>
@@ -674,12 +672,12 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_44'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/MenuModel::setVerticalAlign &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/MenuModel::setRelativePosition &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            menuModel.setVerticalAlign(MenuModel.VerticalAlign.TOP);</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>            menuModel.setRelativePosition(new PositionReal(0.5, 0.18));</span></pre></td></tr>
 
 
 <tr>
@@ -691,12 +689,12 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_45'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/MenuModel::setHorizontalAlign &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/MenuModel::setVerticalAlign &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            menuModel.setHorizontalAlign(MenuModel.HorizontalAlign.CENTER);</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>            menuModel.setVerticalAlign(MenuModel.VerticalAlign.TOP);</span></pre></td></tr>
 
 
 <tr>
@@ -708,12 +706,12 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_46'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/MenuModel::append &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/MenuModel::setHorizontalAlign &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            menuModel.append(new MenuModel.NormalItem(menuModel,0, &#34;Play&#34;      ));</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>            menuModel.setHorizontalAlign(MenuModel.HorizontalAlign.CENTER);</span></pre></td></tr>
 
 
 <tr>
@@ -725,12 +723,12 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_47'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/MenuModel::append &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/MenuModel::append &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            menuModel.append(new MenuModel.NormalItem(menuModel,1, &#34;Controls&#34;  ));</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>            menuModel.append(new MenuModel.NormalItem(menuModel,0, &#34;Play&#34;      ));</span></pre></td></tr>
 
 
 <tr>
@@ -742,12 +740,12 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_48'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/MenuModel::append &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/MenuModel::append &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            menuModel.append(new MenuModel.NormalItem(menuModel,2, &#34;Scoreboard&#34;));</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>            menuModel.append(new MenuModel.NormalItem(menuModel,1, &#34;Controls&#34;  ));</span></pre></td></tr>
 
 
 <tr>
@@ -759,12 +757,12 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_49'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/MenuModel::append &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/MenuModel::append &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            menuModel.append(new MenuModel.NormalItem(menuModel,3, &#34;Save game&#34; ));</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>            menuModel.append(new MenuModel.NormalItem(menuModel,2, &#34;Scoreboard&#34;));</span></pre></td></tr>
 
 
 <tr>
@@ -776,12 +774,12 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_50'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/MenuModel::append &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/MenuModel::append &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            menuModel.append(new MenuModel.NormalItem(menuModel,4, &#34;Load game&#34; ));</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>            menuModel.append(new MenuModel.NormalItem(menuModel,3, &#34;Save game&#34; ));</span></pre></td></tr>
 
 
 <tr>
@@ -793,7 +791,24 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_51'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/MenuModel::append &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/MenuModel::append &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            menuModel.append(new MenuModel.NormalItem(menuModel,4, &#34;Load game&#34; ));</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_52'/>
+52
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_52'>1</a>
+<span>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/MenuModel::append &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
@@ -803,21 +818,6 @@
 
 <tr>
 <td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_52'/>
-52
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_52'></a>
-<span>
-</span>
-</span>
-</td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
-
-
-<tr>
-<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_53'/>
 53
 </td>
@@ -828,7 +828,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            title = new TextModel(&#34;The Cursed Catacombs&#34;);</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -836,16 +836,14 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_54'/>
 54
 </td>
-<td class='survived'>
+<td class=''>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_54'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_54'></a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/TextModel::setPosition &rarr; NO_COVERAGE<br/>
-
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            title.setPosition(new PositionReal(0.5, 0.10));</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            title = new TextModel(&#34;The Cursed Catacombs&#34;);</span></pre></td></tr>
 
 
 <tr>
@@ -857,12 +855,12 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_55'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/TextModel::setVerticalAlign &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/TextModel::setPosition &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            title.setVerticalAlign(Alignable.VerticalAlign.TOP);</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>            title.setPosition(new PositionReal(0.5, 0.10));</span></pre></td></tr>
 
 
 <tr>
@@ -874,12 +872,12 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_56'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/TextModel::setHorizontalAlign &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/TextModel::setVerticalAlign &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            title.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>            title.setVerticalAlign(Alignable.VerticalAlign.TOP);</span></pre></td></tr>
 
 
 <tr>
@@ -891,7 +889,24 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_57'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/View/TextView::setTextModel &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/TextModel::setHorizontalAlign &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            title.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_58'/>
+58
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_58'>1</a>
+<span>
+1. &#60;init&#62; : removed call to com/pacman/g60/View/Views/TextView::setTextModel &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
@@ -901,21 +916,6 @@
 
 <tr>
 <td class='uncovered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_58'/>
-58
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_58'></a>
-<span>
-</span>
-</span>
-</td>
-<td class='uncovered'><pre><span  class=''>        }</span></pre></td></tr>
-
-
-<tr>
-<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_59'/>
 59
 </td>
@@ -926,7 +926,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        @Override</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        }</span></pre></td></tr>
 
 
 <tr>
@@ -941,11 +941,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        public State run() throws IOException {</span></pre></td></tr>
+<td class=''><pre><span  class=''>        @Override</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_61'/>
 61
 </td>
@@ -956,7 +956,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            MenuModel menuModel_ = new MenuModel(menuModel);</span></pre></td></tr>
+<td class=''><pre><span  class=''>        public State run() throws IOException {</span></pre></td></tr>
 
 
 <tr>
@@ -964,11 +964,26 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_62'/>
 62
 </td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_62'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>            MenuModel menuModel_ = new MenuModel(menuModel);</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_63'/>
+63
+</td>
 <td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_62'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_63'>1</a>
 <span>
-1. run : removed call to com/pacman/g60/View/MenuView::setMenuModel &rarr; NO_COVERAGE<br/>
+1. run : removed call to com/pacman/g60/View/Views/MenuView::setMenuModel &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
@@ -978,21 +993,6 @@
 
 <tr>
 <td class='uncovered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_63'/>
-63
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_63'></a>
-<span>
-</span>
-</span>
-</td>
-<td class='uncovered'><pre><span  class=''>            MenuController menuController = new MenuController(menuModel_, view);</span></pre></td></tr>
-
-
-<tr>
-<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_64'/>
 64
 </td>
@@ -1003,11 +1003,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>            while(true) {</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            MenuController menuController = new MenuController(menuModel_, view);</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_65'/>
 65
 </td>
@@ -1018,7 +1018,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>                int r = menuController.run();</span></pre></td></tr>
+<td class=''><pre><span  class=''>            while(true) {</span></pre></td></tr>
 
 
 <tr>
@@ -1033,7 +1033,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>                switch (r) {</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>                int r = menuController.run();</span></pre></td></tr>
 
 
 <tr>
@@ -1048,7 +1048,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>                    case -1: break;</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>                switch (r) {</span></pre></td></tr>
 
 
 <tr>
@@ -1056,16 +1056,14 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_68'/>
 68
 </td>
-<td class='survived'>
+<td class=''>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_68'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_68'></a>
 <span>
-1. run : mutated return of Object value for com/pacman/g60/Controller/Game$StateMainMenu::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE<br/>
-
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>                    case  0: return stateLevelSelect;</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>                    case -1: break;</span></pre></td></tr>
 
 
 <tr>
@@ -1082,7 +1080,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>                    case  1: return stateControls;</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>                    case  0: return stateLevelSelect;</span></pre></td></tr>
 
 
 <tr>
@@ -1099,7 +1097,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>                    case  2: return stateScoreboard;</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>                    case  1: return stateControls;</span></pre></td></tr>
 
 
 <tr>
@@ -1116,7 +1114,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>                    case  3: return stateSave;</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>                    case  2: return stateScoreboard;</span></pre></td></tr>
 
 
 <tr>
@@ -1133,7 +1131,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>                    case  4: return stateLoad;</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>                    case  3: return stateSave;</span></pre></td></tr>
 
 
 <tr>
@@ -1150,7 +1148,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>                    case  5: return stateExit;</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>                    case  4: return stateLoad;</span></pre></td></tr>
 
 
 <tr>
@@ -1158,18 +1156,20 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_74'/>
 74
 </td>
-<td class=''>
+<td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_74'></a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_74'>1</a>
 <span>
+1. run : mutated return of Object value for com/pacman/g60/Controller/Game$StateMainMenu::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE<br/>
+
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>                    default: throw new IndexOutOfBoundsException();</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>                    case  5: return stateExit;</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_75'/>
 75
 </td>
@@ -1180,11 +1180,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>                }</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>                    default: throw new IndexOutOfBoundsException();</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_76'/>
 76
 </td>
@@ -1195,11 +1195,11 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            }</span></pre></td></tr>
+<td class=''><pre><span  class=''>                }</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_77'/>
 77
 </td>
@@ -1210,7 +1210,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            }</span></pre></td></tr>
 
 
 <tr>
@@ -1225,7 +1225,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
 
 
 <tr>
@@ -1240,11 +1240,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    </span></pre></td></tr>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_80'/>
 80
 </td>
@@ -1255,11 +1255,11 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>    private class StateControls implements State {</span></pre></td></tr>
+<td class=''><pre><span  class=''>    </span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_81'/>
 81
 </td>
@@ -1270,7 +1270,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        @Override</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>    private class StateControls implements State {</span></pre></td></tr>
 
 
 <tr>
@@ -1285,17 +1285,32 @@
 </span>
 </span>
 </td>
+<td class=''><pre><span  class=''>        @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_83'/>
+83
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_83'></a>
+<span>
+</span>
+</span>
+</td>
 <td class=''><pre><span  class=''>        public State run() {</span></pre></td></tr>
 
 
 <tr>
 <td class='uncovered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_83'/>
-83
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_84'/>
+84
 </td>
 <td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_83'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_84'>1</a>
 <span>
 1. run : mutated return of Object value for com/pacman/g60/Controller/Game$StateControls::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE<br/>
 
@@ -1303,21 +1318,6 @@
 </span>
 </td>
 <td class='uncovered'><pre><span  class='survived'>            return stateMainMenu;</span></pre></td></tr>
-
-
-<tr>
-<td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_84'/>
-84
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_84'></a>
-<span>
-</span>
-</span>
-</td>
-<td class=''><pre><span  class=''>        }</span></pre></td></tr>
 
 
 <tr>
@@ -1332,7 +1332,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
 
 
 <tr>
@@ -1347,11 +1347,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    </span></pre></td></tr>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_87'/>
 87
 </td>
@@ -1362,11 +1362,11 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>    private class StateScoreboard implements State {</span></pre></td></tr>
+<td class=''><pre><span  class=''>    </span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_88'/>
 88
 </td>
@@ -1377,7 +1377,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        @Override</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>    private class StateScoreboard implements State {</span></pre></td></tr>
 
 
 <tr>
@@ -1392,17 +1392,32 @@
 </span>
 </span>
 </td>
+<td class=''><pre><span  class=''>        @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_90'/>
+90
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_90'></a>
+<span>
+</span>
+</span>
+</td>
 <td class=''><pre><span  class=''>        public State run() {</span></pre></td></tr>
 
 
 <tr>
 <td class='uncovered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_90'/>
-90
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_91'/>
+91
 </td>
 <td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_90'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_91'>1</a>
 <span>
 1. run : mutated return of Object value for com/pacman/g60/Controller/Game$StateScoreboard::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE<br/>
 
@@ -1410,21 +1425,6 @@
 </span>
 </td>
 <td class='uncovered'><pre><span  class='survived'>            return stateMainMenu;</span></pre></td></tr>
-
-
-<tr>
-<td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_91'/>
-91
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_91'></a>
-<span>
-</span>
-</span>
-</td>
-<td class=''><pre><span  class=''>        }</span></pre></td></tr>
 
 
 <tr>
@@ -1439,7 +1439,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
 
 
 <tr>
@@ -1454,11 +1454,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_94'/>
 94
 </td>
@@ -1469,11 +1469,11 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>    private class StateSave implements State {</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_95'/>
 95
 </td>
@@ -1484,7 +1484,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        @Override</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>    private class StateSave implements State {</span></pre></td></tr>
 
 
 <tr>
@@ -1499,17 +1499,32 @@
 </span>
 </span>
 </td>
+<td class=''><pre><span  class=''>        @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_97'/>
+97
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_97'></a>
+<span>
+</span>
+</span>
+</td>
 <td class=''><pre><span  class=''>        public State run() {</span></pre></td></tr>
 
 
 <tr>
 <td class='uncovered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_97'/>
-97
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_98'/>
+98
 </td>
 <td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_97'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_98'>1</a>
 <span>
 1. run : mutated return of Object value for com/pacman/g60/Controller/Game$StateSave::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE<br/>
 
@@ -1517,21 +1532,6 @@
 </span>
 </td>
 <td class='uncovered'><pre><span  class='survived'>            return stateMainMenu;</span></pre></td></tr>
-
-
-<tr>
-<td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_98'/>
-98
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_98'></a>
-<span>
-</span>
-</span>
-</td>
-<td class=''><pre><span  class=''>        }</span></pre></td></tr>
 
 
 <tr>
@@ -1546,7 +1546,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
 
 
 <tr>
@@ -1561,11 +1561,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_101'/>
 101
 </td>
@@ -1576,11 +1576,11 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>    private class StateLoad implements State {</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_102'/>
 102
 </td>
@@ -1591,7 +1591,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        @Override</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>    private class StateLoad implements State {</span></pre></td></tr>
 
 
 <tr>
@@ -1606,17 +1606,32 @@
 </span>
 </span>
 </td>
+<td class=''><pre><span  class=''>        @Override</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_104'/>
+104
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_104'></a>
+<span>
+</span>
+</span>
+</td>
 <td class=''><pre><span  class=''>        public State run() {</span></pre></td></tr>
 
 
 <tr>
 <td class='uncovered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_104'/>
-104
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_105'/>
+105
 </td>
 <td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_104'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_105'>1</a>
 <span>
 1. run : mutated return of Object value for com/pacman/g60/Controller/Game$StateLoad::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE<br/>
 
@@ -1624,21 +1639,6 @@
 </span>
 </td>
 <td class='uncovered'><pre><span  class='survived'>            return stateMainMenu;</span></pre></td></tr>
-
-
-<tr>
-<td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_105'/>
-105
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_105'></a>
-<span>
-</span>
-</span>
-</td>
-<td class=''><pre><span  class=''>        }</span></pre></td></tr>
 
 
 <tr>
@@ -1653,7 +1653,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
 
 
 <tr>
@@ -1668,7 +1668,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    </span></pre></td></tr>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -1683,7 +1683,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private class StateLevelSelector implements State {</span></pre></td></tr>
+<td class=''><pre><span  class=''>    </span></pre></td></tr>
 
 
 <tr>
@@ -1698,11 +1698,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        List&#60;LevelModel&#62; levelModels;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    private class StateLevelSelector implements State {</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_110'/>
 110
 </td>
@@ -1713,7 +1713,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        public StateLevelSelector() throws FileNotFoundException {</span></pre></td></tr>
+<td class=''><pre><span  class=''>        List&#60;LevelModel&#62; levelModels;</span></pre></td></tr>
 
 
 <tr>
@@ -1728,11 +1728,11 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            List&#60;String&#62; levelPaths = new ArrayList&#60;&#62;(Arrays.asList(</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        public StateLevelSelector() throws FileNotFoundException {</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_112'/>
 112
 </td>
@@ -1743,7 +1743,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>                    &#34;src/main/resources/maps/map1.map&#34;</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            List&#60;String&#62; levelPaths = new ArrayList&#60;&#62;(Arrays.asList(</span></pre></td></tr>
 
 
 <tr>
@@ -1758,11 +1758,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>            ));</span></pre></td></tr>
+<td class=''><pre><span  class=''>                    &#34;src/main/resources/maps/map1.map&#34;</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_114'/>
 114
 </td>
@@ -1773,7 +1773,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            levelModels = new ArrayList&#60;&#62;();</span></pre></td></tr>
+<td class=''><pre><span  class=''>            ));</span></pre></td></tr>
 
 
 <tr>
@@ -1781,9 +1781,24 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_115'/>
 115
 </td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_115'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>            levelModels = new ArrayList&#60;&#62;();</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_116'/>
+116
+</td>
 <td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_115'>3</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_116'>3</a>
 <span>
 1. &#60;init&#62; : changed conditional boundary &rarr; NO_COVERAGE<br/>
 2. &#60;init&#62; : Replaced integer addition with subtraction &rarr; NO_COVERAGE<br/>
@@ -1793,21 +1808,6 @@
 </span>
 </td>
 <td class='uncovered'><pre><span  class='survived'>            for(Integer i = 0; i &#60; levelPaths.size(); ++i){</span></pre></td></tr>
-
-
-<tr>
-<td class='uncovered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_116'/>
-116
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_116'></a>
-<span>
-</span>
-</span>
-</td>
-<td class='uncovered'><pre><span  class=''>                InputStream inputStream = new FileInputStream(levelPaths.get(i));</span></pre></td></tr>
 
 
 <tr>
@@ -1822,7 +1822,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>                ArenaModel.Loader arenaModelLoader = new ArenaModelLoaderStream(inputStream);</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>                InputStream inputStream = new FileInputStream(levelPaths.get(i));</span></pre></td></tr>
 
 
 <tr>
@@ -1837,11 +1837,11 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>                levelModels.add(new LevelModel(arenaModelLoader.getArenaModel()));</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>                ArenaModel.Loader arenaModelLoader = new ArenaModelLoaderStream(inputStream);</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_119'/>
 119
 </td>
@@ -1852,11 +1852,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>                levelModels.add(new LevelModel(arenaModelLoader.getArenaModel()));</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_120'/>
 120
 </td>
@@ -1867,11 +1867,11 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        }</span></pre></td></tr>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_121'/>
 121
 </td>
@@ -1882,7 +1882,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        @Override</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        }</span></pre></td></tr>
 
 
 <tr>
@@ -1897,24 +1897,22 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        public State run() throws IOException, NoSuchMethodException {</span></pre></td></tr>
+<td class=''><pre><span  class=''>        @Override</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_123'/>
 123
 </td>
-<td class='survived'>
+<td class=''>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_123'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_123'></a>
 <span>
-1. run : removed call to com/pacman/g60/Controller/Game$StateArena::setArenaModel &rarr; NO_COVERAGE<br/>
-
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            stateArena.setArenaModel(levelModels.get(0).getArenaModelClone());</span></pre></td></tr>
+<td class=''><pre><span  class=''>        public State run() throws IOException, NoSuchMethodException {</span></pre></td></tr>
 
 
 <tr>
@@ -1926,27 +1924,29 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_124'>1</a>
 <span>
+1. run : removed call to com/pacman/g60/Controller/Game$StateArena::setArenaModel &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            stateArena.setArenaModel(levelModels.get(0).getArenaModelClone());</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_125'/>
+125
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_125'>1</a>
+<span>
 1. run : mutated return of Object value for com/pacman/g60/Controller/Game$StateLevelSelector::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
 </td>
 <td class='uncovered'><pre><span  class='survived'>            return stateArena;</span></pre></td></tr>
-
-
-<tr>
-<td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_125'/>
-125
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_125'></a>
-<span>
-</span>
-</span>
-</td>
-<td class=''><pre><span  class=''>        }</span></pre></td></tr>
 
 
 <tr>
@@ -1961,7 +1961,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
 
 
 <tr>
@@ -1976,7 +1976,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    </span></pre></td></tr>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -1991,7 +1991,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private class StateArena implements State {</span></pre></td></tr>
+<td class=''><pre><span  class=''>    </span></pre></td></tr>
 
 
 <tr>
@@ -2006,7 +2006,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        ArenaModel arenaModel;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    private class StateArena implements State {</span></pre></td></tr>
 
 
 <tr>
@@ -2021,11 +2021,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        ArenaView arenaView;</span></pre></td></tr>
+<td class=''><pre><span  class=''>        ArenaModel arenaModel;</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_131'/>
 131
 </td>
@@ -2036,7 +2036,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        ArenaController arenaController = null;</span></pre></td></tr>
+<td class=''><pre><span  class=''>        ArenaView arenaView;</span></pre></td></tr>
 
 
 <tr>
@@ -2051,7 +2051,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        boolean mustContinueRunning = false;</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        ArenaController arenaController = null;</span></pre></td></tr>
 
 
 <tr>
@@ -2066,7 +2066,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        public StateArena(ArenaView arenaView){</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        boolean mustContinueRunning = false;</span></pre></td></tr>
 
 
 <tr>
@@ -2081,7 +2081,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            this.arenaView = arenaView;</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        public StateArena(ArenaView arenaView){</span></pre></td></tr>
 
 
 <tr>
@@ -2096,11 +2096,11 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        }</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            this.arenaView = arenaView;</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_136'/>
 136
 </td>
@@ -2111,7 +2111,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        @Override</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        }</span></pre></td></tr>
 
 
 <tr>
@@ -2126,24 +2126,22 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        public State run() throws IOException {</span></pre></td></tr>
+<td class=''><pre><span  class=''>        @Override</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_138'/>
 138
 </td>
-<td class='survived'>
+<td class=''>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_138'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_138'></a>
 <span>
-1. run : negated conditional &rarr; NO_COVERAGE<br/>
-
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            if(arenaController == null) arenaController = new ArenaController(arenaModel, arenaView);</span></pre></td></tr>
+<td class=''><pre><span  class=''>        public State run() throws IOException {</span></pre></td></tr>
 
 
 <tr>
@@ -2160,7 +2158,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            if(mustContinueRunning) {</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>            if(arenaController == null) arenaController = new ArenaController(arenaModel, arenaView);</span></pre></td></tr>
 
 
 <tr>
@@ -2172,6 +2170,23 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_140'>1</a>
 <span>
+1. run : negated conditional &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            if(mustContinueRunning) {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_141'/>
+141
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_141'>1</a>
+<span>
 1. run : removed call to com/pacman/g60/Controller/ArenaController::continueRunning &rarr; NO_COVERAGE<br/>
 
 </span>
@@ -2182,12 +2197,12 @@
 
 <tr>
 <td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_141'/>
-141
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_142'/>
+142
 </td>
 <td class=''>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_141'></a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_142'></a>
 <span>
 </span>
 </span>
@@ -2197,12 +2212,12 @@
 
 <tr>
 <td class='uncovered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_142'/>
-142
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_143'/>
+143
 </td>
 <td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_142'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_143'>1</a>
 <span>
 1. run : removed call to com/pacman/g60/Controller/ArenaController::run &rarr; NO_COVERAGE<br/>
 
@@ -2210,24 +2225,6 @@
 </span>
 </td>
 <td class='uncovered'><pre><span  class='survived'>            arenaController.run();</span></pre></td></tr>
-
-
-<tr>
-<td class='uncovered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_143'/>
-143
-</td>
-<td class='survived'>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_143'>2</a>
-<span>
-1. run : negated conditional &rarr; NO_COVERAGE<br/>
-2. run : mutated return of Object value for com/pacman/g60/Controller/Game$StateArena::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE<br/>
-
-</span>
-</span>
-</td>
-<td class='uncovered'><pre><span  class='survived'>            if(arenaController.wasTerminated()) return stateExit;</span></pre></td></tr>
 
 
 <tr>
@@ -2245,7 +2242,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            if(!arenaController.isOver()) return statePause;</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>            if(arenaController.wasTerminated()) return stateExit;</span></pre></td></tr>
 
 
 <tr>
@@ -2263,7 +2260,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            if(arenaController.isWin()) return stateWin;</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>            if(!arenaController.isOver()) return statePause;</span></pre></td></tr>
 
 
 <tr>
@@ -2273,7 +2270,25 @@
 </td>
 <td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_146'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_146'>2</a>
+<span>
+1. run : negated conditional &rarr; NO_COVERAGE<br/>
+2. run : mutated return of Object value for com/pacman/g60/Controller/Game$StateArena::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            if(arenaController.isWin()) return stateWin;</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_147'/>
+147
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_147'>1</a>
 <span>
 1. run : mutated return of Object value for com/pacman/g60/Controller/Game$StateArena::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE<br/>
 
@@ -2281,21 +2296,6 @@
 </span>
 </td>
 <td class='uncovered'><pre><span  class='survived'>            else                        return stateLose;</span></pre></td></tr>
-
-
-<tr>
-<td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_147'/>
-147
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_147'></a>
-<span>
-</span>
-</span>
-</td>
-<td class=''><pre><span  class=''>        }</span></pre></td></tr>
 
 
 <tr>
@@ -2310,7 +2310,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
 
 
 <tr>
@@ -2325,11 +2325,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        public void setArenaModel(ArenaModel arenaModel) {</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_150'/>
 150
 </td>
@@ -2340,7 +2340,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            this.arenaModel = arenaModel;</span></pre></td></tr>
+<td class=''><pre><span  class=''>        public void setArenaModel(ArenaModel arenaModel) {</span></pre></td></tr>
 
 
 <tr>
@@ -2355,7 +2355,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            arenaController = null;</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            this.arenaModel = arenaModel;</span></pre></td></tr>
 
 
 <tr>
@@ -2370,7 +2370,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            mustContinueRunning = false;</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            arenaController = null;</span></pre></td></tr>
 
 
 <tr>
@@ -2385,11 +2385,11 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        }</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            mustContinueRunning = false;</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_154'/>
 154
 </td>
@@ -2400,7 +2400,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        }</span></pre></td></tr>
 
 
 <tr>
@@ -2415,11 +2415,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        public void continueRunning() {</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_156'/>
 156
 </td>
@@ -2430,7 +2430,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            mustContinueRunning = true;</span></pre></td></tr>
+<td class=''><pre><span  class=''>        public void continueRunning() {</span></pre></td></tr>
 
 
 <tr>
@@ -2445,11 +2445,11 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        }</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            mustContinueRunning = true;</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_158'/>
 158
 </td>
@@ -2460,7 +2460,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        }</span></pre></td></tr>
 
 
 <tr>
@@ -2475,7 +2475,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    </span></pre></td></tr>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -2490,7 +2490,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private class StateWin implements State {</span></pre></td></tr>
+<td class=''><pre><span  class=''>    </span></pre></td></tr>
 
 
 <tr>
@@ -2505,7 +2505,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        MenuModel menuModel;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    private class StateWin implements State {</span></pre></td></tr>
 
 
 <tr>
@@ -2520,7 +2520,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        TextModel title;</span></pre></td></tr>
+<td class=''><pre><span  class=''>        MenuModel menuModel;</span></pre></td></tr>
 
 
 <tr>
@@ -2535,7 +2535,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        MenuView menuView;</span></pre></td></tr>
+<td class=''><pre><span  class=''>        TextModel title;</span></pre></td></tr>
 
 
 <tr>
@@ -2550,11 +2550,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        GUIViewComposite view;</span></pre></td></tr>
+<td class=''><pre><span  class=''>        MenuView menuView;</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_165'/>
 165
 </td>
@@ -2565,7 +2565,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        public StateWin(MenuView menuView, TextView textView){</span></pre></td></tr>
+<td class=''><pre><span  class=''>        GUIViewComposite view;</span></pre></td></tr>
 
 
 <tr>
@@ -2580,11 +2580,11 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            this.menuView = menuView;</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        public StateWin(MenuView menuView, TextView textView){</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_167'/>
 167
 </td>
@@ -2595,11 +2595,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>            </span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            this.menuView = menuView;</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_168'/>
 168
 </td>
@@ -2610,7 +2610,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            view = new GUIViewComposite(menuView.getGUI());</span></pre></td></tr>
+<td class=''><pre><span  class=''>            </span></pre></td></tr>
 
 
 <tr>
@@ -2618,16 +2618,14 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_169'/>
 169
 </td>
-<td class='survived'>
+<td class=''>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_169'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_169'></a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/View/GUIViewComposite::addView &rarr; NO_COVERAGE<br/>
-
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            view.addView(textView);</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            view = new GUIViewComposite(menuView.getGUI());</span></pre></td></tr>
 
 
 <tr>
@@ -2639,7 +2637,24 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_170'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/View/GUIViewComposite::addView &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/View/Views/GUIViewComposite::addView &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            view.addView(textView);</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_171'/>
+171
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_171'>1</a>
+<span>
+1. &#60;init&#62; : removed call to com/pacman/g60/View/Views/GUIViewComposite::addView &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
@@ -2649,21 +2664,6 @@
 
 <tr>
 <td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_171'/>
-171
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_171'></a>
-<span>
-</span>
-</span>
-</td>
-<td class=''><pre><span  class=''>            </span></pre></td></tr>
-
-
-<tr>
-<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_172'/>
 172
 </td>
@@ -2674,7 +2674,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            menuModel = new MenuModel();</span></pre></td></tr>
+<td class=''><pre><span  class=''>            </span></pre></td></tr>
 
 
 <tr>
@@ -2682,16 +2682,14 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_173'/>
 173
 </td>
-<td class='survived'>
+<td class=''>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_173'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_173'></a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/MenuModel::setRelativePosition &rarr; NO_COVERAGE<br/>
-
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            menuModel.setRelativePosition(new PositionReal(0.5, 0.4));</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            menuModel = new MenuModel();</span></pre></td></tr>
 
 
 <tr>
@@ -2703,12 +2701,12 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_174'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/MenuModel::setVerticalAlign &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/MenuModel::setRelativePosition &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            menuModel.setVerticalAlign(Alignable.VerticalAlign.TOP);</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>            menuModel.setRelativePosition(new PositionReal(0.5, 0.4));</span></pre></td></tr>
 
 
 <tr>
@@ -2720,12 +2718,12 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_175'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/MenuModel::setHorizontalAlign &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/MenuModel::setVerticalAlign &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            menuModel.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>            menuModel.setVerticalAlign(Alignable.VerticalAlign.TOP);</span></pre></td></tr>
 
 
 <tr>
@@ -2737,12 +2735,12 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_176'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/MenuModel::append &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/MenuModel::setHorizontalAlign &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            menuModel.append(new MenuModel.NormalItem(menuModel, 0, &#34;Continue playing&#34;));</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>            menuModel.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);</span></pre></td></tr>
 
 
 <tr>
@@ -2754,7 +2752,24 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_177'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/MenuModel::append &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/MenuModel::append &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            menuModel.append(new MenuModel.NormalItem(menuModel, 0, &#34;Continue playing&#34;));</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_178'/>
+178
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_178'>1</a>
+<span>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/MenuModel::append &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
@@ -2764,21 +2779,6 @@
 
 <tr>
 <td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_178'/>
-178
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_178'></a>
-<span>
-</span>
-</span>
-</td>
-<td class=''><pre><span  class=''>        </span></pre></td></tr>
-
-
-<tr>
-<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_179'/>
 179
 </td>
@@ -2789,7 +2789,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            title = new TextModel(&#34;Level completed!&#34;);</span></pre></td></tr>
+<td class=''><pre><span  class=''>        </span></pre></td></tr>
 
 
 <tr>
@@ -2797,16 +2797,14 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_180'/>
 180
 </td>
-<td class='survived'>
+<td class=''>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_180'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_180'></a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/TextModel::setPosition &rarr; NO_COVERAGE<br/>
-
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            title.setPosition(new PositionReal(0.5, 0.3));</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            title = new TextModel(&#34;Level completed!&#34;);</span></pre></td></tr>
 
 
 <tr>
@@ -2818,12 +2816,12 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_181'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/TextModel::setVerticalAlign &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/TextModel::setPosition &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            title.setVerticalAlign(Alignable.VerticalAlign.BOTTOM);</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>            title.setPosition(new PositionReal(0.5, 0.3));</span></pre></td></tr>
 
 
 <tr>
@@ -2835,12 +2833,12 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_182'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/TextModel::setHorizontalAlign &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/TextModel::setVerticalAlign &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            title.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>            title.setVerticalAlign(Alignable.VerticalAlign.BOTTOM);</span></pre></td></tr>
 
 
 <tr>
@@ -2852,7 +2850,24 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_183'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/View/TextView::setTextModel &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/TextModel::setHorizontalAlign &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            title.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_184'/>
+184
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_184'>1</a>
+<span>
+1. &#60;init&#62; : removed call to com/pacman/g60/View/Views/TextView::setTextModel &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
@@ -2862,21 +2877,6 @@
 
 <tr>
 <td class='uncovered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_184'/>
-184
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_184'></a>
-<span>
-</span>
-</span>
-</td>
-<td class='uncovered'><pre><span  class=''>        }</span></pre></td></tr>
-
-
-<tr>
-<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_185'/>
 185
 </td>
@@ -2887,7 +2887,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        @Override</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        }</span></pre></td></tr>
 
 
 <tr>
@@ -2902,11 +2902,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        public State run() throws IOException {</span></pre></td></tr>
+<td class=''><pre><span  class=''>        @Override</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_187'/>
 187
 </td>
@@ -2917,7 +2917,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            MenuModel menuModel_ = new MenuModel(menuModel);</span></pre></td></tr>
+<td class=''><pre><span  class=''>        public State run() throws IOException {</span></pre></td></tr>
 
 
 <tr>
@@ -2925,16 +2925,14 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_188'/>
 188
 </td>
-<td class='survived'>
+<td class=''>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_188'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_188'></a>
 <span>
-1. run : removed call to com/pacman/g60/View/MenuView::setMenuModel &rarr; NO_COVERAGE<br/>
-
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            menuView.setMenuModel(menuModel_);</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            MenuModel menuModel_ = new MenuModel(menuModel);</span></pre></td></tr>
 
 
 <tr>
@@ -2942,14 +2940,16 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_189'/>
 189
 </td>
-<td class=''>
+<td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_189'></a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_189'>1</a>
 <span>
+1. run : removed call to com/pacman/g60/View/Views/MenuView::setMenuModel &rarr; NO_COVERAGE<br/>
+
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            MenuController menuController = new MenuController(menuModel_, view);</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>            menuView.setMenuModel(menuModel_);</span></pre></td></tr>
 
 
 <tr>
@@ -2964,7 +2964,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            int r = menuController.run();</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            MenuController menuController = new MenuController(menuModel_, view);</span></pre></td></tr>
 
 
 <tr>
@@ -2979,7 +2979,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            switch(r){</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            int r = menuController.run();</span></pre></td></tr>
 
 
 <tr>
@@ -2987,9 +2987,24 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_192'/>
 192
 </td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_192'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>            switch(r){</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_193'/>
+193
+</td>
 <td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_192'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_193'>1</a>
 <span>
 1. run : mutated return of Object value for com/pacman/g60/Controller/Game$StateWin::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE<br/>
 
@@ -3001,34 +3016,17 @@
 
 <tr>
 <td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_193'/>
-193
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_194'/>
+194
 </td>
 <td class=''>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_193'></a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_194'></a>
 <span>
 </span>
 </span>
 </td>
 <td class=''><pre><span  class=''>                case 0:</span></pre></td></tr>
-
-
-<tr>
-<td class='uncovered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_194'/>
-194
-</td>
-<td class='survived'>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_194'>1</a>
-<span>
-1. run : removed call to com/pacman/g60/Controller/Game$StateArena::continueRunning &rarr; NO_COVERAGE<br/>
-
-</span>
-</span>
-</td>
-<td class='uncovered'><pre><span  class='survived'>                    stateArena.continueRunning();</span></pre></td></tr>
 
 
 <tr>
@@ -3040,12 +3038,12 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_195'>1</a>
 <span>
-1. run : mutated return of Object value for com/pacman/g60/Controller/Game$StateWin::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE<br/>
+1. run : removed call to com/pacman/g60/Controller/Game$StateArena::continueRunning &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>                    return stateArena;</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>                    stateArena.continueRunning();</span></pre></td></tr>
 
 
 <tr>
@@ -3062,7 +3060,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>                case 1: return stateMainMenu;</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>                    return stateArena;</span></pre></td></tr>
 
 
 <tr>
@@ -3070,18 +3068,20 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_197'/>
 197
 </td>
-<td class=''>
+<td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_197'></a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_197'>1</a>
 <span>
+1. run : mutated return of Object value for com/pacman/g60/Controller/Game$StateWin::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE<br/>
+
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>                default: throw new IndexOutOfBoundsException();</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>                case 1: return stateMainMenu;</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_198'/>
 198
 </td>
@@ -3092,7 +3092,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>                default: throw new IndexOutOfBoundsException();</span></pre></td></tr>
 
 
 <tr>
@@ -3107,7 +3107,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
 
 
 <tr>
@@ -3122,7 +3122,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
 
 
 <tr>
@@ -3137,7 +3137,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -3152,7 +3152,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private class StateLose implements State {</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -3167,7 +3167,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        MenuModel menuModel;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    private class StateLose implements State {</span></pre></td></tr>
 
 
 <tr>
@@ -3182,7 +3182,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        TextModel title;</span></pre></td></tr>
+<td class=''><pre><span  class=''>        MenuModel menuModel;</span></pre></td></tr>
 
 
 <tr>
@@ -3197,7 +3197,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        MenuView menuView;</span></pre></td></tr>
+<td class=''><pre><span  class=''>        TextModel title;</span></pre></td></tr>
 
 
 <tr>
@@ -3212,11 +3212,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        GUIViewComposite view;</span></pre></td></tr>
+<td class=''><pre><span  class=''>        MenuView menuView;</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_207'/>
 207
 </td>
@@ -3227,7 +3227,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        public StateLose(MenuView menuView, TextView textView){</span></pre></td></tr>
+<td class=''><pre><span  class=''>        GUIViewComposite view;</span></pre></td></tr>
 
 
 <tr>
@@ -3242,11 +3242,11 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            this.menuView = menuView;</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        public StateLose(MenuView menuView, TextView textView){</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_209'/>
 209
 </td>
@@ -3257,11 +3257,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            this.menuView = menuView;</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_210'/>
 210
 </td>
@@ -3272,7 +3272,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            view = new GUIViewComposite(menuView.getGUI());</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -3280,16 +3280,14 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_211'/>
 211
 </td>
-<td class='survived'>
+<td class=''>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_211'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_211'></a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/View/GUIViewComposite::addView &rarr; NO_COVERAGE<br/>
-
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            view.addView(textView);</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            view = new GUIViewComposite(menuView.getGUI());</span></pre></td></tr>
 
 
 <tr>
@@ -3301,7 +3299,24 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_212'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/View/GUIViewComposite::addView &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/View/Views/GUIViewComposite::addView &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            view.addView(textView);</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_213'/>
+213
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_213'>1</a>
+<span>
+1. &#60;init&#62; : removed call to com/pacman/g60/View/Views/GUIViewComposite::addView &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
@@ -3311,21 +3326,6 @@
 
 <tr>
 <td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_213'/>
-213
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_213'></a>
-<span>
-</span>
-</span>
-</td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
-
-
-<tr>
-<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_214'/>
 214
 </td>
@@ -3336,7 +3336,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            menuModel = new MenuModel();</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -3344,16 +3344,14 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_215'/>
 215
 </td>
-<td class='survived'>
+<td class=''>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_215'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_215'></a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/MenuModel::setRelativePosition &rarr; NO_COVERAGE<br/>
-
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            menuModel.setRelativePosition(new PositionReal(0.5, 0.5));</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            menuModel = new MenuModel();</span></pre></td></tr>
 
 
 <tr>
@@ -3365,12 +3363,12 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_216'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/MenuModel::setVerticalAlign &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/MenuModel::setRelativePosition &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            menuModel.setVerticalAlign(MenuModel.VerticalAlign.CENTER);</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>            menuModel.setRelativePosition(new PositionReal(0.5, 0.5));</span></pre></td></tr>
 
 
 <tr>
@@ -3382,12 +3380,12 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_217'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/MenuModel::setHorizontalAlign &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/MenuModel::setVerticalAlign &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            menuModel.setHorizontalAlign(MenuModel.HorizontalAlign.CENTER);</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>            menuModel.setVerticalAlign(MenuModel.VerticalAlign.CENTER);</span></pre></td></tr>
 
 
 <tr>
@@ -3399,12 +3397,12 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_218'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/MenuModel::append &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/MenuModel::setHorizontalAlign &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            menuModel.append(new MenuModel.NormalItem(menuModel, 0, &#34;To level selector&#34;));</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>            menuModel.setHorizontalAlign(MenuModel.HorizontalAlign.CENTER);</span></pre></td></tr>
 
 
 <tr>
@@ -3416,7 +3414,24 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_219'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/MenuModel::append &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/MenuModel::append &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            menuModel.append(new MenuModel.NormalItem(menuModel, 0, &#34;To level selector&#34;));</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_220'/>
+220
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_220'>1</a>
+<span>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/MenuModel::append &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
@@ -3426,21 +3441,6 @@
 
 <tr>
 <td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_220'/>
-220
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_220'></a>
-<span>
-</span>
-</span>
-</td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
-
-
-<tr>
-<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_221'/>
 221
 </td>
@@ -3451,7 +3451,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            title = new TextModel(&#34;You lost...&#34;);</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -3459,16 +3459,14 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_222'/>
 222
 </td>
-<td class='survived'>
+<td class=''>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_222'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_222'></a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/TextModel::setPosition &rarr; NO_COVERAGE<br/>
-
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            title.setPosition(new PositionReal(0.5, 0.3));</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            title = new TextModel(&#34;You lost...&#34;);</span></pre></td></tr>
 
 
 <tr>
@@ -3480,12 +3478,12 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_223'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/TextModel::setVerticalAlign &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/TextModel::setPosition &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            title.setVerticalAlign(Alignable.VerticalAlign.BOTTOM);</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>            title.setPosition(new PositionReal(0.5, 0.3));</span></pre></td></tr>
 
 
 <tr>
@@ -3497,12 +3495,12 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_224'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/TextModel::setHorizontalAlign &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/TextModel::setVerticalAlign &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            title.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>            title.setVerticalAlign(Alignable.VerticalAlign.BOTTOM);</span></pre></td></tr>
 
 
 <tr>
@@ -3514,7 +3512,24 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_225'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/View/TextView::setTextModel &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/TextModel::setHorizontalAlign &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            title.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_226'/>
+226
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_226'>1</a>
+<span>
+1. &#60;init&#62; : removed call to com/pacman/g60/View/Views/TextView::setTextModel &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
@@ -3524,21 +3539,6 @@
 
 <tr>
 <td class='uncovered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_226'/>
-226
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_226'></a>
-<span>
-</span>
-</span>
-</td>
-<td class='uncovered'><pre><span  class=''>        }</span></pre></td></tr>
-
-
-<tr>
-<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_227'/>
 227
 </td>
@@ -3549,7 +3549,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        @Override</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        }</span></pre></td></tr>
 
 
 <tr>
@@ -3564,11 +3564,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        public State run() throws IOException {</span></pre></td></tr>
+<td class=''><pre><span  class=''>        @Override</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_229'/>
 229
 </td>
@@ -3579,7 +3579,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            MenuModel menuModel_ = new MenuModel(menuModel);</span></pre></td></tr>
+<td class=''><pre><span  class=''>        public State run() throws IOException {</span></pre></td></tr>
 
 
 <tr>
@@ -3587,16 +3587,14 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_230'/>
 230
 </td>
-<td class='survived'>
+<td class=''>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_230'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_230'></a>
 <span>
-1. run : removed call to com/pacman/g60/View/MenuView::setMenuModel &rarr; NO_COVERAGE<br/>
-
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            menuView.setMenuModel(menuModel_);</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            MenuModel menuModel_ = new MenuModel(menuModel);</span></pre></td></tr>
 
 
 <tr>
@@ -3604,14 +3602,16 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_231'/>
 231
 </td>
-<td class=''>
+<td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_231'></a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_231'>1</a>
 <span>
+1. run : removed call to com/pacman/g60/View/Views/MenuView::setMenuModel &rarr; NO_COVERAGE<br/>
+
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            MenuController menuController = new MenuController(menuModel_, view);</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>            menuView.setMenuModel(menuModel_);</span></pre></td></tr>
 
 
 <tr>
@@ -3626,7 +3626,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            int r = menuController.run();</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            MenuController menuController = new MenuController(menuModel_, view);</span></pre></td></tr>
 
 
 <tr>
@@ -3641,7 +3641,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            switch(r){</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            int r = menuController.run();</span></pre></td></tr>
 
 
 <tr>
@@ -3649,16 +3649,14 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_234'/>
 234
 </td>
-<td class='survived'>
+<td class=''>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_234'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_234'></a>
 <span>
-1. run : mutated return of Object value for com/pacman/g60/Controller/Game$StateLose::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE<br/>
-
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>                case -1: return stateMainMenu;</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            switch(r){</span></pre></td></tr>
 
 
 <tr>
@@ -3675,7 +3673,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>                case 0: return stateLevelSelect;</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>                case -1: return stateMainMenu;</span></pre></td></tr>
 
 
 <tr>
@@ -3692,7 +3690,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>                case 1: return stateMainMenu;</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>                case 0: return stateLevelSelect;</span></pre></td></tr>
 
 
 <tr>
@@ -3700,18 +3698,20 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_237'/>
 237
 </td>
-<td class=''>
+<td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_237'></a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_237'>1</a>
 <span>
+1. run : mutated return of Object value for com/pacman/g60/Controller/Game$StateLose::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE<br/>
+
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>                default: throw new IndexOutOfBoundsException();</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>                case 1: return stateMainMenu;</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_238'/>
 238
 </td>
@@ -3722,7 +3722,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>                default: throw new IndexOutOfBoundsException();</span></pre></td></tr>
 
 
 <tr>
@@ -3737,7 +3737,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
 
 
 <tr>
@@ -3752,7 +3752,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
 
 
 <tr>
@@ -3767,7 +3767,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -3782,7 +3782,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private class StatePause implements State {</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -3797,7 +3797,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        MenuModel menuModel;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    private class StatePause implements State {</span></pre></td></tr>
 
 
 <tr>
@@ -3812,7 +3812,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        TextModel title;</span></pre></td></tr>
+<td class=''><pre><span  class=''>        MenuModel menuModel;</span></pre></td></tr>
 
 
 <tr>
@@ -3827,7 +3827,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        MenuView menuView;</span></pre></td></tr>
+<td class=''><pre><span  class=''>        TextModel title;</span></pre></td></tr>
 
 
 <tr>
@@ -3842,11 +3842,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        GUIViewComposite view;</span></pre></td></tr>
+<td class=''><pre><span  class=''>        MenuView menuView;</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_247'/>
 247
 </td>
@@ -3857,7 +3857,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        public StatePause(MenuView menuView, TextView textView){</span></pre></td></tr>
+<td class=''><pre><span  class=''>        GUIViewComposite view;</span></pre></td></tr>
 
 
 <tr>
@@ -3872,11 +3872,11 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            this.menuView = menuView;</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        public StatePause(MenuView menuView, TextView textView){</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_249'/>
 249
 </td>
@@ -3887,11 +3887,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            this.menuView = menuView;</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_250'/>
 250
 </td>
@@ -3902,7 +3902,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            view = new GUIViewComposite(menuView.getGUI());</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -3910,16 +3910,14 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_251'/>
 251
 </td>
-<td class='survived'>
+<td class=''>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_251'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_251'></a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/View/GUIViewComposite::addView &rarr; NO_COVERAGE<br/>
-
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            view.addView(textView);</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            view = new GUIViewComposite(menuView.getGUI());</span></pre></td></tr>
 
 
 <tr>
@@ -3931,7 +3929,24 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_252'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/View/GUIViewComposite::addView &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/View/Views/GUIViewComposite::addView &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            view.addView(textView);</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_253'/>
+253
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_253'>1</a>
+<span>
+1. &#60;init&#62; : removed call to com/pacman/g60/View/Views/GUIViewComposite::addView &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
@@ -3941,21 +3956,6 @@
 
 <tr>
 <td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_253'/>
-253
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_253'></a>
-<span>
-</span>
-</span>
-</td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
-
-
-<tr>
-<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_254'/>
 254
 </td>
@@ -3966,7 +3966,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            menuModel = new MenuModel();</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -3974,16 +3974,14 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_255'/>
 255
 </td>
-<td class='survived'>
+<td class=''>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_255'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_255'></a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/MenuModel::setRelativePosition &rarr; NO_COVERAGE<br/>
-
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            menuModel.setRelativePosition(new PositionReal(0.5, 0.5));</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            menuModel = new MenuModel();</span></pre></td></tr>
 
 
 <tr>
@@ -3995,12 +3993,12 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_256'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/MenuModel::setVerticalAlign &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/MenuModel::setRelativePosition &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            menuModel.setVerticalAlign(MenuModel.VerticalAlign.CENTER);</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>            menuModel.setRelativePosition(new PositionReal(0.5, 0.5));</span></pre></td></tr>
 
 
 <tr>
@@ -4012,12 +4010,12 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_257'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/MenuModel::setHorizontalAlign &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/MenuModel::setVerticalAlign &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            menuModel.setHorizontalAlign(MenuModel.HorizontalAlign.CENTER);</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>            menuModel.setVerticalAlign(MenuModel.VerticalAlign.CENTER);</span></pre></td></tr>
 
 
 <tr>
@@ -4029,12 +4027,12 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_258'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/MenuModel::append &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/MenuModel::setHorizontalAlign &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            menuModel.append(new MenuModel.NormalItem(menuModel, 0, &#34;Unpause game&#34;));</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>            menuModel.setHorizontalAlign(MenuModel.HorizontalAlign.CENTER);</span></pre></td></tr>
 
 
 <tr>
@@ -4046,7 +4044,24 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_259'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/MenuModel::append &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/MenuModel::append &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            menuModel.append(new MenuModel.NormalItem(menuModel, 0, &#34;Unpause game&#34;));</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_260'/>
+260
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_260'>1</a>
+<span>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/MenuModel::append &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
@@ -4056,21 +4071,6 @@
 
 <tr>
 <td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_260'/>
-260
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_260'></a>
-<span>
-</span>
-</span>
-</td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
-
-
-<tr>
-<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_261'/>
 261
 </td>
@@ -4081,7 +4081,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            title = new TextModel(&#34;Paused&#34;);</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -4089,16 +4089,14 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_262'/>
 262
 </td>
-<td class='survived'>
+<td class=''>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_262'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_262'></a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/TextModel::setPosition &rarr; NO_COVERAGE<br/>
-
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            title.setPosition(new PositionReal(0.5, 0.3));</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            title = new TextModel(&#34;Paused&#34;);</span></pre></td></tr>
 
 
 <tr>
@@ -4110,12 +4108,12 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_263'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/TextModel::setVerticalAlign &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/TextModel::setPosition &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            title.setVerticalAlign(Alignable.VerticalAlign.BOTTOM);</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>            title.setPosition(new PositionReal(0.5, 0.3));</span></pre></td></tr>
 
 
 <tr>
@@ -4127,12 +4125,12 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_264'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/Model/TextModel::setHorizontalAlign &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/TextModel::setVerticalAlign &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            title.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>            title.setVerticalAlign(Alignable.VerticalAlign.BOTTOM);</span></pre></td></tr>
 
 
 <tr>
@@ -4144,7 +4142,24 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_265'>1</a>
 <span>
-1. &#60;init&#62; : removed call to com/pacman/g60/View/TextView::setTextModel &rarr; NO_COVERAGE<br/>
+1. &#60;init&#62; : removed call to com/pacman/g60/Model/Models/TextModel::setHorizontalAlign &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            title.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_266'/>
+266
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_266'>1</a>
+<span>
+1. &#60;init&#62; : removed call to com/pacman/g60/View/Views/TextView::setTextModel &rarr; NO_COVERAGE<br/>
 
 </span>
 </span>
@@ -4154,21 +4169,6 @@
 
 <tr>
 <td class='uncovered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_266'/>
-266
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_266'></a>
-<span>
-</span>
-</span>
-</td>
-<td class='uncovered'><pre><span  class=''>        }</span></pre></td></tr>
-
-
-<tr>
-<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_267'/>
 267
 </td>
@@ -4179,7 +4179,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        @Override</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        }</span></pre></td></tr>
 
 
 <tr>
@@ -4194,11 +4194,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        public State run() throws IOException {</span></pre></td></tr>
+<td class=''><pre><span  class=''>        @Override</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_269'/>
 269
 </td>
@@ -4209,7 +4209,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            MenuModel menuModel_ = new MenuModel(menuModel);</span></pre></td></tr>
+<td class=''><pre><span  class=''>        public State run() throws IOException {</span></pre></td></tr>
 
 
 <tr>
@@ -4217,16 +4217,14 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_270'/>
 270
 </td>
-<td class='survived'>
+<td class=''>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_270'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_270'></a>
 <span>
-1. run : removed call to com/pacman/g60/View/MenuView::setMenuModel &rarr; NO_COVERAGE<br/>
-
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            menuView.setMenuModel(menuModel_);</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            MenuModel menuModel_ = new MenuModel(menuModel);</span></pre></td></tr>
 
 
 <tr>
@@ -4234,14 +4232,16 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_271'/>
 271
 </td>
-<td class=''>
+<td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_271'></a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_271'>1</a>
 <span>
+1. run : removed call to com/pacman/g60/View/Views/MenuView::setMenuModel &rarr; NO_COVERAGE<br/>
+
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            MenuController menuController = new MenuController(menuModel_, view);</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>            menuView.setMenuModel(menuModel_);</span></pre></td></tr>
 
 
 <tr>
@@ -4256,7 +4256,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            int r = menuController.run();</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            MenuController menuController = new MenuController(menuModel_, view);</span></pre></td></tr>
 
 
 <tr>
@@ -4271,7 +4271,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            switch(r){</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            int r = menuController.run();</span></pre></td></tr>
 
 
 <tr>
@@ -4279,9 +4279,24 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_274'/>
 274
 </td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_274'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>            switch(r){</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_275'/>
+275
+</td>
 <td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_274'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_275'>1</a>
 <span>
 1. run : mutated return of Object value for com/pacman/g60/Controller/Game$StatePause::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE<br/>
 
@@ -4293,12 +4308,12 @@
 
 <tr>
 <td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_275'/>
-275
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_276'/>
+276
 </td>
 <td class=''>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_275'></a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_276'></a>
 <span>
 </span>
 </span>
@@ -4308,12 +4323,12 @@
 
 <tr>
 <td class='uncovered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_276'/>
-276
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_277'/>
+277
 </td>
 <td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_276'>2</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_277'>2</a>
 <span>
 1. run : negated conditional &rarr; NO_COVERAGE<br/>
 2. run : removed call to com/pacman/g60/Controller/Game$StateArena::continueRunning &rarr; NO_COVERAGE<br/>
@@ -4322,23 +4337,6 @@
 </span>
 </td>
 <td class='uncovered'><pre><span  class='survived'>                    if(!stateArena.arenaModel.getShouldGameContinue()) stateArena.continueRunning();</span></pre></td></tr>
-
-
-<tr>
-<td class='uncovered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_277'/>
-277
-</td>
-<td class='survived'>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_277'>1</a>
-<span>
-1. run : mutated return of Object value for com/pacman/g60/Controller/Game$StatePause::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE<br/>
-
-</span>
-</span>
-</td>
-<td class='uncovered'><pre><span  class='survived'>                    return stateArena;</span></pre></td></tr>
 
 
 <tr>
@@ -4355,7 +4353,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>                case 1: return stateMainMenu;</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>                    return stateArena;</span></pre></td></tr>
 
 
 <tr>
@@ -4363,18 +4361,20 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_279'/>
 279
 </td>
-<td class=''>
+<td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_279'></a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_279'>1</a>
 <span>
+1. run : mutated return of Object value for com/pacman/g60/Controller/Game$StatePause::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE<br/>
+
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>                default: throw new IndexOutOfBoundsException();</span></pre></td></tr>
+<td class='uncovered'><pre><span  class='survived'>                case 1: return stateMainMenu;</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_280'/>
 280
 </td>
@@ -4385,7 +4385,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>                default: throw new IndexOutOfBoundsException();</span></pre></td></tr>
 
 
 <tr>
@@ -4400,7 +4400,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
 
 
 <tr>
@@ -4415,7 +4415,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
 
 
 <tr>
@@ -4430,11 +4430,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    </span></pre></td></tr>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_284'/>
 284
 </td>
@@ -4445,11 +4445,11 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>    private class StateExit implements State {</span></pre></td></tr>
+<td class=''><pre><span  class=''>    </span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_285'/>
 285
 </td>
@@ -4460,7 +4460,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        @Override</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>    private class StateExit implements State {</span></pre></td></tr>
 
 
 <tr>
@@ -4475,11 +4475,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        public State run() throws NoSuchMethodException {</span></pre></td></tr>
+<td class=''><pre><span  class=''>        @Override</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_287'/>
 287
 </td>
@@ -4490,11 +4490,11 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>            throw new NoSuchMethodException();</span></pre></td></tr>
+<td class=''><pre><span  class=''>        public State run() throws NoSuchMethodException {</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_288'/>
 288
 </td>
@@ -4505,7 +4505,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>        }</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>            throw new NoSuchMethodException();</span></pre></td></tr>
 
 
 <tr>
@@ -4520,7 +4520,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+<td class=''><pre><span  class=''>        }</span></pre></td></tr>
 
 
 <tr>
@@ -4535,7 +4535,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    </span></pre></td></tr>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -4550,7 +4550,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    private State state;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    </span></pre></td></tr>
 
 
 <tr>
@@ -4565,11 +4565,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''></span></pre></td></tr>
+<td class=''><pre><span  class=''>    private State state;</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_293'/>
 293
 </td>
@@ -4580,7 +4580,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>    public Game(ViewFactory viewFactory) throws Exception {</span></pre></td></tr>
+<td class=''><pre><span  class=''></span></pre></td></tr>
 
 
 <tr>
@@ -4595,7 +4595,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        stateMainMenu       = new StateMainMenu(viewFactory.createMenuView(), viewFactory.createTextView());</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>    public Game(ViewFactory viewFactory) throws Exception {</span></pre></td></tr>
 
 
 <tr>
@@ -4610,7 +4610,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        stateControls       = new StateControls();</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        stateMainMenu       = new StateMainMenu(viewFactory.createMenuView(), viewFactory.createTextView());</span></pre></td></tr>
 
 
 <tr>
@@ -4625,7 +4625,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        stateScoreboard     = new StateScoreboard();</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        stateControls       = new StateControls();</span></pre></td></tr>
 
 
 <tr>
@@ -4640,7 +4640,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        stateSave           = new StateSave();</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        stateScoreboard     = new StateScoreboard();</span></pre></td></tr>
 
 
 <tr>
@@ -4655,7 +4655,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        stateLoad           = new StateLoad();</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        stateSave           = new StateSave();</span></pre></td></tr>
 
 
 <tr>
@@ -4670,7 +4670,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        stateLevelSelect    = new StateLevelSelector();</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        stateLoad           = new StateLoad();</span></pre></td></tr>
 
 
 <tr>
@@ -4685,7 +4685,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        stateArena          = new StateArena(viewFactory.createArenaView());</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        stateLevelSelect    = new StateLevelSelector();</span></pre></td></tr>
 
 
 <tr>
@@ -4700,7 +4700,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        stateWin            = new StateWin(viewFactory.createMenuView(), viewFactory.createTextView());</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        stateArena          = new StateArena(viewFactory.createArenaView());</span></pre></td></tr>
 
 
 <tr>
@@ -4715,7 +4715,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        stateLose           = new StateLose(viewFactory.createMenuView(), viewFactory.createTextView());</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        stateWin            = new StateWin(viewFactory.createMenuView(), viewFactory.createTextView());</span></pre></td></tr>
 
 
 <tr>
@@ -4730,7 +4730,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        statePause          = new StatePause(viewFactory.createMenuView(), viewFactory.createTextView());</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        stateLose           = new StateLose(viewFactory.createMenuView(), viewFactory.createTextView());</span></pre></td></tr>
 
 
 <tr>
@@ -4745,7 +4745,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        stateExit           = new StateExit();</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        statePause          = new StatePause(viewFactory.createMenuView(), viewFactory.createTextView());</span></pre></td></tr>
 
 
 <tr>
@@ -4760,11 +4760,11 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        stateExit           = new StateExit();</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_306'/>
 306
 </td>
@@ -4775,7 +4775,7 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    </span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
 
 
 <tr>
@@ -4790,11 +4790,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>    public void run() {</span></pre></td></tr>
+<td class=''><pre><span  class=''>    </span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_308'/>
 308
 </td>
@@ -4805,11 +4805,11 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        state = stateMainMenu;</span></pre></td></tr>
+<td class=''><pre><span  class=''>    public void run() {</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_309'/>
 309
 </td>
@@ -4820,17 +4820,32 @@
 </span>
 </span>
 </td>
+<td class='uncovered'><pre><span  class=''>        state = stateMainMenu;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_310'/>
+310
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_310'></a>
+<span>
+</span>
+</span>
+</td>
 <td class=''><pre><span  class=''>        try {</span></pre></td></tr>
 
 
 <tr>
 <td class='uncovered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_310'/>
-310
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_311'/>
+311
 </td>
 <td class='survived'>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_310'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_311'>1</a>
 <span>
 1. run : negated conditional &rarr; NO_COVERAGE<br/>
 
@@ -4842,21 +4857,6 @@
 
 <tr>
 <td class='uncovered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_311'/>
-311
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_311'></a>
-<span>
-</span>
-</span>
-</td>
-<td class='uncovered'><pre><span  class=''>                state = state.run();</span></pre></td></tr>
-
-
-<tr>
-<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_312'/>
 312
 </td>
@@ -4867,11 +4867,11 @@
 </span>
 </span>
 </td>
-<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>                state = state.run();</span></pre></td></tr>
 
 
 <tr>
-<td class='uncovered'>
+<td class='na'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_313'/>
 313
 </td>
@@ -4882,7 +4882,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        } catch(Exception e){</span></pre></td></tr>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
 
 
 <tr>
@@ -4890,16 +4890,14 @@
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_314'/>
 314
 </td>
-<td class='survived'>
+<td class=''>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_314'>1</a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_314'></a>
 <span>
-1. run : negated conditional &rarr; NO_COVERAGE<br/>
-
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class='survived'>            if(e instanceof EOFException) {</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        } catch(Exception e){</span></pre></td></tr>
 
 
 <tr>
@@ -4911,6 +4909,23 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_315'>1</a>
 <span>
+1. run : negated conditional &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>            if(e instanceof EOFException) {</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_316'/>
+316
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_316'>1</a>
+<span>
 1. run : removed call to java/io/PrintStream::println &rarr; NO_COVERAGE<br/>
 
 </span>
@@ -4921,34 +4936,17 @@
 
 <tr>
 <td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_316'/>
-316
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_317'/>
+317
 </td>
 <td class=''>
 <span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_316'></a>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_317'></a>
 <span>
 </span>
 </span>
 </td>
 <td class=''><pre><span  class=''>            } else {</span></pre></td></tr>
-
-
-<tr>
-<td class='uncovered'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_317'/>
-317
-</td>
-<td class='survived'>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_317'>1</a>
-<span>
-1. run : removed call to java/io/PrintStream::println &rarr; NO_COVERAGE<br/>
-
-</span>
-</span>
-</td>
-<td class='uncovered'><pre><span  class='survived'>                System.out.println(&#34;Application closed unexpectedly after receiving exception (&#34; + e.getClass().toString() + &#34;): &#34; + e.getMessage());</span></pre></td></tr>
 
 
 <tr>
@@ -4960,6 +4958,23 @@
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_318'>1</a>
 <span>
+1. run : removed call to java/io/PrintStream::println &rarr; NO_COVERAGE<br/>
+
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class='survived'>                System.out.println(&#34;Application closed unexpectedly after receiving exception (&#34; + e.getClass().toString() + &#34;): &#34; + e.getMessage());</span></pre></td></tr>
+
+
+<tr>
+<td class='uncovered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_319'/>
+319
+</td>
+<td class='survived'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_319'>1</a>
+<span>
 1. run : removed call to java/lang/Exception::printStackTrace &rarr; NO_COVERAGE<br/>
 
 </span>
@@ -4970,21 +4985,6 @@
 
 <tr>
 <td class='na'>
-<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_319'/>
-319
-</td>
-<td class=''>
-<span class='pop'>
-<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_319'></a>
-<span>
-</span>
-</span>
-</td>
-<td class=''><pre><span  class=''>            }</span></pre></td></tr>
-
-
-<tr>
-<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_320'/>
 320
 </td>
@@ -4995,7 +4995,7 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>        }</span></pre></td></tr>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
 
 
 <tr>
@@ -5010,17 +5010,32 @@
 </span>
 </span>
 </td>
-<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+<td class='uncovered'><pre><span  class=''>        }</span></pre></td></tr>
 
 
 <tr>
-<td class='na'>
+<td class='uncovered'>
 <a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_322'/>
 322
 </td>
 <td class=''>
 <span class='pop'>
 <a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_322'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='uncovered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@75931d62_323'/>
+323
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_323'></a>
 <span>
 </span>
 </span>
@@ -5032,33 +5047,23 @@
 <tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
 
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_38'>38</a></td> 
-<td></td>
-<td>
-
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_38'/> 
-
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/View/GUIViewComposite::addView &rarr; NO_COVERAGE</p> 
-</td>
-</tr>
-<tr>
 <td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_39'>39</a></td> 
 <td></td>
 <td>
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_39'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/View/GUIViewComposite::addView &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/View/Views/GUIViewComposite::addView &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_42'>42</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_40'>40</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_42'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_40'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/MenuModel::setFrame &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/View/Views/GUIViewComposite::addView &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5068,7 +5073,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_43'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/MenuModel::setRelativePosition &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/MenuModel::setFrame &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5078,7 +5083,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_44'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/MenuModel::setVerticalAlign &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/MenuModel::setRelativePosition &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5088,7 +5093,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_45'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/MenuModel::setHorizontalAlign &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/MenuModel::setVerticalAlign &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5098,7 +5103,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_46'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/MenuModel::append &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/MenuModel::setHorizontalAlign &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5108,7 +5113,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_47'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/MenuModel::append &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/MenuModel::append &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5118,7 +5123,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_48'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/MenuModel::append &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/MenuModel::append &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5128,7 +5133,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_49'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/MenuModel::append &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/MenuModel::append &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5138,7 +5143,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_50'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/MenuModel::append &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/MenuModel::append &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5148,17 +5153,17 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_51'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/MenuModel::append &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/MenuModel::append &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_54'>54</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_52'>52</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_54'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_52'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/TextModel::setPosition &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/MenuModel::append &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5168,7 +5173,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_55'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/TextModel::setVerticalAlign &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/TextModel::setPosition &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5178,7 +5183,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_56'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/TextModel::setHorizontalAlign &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/TextModel::setVerticalAlign &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5188,27 +5193,27 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_57'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/View/TextView::setTextModel &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/TextModel::setHorizontalAlign &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_62'>62</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_58'>58</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_62'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_58'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/View/MenuView::setMenuModel &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/View/Views/TextView::setTextModel &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_68'>68</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_63'>63</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_68'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_63'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> mutated return of Object value for com/pacman/g60/Controller/Game$StateMainMenu::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/View/Views/MenuView::setMenuModel &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5262,63 +5267,63 @@
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_83'>83</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_74'>74</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_83'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_74'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> mutated return of Object value for com/pacman/g60/Controller/Game$StateMainMenu::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_84'>84</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_84'/> 
 
 <p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> mutated return of Object value for com/pacman/g60/Controller/Game$StateControls::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_90'>90</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_91'>91</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_90'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_91'/> 
 
 <p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> mutated return of Object value for com/pacman/g60/Controller/Game$StateScoreboard::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_97'>97</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_98'>98</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_97'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_98'/> 
 
 <p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> mutated return of Object value for com/pacman/g60/Controller/Game$StateSave::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_104'>104</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_105'>105</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_104'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_105'/> 
 
 <p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> mutated return of Object value for com/pacman/g60/Controller/Game$StateLoad::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_115'>115</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_116'>116</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_115'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_116'/> 
 
 <p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> changed conditional boundary &rarr; NO_COVERAGE</p> <p class='NO_COVERAGE'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> Replaced integer addition with subtraction &rarr; NO_COVERAGE</p> <p class='NO_COVERAGE'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> negated conditional &rarr; NO_COVERAGE</p> 
-</td>
-</tr>
-<tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_123'>123</a></td> 
-<td></td>
-<td>
-
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_123'/> 
-
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Controller/Game$StateArena::setArenaModel &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5328,17 +5333,17 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_124'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> mutated return of Object value for com/pacman/g60/Controller/Game$StateLevelSelector::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Controller/Game$StateArena::setArenaModel &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_138'>138</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_125'>125</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_138'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_125'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> negated conditional &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> mutated return of Object value for com/pacman/g60/Controller/Game$StateLevelSelector::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5358,17 +5363,17 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_140'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Controller/ArenaController::continueRunning &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> negated conditional &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_142'>142</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_141'>141</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_142'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_141'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Controller/ArenaController::run &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Controller/ArenaController::continueRunning &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5378,7 +5383,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_143'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> negated conditional &rarr; NO_COVERAGE</p> <p class='NO_COVERAGE'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> mutated return of Object value for com/pacman/g60/Controller/Game$StateArena::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Controller/ArenaController::run &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5408,17 +5413,17 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_146'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> mutated return of Object value for com/pacman/g60/Controller/Game$StateArena::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> negated conditional &rarr; NO_COVERAGE</p> <p class='NO_COVERAGE'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> mutated return of Object value for com/pacman/g60/Controller/Game$StateArena::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_169'>169</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_147'>147</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_169'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_147'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/View/GUIViewComposite::addView &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> mutated return of Object value for com/pacman/g60/Controller/Game$StateArena::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5428,17 +5433,17 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_170'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/View/GUIViewComposite::addView &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/View/Views/GUIViewComposite::addView &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_173'>173</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_171'>171</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_173'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_171'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/MenuModel::setRelativePosition &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/View/Views/GUIViewComposite::addView &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5448,7 +5453,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_174'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/MenuModel::setVerticalAlign &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/MenuModel::setRelativePosition &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5458,7 +5463,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_175'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/MenuModel::setHorizontalAlign &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/MenuModel::setVerticalAlign &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5468,7 +5473,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_176'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/MenuModel::append &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/MenuModel::setHorizontalAlign &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5478,17 +5483,17 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_177'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/MenuModel::append &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/MenuModel::append &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_180'>180</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_178'>178</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_180'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_178'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/TextModel::setPosition &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/MenuModel::append &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5498,7 +5503,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_181'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/TextModel::setVerticalAlign &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/TextModel::setPosition &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5508,7 +5513,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_182'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/TextModel::setHorizontalAlign &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/TextModel::setVerticalAlign &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5518,37 +5523,37 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_183'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/View/TextView::setTextModel &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/TextModel::setHorizontalAlign &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_188'>188</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_184'>184</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_188'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_184'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/View/MenuView::setMenuModel &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/View/Views/TextView::setTextModel &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_192'>192</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_189'>189</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_192'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_189'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/View/Views/MenuView::setMenuModel &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_193'>193</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_193'/> 
 
 <p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> mutated return of Object value for com/pacman/g60/Controller/Game$StateWin::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE</p> 
-</td>
-</tr>
-<tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_194'>194</a></td> 
-<td></td>
-<td>
-
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_194'/> 
-
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Controller/Game$StateArena::continueRunning &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5558,7 +5563,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_195'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> mutated return of Object value for com/pacman/g60/Controller/Game$StateWin::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Controller/Game$StateArena::continueRunning &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5572,13 +5577,13 @@
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_211'>211</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_197'>197</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_211'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_197'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/View/GUIViewComposite::addView &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> mutated return of Object value for com/pacman/g60/Controller/Game$StateWin::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5588,17 +5593,17 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_212'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/View/GUIViewComposite::addView &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/View/Views/GUIViewComposite::addView &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_215'>215</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_213'>213</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_215'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_213'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/MenuModel::setRelativePosition &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/View/Views/GUIViewComposite::addView &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5608,7 +5613,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_216'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/MenuModel::setVerticalAlign &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/MenuModel::setRelativePosition &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5618,7 +5623,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_217'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/MenuModel::setHorizontalAlign &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/MenuModel::setVerticalAlign &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5628,7 +5633,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_218'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/MenuModel::append &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/MenuModel::setHorizontalAlign &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5638,17 +5643,17 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_219'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/MenuModel::append &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/MenuModel::append &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_222'>222</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_220'>220</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_222'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_220'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/TextModel::setPosition &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/MenuModel::append &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5658,7 +5663,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_223'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/TextModel::setVerticalAlign &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/TextModel::setPosition &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5668,7 +5673,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_224'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/TextModel::setHorizontalAlign &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/TextModel::setVerticalAlign &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5678,27 +5683,27 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_225'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/View/TextView::setTextModel &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/TextModel::setHorizontalAlign &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_230'>230</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_226'>226</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_230'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_226'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/View/MenuView::setMenuModel &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/View/Views/TextView::setTextModel &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_234'>234</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_231'>231</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_234'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_231'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> mutated return of Object value for com/pacman/g60/Controller/Game$StateLose::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/View/Views/MenuView::setMenuModel &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5722,13 +5727,13 @@
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_251'>251</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_237'>237</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_251'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_237'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/View/GUIViewComposite::addView &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> mutated return of Object value for com/pacman/g60/Controller/Game$StateLose::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5738,17 +5743,17 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_252'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/View/GUIViewComposite::addView &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/View/Views/GUIViewComposite::addView &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_255'>255</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_253'>253</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_255'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_253'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/MenuModel::setRelativePosition &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/View/Views/GUIViewComposite::addView &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5758,7 +5763,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_256'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/MenuModel::setVerticalAlign &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/MenuModel::setRelativePosition &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5768,7 +5773,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_257'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/MenuModel::setHorizontalAlign &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/MenuModel::setVerticalAlign &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5778,7 +5783,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_258'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/MenuModel::append &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/MenuModel::setHorizontalAlign &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5788,17 +5793,17 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_259'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/MenuModel::append &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/MenuModel::append &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_262'>262</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_260'>260</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_262'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_260'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/TextModel::setPosition &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/MenuModel::append &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5808,7 +5813,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_263'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/TextModel::setVerticalAlign &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/TextModel::setPosition &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5818,7 +5823,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_264'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/TextModel::setHorizontalAlign &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/TextModel::setVerticalAlign &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5828,37 +5833,37 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_265'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/View/TextView::setTextModel &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Model/Models/TextModel::setHorizontalAlign &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_270'>270</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_266'>266</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_270'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_266'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/View/MenuView::setMenuModel &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/View/Views/TextView::setTextModel &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_274'>274</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_271'>271</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_274'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_271'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/View/Views/MenuView::setMenuModel &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_275'>275</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_275'/> 
 
 <p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> mutated return of Object value for com/pacman/g60/Controller/Game$StatePause::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE</p> 
-</td>
-</tr>
-<tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_276'>276</a></td> 
-<td></td>
-<td>
-
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_276'/> 
-
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> negated conditional &rarr; NO_COVERAGE</p> <p class='NO_COVERAGE'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Controller/Game$StateArena::continueRunning &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5868,7 +5873,7 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_277'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> mutated return of Object value for com/pacman/g60/Controller/Game$StatePause::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> negated conditional &rarr; NO_COVERAGE</p> <p class='NO_COVERAGE'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> removed call to com/pacman/g60/Controller/Game$StateArena::continueRunning &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
@@ -5882,21 +5887,21 @@
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_310'>310</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_279'>279</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_310'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_279'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> negated conditional &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> mutated return of Object value for com/pacman/g60/Controller/Game$StatePause::run to ( if (x != null) null else throw new RuntimeException ) &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_314'>314</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_311'>311</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_314'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_311'/> 
 
 <p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> negated conditional &rarr; NO_COVERAGE</p> 
 </td>
@@ -5908,15 +5913,15 @@
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_315'/> 
 
-<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> removed call to java/io/PrintStream::println &rarr; NO_COVERAGE</p> 
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> negated conditional &rarr; NO_COVERAGE</p> 
 </td>
 </tr>
 <tr>
-<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_317'>317</a></td> 
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_316'>316</a></td> 
 <td></td>
 <td>
 
-<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_317'/> 
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_316'/> 
 
 <p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> removed call to java/io/PrintStream::println &rarr; NO_COVERAGE</p> 
 </td>
@@ -5927,6 +5932,16 @@
 <td>
 
 <a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_318'/> 
+
+<p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> removed call to java/io/PrintStream::println &rarr; NO_COVERAGE</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@75931d62_319'>319</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@75931d62_319'/> 
 
 <p class='NO_COVERAGE'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>run<br/><b>Killed by : </b>none</span></span> removed call to java/lang/Exception::printStackTrace &rarr; NO_COVERAGE</p> 
 </td>
