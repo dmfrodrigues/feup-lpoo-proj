@@ -20,13 +20,12 @@ public abstract class TextView extends GUIView {
 
     @Override
     public TextView clone() {
-<span class="nc" id="L23">        System.out.println(&quot;Called TextView.clone()&quot;);</span>
         try {
-<span class="nc" id="L25">            return getClass().getDeclaredConstructor(TextView.class).newInstance(this);</span>
-<span class="nc" id="L26">        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {</span>
-<span class="nc" id="L27">            e.printStackTrace();</span>
+<span class="nc" id="L24">            return getClass().getDeclaredConstructor(TextView.class).newInstance(this);</span>
+<span class="nc" id="L25">        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {</span>
+<span class="nc" id="L26">            e.printStackTrace();</span>
         }
-<span class="nc" id="L29">        return null;</span>
+<span class="nc" id="L28">        return null;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
