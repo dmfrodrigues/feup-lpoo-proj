@@ -5,12 +5,18 @@ import com.googlecode.lanterna.input.KeyType;
 import com.pacman.g60.View.GUI.GUI;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
-public abstract class GUIView {
+public abstract class GUIView implements Cloneable {
     
     public enum COMMAND{ UP, DOWN, LEFT, RIGHT, ESC, SPACEBAR, P, ENTER, FIRE }
     
     GUI gui;
+    
+    public GUIView(GUIView guiView){
+        gui = guiView.gui;
+    }
+    
     public GUIView(GUI gui){
         this.gui = gui;
     }
@@ -32,6 +38,16 @@ public abstract class GUIView {
         if(key.getKeyType() == KeyType.Character && Character.toUpperCase(key.getCharacter()) == ' ') return COMMAND.SPACEBAR;
         if(key.getKeyType() == KeyType.Character && Character.toUpperCase(key.getCharacter()) == 'P') return COMMAND.P;
         if(key.getKeyType() == KeyType.Character && Character.toUpperCase(key.getCharacter()) == 'F') return COMMAND.FIRE;
+        return null;
+    }
+
+    @Override
+    public GUIView clone() {
+        try {
+            return getClass().getDeclaredConstructor(GUIView.class).newInstance(this);
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }

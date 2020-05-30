@@ -10,4 +10,5 @@ public interface ViewFactory {
     ArenaView createArenaView() throws FileNotFoundException;
     MenuView createMenuView();
     TextView createTextView();
+    SpriteView createSpriteView();
 }
