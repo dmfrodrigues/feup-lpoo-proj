@@ -50,16 +50,16 @@ public class ArenaController extends Controller {
                     case P:
                         return;
                     case UP:
-                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.UP));
+                        executeCommand(new MoveHeroUpCommand(this.arenaModel));
                         break;
                     case DOWN:
-                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.DOWN));
+                        executeCommand(new MoveHeroDownCommand(this.arenaModel));
                         break;
                     case LEFT:
-                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.LEFT));
+                        executeCommand(new MoveHeroLeftCommand(this.arenaModel));
                         break;
                     case RIGHT:
-                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.RIGHT));
+                        executeCommand(new MoveHeroRightCommand(this.arenaModel));
                         break;
                     case SPACEBAR:
                         executeCommand(new AttackCommand(this.arenaModel)); break;
