@@ -19,18 +19,19 @@ public class TerminalFactory implements ViewFactory {
 <span class="fc" id="L19">    }</span>
     
     @Override
-    public TerminalArenaView createArenaView() throws FileNotFoundException {
-<span class="fc" id="L23">        return new TerminalArenaView(terminalGUI, font);</span>
-    }
+<span class="fc" id="L22">    public TerminalArenaView createArenaView() throws FileNotFoundException { return new TerminalArenaView(terminalGUI, font); }</span>
 
     @Override
     public MenuView createMenuView() {
-<span class="nc" id="L28">        return new TerminalMenuView(terminalGUI, font);</span>
+<span class="nc" id="L26">        return new TerminalMenuView(terminalGUI, font);</span>
     }
 
     @Override
     public TextView createTextView() {
-<span class="nc" id="L33">        return new TerminalTextView(terminalGUI, font);</span>
+<span class="nc" id="L31">        return new TerminalTextView(terminalGUI, font);</span>
     }
+
+    @Override
+<span class="nc" id="L35">    public SpriteView createSpriteView() { return new TerminalSpriteView(terminalGUI); }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

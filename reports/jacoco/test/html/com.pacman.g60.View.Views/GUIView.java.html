@@ -5,34 +5,50 @@ import com.googlecode.lanterna.input.KeyType;
 import com.pacman.g60.View.GUI.GUI;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
-public abstract class GUIView {
+public abstract class GUIView implements Cloneable {
     
-<span class="fc" id="L11">    public enum COMMAND{ UP, DOWN, LEFT, RIGHT, ESC, SPACEBAR, P, ENTER, FIRE }</span>
+<span class="fc" id="L12">    public enum COMMAND{ UP, DOWN, LEFT, RIGHT, ESC, SPACEBAR, P, ENTER, FIRE }</span>
     
     GUI gui;
-<span class="fc" id="L14">    public GUIView(GUI gui){</span>
-<span class="fc" id="L15">        this.gui = gui;</span>
-<span class="fc" id="L16">    }</span>
+    
+<span class="nc" id="L16">    public GUIView(GUIView guiView){</span>
+<span class="nc" id="L17">        gui = guiView.gui;</span>
+<span class="nc" id="L18">    }</span>
+    
+<span class="fc" id="L20">    public GUIView(GUI gui){</span>
+<span class="fc" id="L21">        this.gui = gui;</span>
+<span class="fc" id="L22">    }</span>
 
-<span class="nc" id="L18">    public GUI getGUI() { return gui; }</span>
+<span class="nc" id="L24">    public GUI getGUI() { return gui; }</span>
 
-<span class="nc" id="L20">    public final void clear(){ gui.clear(); }</span>
+<span class="nc" id="L26">    public final void clear(){ gui.clear(); }</span>
     public abstract  void draw();
-<span class="nc" id="L22">    public final void refresh() throws IOException { gui.refresh(); }</span>
+<span class="nc" id="L28">    public final void refresh() throws IOException { gui.refresh(); }</span>
     public final COMMAND pollCommand() throws IOException {
-<span class="fc" id="L24">        KeyStroke key = gui.pollKey();</span>
-<span class="fc bfc" id="L25" title="All 2 branches covered.">        if(key == null) return null;</span>
-<span class="fc bfc" id="L26" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowUp                                                      ) return COMMAND.UP;</span>
-<span class="fc bfc" id="L27" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowDown                                                    ) return COMMAND.DOWN;</span>
-<span class="fc bfc" id="L28" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowLeft                                                    ) return COMMAND.LEFT;</span>
-<span class="fc bfc" id="L29" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowRight                                                   ) return COMMAND.RIGHT;</span>
-<span class="fc bfc" id="L30" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.Escape                                                       ) return COMMAND.ESC;</span>
-<span class="pc bpc" id="L31" title="1 of 2 branches missed.">        if(key.getKeyType() == KeyType.Enter                                                        ) return COMMAND.ENTER;</span>
-<span class="pc bpc" id="L32" title="2 of 4 branches missed.">        if(key.getKeyType() == KeyType.Character &amp;&amp; Character.toUpperCase(key.getCharacter()) == ' ') return COMMAND.SPACEBAR;</span>
-<span class="pc bpc" id="L33" title="2 of 4 branches missed.">        if(key.getKeyType() == KeyType.Character &amp;&amp; Character.toUpperCase(key.getCharacter()) == 'P') return COMMAND.P;</span>
-<span class="pc bpc" id="L34" title="2 of 4 branches missed.">        if(key.getKeyType() == KeyType.Character &amp;&amp; Character.toUpperCase(key.getCharacter()) == 'F') return COMMAND.FIRE;</span>
-<span class="fc" id="L35">        return null;</span>
+<span class="fc" id="L30">        KeyStroke key = gui.pollKey();</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        if(key == null) return null;</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowUp                                                      ) return COMMAND.UP;</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowDown                                                    ) return COMMAND.DOWN;</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowLeft                                                    ) return COMMAND.LEFT;</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.ArrowRight                                                   ) return COMMAND.RIGHT;</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        if(key.getKeyType() == KeyType.Escape                                                       ) return COMMAND.ESC;</span>
+<span class="pc bpc" id="L37" title="1 of 2 branches missed.">        if(key.getKeyType() == KeyType.Enter                                                        ) return COMMAND.ENTER;</span>
+<span class="pc bpc" id="L38" title="2 of 4 branches missed.">        if(key.getKeyType() == KeyType.Character &amp;&amp; Character.toUpperCase(key.getCharacter()) == ' ') return COMMAND.SPACEBAR;</span>
+<span class="pc bpc" id="L39" title="2 of 4 branches missed.">        if(key.getKeyType() == KeyType.Character &amp;&amp; Character.toUpperCase(key.getCharacter()) == 'P') return COMMAND.P;</span>
+<span class="pc bpc" id="L40" title="2 of 4 branches missed.">        if(key.getKeyType() == KeyType.Character &amp;&amp; Character.toUpperCase(key.getCharacter()) == 'F') return COMMAND.FIRE;</span>
+<span class="fc" id="L41">        return null;</span>
+    }
+
+    @Override
+    public GUIView clone() {
+        try {
+<span class="nc" id="L47">            return getClass().getDeclaredConstructor(GUIView.class).newInstance(this);</span>
+<span class="nc" id="L48">        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {</span>
+<span class="nc" id="L49">            e.printStackTrace();</span>
+        }
+<span class="nc" id="L51">        return null;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -3,12 +3,30 @@
 import com.pacman.g60.Model.Models.TextModel;
 import com.pacman.g60.View.GUI.GUI;
 
+import java.lang.reflect.InvocationTargetException;
+
 public abstract class TextView extends GUIView {
-<span class="fc" id="L7">    TextModel textModel = null;</span>
+<span class="pc" id="L9">    TextModel textModel = null;</span>
 
-<span class="fc" id="L9">    public TextView(GUI gui){ super(gui); }</span>
+    public TextView(TextView textView){
+<span class="nc" id="L12">        super(textView.getGUI());</span>
+<span class="nc" id="L13">        setTextModel(textView.getTextModel());</span>
+<span class="nc" id="L14">    }</span>
+    
+<span class="fc" id="L16">    public TextView(GUI gui){ super(gui); }</span>
 
-<span class="fc" id="L11">    public final void setTextModel(TextModel textModel){ this.textModel = textModel; }</span>
-<span class="fc" id="L12">    public final TextModel getTextModel(){ return textModel; }</span>
+<span class="fc" id="L18">    public final void setTextModel(TextModel textModel){ this.textModel = textModel; }</span>
+<span class="fc" id="L19">    public final TextModel getTextModel(){ return textModel; }</span>
+
+    @Override
+    public TextView clone() {
+<span class="nc" id="L23">        System.out.println(&quot;Called TextView.clone()&quot;);</span>
+        try {
+<span class="nc" id="L25">            return getClass().getDeclaredConstructor(TextView.class).newInstance(this);</span>
+<span class="nc" id="L26">        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {</span>
+<span class="nc" id="L27">            e.printStackTrace();</span>
+        }
+<span class="nc" id="L29">        return null;</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
