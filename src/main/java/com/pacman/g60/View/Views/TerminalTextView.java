@@ -81,7 +81,6 @@ public class TerminalTextView extends TextView {
 
     @Override
     public TerminalTextView clone() {
-        System.out.println("Called TerminalTextView.clone()");
         return new TerminalTextView(this);
     }
 }

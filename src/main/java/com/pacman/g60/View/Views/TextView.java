@@ -20,7 +20,6 @@ public abstract class TextView extends GUIView {
 
     @Override
     public TextView clone() {
-        System.out.println("Called TextView.clone()");
         try {
             return getClass().getDeclaredConstructor(TextView.class).newInstance(this);
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
