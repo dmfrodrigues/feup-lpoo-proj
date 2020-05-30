@@ -44,8 +44,12 @@ public class TerminalMenuView extends MenuView {
         textView.draw();
         
         for(int y = 1; y < Htotal_chars-1; ++y) {
-            textModel.setText("║" + " ".repeat(Wtotal_chars-2) + "║");
+            textModel.setText("║");
+            
             textModel.setPosition(new Position(x0, y0+y*font.getH()));
+            textView.draw();
+
+            textModel.setPosition(new Position(x0 + (Wtotal_chars-1)*font.getW(), y0+y*font.getH()));
             textView.draw();
         }
 
@@ -55,17 +59,12 @@ public class TerminalMenuView extends MenuView {
     }
     
     boolean frame = false;
-    private void drawItem(int x0, int y0, MenuModel.Item item, int index){
+    private void drawItem(int x0, int y0, int ymin, int ymax, MenuModel.Item item, int index){
 
         final int Hbutton = 3*font.getH();
         
-        int x1 = x0;
-        int y1 = y0 + index*(Hbutton+Hbutton_margin);
-
-        if(frame){
-            x1 += font.getW() + Wframe_margin;
-            y1 += font.getH() + Hframe_margin;
-        }
+        int x1 = x0                                  + (frame ? font.getW() + Wframe_margin : 0);
+        int y1 = y0 + index*(Hbutton+Hbutton_margin) + (frame ? font.getH() + Hframe_margin : 0);
         
         int Wbutton_chars = Wbutton/font.getW();
         int Hbutton_chars = Hbutton/font.getH();
@@ -75,31 +74,36 @@ public class TerminalMenuView extends MenuView {
 
         textModel.setText("┌" + "─".repeat(Wbutton_chars-2) + "┐");
         textModel.setPosition(new Position(x1, y1));
-        textView.draw();
+        if(ymin <= textModel.getPosition().getY() && textModel.getPosition().getY() <= ymax) textView.draw();
 
+        textModel.setText("│");
+        
         for(int y = 1; y < Hbutton_chars-1; ++y) {
-            textModel.setText("│" + " ".repeat(Wbutton_chars-2) + "│");
             textModel.setPosition(new Position(x1, y1+y*font.getH()));
-            textView.draw();
+            if(ymin <= textModel.getPosition().getY() && textModel.getPosition().getY() <= ymax) textView.draw();
+            
+            textModel.setPosition(new Position(x1 + (Wbutton_chars-1)*font.getW(), y1+y*font.getH()));
+            if(ymin <= textModel.getPosition().getY() && textModel.getPosition().getY() <= ymax) textView.draw();
         }
 
         textModel.setText("└" + "─".repeat(Wbutton_chars-2) + "┘");
         textModel.setPosition(new Position(x1, y1+(Hbutton_chars-1)*font.getH()));
-        textView.draw();
+        if(ymin <= textModel.getPosition().getY() && textModel.getPosition().getY() <= ymax) textView.draw();
 
         int x2 = x1 + (Wbutton - textView.getStringWidth (item.getText()))/2;
         int y2 = y1 + (Hbutton - textView.getStringHeight(item.getText()))/2;
         if(item.isSelected()) {
             for (int x = x1 + font.getW(); x < x1 + (Wbutton_chars - 1) * font.getW(); ++x) {
                 for (int y = y1 + font.getH(); y < y1 + (Hbutton_chars - 1) * font.getH(); ++y) {
-                    terminalGUI.drawCharacter(x, y, ' ', Color.WHITE, Color.GREY);
+                    if(ymin <= y && y <= ymax)
+                        terminalGUI.drawCharacter(x, y, ' ', Color.WHITE, Color.GREY);
                 }
             }
             textModel.setBackgroundColor(Color.GREY);
         }
         textModel.setPosition(new Position(x2, y2));
         textModel.setText(item.getText());
-        textView.draw();
+        if(ymin <= textModel.getPosition().getY() && textModel.getPosition().getY() <= ymax) textView.draw();
     }
     
     @Override
@@ -134,13 +138,27 @@ public class TerminalMenuView extends MenuView {
             case BOTTOM: y0 = y0 - Htotal; break;
         }
         
-        if(frame) {            
-            drawFrame(x0, y0, menu);
-        }
+        Htotal = Math.min(Htotal, terminalGUI.getH() - y0);
+        if(frame) Htotal -= Htotal % font.getH();
         
         List<MenuModel.Item> items = menu.getItems();
+
+        final int Hbutton = 3*font.getH();
+        final int ymin = (frame ? y0+font.getH() : y0 );
+        final int ymax = (frame ? y0+Htotal-font.getH()-1 : terminalGUI.getH()-1);
+        
+        Integer i_selected = 0;
+        for(i_selected = 0; !items.get(i_selected).isSelected(); ++i_selected){}
+        Integer y_selected = y0 + i_selected*(Hbutton+Hbutton_margin) + (frame ? font.getH() + Hframe_margin : 0 );
+        Integer y_selected_bottom = y_selected + Hbutton - 1;
+        Integer delta_y = Math.max(0, y_selected_bottom - ymax);
+        
         for(int i = 0; i < items.size(); ++i){
-            drawItem(x0, y0, items.get(i), i);
+            drawItem(x0, y0-delta_y, ymin, ymax, items.get(i), i);
+        }
+
+        if(frame) {
+            drawFrame(x0, y0, menu);
         }
     }
 }
