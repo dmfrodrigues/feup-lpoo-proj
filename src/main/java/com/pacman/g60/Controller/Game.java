@@ -84,14 +84,7 @@ public class Game {
         MenuModel menuModel;
         MenuView menuView;
         GUIViewComposite view;
-        private final String controls = 
-                "   ▲               \n" +
-                "  ◀▼▶  Move hero   \n" +
-                "                   \n" +
-                " └───┘ Melee attack\n" +
-                "   F   Shoot bullet\n" +
-                " ESC/P Pause    ";
-        
+
         public StateControls(MenuView menuView, TextView textView){
             this.menuView = menuView;
             
@@ -104,7 +97,14 @@ public class Game {
             menuModel.setVerticalAlign(MenuModel.VerticalAlign.CENTER);
             menuModel.setHorizontalAlign(MenuModel.HorizontalAlign.CENTER);
             menuModel.append(new MenuModel.NormalItem(menuModel, 0, "Back to main menu"));
-            
+
+            String controls =
+                    "   ▲               \n" +
+                    "  ◀▼▶  Move hero   \n" +
+                    "                   \n" +
+                    " └───┘ Melee attack\n" +
+                    "   F   Shoot bullet\n" +
+                    " ESC/P Pause    ";
             TextModel text = new TextModel(controls);
             text.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);
             text.setVerticalAlign(Alignable.VerticalAlign.CENTER);
