@@ -24,7 +24,7 @@ public class Guard extends Enemy implements MeleeAttackerElement {
 
     public Guard(Position pos, MovementType moveType)
     {
-<span class="nc" id="L27">        super(pos,new DamageEffect(1),10);</span>
+<span class="nc" id="L27">        super(new Position(100,100),new DamageEffect(1),10);</span>
 <span class="nc" id="L28">        this.moveType = moveType;</span>
 <span class="nc" id="L29">        initMovement(pos);</span>
 <span class="nc" id="L30">    }</span>
@@ -35,18 +35,23 @@ public class Guard extends Enemy implements MeleeAttackerElement {
 <span class="nc bnc" id="L35" title="All 2 branches missed.">        if (moveType == MovementType.VERTICAL  ) this.movement = new VerticalGuardMovementStrategy(position);</span>
 <span class="nc" id="L36">    }</span>
 
+    public Position tryGetNextPos()
+    {
+<span class="nc" id="L40">        return movement.tryMove();</span>
+    }
+
     public Position getNextPos()
     {
-<span class="nc" id="L40">        return movement.move();</span>
+<span class="nc" id="L45">        return movement.move();</span>
     }
 
     @Override
     public Object clone()
     {
-<span class="nc" id="L46">        Guard guard = (Guard) super.clone();</span>
-<span class="nc" id="L47">        guard.moveType = this.moveType;</span>
-<span class="nc" id="L48">        guard.movement = this.movement;</span>
-<span class="nc" id="L49">        return guard;</span>
+<span class="nc" id="L51">        Guard guard = (Guard) super.clone();</span>
+<span class="nc" id="L52">        guard.moveType = this.moveType;</span>
+<span class="nc" id="L53">        guard.movement = this.movement;</span>
+<span class="nc" id="L54">        return guard;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
