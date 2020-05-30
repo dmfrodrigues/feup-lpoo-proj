@@ -51,12 +51,14 @@ public class FireBulletCommand implements Command {
             }
 
             Bullet bullet = new Bullet(desiredPos);
-            bullet.setDir(heroDir);
-            bullet.setMoving(true);
+
 
             if (arenaModel.isPositionAvailable(desiredPos,bullet))
             {
-                   arenaModel.addElement(bullet);
+                bullet.setDir(heroDir);
+                bullet.setMoving(true);
+                arenaModel.addElement(bullet);
+                hero.decAmmo();
             }
         }
     }
