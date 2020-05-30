@@ -13,6 +13,7 @@ public class ArenaController extends Controller {
     private boolean win;
     private boolean over;
     private boolean mustContinueRunning = false;
+    private UpdateRateController rateController = new UpdateRateController(4);
 
     public ArenaController(ArenaModel arenaModel, ArenaView arenaView){
         this.arenaModel = arenaModel;
@@ -27,51 +28,46 @@ public class ArenaController extends Controller {
     }
     
     public void run() throws IOException {
-        //if(!mustContinueRunning) start();
-        
         arenaView.setArenaModel(arenaModel);
         
-        boolean good = true;
-        int i = 0;
+        rateController.start();
+        
         while(true){
-            
-            try {
-                Thread.sleep(10);
-            } catch(InterruptedException e){
-                
-            }
-            
-            if(i%10 == 0) {
+            rateController.startFrame();
 
+            long numberUpdates = rateController.numberUpdatesInThisFrame();
+            for(long i = 0; i < numberUpdates; ++i) {
                 executeCommand(new UpdateAllEnemyPosCommand(this.arenaModel));
                 executeCommand(new CheckHeroAdjacencyCommand(this.arenaModel));
                 executeCommand(new CheckForDeathCommand(this.arenaModel));
-
-                i = 0;
             }
-            ++i;
-
-            ArenaView.COMMAND cmd = arenaView.pollCommand();
-            if(!(cmd == null)) {
+            while(true){
+                ArenaView.COMMAND cmd = arenaView.pollCommand();
+                if(cmd == null) break;
                 switch (cmd) {
                     case ESC:
-                    case P: return;
+                    case P:
+                        return;
                     case UP:
-                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.UP)); break;
+                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.UP));
+                        break;
                     case DOWN:
-                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.DOWN)); break;
+                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.DOWN));
+                        break;
                     case LEFT:
-                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.LEFT)); break;
+                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.LEFT));
+                        break;
                     case RIGHT:
-                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.RIGHT)); break;
+                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.RIGHT));
+                        break;
                     case SPACEBAR:
-                        executeCommand(new AttackCommand(this.arenaModel)); break;
+                        executeCommand(new AttackCommand(this.arenaModel));
+                        break;
                 }
             }
+            if (arenaModel.getHero().getHealth() <= 0) { lose(); return; }
+            if (!mustContinueRunning && !arenaModel.getShouldGameContinue()) { win();return; }
             
-            if (arenaModel.getHero().getHealth() <= 0){ lose(); return; }
-            if (!mustContinueRunning && !arenaModel.getShouldGameContinue() ){ win(); return; }
-
             arenaView.clear();
             arenaView.draw();
             arenaView.refresh();
