@@ -13,43 +13,63 @@ public class TerminalTextView extends TextView {
 <span class="fc" id="L13">        this.terminalGUI = terminalGUI;</span>
 <span class="fc" id="L14">        this.font = font;</span>
 <span class="fc" id="L15">    }</span>
-<span class="fc" id="L16">    public Integer getStringWidth(String s){ return s.length()*font.getW(); }</span>
-<span class="fc" id="L17">    public Integer getStringHeight(String s){ return font.getH(); }</span>
+    public Integer getStringWidth(String s){
+<span class="fc" id="L17">        Integer res = 0;</span>
+<span class="fc" id="L18">        Integer lineWidth = 0;</span>
+<span class="fc bfc" id="L19" title="All 2 branches covered.">        for(int i = 0; i &lt; s.length(); ++i){</span>
+<span class="pc bpc" id="L20" title="1 of 2 branches missed.">            if(s.charAt(i) == '\n'){ res = Math.max(res, lineWidth); lineWidth = 0; }</span>
+<span class="fc" id="L21">            else ++lineWidth;</span>
+        }
+<span class="fc" id="L23">        res = Math.max(res, lineWidth);</span>
+<span class="fc" id="L24">        return res*font.getW();</span>
+    }
+    public Integer getStringHeight(String s){
+<span class="fc" id="L27">        Integer numLines = 1;</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">        for(int i = 0; i &lt; s.length(); ++i){</span>
+<span class="pc bpc" id="L29" title="1 of 2 branches missed.">            if(s.charAt(i) == '\n') ++numLines;</span>
+        }
+<span class="fc" id="L31">        return numLines * font.getH();</span>
+    }
     private void drawChar(int x0, int y0, Character c, Color f, Color b){
-<span class="fc" id="L19">        TerminalFont.TerminalCharacter tchar = font.getCharacter(c);</span>
-<span class="pc bpc" id="L20" title="1 of 2 branches missed.">        if(tchar == null) throw new NullPointerException(&quot;No char for '&quot; + c + &quot;'&quot;);</span>
-<span class="fc" id="L21">        Integer W = tchar.getW();</span>
-<span class="fc" id="L22">        Integer H = tchar.getH();</span>
-<span class="fc bfc" id="L23" title="All 2 branches covered.">        for(int x = 0; x &lt; W; ++x){</span>
-<span class="fc bfc" id="L24" title="All 2 branches covered.">            for(int y = 0; y &lt; H; ++y){</span>
-<span class="fc" id="L25">                terminalGUI.drawCharacter(x0+x, y0+y, tchar.getChar(x, y), f, b);</span>
+<span class="fc" id="L34">        TerminalFont.TerminalCharacter tchar = font.getCharacter(c);</span>
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">        if(tchar == null) throw new NullPointerException(&quot;No char for '&quot; + c + &quot;'&quot;);</span>
+<span class="fc" id="L36">        Integer W = tchar.getW();</span>
+<span class="fc" id="L37">        Integer H = tchar.getH();</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        for(int x = 0; x &lt; W; ++x){</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">            for(int y = 0; y &lt; H; ++y){</span>
+<span class="fc" id="L40">                terminalGUI.drawCharacter(x0+x, y0+y, tchar.getChar(x, y), f, b);</span>
             }
         }
-<span class="fc" id="L28">    }</span>
+<span class="fc" id="L43">    }</span>
     public void draw(){
-<span class="fc" id="L30">        TextModel text = getTextModel();</span>
-<span class="pc bpc" id="L31" title="1 of 2 branches missed.">        if(text == null) return;</span>
+<span class="fc" id="L45">        TextModel text = getTextModel();</span>
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">        if(text == null) return;</span>
         int x0, y0;
-<span class="pc bpc" id="L33" title="1 of 2 branches missed.">        if(text.getUnit() == TextModel.UNIT.ABSOLUTE) {</span>
-<span class="fc" id="L34">            x0 = (int) text.getPosition().getX();</span>
-<span class="fc" id="L35">            y0 = (int) text.getPosition().getY();</span>
+<span class="pc bpc" id="L48" title="1 of 2 branches missed.">        if(text.getUnit() == TextModel.UNIT.ABSOLUTE) {</span>
+<span class="fc" id="L49">            x0 = (int) text.getPosition().getX();</span>
+<span class="fc" id="L50">            y0 = (int) text.getPosition().getY();</span>
         } else {
-<span class="nc" id="L37">            x0 = (int)(text.getPosition().getX() * terminalGUI.getW());</span>
-<span class="nc" id="L38">            y0 = (int)(text.getPosition().getY() * terminalGUI.getH());</span>
+<span class="nc" id="L52">            x0 = (int)(text.getPosition().getX() * terminalGUI.getW());</span>
+<span class="nc" id="L53">            y0 = (int)(text.getPosition().getY() * terminalGUI.getH());</span>
         }
-<span class="pc bpc" id="L40" title="2 of 4 branches missed.">        switch(text.getHorizontalAlign()){</span>
-<span class="fc" id="L41">            case LEFT  : break;</span>
-<span class="fc" id="L42">            case CENTER: x0 -= getStringWidth(text.getText())/2; break;</span>
-<span class="nc" id="L43">            case RIGHT : x0 -= getStringWidth(text.getText())  ; break;</span>
+<span class="pc bpc" id="L55" title="2 of 4 branches missed.">        switch(text.getHorizontalAlign()){</span>
+<span class="fc" id="L56">            case LEFT  : break;</span>
+<span class="fc" id="L57">            case CENTER: x0 -= getStringWidth(text.getText())/2; break;</span>
+<span class="nc" id="L58">            case RIGHT : x0 -= getStringWidth(text.getText())  ; break;</span>
         }
-<span class="pc bpc" id="L45" title="3 of 4 branches missed.">        switch(text.getVerticalAlign()){</span>
-<span class="fc" id="L46">            case TOP  : break;</span>
-<span class="nc" id="L47">            case CENTER: y0 -= getStringHeight(text.getText())/2; break;</span>
-<span class="nc" id="L48">            case BOTTOM : y0 -= getStringHeight(text.getText())  ; break;</span>
+<span class="pc bpc" id="L60" title="3 of 4 branches missed.">        switch(text.getVerticalAlign()){</span>
+<span class="fc" id="L61">            case TOP  : break;</span>
+<span class="nc" id="L62">            case CENTER: y0 -= getStringHeight(text.getText())/2; break;</span>
+<span class="nc" id="L63">            case BOTTOM : y0 -= getStringHeight(text.getText())  ; break;</span>
         }
-<span class="fc bfc" id="L50" title="All 2 branches covered.">        for(int i = 0; i &lt; text.getText().length(); ++i){</span>
-<span class="fc" id="L51">            drawChar(x0+i*font.getW(), y0, text.getText().charAt(i), text.getForegroundColor(), text.getBackgroundColor());</span>
+<span class="fc" id="L65">        int i_beginline = 0;</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">        for(int i = 0; i &lt; text.getText().length(); ++i){</span>
+<span class="fc" id="L67">            Character c = text.getText().charAt(i);</span>
+<span class="pc bpc" id="L68" title="1 of 2 branches missed.">            if(c == '\n') {</span>
+<span class="nc" id="L69">                y0 += Math.round(font.getH() * text.getLineHeight());</span>
+<span class="nc" id="L70">                i_beginline = i+1;</span>
+<span class="fc" id="L71">            } else drawChar(x0+(i-i_beginline)*font.getW(), y0, text.getText().charAt(i), text.getForegroundColor(), text.getBackgroundColor());</span>
         }
-<span class="fc" id="L53">    }</span>
+<span class="fc" id="L73">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
