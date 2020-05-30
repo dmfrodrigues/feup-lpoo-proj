@@ -24,7 +24,7 @@ public class Guard extends Enemy implements MeleeAttackerElement {
 
     public Guard(Position pos, MovementType moveType)
     {
-        super(pos,new DamageEffect(1),10);
+        super(new Position(100,100),new DamageEffect(1),10);
         this.moveType = moveType;
         initMovement(pos);
     }
@@ -33,6 +33,11 @@ public class Guard extends Enemy implements MeleeAttackerElement {
     {
         if (moveType == MovementType.HORIZONTAL) this.movement = new HorizontalGuardMovementStrategy(position);
         if (moveType == MovementType.VERTICAL  ) this.movement = new VerticalGuardMovementStrategy(position);
+    }
+
+    public Position tryGetNextPos()
+    {
+        return movement.tryMove();
     }
 
     public Position getNextPos()
