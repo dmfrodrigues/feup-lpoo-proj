@@ -40,7 +40,7 @@ public class UpdateAllEnemyPosCommand extends CompositeCommand {
             {
                 Position newPos = null;
                 if (element instanceof FollowHeroElement) newPos = shortestPathStrategy.getPrev(element.getPos());
-                if (element instanceof Guard) newPos = ((Guard) element).getNextPos();
+                if (element instanceof Guard) newPos = ((Guard) element).tryGetNextPos();
 
                 this.addCommand(new UpdateEnemyPosCommand(this.arenaModel, element,element.getPos(),newPos));
             }
