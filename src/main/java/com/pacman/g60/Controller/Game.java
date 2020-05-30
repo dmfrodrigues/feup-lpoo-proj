@@ -150,10 +150,41 @@ public class Game {
     }
     
     private class StateLevelSelector implements State {
+        MenuModel menuModel;
+        MenuView menuView;
+        GUIViewComposite view;
         List<LevelModel> levelModels;
-        public StateLevelSelector() throws FileNotFoundException {
+        
+        public StateLevelSelector(MenuView menuView, TextView textView) throws FileNotFoundException {
+            this.menuView = menuView;
+            
+            loadLevels();
+            
+            view = new GUIViewComposite(menuView.getGUI());
+            view.addView(textView);
+            view.addView(menuView);
+            
+            TextModel textModel = new TextModel("Select level");
+            textModel.setPosition(new PositionReal(0.5, 0.1));
+            textModel.setVerticalAlign(Alignable.VerticalAlign.BOTTOM);
+            textModel.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);
+            textView.setTextModel(textModel);
+            
+            menuModel = new MenuModel();
+            menuModel.setFrame(true);
+            menuModel.setRelativePosition(new PositionReal(0.5, 0.15));
+            menuModel.setVerticalAlign(Alignable.VerticalAlign.TOP);
+            menuModel.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);
+            for(int i = 0; i < levelModels.size(); ++i){
+                menuModel.append(new MenuModel.NormalItem(menuModel,  i, "   Level " + i + "   "));
+            }            
+        }
+        
+        private void loadLevels() throws FileNotFoundException {
             List<String> levelPaths = new ArrayList<>(Arrays.asList(
-                    "src/main/resources/maps/map1.map"
+                    "src/main/resources/maps/map1.map",
+                    "src/main/resources/maps/map2.map",
+                    "src/main/resources/maps/map3.map"
             ));
             levelModels = new ArrayList<>();
             for(Integer i = 0; i < levelPaths.size(); ++i){
@@ -163,8 +194,13 @@ public class Game {
             }
         }
         @Override
-        public State run() {
-            stateArena.setArenaModel(levelModels.get(0).getArenaModelClone());
+        public State run() throws IOException {
+            MenuModel menuModel_ = new MenuModel(menuModel);
+            menuView.setMenuModel(menuModel_);
+            MenuController menuController = new MenuController(menuModel_, view);
+            int r = menuController.run();
+            if(r == -1) return stateMainMenu;
+            stateArena.setArenaModel(levelModels.get(r).getArenaModelClone());
             return stateArena;
         }
     }
@@ -387,7 +423,7 @@ public class Game {
         stateScoreboard     = new StateScoreboard();
         stateSave           = new StateSave();
         stateLoad           = new StateLoad();
-        stateLevelSelect    = new StateLevelSelector();
+        stateLevelSelect    = new StateLevelSelector(viewFactory.createMenuView(), viewFactory.createTextView());
         stateArena          = new StateArena(viewFactory.createArenaView());
         stateWin            = new StateWin(viewFactory.createMenuView(), viewFactory.createTextView(), viewFactory.createSpriteView());
         stateLose           = new StateLose(viewFactory.createMenuView(), viewFactory.createTextView());
