@@ -8,33 +8,40 @@ import java.io.IOException;
 public class MenuController {
     private MenuModel menuModel;
     private GUIView view;
-    
+<span class="nc" id="L11">    private UpdateRateController rateController = new UpdateRateController(30);</span>
 <span class="nc" id="L12">    public MenuController(MenuModel menuModel, GUIView view){</span>
 <span class="nc" id="L13">        this.menuModel = menuModel;</span>
 <span class="nc" id="L14">        this.view = view;</span>
 <span class="nc" id="L15">    }</span>
     
     public int run() throws IOException {
+<span class="nc" id="L18">        rateController.start();</span>
+
         while(true){
-<span class="nc" id="L19">            GUIView.COMMAND cmd = view.pollCommand();</span>
-<span class="nc bnc" id="L20" title="All 2 branches missed.">            if(!(cmd == null)) {</span>
-<span class="nc bnc" id="L21" title="All 5 branches missed.">                switch (cmd) {</span>
-                    case ESC:
-<span class="nc" id="L23">                        return -1;</span>
-                    case UP:
-<span class="nc" id="L25">                        menuModel.selectAbove();</span>
-<span class="nc" id="L26">                        break;</span>
-                    case DOWN:
-<span class="nc" id="L28">                        menuModel.selectBelow();</span>
-<span class="nc" id="L29">                        break;</span>
-                    case ENTER:
-<span class="nc" id="L31">                        return menuModel.getSelectedItem().getId();</span>
+<span class="nc" id="L21">            rateController.startFrame();</span>
+            
+<span class="nc" id="L23">            long numberUpdates = rateController.numberUpdatesInThisFrame();</span>
+<span class="nc bnc" id="L24" title="All 2 branches missed.">            for(long i = 0; i &lt; numberUpdates; ++i) {</span>
+<span class="nc" id="L25">                GUIView.COMMAND cmd = view.pollCommand();</span>
+<span class="nc bnc" id="L26" title="All 2 branches missed.">                if (!(cmd == null)) {</span>
+<span class="nc bnc" id="L27" title="All 5 branches missed.">                    switch (cmd) {</span>
+                        case ESC:
+<span class="nc" id="L29">                            return -1;</span>
+                        case UP:
+<span class="nc" id="L31">                            menuModel.selectAbove();</span>
+<span class="nc" id="L32">                            break;</span>
+                        case DOWN:
+<span class="nc" id="L34">                            menuModel.selectBelow();</span>
+<span class="nc" id="L35">                            break;</span>
+                        case ENTER:
+<span class="nc" id="L37">                            return menuModel.getSelectedItem().getId();</span>
+                    }
                 }
             }
-<span class="nc" id="L34">            view.clear();</span>
-<span class="nc" id="L35">            view.draw();</span>
-<span class="nc" id="L36">            view.refresh();</span>
-<span class="nc" id="L37">        }</span>
+<span class="nc" id="L41">            view.clear();</span>
+<span class="nc" id="L42">            view.draw();</span>
+<span class="nc" id="L43">            view.refresh();</span>
+<span class="nc" id="L44">        }</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

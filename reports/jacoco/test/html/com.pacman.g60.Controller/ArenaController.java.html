@@ -13,93 +13,89 @@ public class ArenaController extends Controller {
     private boolean win;
     private boolean over;
 <span class="nc" id="L15">    private boolean mustContinueRunning = false;</span>
+<span class="nc" id="L16">    private UpdateRateController rateController = new UpdateRateController(4);</span>
 
-<span class="nc" id="L17">    public ArenaController(ArenaModel arenaModel, ArenaView arenaView){</span>
-<span class="nc" id="L18">        this.arenaModel = arenaModel;</span>
-<span class="nc" id="L19">        this.arenaView = arenaView;</span>
-<span class="nc" id="L20">        start();</span>
-<span class="nc" id="L21">    }</span>
+<span class="nc" id="L18">    public ArenaController(ArenaModel arenaModel, ArenaView arenaView){</span>
+<span class="nc" id="L19">        this.arenaModel = arenaModel;</span>
+<span class="nc" id="L20">        this.arenaView = arenaView;</span>
+<span class="nc" id="L21">        start();</span>
+<span class="nc" id="L22">    }</span>
     
     private void start(){
-<span class="nc" id="L24">        win = false;</span>
-<span class="nc" id="L25">        over = false;</span>
-<span class="nc" id="L26">        arenaView.start();</span>
-<span class="nc" id="L27">    }</span>
+<span class="nc" id="L25">        win = false;</span>
+<span class="nc" id="L26">        over = false;</span>
+<span class="nc" id="L27">        arenaView.start();</span>
+<span class="nc" id="L28">    }</span>
     
     public void run() throws IOException {
-        //if(!mustContinueRunning) start();
+<span class="nc" id="L31">        arenaView.setArenaModel(arenaModel);</span>
         
-<span class="nc" id="L32">        arenaView.setArenaModel(arenaModel);</span>
+<span class="nc" id="L33">        rateController.start();</span>
         
-<span class="nc" id="L34">        boolean good = true;</span>
-<span class="nc" id="L35">        int i = 0;</span>
         while(true){
-            
-            try {
-<span class="nc" id="L39">                Thread.sleep(10);</span>
-<span class="nc" id="L40">            } catch(InterruptedException e){</span>
-                
-<span class="nc" id="L42">            }</span>
-            
-<span class="nc bnc" id="L44" title="All 2 branches missed.">            if(i%10 == 0) {</span>
+<span class="nc" id="L36">            rateController.startFrame();</span>
 
-<span class="nc" id="L46">                executeCommand(new UpdateAllEnemyPosCommand(this.arenaModel));</span>
-<span class="nc" id="L47">                executeCommand(new CheckHeroAdjacencyCommand(this.arenaModel));</span>
-<span class="nc" id="L48">                executeCommand(new CheckForDeathCommand(this.arenaModel));</span>
-
-<span class="nc" id="L50">                i = 0;</span>
+<span class="nc" id="L38">            long numberUpdates = rateController.numberUpdatesInThisFrame();</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">            for(long i = 0; i &lt; numberUpdates; ++i) {</span>
+<span class="nc" id="L40">                executeCommand(new UpdateAllEnemyPosCommand(this.arenaModel));</span>
+<span class="nc" id="L41">                executeCommand(new CheckHeroAdjacencyCommand(this.arenaModel));</span>
+<span class="nc" id="L42">                executeCommand(new CheckForDeathCommand(this.arenaModel));</span>
             }
-<span class="nc" id="L52">            ++i;</span>
-
-<span class="nc" id="L54">            ArenaView.COMMAND cmd = arenaView.pollCommand();</span>
-<span class="nc bnc" id="L55" title="All 2 branches missed.">            if(!(cmd == null)) {</span>
-<span class="nc bnc" id="L56" title="All 7 branches missed.">                switch (cmd) {</span>
+            while(true){
+<span class="nc" id="L45">                ArenaView.COMMAND cmd = arenaView.pollCommand();</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">                if(cmd == null) break;</span>
+<span class="nc bnc" id="L47" title="All 7 branches missed.">                switch (cmd) {</span>
                     case ESC:
-<span class="nc" id="L58">                    case P: return;</span>
+                    case P:
+<span class="nc" id="L50">                        return;</span>
                     case UP:
-<span class="nc" id="L60">                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.UP)); break;</span>
+<span class="nc" id="L52">                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.UP));</span>
+<span class="nc" id="L53">                        break;</span>
                     case DOWN:
-<span class="nc" id="L62">                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.DOWN)); break;</span>
+<span class="nc" id="L55">                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.DOWN));</span>
+<span class="nc" id="L56">                        break;</span>
                     case LEFT:
-<span class="nc" id="L64">                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.LEFT)); break;</span>
+<span class="nc" id="L58">                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.LEFT));</span>
+<span class="nc" id="L59">                        break;</span>
                     case RIGHT:
-<span class="nc" id="L66">                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.RIGHT)); break;</span>
+<span class="nc" id="L61">                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.RIGHT));</span>
+<span class="nc" id="L62">                        break;</span>
                     case SPACEBAR:
-<span class="nc" id="L68">                        executeCommand(new AttackCommand(this.arenaModel)); break;</span>
+<span class="nc" id="L64">                        executeCommand(new AttackCommand(this.arenaModel));</span>
+                        break;
                 }
-            }
+<span class="nc" id="L67">            }</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">            if (arenaModel.getHero().getHealth() &lt;= 0) { lose(); return; }</span>
+<span class="nc bnc" id="L69" title="All 4 branches missed.">            if (!mustContinueRunning &amp;&amp; !arenaModel.getShouldGameContinue()) { win();return; }</span>
             
-<span class="nc bnc" id="L72" title="All 2 branches missed.">            if (arenaModel.getHero().getHealth() &lt;= 0){ lose(); return; }</span>
-<span class="nc bnc" id="L73" title="All 4 branches missed.">            if (!mustContinueRunning &amp;&amp; !arenaModel.getShouldGameContinue() ){ win(); return; }</span>
-
-<span class="nc" id="L75">            arenaView.clear();</span>
-<span class="nc" id="L76">            arenaView.draw();</span>
-<span class="nc" id="L77">            arenaView.refresh();</span>
-<span class="nc" id="L78">        }</span>
+<span class="nc" id="L71">            arenaView.clear();</span>
+<span class="nc" id="L72">            arenaView.draw();</span>
+<span class="nc" id="L73">            arenaView.refresh();</span>
+<span class="nc" id="L74">        }</span>
     }
     
     private void lose(){
-<span class="nc" id="L82">        win = false;</span>
-<span class="nc" id="L83">        over = true;</span>
-<span class="nc" id="L84">    }</span>
+<span class="nc" id="L78">        win = false;</span>
+<span class="nc" id="L79">        over = true;</span>
+<span class="nc" id="L80">    }</span>
     
     private void win(){
-<span class="nc" id="L87">        win = true;</span>
-<span class="nc" id="L88">        over = true;</span>
-<span class="nc" id="L89">    }</span>
+<span class="nc" id="L83">        win = true;</span>
+<span class="nc" id="L84">        over = true;</span>
+<span class="nc" id="L85">    }</span>
 
-<span class="nc" id="L91">    public boolean isOver() { return over; }</span>
+<span class="nc" id="L87">    public boolean isOver() { return over; }</span>
 
-<span class="nc" id="L93">    public boolean isWin() { return win; }</span>
+<span class="nc" id="L89">    public boolean isWin() { return win; }</span>
     
     public void executeCommand(Command command)
     {
-<span class="nc" id="L97">        command.execute();</span>
-<span class="nc" id="L98">    }</span>
+<span class="nc" id="L93">        command.execute();</span>
+<span class="nc" id="L94">    }</span>
 
 
     public void continueRunning() {
-<span class="nc" id="L102">        mustContinueRunning = true;</span>
-<span class="nc" id="L103">    }</span>
+<span class="nc" id="L98">        mustContinueRunning = true;</span>
+<span class="nc" id="L99">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
