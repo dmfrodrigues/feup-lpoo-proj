@@ -5,6 +5,7 @@ import com.pacman.g60.Model.Models.ArenaModel;
 import com.pacman.g60.Model.Elements.*;
 import com.pacman.g60.Model.Position;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -44,12 +45,14 @@ public class MoveHeroCommand implements Command {
 
         if (this.arenaModel.isPositionAvailable(newPos,hero))
         {
+            List<Element> toBeRemoved = new ArrayList<>();
+
             List<Element> elemsInNewPos = arenaModel.getElemFromPos(newPos);
             if (elemsInNewPos != null)
             {
                 for (Element elemInNewPos : elemsInNewPos)
                 {
-                    if (elemInNewPos instanceof Collectable) arenaModel.removeElement(elemInNewPos);
+                    if (elemInNewPos instanceof Collectable) toBeRemoved.add(elemInNewPos);
 
                     if (elemInNewPos instanceof Coin) hero.incCoins();
 
@@ -59,6 +62,11 @@ public class MoveHeroCommand implements Command {
 
                     if (elemInNewPos instanceof Weapon) hero.setWeapon((Weapon) elemInNewPos);
 
+                }
+
+                for (Element elem : toBeRemoved)
+                {
+                    arenaModel.removeElement(elem);
                 }
             }
 

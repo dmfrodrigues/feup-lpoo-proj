@@ -40,6 +40,7 @@ public class ArenaController extends Controller {
                 executeCommand(new UpdateAllEnemyPosCommand(this.arenaModel));
                 executeCommand(new CheckHeroAdjacencyCommand(this.arenaModel));
                 executeCommand(new CheckForDeathCommand(this.arenaModel));
+                executeCommand(new UpdateAllProjectilePosCommand(this.arenaModel));
             }
             while(true){
                 ArenaView.COMMAND cmd = arenaView.pollCommand();
@@ -61,8 +62,10 @@ public class ArenaController extends Controller {
                         executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.RIGHT));
                         break;
                     case SPACEBAR:
-                        executeCommand(new AttackCommand(this.arenaModel));
-                        break;
+                        executeCommand(new AttackCommand(this.arenaModel)); break;
+                    case FIRE:
+                        executeCommand(new FireBulletCommand(this.arenaModel)); break;
+
                 }
             }
             if (arenaModel.getHero().getHealth() <= 0) { lose(); return; }

@@ -3,6 +3,8 @@ package com.pacman.g60.View.Views;
 
 import com.pacman.g60.Model.*;
 import com.pacman.g60.Model.Elements.*;
+
+import com.pacman.g60.Model.Elements.Hierarchy.OrientedElement;
 import com.pacman.g60.Model.Models.Alignable;
 import com.pacman.g60.Model.Models.ArenaModel;
 import com.pacman.g60.Model.Models.TextModel;
@@ -12,6 +14,7 @@ import com.pacman.g60.View.GUI.TerminalGUI;
 import com.pacman.g60.View.Sprite.TerminalSprite;
 import com.pacman.g60.View.Sprite.TerminalSpriteLoaderStream;
 import com.pacman.g60.View.Sprite.TerminalSpriteOrientable;
+
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -230,6 +233,27 @@ public class TerminalArenaView extends ArenaView {
             return spriteOrientable.getSprite(((DynamicElement) e).getDirection());
         }
     }
+
+    private class BulletView extends ElementView {
+        TerminalSpriteOrientable spriteOrientable;
+
+        public BulletView() throws FileNotFoundException {
+            TerminalSprite.Loader loader;
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/bullet-8-4-right.lan"));
+            spriteOrientable = new TerminalSpriteOrientable(loader.getTerminalSprite());
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/bullet-8-4-left.lan"));
+            spriteOrientable.setSpriteLeft(loader.getTerminalSprite());
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/bullet-8-4-up.lan"));
+            spriteOrientable.setSpriteUp(loader.getTerminalSprite());
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/bullet-8-4-down.lan"));
+            spriteOrientable.setSpriteDown(loader.getTerminalSprite());
+        }
+
+        @Override
+        protected TerminalSprite getSprite(Element e) {
+            return spriteOrientable.getSprite(((OrientedElement) e).getDirection());
+        }
+    }
     private class CoinView extends ElementView {
         TerminalSprite sprite;
 
@@ -287,22 +311,6 @@ public class TerminalArenaView extends ArenaView {
 
         @Override
         protected TerminalSprite getSprite(Element e) {
-            return sprite;
-        }
-    }
-
-
-    private class BulletView extends ElementView {
-        TerminalSprite sprite;
-
-        public BulletView() throws FileNotFoundException {
-            TerminalSprite.Loader loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/bullet-8-4.lan"));
-            sprite = loader.getTerminalSprite();
-        }
-
-        @Override
-        protected TerminalSprite getSprite(Element e)
-        {
             return sprite;
         }
     }

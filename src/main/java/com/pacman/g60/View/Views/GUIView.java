@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public abstract class GUIView {
     
-    public enum COMMAND{ UP, DOWN, LEFT, RIGHT, ESC, SPACEBAR, P, ENTER }
+    public enum COMMAND{ UP, DOWN, LEFT, RIGHT, ESC, SPACEBAR, P, ENTER, FIRE }
     
     GUI gui;
     public GUIView(GUI gui){
@@ -31,6 +31,7 @@ public abstract class GUIView {
         if(key.getKeyType() == KeyType.Enter                                                        ) return COMMAND.ENTER;
         if(key.getKeyType() == KeyType.Character && Character.toUpperCase(key.getCharacter()) == ' ') return COMMAND.SPACEBAR;
         if(key.getKeyType() == KeyType.Character && Character.toUpperCase(key.getCharacter()) == 'P') return COMMAND.P;
+        if(key.getKeyType() == KeyType.Character && Character.toUpperCase(key.getCharacter()) == 'F') return COMMAND.FIRE;
         return null;
     }
 }
