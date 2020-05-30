@@ -143,12 +143,14 @@ public class ArenaModel {
 <span class="nc bnc" id="L143" title="All 2 branches missed.">        else if (element instanceof Enemy) numEnemies--;</span>
 <span class="nc bnc" id="L144" title="All 2 branches missed.">        if (numEnemies == 0) shouldGameContinue = false;</span>
 <span class="nc" id="L145">        listElements.remove(element);</span>
-<span class="nc" id="L146">        availablePositions.remove(element.getPos());</span>
-<span class="nc" id="L147">    }</span>
+
+<span class="nc" id="L147">        List&lt;Element&gt; elemsInPos = getElemFromPos(element.getPos());</span>
+<span class="nc" id="L148">        elemsInPos.remove(element);</span>
+<span class="nc" id="L149">    }</span>
 
     public boolean getShouldGameContinue()
     {
-<span class="nc" id="L151">        return this.shouldGameContinue;</span>
+<span class="nc" id="L153">        return this.shouldGameContinue;</span>
     }
 
     public interface Loader {
