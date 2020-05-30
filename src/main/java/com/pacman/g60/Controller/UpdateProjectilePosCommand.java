@@ -53,6 +53,7 @@ public class UpdateProjectilePosCommand implements Command {
         if (arenaModel.isPositionAvailable(desiredPos,bullet))
         {
             bullet.setPos(desiredPos);
+            arenaModel.updateMapKey(currentPos,desiredPos,bullet);
         }
         else
         {

@@ -37,7 +37,7 @@ public class ArenaController extends Controller {
 
             long numberUpdates = rateController.numberUpdatesInThisFrame();
             for(long i = 0; i < numberUpdates; ++i) {
-                //executeCommand(new UpdateAllEnemyPosCommand(this.arenaModel));
+                executeCommand(new UpdateAllEnemyPosCommand(this.arenaModel));
                 executeCommand(new CheckHeroAdjacencyCommand(this.arenaModel));
                 executeCommand(new CheckForDeathCommand(this.arenaModel));
                 executeCommand(new UpdateAllProjectilePosCommand(this.arenaModel));

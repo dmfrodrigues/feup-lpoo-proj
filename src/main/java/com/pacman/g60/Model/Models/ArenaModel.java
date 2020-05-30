@@ -143,7 +143,9 @@ public class ArenaModel {
         else if (element instanceof Enemy) numEnemies--;
         if (numEnemies == 0) shouldGameContinue = false;
         listElements.remove(element);
-        availablePositions.remove(element.getPos());
+
+        List<Element> elemsInPos = getElemFromPos(element.getPos());
+        elemsInPos.remove(element);
     }
 
     public boolean getShouldGameContinue()
