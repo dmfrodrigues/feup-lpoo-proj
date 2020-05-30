@@ -161,7 +161,7 @@ public class Game {
             }
         }
         @Override
-        public State run() throws IOException, NoSuchMethodException {
+        public State run() {
             stateArena.setArenaModel(levelModels.get(0).getArenaModelClone());
             return stateArena;
         }
@@ -194,6 +194,10 @@ public class Game {
             mustContinueRunning = false;
         }
 
+        public ArenaModel getArenaModel() {
+            return arenaModel;
+        }
+
         public void continueRunning() {
             mustContinueRunning = true;
         }
@@ -218,7 +222,7 @@ public class Game {
             menuModel.append(new MenuModel.NormalItem(menuModel, 0, "Continue playing"));
             menuModel.append(new MenuModel.NormalItem(menuModel, 1, "Back to main menu"));
         
-            title = new TextModel("Level completed!");
+            title = new TextModel("");
             title.setPosition(new PositionReal(0.5, 0.3));
             title.setVerticalAlign(Alignable.VerticalAlign.BOTTOM);
             title.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);
@@ -226,6 +230,12 @@ public class Game {
         }
         @Override
         public State run() throws IOException {
+            ArenaModel arenaModel = stateArena.getArenaModel();
+            title.setText(
+                    "Level completed!\n" +
+                    "♥ " + arenaModel.getHero().getHealth() + "/" + arenaModel.getHero().getMaxHealth() + "\n" + 
+                    "$ " + arenaModel.getHero().getCoins()  + "/" + (arenaModel.getNumCoins()+arenaModel.getHero().getCoins())
+            );
             MenuModel menuModel_ = new MenuModel(menuModel);
             menuView.setMenuModel(menuModel_);
             MenuController menuController = new MenuController(menuModel_, view);
