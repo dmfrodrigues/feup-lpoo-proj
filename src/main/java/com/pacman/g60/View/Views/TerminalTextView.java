@@ -13,8 +13,23 @@ public class TerminalTextView extends TextView {
         this.terminalGUI = terminalGUI;
         this.font = font;
     }
-    public Integer getStringWidth(String s){ return s.length()*font.getW(); }
-    public Integer getStringHeight(String s){ return font.getH(); }
+    public Integer getStringWidth(String s){
+        Integer res = 0;
+        Integer lineWidth = 0;
+        for(int i = 0; i < s.length(); ++i){
+            if(s.charAt(i) == '\n'){ res = Math.max(res, lineWidth); lineWidth = 0; }
+            else ++lineWidth;
+        }
+        res = Math.max(res, lineWidth);
+        return res*font.getW();
+    }
+    public Integer getStringHeight(String s){
+        Integer numLines = 1;
+        for(int i = 0; i < s.length(); ++i){
+            if(s.charAt(i) == '\n') ++numLines;
+        }
+        return numLines * font.getH();
+    }
     private void drawChar(int x0, int y0, Character c, Color f, Color b){
         TerminalFont.TerminalCharacter tchar = font.getCharacter(c);
         if(tchar == null) throw new NullPointerException("No char for '" + c + "'");
@@ -47,8 +62,13 @@ public class TerminalTextView extends TextView {
             case CENTER: y0 -= getStringHeight(text.getText())/2; break;
             case BOTTOM : y0 -= getStringHeight(text.getText())  ; break;
         }
+        int i_beginline = 0;
         for(int i = 0; i < text.getText().length(); ++i){
-            drawChar(x0+i*font.getW(), y0, text.getText().charAt(i), text.getForegroundColor(), text.getBackgroundColor());
+            Character c = text.getText().charAt(i);
+            if(c == '\n') {
+                y0 += Math.round(font.getH() * text.getLineHeight());
+                i_beginline = i+1;
+            } else drawChar(x0+(i-i_beginline)*font.getW(), y0, text.getText().charAt(i), text.getForegroundColor(), text.getBackgroundColor());
         }
     }
 }

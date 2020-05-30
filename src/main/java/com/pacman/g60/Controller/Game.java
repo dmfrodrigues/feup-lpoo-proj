@@ -82,19 +82,19 @@ public class Game {
         MenuModel menuModel;
         MenuView menuView;
         GUIViewComposite view;
-        private final List<String> controls = new ArrayList(Arrays.asList(
-                "   t              ",
-                "  lbr    Move hero",
-                "                  ",
-                "Spacebar Attack   ",
-                "ESC/P    Pause    "
-        ));
+        private final String controls = 
+                "   ▲               \n" +
+                "  ◀▼▶  Move hero   \n" +
+                "                   \n" +
+                " └───┘ Melee attack\n" +
+                "   F   Shoot bullet\n" +
+                " ESC/P Pause    ";
         
         public StateControls(MenuView menuView, TextView textView){
             this.menuView = menuView;
             
             view = new GUIViewComposite(menuView.getGUI());
-            // text
+            view.addView(textView);
             view.addView(menuView);
             
             menuModel = new MenuModel();
@@ -103,7 +103,12 @@ public class Game {
             menuModel.setHorizontalAlign(MenuModel.HorizontalAlign.CENTER);
             menuModel.append(new MenuModel.NormalItem(menuModel, 0, "Back to main menu"));
             
-            //text
+            TextModel text = new TextModel(controls);
+            text.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);
+            text.setVerticalAlign(Alignable.VerticalAlign.CENTER);
+            text.setPosition(new PositionReal(0.5, 0.4));
+            text.setLineHeight(1.33);
+            textView.setTextModel(text);
         }
         
         @Override
