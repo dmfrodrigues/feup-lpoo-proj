@@ -79,9 +79,45 @@ public class Game {
     }
     
     private class StateControls implements State {
+        MenuModel menuModel;
+        MenuView menuView;
+        GUIViewComposite view;
+        private final List<String> controls = new ArrayList(Arrays.asList(
+                "   t              ",
+                "  lbr    Move hero",
+                "                  ",
+                "Spacebar Attack   ",
+                "ESC/P    Pause    "
+        ));
+        
+        public StateControls(MenuView menuView, TextView textView){
+            this.menuView = menuView;
+            
+            view = new GUIViewComposite(menuView.getGUI());
+            // text
+            view.addView(menuView);
+            
+            menuModel = new MenuModel();
+            menuModel.setRelativePosition(new PositionReal(0.5, 0.7));
+            menuModel.setVerticalAlign(MenuModel.VerticalAlign.CENTER);
+            menuModel.setHorizontalAlign(MenuModel.HorizontalAlign.CENTER);
+            menuModel.append(new MenuModel.NormalItem(menuModel, 0, "Back to main menu"));
+            
+            //text
+        }
+        
         @Override
-        public State run() {
-            return stateMainMenu;
+        public State run() throws IOException {
+            MenuModel menuModel_ = new MenuModel(menuModel);
+            menuView.setMenuModel(menuModel_);
+            MenuController menuController = new MenuController(menuModel_, view);
+            int r = menuController.run();
+            switch(r){
+                case -1:
+                case 0:
+                    return stateMainMenu;
+                default: throw new IndexOutOfBoundsException();
+            }
         }
     }
     
@@ -293,7 +329,7 @@ public class Game {
 
     public Game(ViewFactory viewFactory) throws Exception {
         stateMainMenu       = new StateMainMenu(viewFactory.createMenuView(), viewFactory.createTextView());
-        stateControls       = new StateControls();
+        stateControls       = new StateControls(viewFactory.createMenuView(), viewFactory.createTextView());
         stateScoreboard     = new StateScoreboard();
         stateSave           = new StateSave();
         stateLoad           = new StateLoad();
