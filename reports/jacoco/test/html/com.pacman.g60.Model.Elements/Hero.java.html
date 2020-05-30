@@ -79,12 +79,14 @@ public class Hero extends DynamicElement implements ControlledByPlayer, LivingEl
 
     @Override
     public void updateHealth(Integer diff) {
-<span class="nc" id="L82">        this.health += diff;</span>
-<span class="nc" id="L83">    }</span>
+
+<span class="nc" id="L83">        this.health += diff;</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">        if (this.health &gt; maxHealth) this.health = maxHealth;</span>
+<span class="nc" id="L85">    }</span>
 
     @Override
     public boolean isAlive() {
-<span class="nc bnc" id="L87" title="All 2 branches missed.">        return health &gt; 0;</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">        return health &gt; 0;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
