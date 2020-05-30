@@ -8,6 +8,11 @@ public class TerminalSpriteView extends SpriteView {
     
     private TerminalGUI terminalGUI;
     
+    public TerminalSpriteView(TerminalSpriteView terminalSpriteView){
+        super(terminalSpriteView.terminalGUI);
+        terminalGUI = terminalSpriteView.terminalGUI;
+    }
+    
     public TerminalSpriteView(TerminalGUI terminalGUI){
         super(terminalGUI);
         this.terminalGUI = terminalGUI;
@@ -45,4 +50,7 @@ public class TerminalSpriteView extends SpriteView {
             }
         }
     }
+
+    @Override
+    public TerminalSpriteView clone() { return new TerminalSpriteView(this); }
 }

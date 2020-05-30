@@ -207,42 +207,74 @@ public class Game {
     
     private class StateWin implements State {
         MenuModel menuModel;
-        TextModel title;
+        TextModel heartsTextModel;
+        TextModel coinsTextModel;
         MenuView menuView;
         GUIViewComposite view;
         public StateWin(MenuView menuView, TextView textView, SpriteView spriteView) throws FileNotFoundException {
             this.menuView = menuView;
             
+            TextView titleView = textView;
+            TextView heartsTextView = textView.clone();
+            TextView coinsTextView = textView.clone();
+            
+            SpriteView heartsView = spriteView;
+            SpriteView coinsView = spriteView.clone();
+
             view = new GUIViewComposite(menuView.getGUI());
-            view.addView(textView);
-            view.addView(spriteView);
+            view.addView(titleView);
+            view.addView(heartsTextView);
+            view.addView(heartsView);
+            view.addView(coinsTextView);
+            view.addView(coinsView);
             view.addView(menuView);
             
+            TextModel title = new TextModel("Level completed");
+            title.setPosition(new PositionReal(0.5, 0.30));
+            title.setVerticalAlign(Alignable.VerticalAlign.BOTTOM);
+            title.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);
+            titleView.setTextModel(title);
+
+            TerminalSprite.Loader loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/heart-6-3.lan"));
+            SpriteModel heart = new SpriteModel(loader.getTerminalSprite());
+            heart.setPosition(new PositionReal(0.45, 0.4));
+            heart.setHorizontalAlign(Alignable.HorizontalAlign.RIGHT);
+            heart.setVerticalAlign(Alignable.VerticalAlign.CENTER);
+            heartsView.setSpriteModel(heart);
+            
+            heartsTextModel = new TextModel("");
+            heartsTextModel.setPosition(new PositionReal(0.45, 0.4));
+            heartsTextModel.setHorizontalAlign(Alignable.HorizontalAlign.LEFT);
+            heartsTextModel.setVerticalAlign(Alignable.VerticalAlign.CENTER);
+            heartsTextView.setTextModel(heartsTextModel);
+
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/coin-6-3.lan"));
+            SpriteModel coin = new SpriteModel(loader.getTerminalSprite());
+            coin.setPosition(new PositionReal(0.45, 0.45));
+            coin.setHorizontalAlign(Alignable.HorizontalAlign.RIGHT);
+            coin.setVerticalAlign(Alignable.VerticalAlign.CENTER);
+            coinsView.setSpriteModel(coin);
+           
+            coinsTextModel = new TextModel("");
+            coinsTextModel.setPosition(new PositionReal(0.45, 0.45));
+            coinsTextModel.setHorizontalAlign(Alignable.HorizontalAlign.LEFT);
+            coinsTextModel.setVerticalAlign(Alignable.VerticalAlign.CENTER);
+            coinsTextView.setTextModel(coinsTextModel);
+            
             menuModel = new MenuModel();
-            menuModel.setRelativePosition(new PositionReal(0.5, 0.4));
+            menuModel.setRelativePosition(new PositionReal(0.5, 0.55));
             menuModel.setVerticalAlign(Alignable.VerticalAlign.TOP);
             menuModel.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);
             menuModel.append(new MenuModel.NormalItem(menuModel, 0, "Continue playing"));
             menuModel.append(new MenuModel.NormalItem(menuModel, 1, "Back to main menu"));
-        
-            title = new TextModel("");
-            title.setPosition(new PositionReal(0.5, 0.3));
-            title.setVerticalAlign(Alignable.VerticalAlign.BOTTOM);
-            title.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);
-            textView.setTextModel(title);
-            
-            TerminalSprite.Loader loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/heart-6-3.lan"));
-            SpriteModel spriteModel = new SpriteModel(loader.getTerminalSprite());
-            spriteView.setSpriteModel(spriteModel);
         }
         @Override
         public State run() throws IOException {
             ArenaModel arenaModel = stateArena.getArenaModel();
-            title.setText(
-                    "Level completed!\n" +
-                    "♥ " + arenaModel.getHero().getHealth() + "/" + arenaModel.getHero().getMaxHealth() + "\n" + 
-                    "$ " + arenaModel.getHero().getCoins()  + "/" + (arenaModel.getNumCoins()+arenaModel.getHero().getCoins())
-            );
+            
+            heartsTextModel.setText(" " + arenaModel.getHero().getHealth() + "/" + arenaModel.getHero().getMaxHealth());
+            coinsTextModel .setText(" " + arenaModel.getHero().getCoins()  + "/" + (arenaModel.getNumCoins()+arenaModel.getHero().getCoins()));
+            
             MenuModel menuModel_ = new MenuModel(menuModel);
             menuView.setMenuModel(menuModel_);
             MenuController menuController = new MenuController(menuModel_, view);

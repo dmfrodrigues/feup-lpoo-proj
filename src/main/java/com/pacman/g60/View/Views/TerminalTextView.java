@@ -8,6 +8,13 @@ import com.pacman.g60.View.GUI.TerminalGUI;
 public class TerminalTextView extends TextView {
     TerminalGUI terminalGUI;
     TerminalFont font;
+    
+    public TerminalTextView(TerminalTextView terminalTextView){
+        super(terminalTextView.terminalGUI);
+        terminalGUI = terminalTextView.terminalGUI;
+        font = terminalTextView.font;
+    }
+    
     public TerminalTextView(TerminalGUI terminalGUI, TerminalFont font){
         super(terminalGUI);
         this.terminalGUI = terminalGUI;
@@ -70,5 +77,11 @@ public class TerminalTextView extends TextView {
                 i_beginline = i+1;
             } else drawChar(x0+(i-i_beginline)*font.getW(), y0, model.getText().charAt(i), model.getForegroundColor(), model.getBackgroundColor());
         }
+    }
+
+    @Override
+    public TerminalTextView clone() {
+        System.out.println("Called TerminalTextView.clone()");
+        return new TerminalTextView(this);
     }
 }
