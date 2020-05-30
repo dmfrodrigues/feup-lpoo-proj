@@ -7,6 +7,11 @@ import java.util.Queue;
 public abstract class GuardMovementStrategy {
     protected Queue<Position> positions;
 
+    public Position tryMove()
+    {
+        return positions.peek();
+    }
+
     public Position move()
     {
         Position result = positions.poll();
