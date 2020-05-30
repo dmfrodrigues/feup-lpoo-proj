@@ -40,6 +40,7 @@ public class ArenaController extends Controller {
                 executeCommand(new UpdateAllEnemyPosCommand(this.arenaModel));
                 executeCommand(new CheckHeroAdjacencyCommand(this.arenaModel));
                 executeCommand(new CheckForDeathCommand(this.arenaModel));
+                executeCommand(new UpdateAllProjectilePosCommand(this.arenaModel));
             }
             while(true){
                 ArenaView.COMMAND cmd = arenaView.pollCommand();
