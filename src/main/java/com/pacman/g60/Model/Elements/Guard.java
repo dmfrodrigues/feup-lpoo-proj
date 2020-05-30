@@ -3,6 +3,7 @@ package com.pacman.g60.Model.Elements;
 import com.pacman.g60.Model.Effect.DamageEffect;
 import com.pacman.g60.Model.Effect.Effect;
 import com.pacman.g60.Model.Elements.Hierarchy.MeleeAttackerElement;
+import com.pacman.g60.Model.Models.ArenaModel;
 import com.pacman.g60.Model.Position;
 
 

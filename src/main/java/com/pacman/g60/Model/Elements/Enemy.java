@@ -4,6 +4,7 @@ package com.pacman.g60.Model.Elements;
 import com.pacman.g60.Model.Effect.Effect;
 import com.pacman.g60.Model.Elements.Hierarchy.AttackerElement;
 import com.pacman.g60.Model.Elements.Hierarchy.LivingElement;
+import com.pacman.g60.Model.Models.ArenaModel;
 import com.pacman.g60.Model.Position;
 
 public abstract class Enemy extends DynamicElement implements LivingElement, AttackerElement {
@@ -36,6 +37,12 @@ public abstract class Enemy extends DynamicElement implements LivingElement, Att
     public Integer getHealth()
     {
         return this.health;
+    }
+
+    @Override
+    public boolean beCollected(ArenaModel arenaModel)
+    {
+        return false;
     }
 
     @Override

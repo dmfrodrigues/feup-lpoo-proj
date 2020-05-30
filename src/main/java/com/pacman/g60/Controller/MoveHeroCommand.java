@@ -28,16 +28,7 @@ public abstract class MoveHeroCommand implements Command {
             {
                 for (Element elemInNewPos : elemsInNewPos)
                 {
-                    if (elemInNewPos instanceof Collectable) toBeRemoved.add(elemInNewPos);
-
-                    if (elemInNewPos instanceof Coin) hero.incCoins();
-
-                    if (elemInNewPos instanceof HealthPotion) hero.updateHealth(((HealthPotion)elemInNewPos).getHealth());
-
-                    if (elemInNewPos instanceof Bullet) hero.incAmmo();
-
-                    if (elemInNewPos instanceof Weapon) hero.setWeapon((Weapon) elemInNewPos);
-
+                    if(elemInNewPos.beCollected(this.arenaModel)) toBeRemoved.add(elemInNewPos);
                 }
 
                 for (Element elem : toBeRemoved)
@@ -45,9 +36,6 @@ public abstract class MoveHeroCommand implements Command {
                     arenaModel.removeElement(elem);
                 }
             }
-
-
-
 
             Position currentHeroPos = hero.getPos();
             this.arenaModel.updateMapKey(currentHeroPos,newPos,hero);

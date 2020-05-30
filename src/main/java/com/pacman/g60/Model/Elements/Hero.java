@@ -3,6 +3,7 @@ package com.pacman.g60.Model.Elements;
 
 
 import com.pacman.g60.Model.Elements.Hierarchy.*;
+import com.pacman.g60.Model.Models.ArenaModel;
 import com.pacman.g60.Model.Position;
 
 
@@ -29,6 +30,11 @@ public class Hero extends DynamicElement implements ControlledByPlayer, LivingEl
         this.coins = 0;
         this.ammo = 0;
         this.weapon = new Knife();
+    }
+
+    @Override
+    public boolean beCollected(ArenaModel arenaModel) {
+        return false;
     }
 
     public Integer getHealth() {
