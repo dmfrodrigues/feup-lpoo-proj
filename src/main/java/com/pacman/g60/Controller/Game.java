@@ -7,6 +7,8 @@ import java.util.List;
 
 import com.pacman.g60.Model.*;
 import com.pacman.g60.Model.Models.*;
+import com.pacman.g60.View.Sprite.TerminalSprite;
+import com.pacman.g60.View.Sprite.TerminalSpriteLoaderStream;
 import com.pacman.g60.View.Views.*;
 
 public class Game {
@@ -208,11 +210,12 @@ public class Game {
         TextModel title;
         MenuView menuView;
         GUIViewComposite view;
-        public StateWin(MenuView menuView, TextView textView){
+        public StateWin(MenuView menuView, TextView textView, SpriteView spriteView) throws FileNotFoundException {
             this.menuView = menuView;
             
             view = new GUIViewComposite(menuView.getGUI());
             view.addView(textView);
+            view.addView(spriteView);
             view.addView(menuView);
             
             menuModel = new MenuModel();
@@ -227,6 +230,10 @@ public class Game {
             title.setVerticalAlign(Alignable.VerticalAlign.BOTTOM);
             title.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);
             textView.setTextModel(title);
+            
+            TerminalSprite.Loader loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/heart-6-3.lan"));
+            SpriteModel spriteModel = new SpriteModel(loader.getTerminalSprite());
+            spriteView.setSpriteModel(spriteModel);
         }
         @Override
         public State run() throws IOException {
@@ -350,7 +357,7 @@ public class Game {
         stateLoad           = new StateLoad();
         stateLevelSelect    = new StateLevelSelector();
         stateArena          = new StateArena(viewFactory.createArenaView());
-        stateWin            = new StateWin(viewFactory.createMenuView(), viewFactory.createTextView());
+        stateWin            = new StateWin(viewFactory.createMenuView(), viewFactory.createTextView(), viewFactory.createSpriteView());
         stateLose           = new StateLose(viewFactory.createMenuView(), viewFactory.createTextView());
         statePause          = new StatePause(viewFactory.createMenuView(), viewFactory.createTextView());
         stateExit           = new StateExit();

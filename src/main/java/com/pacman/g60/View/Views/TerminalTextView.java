@@ -42,33 +42,33 @@ public class TerminalTextView extends TextView {
         }
     }
     public void draw(){
-        TextModel text = getTextModel();
-        if(text == null) return;
+        TextModel model = getTextModel();
+        if(model == null) return;
         int x0, y0;
-        if(text.getUnit() == TextModel.UNIT.ABSOLUTE) {
-            x0 = (int) text.getPosition().getX();
-            y0 = (int) text.getPosition().getY();
+        if(model.getUnit() == TextModel.UNIT.ABSOLUTE) {
+            x0 = (int) model.getPosition().getX();
+            y0 = (int) model.getPosition().getY();
         } else {
-            x0 = (int)(text.getPosition().getX() * terminalGUI.getW());
-            y0 = (int)(text.getPosition().getY() * terminalGUI.getH());
+            x0 = (int)(model.getPosition().getX() * terminalGUI.getW());
+            y0 = (int)(model.getPosition().getY() * terminalGUI.getH());
         }
-        switch(text.getHorizontalAlign()){
+        switch(model.getHorizontalAlign()){
             case LEFT  : break;
-            case CENTER: x0 -= getStringWidth(text.getText())/2; break;
-            case RIGHT : x0 -= getStringWidth(text.getText())  ; break;
+            case CENTER: x0 -= getStringWidth(model.getText())/2; break;
+            case RIGHT : x0 -= getStringWidth(model.getText())  ; break;
         }
-        switch(text.getVerticalAlign()){
-            case TOP  : break;
-            case CENTER: y0 -= getStringHeight(text.getText())/2; break;
-            case BOTTOM : y0 -= getStringHeight(text.getText())  ; break;
+        switch(model.getVerticalAlign()){
+            case TOP   : break;
+            case CENTER: y0 -= getStringHeight(model.getText())/2; break;
+            case BOTTOM: y0 -= getStringHeight(model.getText())  ; break;
         }
         int i_beginline = 0;
-        for(int i = 0; i < text.getText().length(); ++i){
-            Character c = text.getText().charAt(i);
+        for(int i = 0; i < model.getText().length(); ++i){
+            Character c = model.getText().charAt(i);
             if(c == '\n') {
-                y0 += Math.round(font.getH() * text.getLineHeight());
+                y0 += Math.round(font.getH() * model.getLineHeight());
                 i_beginline = i+1;
-            } else drawChar(x0+(i-i_beginline)*font.getW(), y0, text.getText().charAt(i), text.getForegroundColor(), text.getBackgroundColor());
+            } else drawChar(x0+(i-i_beginline)*font.getW(), y0, model.getText().charAt(i), model.getForegroundColor(), model.getBackgroundColor());
         }
     }
 }

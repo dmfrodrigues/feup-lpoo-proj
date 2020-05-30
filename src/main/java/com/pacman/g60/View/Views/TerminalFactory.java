@@ -19,9 +19,7 @@ public class TerminalFactory implements ViewFactory {
     }
     
     @Override
-    public TerminalArenaView createArenaView() throws FileNotFoundException {
-        return new TerminalArenaView(terminalGUI, font);
-    }
+    public TerminalArenaView createArenaView() throws FileNotFoundException { return new TerminalArenaView(terminalGUI, font); }
 
     @Override
     public MenuView createMenuView() {
@@ -32,4 +30,7 @@ public class TerminalFactory implements ViewFactory {
     public TextView createTextView() {
         return new TerminalTextView(terminalGUI, font);
     }
+
+    @Override
+    public SpriteView createSpriteView() { return new TerminalSpriteView(terminalGUI); }
 }
