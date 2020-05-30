@@ -1,6 +1,7 @@
-package com.pacman.g60.View;
+package com.pacman.g60.View.Views;
 
-import com.pacman.g60.Model.TextModel;
+import com.pacman.g60.Model.Models.TextModel;
+import com.pacman.g60.View.GUI.GUI;
 
 public abstract class TextView extends GUIView {
     TextModel textModel = null;

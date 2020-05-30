@@ -1,8 +1,8 @@
 package com.pacman.g60;
 
 import com.pacman.g60.View.Color;
-import com.pacman.g60.View.TerminalSprite;
-import com.pacman.g60.View.TerminalSpriteLoaderStream;
+import com.pacman.g60.View.Sprite.TerminalSprite;
+import com.pacman.g60.View.Sprite.TerminalSpriteLoaderStream;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;

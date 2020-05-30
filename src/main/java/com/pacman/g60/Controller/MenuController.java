@@ -1,7 +1,7 @@
 package com.pacman.g60.Controller;
 
-import com.pacman.g60.Model.MenuModel;
-import com.pacman.g60.View.GUIView;
+import com.pacman.g60.Model.Models.MenuModel;
+import com.pacman.g60.View.Views.GUIView;
 
 import java.io.IOException;
 

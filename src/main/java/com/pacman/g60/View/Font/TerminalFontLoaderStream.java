@@ -1,4 +1,6 @@
-package com.pacman.g60.View;
+package com.pacman.g60.View.Font;
+
+import com.pacman.g60.View.Font.TerminalFont;
 
 import java.io.InputStream;
 import java.util.Scanner;

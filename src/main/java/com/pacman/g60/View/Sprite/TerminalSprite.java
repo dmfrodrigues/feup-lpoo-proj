@@ -1,5 +1,7 @@
-package com.pacman.g60.View;
+package com.pacman.g60.View.Sprite;
 
+
+import com.pacman.g60.View.Color;
 
 public class TerminalSprite {
     private final Integer W, H;

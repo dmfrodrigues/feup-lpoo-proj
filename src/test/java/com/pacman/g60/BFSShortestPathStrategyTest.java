@@ -1,6 +1,6 @@
 package com.pacman.g60;
 
-import com.pacman.g60.Model.ArenaModel;
+import com.pacman.g60.Model.Models.ArenaModel;
 import com.pacman.g60.Model.ArenaModelLoaderStream;
 import com.pacman.g60.Model.Path_Calculation.*;
 import com.pacman.g60.Model.Position;

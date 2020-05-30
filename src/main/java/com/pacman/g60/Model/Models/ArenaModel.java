@@ -1,9 +1,10 @@
-package com.pacman.g60.Model;
+package com.pacman.g60.Model.Models;
 
 import com.pacman.g60.Model.Elements.*;
 import com.pacman.g60.Model.Elements.Hierarchy.CanSharePosition;
 import com.pacman.g60.Model.Path_Calculation.AdjacencyGraph;
 import com.pacman.g60.Model.Path_Calculation.Graph;
+import com.pacman.g60.Model.Position;
 
 import java.util.ArrayList;
 import java.util.HashMap;

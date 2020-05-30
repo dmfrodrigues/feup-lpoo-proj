@@ -1,6 +1,7 @@
-package com.pacman.g60.View;
+package com.pacman.g60.View.Views;
 
-import com.pacman.g60.Model.MenuModel;
+import com.pacman.g60.Model.Models.MenuModel;
+import com.pacman.g60.View.GUI.GUI;
 
 public abstract class MenuView extends GUIView {
     MenuModel menuModel = null;

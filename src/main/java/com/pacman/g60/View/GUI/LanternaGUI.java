@@ -1,4 +1,4 @@
-package com.pacman.g60.View;
+package com.pacman.g60.View.GUI;
 
 
 import com.googlecode.lanterna.TerminalSize;
@@ -11,6 +11,7 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
+import com.pacman.g60.View.Color;
 
 import java.awt.*;
 import java.io.EOFException;
@@ -40,7 +41,7 @@ public class LanternaGUI implements TerminalGUI {
     }
 
     @Override
-    public void drawCharacter(Integer x, Integer y, Character c, Color f, Color b) {
+    public void drawCharacter(Integer x, Integer y, Character c, com.pacman.g60.View.Color f, com.pacman.g60.View.Color b) {
         TextGraphics graphics = screen.newTextGraphics();
         graphics.setForegroundColor(new TextColor.RGB(f.getR(), f.getG(), f.getB()));
         graphics.setBackgroundColor(new TextColor.RGB(b.getR(), b.getG(), b.getB()));
@@ -48,7 +49,7 @@ public class LanternaGUI implements TerminalGUI {
     }
 
     @Override
-    public void drawString(Integer x, Integer y, String s, Color f, Color b) {
+    public void drawString(Integer x, Integer y, String s, com.pacman.g60.View.Color f, Color b) {
         for(Integer xadd = 0; xadd < s.length(); ++xadd){
             drawCharacter(x+xadd, y, s.charAt(xadd), f, b);
         }

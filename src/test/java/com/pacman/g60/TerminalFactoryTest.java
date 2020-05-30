@@ -2,10 +2,14 @@ package com.pacman.g60;
 
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
-import com.pacman.g60.Model.ArenaModel;
+import com.pacman.g60.Model.Models.ArenaModel;
 import com.pacman.g60.Model.Elements.Hero;
 import com.pacman.g60.Model.Position;
 import com.pacman.g60.View.*;
+import com.pacman.g60.View.GUI.TerminalGUI;
+import com.pacman.g60.View.Views.ArenaView;
+import com.pacman.g60.View.Views.TerminalArenaView;
+import com.pacman.g60.View.Views.TerminalFactory;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
@@ -13,7 +17,6 @@ import org.mockito.Mockito;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.*;

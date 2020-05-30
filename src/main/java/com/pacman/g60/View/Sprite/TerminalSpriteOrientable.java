@@ -1,7 +1,8 @@
-package com.pacman.g60.View;
+package com.pacman.g60.View.Sprite;
 
 
 import com.pacman.g60.Application;
+import com.pacman.g60.View.Sprite.TerminalSprite;
 
 public class TerminalSpriteOrientable{
     private TerminalSprite spriteRight, spriteLeft, spriteUp, spriteDown;

@@ -1,12 +1,11 @@
 package com.pacman.g60;
 
 import com.pacman.g60.Controller.UpdateEnemyPosCommand;
-import com.pacman.g60.Model.ArenaModel;
+import com.pacman.g60.Model.Models.ArenaModel;
 import com.pacman.g60.Model.Elements.DynamicElement;
 import com.pacman.g60.Model.Elements.Ghost;
 import com.pacman.g60.Model.Position;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import static org.junit.Assert.assertEquals;
 

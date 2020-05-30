@@ -1,10 +1,18 @@
-package com.pacman.g60.View;
+package com.pacman.g60.View.Views;
 
 
 import com.pacman.g60.Model.*;
 import com.pacman.g60.Model.Elements.*;
+import com.pacman.g60.Model.Models.Alignable;
+import com.pacman.g60.Model.Models.ArenaModel;
+import com.pacman.g60.Model.Models.TextModel;
+import com.pacman.g60.View.*;
+import com.pacman.g60.View.Font.TerminalFont;
+import com.pacman.g60.View.GUI.TerminalGUI;
+import com.pacman.g60.View.Sprite.TerminalSprite;
+import com.pacman.g60.View.Sprite.TerminalSpriteLoaderStream;
+import com.pacman.g60.View.Sprite.TerminalSpriteOrientable;
 
-import javax.swing.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
