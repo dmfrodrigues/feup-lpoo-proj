@@ -1,18 +1,19 @@
 package com.pacman.g60.Model.Models;
 
-import com.pacman.g60.Model.Models.Alignable;
 import com.pacman.g60.Model.Position;
 import com.pacman.g60.Model.PositionReal;
 import com.pacman.g60.View.Color;
 
 public class TextModel extends Alignable {
+
     public enum UNIT { ABSOLUTE, RELATIVE }
     
-    String text;
+    private String text;
     double relativeFontSize = 1.0;
-    Color f = Color.WHITE, b = Color.BLACK;
-    PositionReal position = new PositionReal(0, 0);
+    private Color f = Color.WHITE, b = Color.BLACK;
+    private PositionReal position = new PositionReal(0, 0);
     private UNIT unit = UNIT.ABSOLUTE;
+    private double lineHeight = 1;
     
     public TextModel(String text) {
         this.text = text;
@@ -32,4 +33,7 @@ public class TextModel extends Alignable {
     public void setPosition(PositionReal position){ this.position = position; unit = UNIT.RELATIVE; }
     public PositionReal getPosition(){ return position; }
     public UNIT getUnit(){ return unit; }
+
+    public void setLineHeight(double lineHeight) { this.lineHeight = lineHeight; }
+    public double getLineHeight(){ return lineHeight; }
 }
