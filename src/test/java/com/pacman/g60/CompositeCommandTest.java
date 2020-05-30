@@ -3,7 +3,7 @@ package com.pacman.g60;
 import com.pacman.g60.Controller.Command;
 import com.pacman.g60.Controller.CompositeCommand;
 import com.pacman.g60.Controller.UpdateAllEnemyPosCommand;
-import com.pacman.g60.Model.ArenaModel;
+import com.pacman.g60.Model.Models.ArenaModel;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;

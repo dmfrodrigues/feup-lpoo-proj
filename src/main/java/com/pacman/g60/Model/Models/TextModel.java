@@ -1,5 +1,8 @@
-package com.pacman.g60.Model;
+package com.pacman.g60.Model.Models;
 
+import com.pacman.g60.Model.Models.Alignable;
+import com.pacman.g60.Model.Position;
+import com.pacman.g60.Model.PositionReal;
 import com.pacman.g60.View.Color;
 
 public class TextModel extends Alignable {

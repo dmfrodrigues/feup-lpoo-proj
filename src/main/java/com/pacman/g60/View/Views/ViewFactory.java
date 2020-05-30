@@ -1,4 +1,8 @@
-package com.pacman.g60.View;
+package com.pacman.g60.View.Views;
+
+import com.pacman.g60.View.Views.ArenaView;
+import com.pacman.g60.View.Views.MenuView;
+import com.pacman.g60.View.Views.TextView;
 
 import java.io.FileNotFoundException;
 

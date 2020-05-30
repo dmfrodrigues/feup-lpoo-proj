@@ -1,8 +1,9 @@
 package com.pacman.g60.Controller;
 
 import com.pacman.g60.Application;
-import com.pacman.g60.Model.ArenaModel;
+
 import com.pacman.g60.Model.Elements.Hero;
+import com.pacman.g60.Model.Models.ArenaModel;
 
 public class FireBulletCommand implements Command {
     private ArenaModel arenaModel;

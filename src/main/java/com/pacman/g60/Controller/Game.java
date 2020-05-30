@@ -6,7 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.pacman.g60.Model.*;
-import com.pacman.g60.View.*;
+import com.pacman.g60.Model.Models.*;
+import com.pacman.g60.View.Views.*;
 
 public class Game {
 

@@ -1,4 +1,4 @@
-package com.pacman.g60.View;
+package com.pacman.g60.View.Font;
 
 import java.util.HashMap;
 import java.util.Map;

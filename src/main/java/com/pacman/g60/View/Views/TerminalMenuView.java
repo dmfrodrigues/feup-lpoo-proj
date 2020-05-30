@@ -1,8 +1,11 @@
-package com.pacman.g60.View;
+package com.pacman.g60.View.Views;
 
-import com.pacman.g60.Model.MenuModel;
+import com.pacman.g60.Model.Models.MenuModel;
 import com.pacman.g60.Model.Position;
-import com.pacman.g60.Model.TextModel;
+import com.pacman.g60.Model.Models.TextModel;
+import com.pacman.g60.View.Color;
+import com.pacman.g60.View.Font.TerminalFont;
+import com.pacman.g60.View.GUI.TerminalGUI;
 
 import java.util.List;
 

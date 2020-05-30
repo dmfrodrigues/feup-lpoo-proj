@@ -1,8 +1,11 @@
-package com.pacman.g60.View;
+package com.pacman.g60.View.Views;
 
-import com.pacman.g60.Model.TextModel;
+import com.pacman.g60.Model.Models.TextModel;
+import com.pacman.g60.View.Color;
+import com.pacman.g60.View.Font.TerminalFont;
+import com.pacman.g60.View.GUI.TerminalGUI;
 
-public class TerminalTextView extends TextView{
+public class TerminalTextView extends TextView {
     TerminalGUI terminalGUI;
     TerminalFont font;
     public TerminalTextView(TerminalGUI terminalGUI, TerminalFont font){

@@ -11,7 +11,8 @@ This project was developed for LPOO <sup>2019</sup>⁄<sub>20</sub> by:
 
 ## Table of contents
 1. [Description](#description)
-    1. [Media](#media)
+    1. [Controls](#controls)
+    2. [Media](#media)
 2. [Implemented features](#implemented-features)
 3. [Planned features](#planned-features)
 4. [Design](#design)
@@ -39,6 +40,23 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
 - **Q: With what?** A: You start with a knife, but you can catch other weapons and bullets in the catacombs.
 - **Q: How do I leave the catacombs?** A: You may take a rest or leave at any time, but your mission is only over once you cleanse all the catacombs of the city.
 - **Q: What if I die?** A: Her Majesty has been personally appointed by God, if you die on duty He will give you a second chance.
+
+<a name="controls"><a/>
+### Controls
+
+- Everywhere:
+    - `D` to enable/disable debug information (FPS), on the lower left corner.
+
+- In menus:
+    - `⬆️`/`⬇️` to navigate up/down the menu items.
+    - `↵` (Enter) to select an item.
+    - `ESC` to go to the previous menu.
+    - `ESC`/`P` to unpause the game.
+
+- In game:
+    - `⬅`/`⬆️`/`➡`/`⬇️` to move hero west/north/east/south.
+    - `⎵` (Space bar) to use melee attack.
+    - `ESC`/`P` to pause the game.
 
 <a name="media"><a/>
 ### Media

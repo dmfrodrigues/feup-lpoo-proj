@@ -1,6 +1,7 @@
 package com.pacman.g60.Model;
 
 import com.pacman.g60.Model.Elements.*;
+import com.pacman.g60.Model.Models.ArenaModel;
 
 import java.io.InputStream;
 import java.util.Scanner;

@@ -1,10 +1,9 @@
-package com.pacman.g60.View;
+package com.pacman.g60.View.Views;
 
 
 
-import com.pacman.g60.Model.ArenaModel;
-
-import java.io.IOException;
+import com.pacman.g60.Model.Models.ArenaModel;
+import com.pacman.g60.View.GUI.GUI;
 
 public abstract class ArenaView extends GUIView {
     ArenaModel arenaModel = null;

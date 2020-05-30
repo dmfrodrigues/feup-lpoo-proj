@@ -1,4 +1,9 @@
-package com.pacman.g60.View;
+package com.pacman.g60.View.Views;
+
+import com.pacman.g60.View.Font.TerminalFont;
+import com.pacman.g60.View.Font.TerminalFontLoaderStream;
+import com.pacman.g60.View.GUI.TerminalGUI;
+import com.pacman.g60.View.Views.*;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -9,7 +14,7 @@ public class TerminalFactory implements ViewFactory {
     
     public TerminalFactory(TerminalGUI terminalGUI) throws FileNotFoundException {
         this.terminalGUI = terminalGUI;
-        TerminalFont.Loader loader = new TerminalFontLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/numbers-4-3.lan"));
+        TerminalFont.Loader loader = new TerminalFontLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/monospace-4-3.font"));
         font = loader.getTerminalFont();
     }
     

@@ -1,7 +1,7 @@
 package com.pacman.g60;
 
-import com.pacman.g60.View.TerminalSprite;
-import com.pacman.g60.View.TerminalSpriteOrientable;
+import com.pacman.g60.View.Sprite.TerminalSprite;
+import com.pacman.g60.View.Sprite.TerminalSpriteOrientable;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

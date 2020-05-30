@@ -1,7 +1,7 @@
 package com.pacman.g60;
 
 import com.pacman.g60.Controller.AttackCommand;
-import com.pacman.g60.Model.ArenaModel;
+import com.pacman.g60.Model.Models.ArenaModel;
 import com.pacman.g60.Model.Elements.*;
 import com.pacman.g60.Model.Position;
 import org.junit.Before;

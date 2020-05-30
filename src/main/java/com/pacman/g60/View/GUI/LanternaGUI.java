@@ -1,4 +1,4 @@
-package com.pacman.g60.View;
+package com.pacman.g60.View.GUI;
 
 
 import com.googlecode.lanterna.TerminalSize;
@@ -11,12 +11,18 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
+import com.pacman.g60.View.Color;
 
 import java.awt.*;
 import java.io.EOFException;
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class LanternaGUI implements TerminalGUI {
+    
+    private final static Integer SECONDS_TO_MILLIS = 1000;
+    
     private Screen screen;
     private static final String LANTERNA_FONT = "Monospaced";
     private static final int LANTERNA_FONT_SIZE = 10;
@@ -62,8 +68,22 @@ public class LanternaGUI implements TerminalGUI {
         screen.clear();
     }
     
+    boolean statistics = false;
+    private final Integer Dt = 1*SECONDS_TO_MILLIS; // 1 second
+    private Queue<Long> times = new LinkedList<>();
+    public void setStatistics(boolean statistics){ this.statistics = statistics; }
+    public boolean getStatistics(){ return statistics; }
+    
     @Override
     public void refresh() throws IOException {
+        long now = System.currentTimeMillis();
+        times.add(now);
+        while(times.peek() != null && times.peek() < now-Dt) times.remove();
+        
+        if(statistics){
+            drawString(0, getH()-1, "FPS: " + SECONDS_TO_MILLIS * times.size() / Dt, Color.WHITE, Color.BLACK);
+        }
+        
         screen.refresh((shouldRefreshAll ? Screen.RefreshType.COMPLETE : Screen.RefreshType.DELTA));
         shouldRefreshAll = false;
     }
@@ -71,7 +91,11 @@ public class LanternaGUI implements TerminalGUI {
     @Override
     public KeyStroke pollKey() throws IOException {
         KeyStroke key = screen.pollInput();
-        if(key != null && key.getKeyType() == KeyType.EOF) throw new EOFException("");
+        if(key != null) {
+            if (key.getKeyType() == KeyType.EOF) throw new EOFException("");
+            if(key.getKeyType() == KeyType.Character && Character.toUpperCase(key.getCharacter()) == 'D') setStatistics(!getStatistics());
+        }
+        
         return key;
     }
 

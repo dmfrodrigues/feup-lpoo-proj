@@ -1,4 +1,4 @@
-package com.pacman.g60.Model;
+package com.pacman.g60.Model.Models;
 
 public abstract class Alignable {
     public enum VerticalAlign {

@@ -1,9 +1,8 @@
-package com.pacman.g60.View;
+package com.pacman.g60.View.GUI;
 
 
-import com.googlecode.lanterna.input.KeyStroke;
-
-import java.io.IOException;
+import com.pacman.g60.View.Color;
+import com.pacman.g60.View.GUI.GUI;
 
 public interface TerminalGUI extends GUI {
     void drawCharacter(Integer x, Integer y, Character c, Color f, Color b);

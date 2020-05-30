@@ -1,4 +1,6 @@
-package com.pacman.g60.Model;
+package com.pacman.g60.Model.Models;
+
+import com.pacman.g60.Model.PositionReal;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;

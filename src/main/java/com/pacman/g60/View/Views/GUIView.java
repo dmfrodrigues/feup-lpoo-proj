@@ -1,7 +1,8 @@
-package com.pacman.g60.View;
+package com.pacman.g60.View.Views;
 
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
+import com.pacman.g60.View.GUI.GUI;
 
 import java.io.IOException;
 

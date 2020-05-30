@@ -1,14 +1,12 @@
 package com.pacman.g60;
 
-import com.pacman.g60.Application;
 import com.pacman.g60.Controller.Command;
 import com.pacman.g60.Controller.MoveHeroCommand;
-import com.pacman.g60.Model.ArenaModel;
+import com.pacman.g60.Model.Models.ArenaModel;
 import com.pacman.g60.Model.Elements.Hero;
 import com.pacman.g60.Model.Position;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import static org.junit.Assert.assertEquals;
 
