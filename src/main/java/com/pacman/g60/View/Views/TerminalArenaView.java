@@ -7,6 +7,7 @@ import com.pacman.g60.Model.Elements.*;
 import com.pacman.g60.Model.Elements.Hierarchy.OrientedElement;
 import com.pacman.g60.Model.Models.Alignable;
 import com.pacman.g60.Model.Models.ArenaModel;
+import com.pacman.g60.Model.Models.SpriteModel;
 import com.pacman.g60.Model.Models.TextModel;
 import com.pacman.g60.View.*;
 import com.pacman.g60.View.Font.TerminalFont;
@@ -32,19 +33,10 @@ public class TerminalArenaView extends ArenaView {
         private final TextModel textModelCoin;
         private final TerminalTextView textViewCoin;
         private final TextModel textModelTimer;
-        private final TerminalTextView textViewTimer;
+        private final SpriteModel coinModel;
         private Duration time = Duration.ZERO;
-
-        private void drawSprite(TerminalSprite sprite, int x0, int y0){
-            for(int x = 0; x < sprite.getW(); ++x) {
-                for (int y = 0; y < sprite.getH(); ++y) {
-                    terminalGUI.drawCharacter(x0 + x, y0 + y,
-                            sprite.getChar(x, y),
-                            sprite.getForegroundColor(x, y),
-                            sprite.getBackgroundColor(x, y));
-                }
-            }
-        }
+        private final GUIViewComposite view;
+        
         TerminalSprite heartSprite;
         TerminalSprite heartDeadSprite;
         TerminalSprite coinSprite;
@@ -55,8 +47,12 @@ public class TerminalArenaView extends ArenaView {
             heartSprite = loader.getTerminalSprite();
             loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/heart-dead-6-3.lan"));
             heartDeadSprite = loader.getTerminalSprite();
+            
             loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/coin-6-3.lan"));
             coinSprite = loader.getTerminalSprite();
+            SpriteView coinView = new TerminalSpriteView(terminalGUI);
+            coinModel = new SpriteModel(coinSprite);
+            coinView.setSpriteModel(coinModel);
             
             textModelCoin = new TextModel("");
             textModelCoin.setVerticalAlign(Alignable.VerticalAlign.TOP);
@@ -67,8 +63,13 @@ public class TerminalArenaView extends ArenaView {
             textModelTimer = new TextModel("");
             textModelTimer.setVerticalAlign(Alignable.VerticalAlign.TOP);
             textModelTimer.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);
-            textViewTimer = new TerminalTextView(terminalGUI, font);
+            TerminalTextView textViewTimer = new TerminalTextView(terminalGUI, font);
             textViewTimer.setTextModel(textModelTimer);
+            
+            view = new GUIViewComposite(terminalGUI);
+            view.addView(textViewCoin);
+            view.addView(coinView);
+            view.addView(textViewTimer);
         }
         
         public void setTime(Duration time) { this.time = time; }
@@ -95,43 +96,34 @@ public class TerminalArenaView extends ArenaView {
             int y0 = 1;
             for(int x = 0; x < maxHealth*heartSprite.getW(); ++x) {
                 for (int y = 0; y < heartSprite.getH(); ++y) {
-                    if(x < health*heartSprite.getW()) {
-                        terminalGUI.drawCharacter(x0 + x, y0 + y,
-                                heartSprite.getChar(x % heartSprite.getW(), y),
-                                heartSprite.getForegroundColor(x % heartSprite.getW(), y),
-                                heartSprite.getBackgroundColor(x % heartSprite.getW(), y));
-                    } else {
-                        terminalGUI.drawCharacter(x0 + x, y0 + y,
-                                heartDeadSprite.getChar(x % heartDeadSprite.getW(), y),
-                                heartDeadSprite.getForegroundColor(x % heartDeadSprite.getW(), y),
-                                heartDeadSprite.getBackgroundColor(x % heartDeadSprite.getW(), y));
-                    }
+                    TerminalSprite sprite = (x < health*heartSprite.getW() ? heartSprite : heartDeadSprite);
+                    terminalGUI.drawCharacter(x0 + x, y0 + y,
+                            sprite.getChar(x % sprite.getW(), y),
+                            sprite.getForegroundColor(x % sprite.getW(), y),
+                            sprite.getBackgroundColor(x % sprite.getW(), y));
                 }
             }
         }
-        private void drawCoins(int coins, int totalCoins){
+        private void updateCoins(int coins, int totalCoins){
             String coinsStr = String.format("%d/%d", coins, totalCoins);
             int coinsStrX = terminalGUI.getW()-Wmargin-textViewCoin.getStringWidth(coinsStr);
             textModelCoin.setText(coinsStr);
             textModelCoin.setPosition(new Position(coinsStrX, 1+coinSprite.getH()-textViewCoin.getStringHeight(textModelCoin.getText())));
-            textViewCoin.draw();
             int coinsSpriteX = coinsStrX - coinSprite.getW() -1;
-            drawSprite(coinSprite, coinsSpriteX, 1);
+            coinModel.setPosition(new Position(coinsSpriteX, 1));
         }
-        private void drawTimer(){
+        private void updateTimer(){
             long sec = time.getSeconds()%60;
             long min = time.getSeconds()/60;
-            String sSec = String.format("%02d", sec);
-            String sMin = String.format("%d", min);
-            textModelTimer.setText(sMin + ":" + sSec);
+            textModelTimer.setText(String.format("%2d:%02d", min, sec));
             textModelTimer.setPosition(new Position(terminalGUI.getW()/2, 1+coinSprite.getH()-textViewCoin.getStringHeight(textModelTimer.getText())));
-            textViewTimer.draw();
         }
         public void draw(ArenaModel arenaModel){
             drawFrame();
             drawHealth(arenaModel.getHero().getHealth(), arenaModel.getHero().getMaxHealth());
-            drawCoins(arenaModel.getHero().getCoins(), arenaModel.getNumCoins() + arenaModel.getHero().getCoins());
-            drawTimer();
+            updateCoins(arenaModel.getHero().getCoins(), arenaModel.getNumCoins() + arenaModel.getHero().getCoins());
+            updateTimer();
+            view.draw();
         }
     }
     
