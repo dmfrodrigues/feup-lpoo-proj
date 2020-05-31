@@ -33,13 +33,15 @@ public class MenuController {
 <span class="nc" id="L33">                        menuModel.selectBelow();</span>
 <span class="nc" id="L34">                        break;</span>
                     case ENTER:
-<span class="nc" id="L36">                        return menuModel.getSelectedItem().getId();</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">                        if(menuModel.getSelectedItem().getEnabled())</span>
+<span class="nc" id="L37">                            return menuModel.getSelectedItem().getId();</span>
+                        break;
                 }
-<span class="nc" id="L38">            }</span>
+<span class="nc" id="L40">            }</span>
             
-<span class="nc" id="L40">            view.clear();</span>
-<span class="nc" id="L41">            view.draw();</span>
-<span class="nc" id="L42">            view.refresh();</span>
+<span class="nc" id="L42">            view.clear();</span>
+<span class="nc" id="L43">            view.draw();</span>
+<span class="nc" id="L44">            view.refresh();</span>
         }
     }
 }
