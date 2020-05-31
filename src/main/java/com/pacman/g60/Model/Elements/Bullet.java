@@ -14,7 +14,7 @@ public class Bullet extends Collectable implements OrientedElement {
 
     public Bullet(Position pos) {
         super(pos);
-        this.effect = new DamageEffect(1);
+        this.effect = new DamageEffect(5);
         this.dir = Application.Direction.UP;
         this.moving = false;
     }
