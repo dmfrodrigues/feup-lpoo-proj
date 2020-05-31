@@ -33,7 +33,9 @@ public class MenuController {
                         menuModel.selectBelow();
                         break;
                     case ENTER:
-                        return menuModel.getSelectedItem().getId();
+                        if(menuModel.getSelectedItem().getEnabled())
+                            return menuModel.getSelectedItem().getId();
+                        break;
                 }
             }
             
