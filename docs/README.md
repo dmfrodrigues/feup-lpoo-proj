@@ -397,6 +397,11 @@ This smell is present in the constructor of the UpdateEnemyPosCommand class and 
 
 The updatePos function in the DynamicElement class is a bit too long and could be divided into smaller pieces using [Extract Method](https://refactoring.guru/extract-method).
 
+### A smell
+On [this commit](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/17394b793d1e3a9e62708e2761d981fa3c6311b0/src/main/java/com/pacman/g60/View/Views/TerminalArenaView.java#L52-L53), TerminalArenaView has the responsibility of tracking time since the beginning of the game, but this responsibility should be of the ArenaController.
+
+Moved responsibility to ArenaController
+
 ### Some dependency problem
 There is a problem with [Game](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/97e24afb5f05fbb3dc49aee784a37b6c63cd7115/src/main/java/com/pacman/g60/Controller/Game.java#L1-L413) using terminal-specific [hearts](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/97e24afb5f05fbb3dc49aee784a37b6c63cd7115/src/main/java/com/pacman/g60/Controller/Game.java#L238-L239) and [coins](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/97e24afb5f05fbb3dc49aee784a37b6c63cd7115/src/main/java/com/pacman/g60/Controller/Game.java#L251-L252), which stems from the fact [SpriteModel](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/97e24afb5f05fbb3dc49aee784a37b6c63cd7115/src/main/java/com/pacman/g60/Model/Models/SpriteModel.java#L1-L22) knows too much about how to draw itself by having a [TerminalSprite member](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/97e24afb5f05fbb3dc49aee784a37b6c63cd7115/src/main/java/com/pacman/g60/Model/Models/SpriteModel.java#L11).
 
