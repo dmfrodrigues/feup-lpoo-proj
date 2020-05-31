@@ -74,6 +74,7 @@ public class TerminalArenaView extends ArenaView {
             damageSprite = loader.getTerminalSprite();
             SpriteView damageView = new TerminalSpriteView(terminalGUI);
             damageModel = new SpriteModel(damageSprite);
+            damageModel.setVerticalAlign(Alignable.VerticalAlign.TOP);
             damageModel.setHorizontalAlign(Alignable.HorizontalAlign.RIGHT);
             damageView.setSpriteModel(damageModel);
 
@@ -87,6 +88,7 @@ public class TerminalArenaView extends ArenaView {
             bulletSprite = loader.getTerminalSprite();
             SpriteView bulletView = new TerminalSpriteView(terminalGUI);
             bulletModel = new SpriteModel(bulletSprite);
+            bulletModel.setVerticalAlign(Alignable.VerticalAlign.TOP);
             bulletModel.setHorizontalAlign(Alignable.HorizontalAlign.RIGHT);
             bulletView.setSpriteModel(bulletModel);
 
@@ -100,11 +102,13 @@ public class TerminalArenaView extends ArenaView {
             coinSprite = loader.getTerminalSprite();
             SpriteView coinView = new TerminalSpriteView(terminalGUI);
             coinModel = new SpriteModel(coinSprite);
+            coinModel.setVerticalAlign(Alignable.VerticalAlign.TOP);
+            coinModel.setHorizontalAlign(Alignable.HorizontalAlign.RIGHT);
             coinView.setSpriteModel(coinModel);
 
             textModelCoin = new TextModel("");
             textModelCoin.setVerticalAlign(Alignable.VerticalAlign.TOP);
-            textModelCoin.setHorizontalAlign(Alignable.HorizontalAlign.LEFT);
+            textModelCoin.setHorizontalAlign(Alignable.HorizontalAlign.RIGHT);
             textViewCoin = new TerminalTextView(terminalGUI, font);
             textViewCoin.setTextModel(textModelCoin);
             // View
@@ -158,23 +162,23 @@ public class TerminalArenaView extends ArenaView {
         }
         private void updateDamage(Integer damage){
             textModelDamage.setText(damage.toString());
-            int x = (int) (0.75*terminalGUI.getW());
-            textModelDamage.setPosition(new PositionReal(x, 1+damageSprite.getH()-textViewDamage.getStringHeight(textModelDamage.getText())));
-            damageModel.setPosition(new PositionReal(x, 1));
+            Position pos = new Position((int)(0.75*terminalGUI.getW()), 1);
+            textModelDamage.setPosition(pos);
+            damageModel.setPosition(pos);
         }
         private void updateBullet(Integer ammo){
             textModelBullet.setText(ammo.toString());
-            int x = (int) (0.85*terminalGUI.getW());
-            textModelBullet.setPosition(new Position(x, 1+bulletSprite.getH()-textViewBullet.getStringHeight(textModelBullet.getText())));
-            bulletModel.setPosition(new Position(x, 1));
+            Position pos = new Position((int) (0.85*terminalGUI.getW()), 1);
+            textModelBullet.setPosition(pos);
+            bulletModel.setPosition(pos);
         }
         private void updateCoins(int coins, int totalCoins){
-            String coinsStr = String.format("%d/%d", coins, totalCoins);
-            int coinsStrX = terminalGUI.getW()-Wmargin-textViewCoin.getStringWidth(coinsStr);
-            textModelCoin.setText(coinsStr);
-            textModelCoin.setPosition(new Position(coinsStrX, 1+coinSprite.getH()-textViewCoin.getStringHeight(textModelCoin.getText())));
-            int coinsSpriteX = coinsStrX - coinSprite.getW() -1;
-            coinModel.setPosition(new Position(coinsSpriteX, 1));
+            textModelCoin.setText(String.format("%d/%d", coins, totalCoins));
+            textModelCoin.setPosition(new Position(terminalGUI.getW()-1, 1));
+            coinModel.setPosition(new Position(
+                    terminalGUI.getW()-1-textViewCoin.getStringWidth(textModelCoin.getText()),
+                    1
+            ));
         }
 
         public void draw(ArenaModel arenaModel){
