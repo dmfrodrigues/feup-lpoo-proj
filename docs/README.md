@@ -56,6 +56,7 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
 - In game:
     - `⬅`/`⬆️`/`➡`/`⬇️` to move hero west/north/east/south.
     - `⎵` (Space bar) to use melee attack.
+    - `F` to shoot a bullet.
     - `ESC`/`P` to pause the game.
 
 <a name="media"><a/>
@@ -72,12 +73,22 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
 |------------|
 | ![](images/2020-05-28_20-12-43.png) |
 
+##### Elements
+
+| Wall | Coin | Sword | Potion | Hero | Ghost | Ogre | Mummy | Guard |
+|------|------|-------|---------------|------|-------|------|-------|-------|
+| ![wall](images/wall.png) | ![coin](images/coin.png) | ![sword](images/sword.png) | ![potion](images/potion.png) | ![hero](images/hero.png) | ![ghost](images/ghost.png) | ![ogre](images/ogre.png) | ![mummy](images/mummy.png) | ![guard](images/guard.png) |
+
 <a name="animations"><a/>
 #### Animations
 
 | 2020-04-28 | 2020-05-02 |
 |------------|------------|
 |![2020-04-28-animation](images/pacman-20200428-202310.gif)|![2020-04-26-image](images/pacman-20200502-042816.gif)|
+
+| 2020-05-31 | 2020-05-31 |
+|------------|------------|
+| ![2020-04-26-image](images/pacman-20200531-192912.gif) | ![2020-04-26-image](images/pacman-20200531-193722.gif) |
 
 <a name="implemented-features"><a/>
 ## Implemented features
@@ -105,10 +116,6 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
     - [x] Ogre (strong melee)
     - [x] Guard (walks a small path over and over)
     - [x] Mummy
-- [x] Main menu
-    - [x] Level selector
-    - [x] Scoreboard
-    - [x] Load and save game
 - [x] Weaponize enemies
 - [x] Weaponize hero
 - [x] Collectibles
@@ -116,6 +123,15 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
     - [x] Health potion
     - [x] Sword
     - [x] Bullet
+
+![2020-04-26-image](images/pacman-20200531-192912.gif)
+
+- [x] Main menu
+    - [x] Level selector
+    - [x] Scoreboard
+    - [x] Load and save game
+
+![2020-04-26-image](images/pacman-20200531-193722.gif)
 
 <a name="planned-features"><a/>
 ## Planned features
