@@ -3,33 +3,33 @@
 import java.time.Duration;
 import java.time.Instant;
 
-<span class="nc" id="L6">public class Stopwatch {</span>
+<span class="fc" id="L6">public class Stopwatch {</span>
     Instant start;
-<span class="nc" id="L8">    boolean running = false;</span>
-<span class="nc" id="L9">    private Duration time = Duration.ZERO;</span>
+<span class="fc" id="L8">    boolean running = false;</span>
+<span class="fc" id="L9">    private Duration time = Duration.ZERO;</span>
     public void reset(){
-<span class="nc" id="L11">        time = Duration.ZERO;</span>
-<span class="nc" id="L12">        running = false;</span>
-<span class="nc" id="L13">    }</span>
+<span class="fc" id="L11">        time = Duration.ZERO;</span>
+<span class="fc" id="L12">        running = false;</span>
+<span class="fc" id="L13">    }</span>
     public void resume(){
-<span class="nc bnc" id="L15" title="All 2 branches missed.">        if(!running){</span>
-<span class="nc" id="L16">            start = Instant.now();</span>
-<span class="nc" id="L17">            running = true;</span>
+<span class="pc bpc" id="L15" title="1 of 2 branches missed.">        if(!running){</span>
+<span class="fc" id="L16">            start = Instant.now();</span>
+<span class="fc" id="L17">            running = true;</span>
         }
-<span class="nc" id="L19">    }</span>
+<span class="fc" id="L19">    }</span>
     public void start(){
-<span class="nc" id="L21">        reset();</span>
-<span class="nc" id="L22">        resume();</span>
-<span class="nc" id="L23">    }</span>
+<span class="fc" id="L21">        reset();</span>
+<span class="fc" id="L22">        resume();</span>
+<span class="fc" id="L23">    }</span>
     public void stop(){
-<span class="nc" id="L25">        time = poll();</span>
-<span class="nc" id="L26">        running = false;</span>
-<span class="nc" id="L27">    }</span>
+<span class="fc" id="L25">        time = poll();</span>
+<span class="fc" id="L26">        running = false;</span>
+<span class="fc" id="L27">    }</span>
     public Duration poll() {
-<span class="nc bnc" id="L29" title="All 2 branches missed.">        if(running){</span>
-<span class="nc" id="L30">            Instant now = Instant.now();</span>
-<span class="nc" id="L31">            return time.plus(Duration.between(start, now));</span>
-<span class="nc" id="L32">        } else return time;</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        if(running){</span>
+<span class="fc" id="L30">            Instant now = Instant.now();</span>
+<span class="fc" id="L31">            return time.plus(Duration.between(start, now));</span>
+<span class="fc" id="L32">        } else return time;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
