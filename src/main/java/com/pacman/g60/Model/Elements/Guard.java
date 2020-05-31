@@ -21,15 +21,10 @@ public class Guard extends Enemy implements MeleeAttackerElement {
         this.movement = movementStrategy;
     }
 
-    public Position tryGetNextPos()
-    {
-        return movement.tryMove();
-    }
-
-    public Position getNextPos()
-    {
-        return movement.move();
-    }
+   public GuardMovementStrategy getMovement()
+   {
+       return this.movement;
+   }
 
     @Override
     public Object clone()
