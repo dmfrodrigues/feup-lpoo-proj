@@ -1,6 +1,5 @@
 package com.pacman.g60.Controller;
 
-import com.pacman.g60.Application;
 import com.pacman.g60.Model.Models.ArenaModel;
 import com.pacman.g60.Model.Elements.*;
 import com.pacman.g60.Model.Position;
@@ -9,38 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MoveHeroCommand implements Command {
-    private ArenaModel arenaModel;
-    private Application.Direction dir;
+public abstract class MoveHeroCommand implements Command {
+    protected ArenaModel arenaModel;
 
-    public MoveHeroCommand(ArenaModel arenaModel, Application.Direction dir){this.arenaModel = arenaModel; this.dir = dir;}
+    public MoveHeroCommand(ArenaModel arenaModel) {
+        this.arenaModel = arenaModel;
+    }
 
-    @Override
-    public void execute() {
-        Position newPos = new Position(0,0);
-        switch (this.dir)
-        {
-            case UP:
-            {
-                newPos = this.arenaModel.getHero().moveUp();
-                break;
-            }
-            case DOWN:
-            {
-                newPos = this.arenaModel.getHero().moveDown();
-                break;
-            }
-            case LEFT:
-            {
-                newPos = this.arenaModel.getHero().moveLeft();
-                break;
-            }
-            case RIGHT:
-            {
-                newPos = this.arenaModel.getHero().moveRight();
-                break;
-            }
-        }
+    public void processMovementConsequences(Position newPos)
+    {
         Hero hero = arenaModel.getHero();
 
         if (this.arenaModel.isPositionAvailable(newPos,hero))
@@ -52,16 +28,7 @@ public class MoveHeroCommand implements Command {
             {
                 for (Element elemInNewPos : elemsInNewPos)
                 {
-                    if (elemInNewPos instanceof Collectable) toBeRemoved.add(elemInNewPos);
-
-                    if (elemInNewPos instanceof Coin) hero.incCoins();
-
-                    if (elemInNewPos instanceof HealthPotion) hero.updateHealth(((HealthPotion)elemInNewPos).getHealth());
-
-                    if (elemInNewPos instanceof Bullet) hero.incAmmo();
-
-                    if (elemInNewPos instanceof Weapon) hero.setWeapon((Weapon) elemInNewPos);
-
+                    if(elemInNewPos.beCollected(this.arenaModel)) toBeRemoved.add(elemInNewPos);
                 }
 
                 for (Element elem : toBeRemoved)
@@ -70,13 +37,9 @@ public class MoveHeroCommand implements Command {
                 }
             }
 
-
-
-
             Position currentHeroPos = hero.getPos();
             this.arenaModel.updateMapKey(currentHeroPos,newPos,hero);
             this.arenaModel.getHero().updatePos(newPos);
         }
-
     }
 }

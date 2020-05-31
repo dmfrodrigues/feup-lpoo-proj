@@ -1,6 +1,7 @@
 package com.pacman.g60;
 
 import com.pacman.g60.Model.Elements.StaticElement;
+import com.pacman.g60.Model.Models.ArenaModel;
 import com.pacman.g60.Model.Position;
 import com.pacman.g60.Model.Elements.Wall;
 import org.junit.Test;
@@ -10,6 +11,11 @@ import static org.junit.Assert.*;
 public class ElementTest {
     public class NotAWall extends StaticElement {
         public NotAWall(Position pos){ super(pos); }
+
+        @Override
+        public boolean beCollected(ArenaModel arenaModel) {
+            return false;
+        }
     }
     @Test
     public void wallOrNotAWall(){

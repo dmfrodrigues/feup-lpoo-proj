@@ -1,6 +1,7 @@
 package com.pacman.g60.Model.Elements;
 
 
+import com.pacman.g60.Model.Models.ArenaModel;
 import com.pacman.g60.Model.Position;
 
 import java.lang.reflect.InvocationTargetException;
@@ -39,5 +40,7 @@ public abstract class Element implements Cloneable{
         return (getClass().equals(obj.getClass()) &&
                 pos.equals(((Element)obj).pos));
     }
+
+    public abstract boolean beCollected(ArenaModel arenaModel);
 
 }

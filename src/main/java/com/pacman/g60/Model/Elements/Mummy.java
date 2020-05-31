@@ -11,8 +11,4 @@ public class Mummy extends Enemy implements MeleeAttackerElement, FollowHeroElem
     {
         super(pos,new DamageEffect(1),8);
     }
-
-    public Mummy(Position pos, Effect effect, Integer health) {
-        super(pos, effect, health);
-    }
 }
