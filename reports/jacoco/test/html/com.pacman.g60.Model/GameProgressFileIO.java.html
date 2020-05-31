@@ -18,8 +18,8 @@ import java.util.Set;
 <span class="nc" id="L18">            res.addProgress(new GameProgress.LevelProgress(</span>
 <span class="nc" id="L19">                    Integer.parseInt(line[0]),</span>
 <span class="nc" id="L20">                    Integer.parseInt(line[1]),</span>
-<span class="nc" id="L21">                    Duration.ZERO.plusNanos(Integer.parseInt(line[2])),</span>
-<span class="nc" id="L22">                    new Date(Integer.parseInt(line[3]))</span>
+<span class="nc" id="L21">                    Duration.ZERO.plusNanos(Long.parseLong(line[2])),</span>
+<span class="nc" id="L22">                    new Date(Long.parseLong(line[3]))</span>
             ));
         }
         
