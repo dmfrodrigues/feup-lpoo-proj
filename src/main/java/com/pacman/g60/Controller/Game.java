@@ -137,8 +137,16 @@ public class Game {
         
         public StateScoreboard(MenuView menuView, TextView textView){
             this.menuView = menuView;
+            
+            TextModel titleModel = new TextModel("Scoreboard");
+            titleModel.setPosition(new PositionReal(0.5, 0.15));
+            titleModel.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);
+            titleModel.setVerticalAlign(Alignable.VerticalAlign.BOTTOM);
+            TextView titleView = textView.clone();
+            titleView.setTextModel(titleModel);
 
             view = new GUIViewComposite(menuView.getGUI());
+            view.addView(titleView);
             view.addView(textView);
             view.addView(menuView);
 
