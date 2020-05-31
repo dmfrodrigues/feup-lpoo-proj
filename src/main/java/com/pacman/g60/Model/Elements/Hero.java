@@ -50,6 +50,11 @@ public class Hero extends DynamicElement implements ControlledByPlayer, LivingEl
         if (this.ammo < 0) this.ammo = 0;
     }
 
+    public void setAmmo(Integer ammo)
+    {
+        this.ammo = ammo;
+    }
+
     public void setWeapon(Weapon weapon)
     {
         this.weapon = weapon;
