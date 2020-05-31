@@ -101,35 +101,27 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
 ![2020-04-26-image](images/pacman-20200502-042816.gif)
 
 - [x] Enemies
-    - [x] Ghost (weak melee)
+    - [x] Ghost (weak melee, not vulnerable to bullets)
     - [x] Ogre (strong melee)
+    - [x] Guard (walks a small path over and over)
+    - [x] Mummy
 - [x] Main menu
+    - [x] Level selector
+    - [x] Scoreboard
+    - [x] Load and save game
 - [x] Weaponize enemies
 - [x] Weaponize hero
 - [x] Collectibles
     - [x] Coin
     - [x] Health potion
+    - [x] Sword
+    - [x] Bullet
 
 <a name="planned-features"><a/>
 ## Planned features
 
-- [ ] Main menu
-    - [ ] Scoreboard
-    - [ ] Level selector
-    - [ ] Level editor (?)
-- [ ] Score system
-- [ ] Current game state can be saved and loaded
-- [ ] Information bar:
-    - [ ] Level number
-    - [ ] Restart level
-    - [ ] Go to main menu
 - [ ] Enemies
-    - [ ] Guard
-    - [ ] Spider
-    - [ ] Mummy
-- [ ] Collectibles
-    - [ ] Sword
-    - [ ] Bullet
+    - [ ] Mummy (not throwing anything yet)
 - [ ] Swing compatibility
 
 <a name="design"><a/>
