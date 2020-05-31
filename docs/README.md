@@ -23,6 +23,7 @@ This project was developed for LPOO <sup>2019</sup>⁄<sub>20</sub> by:
     5. [Menus and games](#state-game)
     6. [ArenaController is the *God of Dynamics*](#command-composite-arenacontroller)
     7. [Movement strategies](#strategy-movement)
+    8. [Composite Views](#composite-view)
 5. [Code smells and refactoring suggestions](#code-smells)
 6. [Testing](#testing)
 7. [Self-evaluation](#self-evaluation)
@@ -348,10 +349,31 @@ This use of the Strategy pattern has the benefits of:
 - Allowing reuse of an algorithm for different elements.
 - Implement different algorithms and then choose whichever seems better.
 
+<a name="composite-view"><a/>
+
+### [Composite](https://refactoring.guru/design-patterns/composite) Views
+
+#### Problem in context
+
+We were having trouble making menu views with titles, so first we decided to create a [draw] function in MenuView, so MenuView could then be overloaded and the missing titles added.
+
+#### The pattern
+
+We applied the [Composite](https://refactoring.guru/design-patterns/composite), which allows a program to ignore the distinction between a simple and a composite object, as long as they can perform the same operations the composite is equivalent to the siimple object.
+
+#### Implementation
+
+The following figure shows how the pattern's roles were mapped to the application classes.
+
+![](images/composite-views.svg)
+
+#### Consequences
+
+This use of the Composite pattern has allowed us to:
+- Work with more complex view structures
+- Easily introduce new views as needed, without breaking the existing code, and also easily integrate with what was already implemented
+
 <a name="code-smells"><a/>
-
-### Composite in Views
-
 ## Code smells and refactoring suggestions
 
 ### [Shotgun surgery](https://refactoring.guru/smells/shotgun-surgery)
