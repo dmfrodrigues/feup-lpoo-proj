@@ -1,6 +1,6 @@
 package com.pacman.g60.Controller;
 
-import com.pacman.g60.Model.Effect.Effect;
+import com.pacman.g60.Model.DamageEffect;
 import com.pacman.g60.Model.Elements.Element;
 import com.pacman.g60.Model.Elements.Enemy;
 import com.pacman.g60.Model.Elements.Hero;
@@ -34,7 +34,7 @@ public class ApplyAllEffectCommand extends CompositeCommand {
                 {
                     if (elem instanceof Enemy)
                     {
-                        Effect effect;
+                        DamageEffect effect;
                         Element target;
                         if (isThisAHeroAttack)
                         {

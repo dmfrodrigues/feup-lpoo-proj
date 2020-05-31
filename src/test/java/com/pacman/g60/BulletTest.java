@@ -1,6 +1,5 @@
 package com.pacman.g60;
 
-import com.pacman.g60.Model.Effect.Effect;
 import com.pacman.g60.Model.Elements.Bullet;
 import com.pacman.g60.Model.Elements.Hero;
 import com.pacman.g60.Model.Models.ArenaModel;

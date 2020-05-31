@@ -1,14 +1,13 @@
 package com.pacman.g60.Model.Elements;
 
 import com.pacman.g60.Application;
-import com.pacman.g60.Model.Effect.DamageEffect;
-import com.pacman.g60.Model.Effect.Effect;
+import com.pacman.g60.Model.DamageEffect;
 import com.pacman.g60.Model.Elements.Hierarchy.OrientedElement;
 import com.pacman.g60.Model.Models.ArenaModel;
 import com.pacman.g60.Model.Position;
 
 public class Bullet extends Collectable implements OrientedElement {
-    private Effect effect;
+    private DamageEffect effect;
     private Application.Direction dir;
     private boolean moving;
 
@@ -36,7 +35,7 @@ public class Bullet extends Collectable implements OrientedElement {
         this.moving = moving;
     }
 
-    public Effect getEffect()
+    public DamageEffect getEffect()
     {
         return this.effect;
     }
