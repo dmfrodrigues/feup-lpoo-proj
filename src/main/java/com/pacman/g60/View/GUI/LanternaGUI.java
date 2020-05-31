@@ -69,8 +69,8 @@ public class LanternaGUI implements TerminalGUI {
     }
     
     boolean statistics = false;
-    private final Integer Dt = 1*SECONDS_TO_MILLIS; // 1 second
-    private Queue<Long> times = new LinkedList<>();
+    private static final Integer Dt = SECONDS_TO_MILLIS; // 1 second
+    private final Queue<Long> times = new LinkedList<>();
     public void setStatistics(boolean statistics){ this.statistics = statistics; }
     public boolean getStatistics(){ return statistics; }
     

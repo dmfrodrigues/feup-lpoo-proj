@@ -1,28 +1,26 @@
 package com.pacman.g60.View.Font;
 
-import com.pacman.g60.View.Font.TerminalFont;
-
 import java.io.InputStream;
 import java.util.Scanner;
 
 public class TerminalFontLoaderStream implements TerminalFont.Loader {
-    private TerminalFont terminalFont;
+    private final TerminalFont terminalFont;
     public TerminalFontLoaderStream(InputStream inputStream){
         Scanner scanner = new Scanner(inputStream);
         String line = scanner.nextLine();
-        Integer W = Integer.parseInt(line.split(" ")[0]);
-        Integer H = Integer.parseInt(line.split(" ")[1]);
+        int W = Integer.parseInt(line.split(" ")[0]);
+        int H = Integer.parseInt(line.split(" ")[1]);
         terminalFont = new TerminalFont(W, H);
         line = scanner.nextLine();
-        Integer N = Integer.parseInt(line);
-        for(Integer n = 0; n < N; ++n) {
+        int N = Integer.parseInt(line);
+        for(int n = 0; n < N; ++n) {
             line = scanner.nextLine();
-            Character c = line.charAt(0);
+            char c = line.charAt(0);
             TerminalFont.TerminalCharacter tchar = new TerminalFont.TerminalCharacter(W, H);
             for (Integer y = 0; y < H; ++y) {
                 line = scanner.nextLine();
                 if (line.length() != W) throw new IllegalArgumentException("Invalid file content (on reading character '" + c + "')");
-                for (Integer x = 0; x < W; ++x)
+                for (int x = 0; x < W; ++x)
                     tchar.setChar(x, y, line.charAt(x));
             }
             terminalFont.setCharacter(c, tchar);

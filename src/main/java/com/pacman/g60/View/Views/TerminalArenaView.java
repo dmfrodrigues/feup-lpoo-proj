@@ -25,16 +25,14 @@ import java.util.Map;
 
 public class TerminalArenaView extends ArenaView {
 
-    private static final Integer MILLIS_TO_SECONDS = 1000;
-    
     private static final Integer HInfoBar = 5;
 
     private class InfoBar {
         private final Integer Wmargin = 2;
-        private TextModel textModelCoin;
-        private TerminalTextView textViewCoin;
-        private TextModel textModelTimer;
-        private TerminalTextView textViewTimer;
+        private final TextModel textModelCoin;
+        private final TerminalTextView textViewCoin;
+        private final TextModel textModelTimer;
+        private final TerminalTextView textViewTimer;
         private Duration time = Duration.ZERO;
 
         private void drawSprite(TerminalSprite sprite, int x0, int y0){
@@ -76,16 +74,16 @@ public class TerminalArenaView extends ArenaView {
         public void setTime(Duration time) { this.time = time; }
         
         private void drawFrame(){
-            for(Integer x = 1; x < terminalGUI.getW()-1; ++x){
+            for(int x = 1; x < terminalGUI.getW()-1; ++x){
                 terminalGUI.drawCharacter(x, 0, '▀', Color.GREY, Color.BLACK);
                 terminalGUI.drawCharacter(x, HInfoBar-1, '▄', Color.GREY, Color.BLACK);
             }
-            for(Integer y = 1; y < HInfoBar-1; ++y){
+            for(int y = 1; y < HInfoBar-1; ++y){
                 terminalGUI.drawCharacter(0, y, '█', Color.GREY, Color.BLACK);
                 terminalGUI.drawCharacter(terminalGUI.getW()-1, y, '█', Color.GREY, Color.BLACK);
             }
-            for(Integer x = 1; x < terminalGUI.getW()-1; ++x){
-                for(Integer y = 1; y < HInfoBar-1; ++y){
+            for(int x = 1; x < terminalGUI.getW()-1; ++x){
+                for(int y = 1; y < HInfoBar-1; ++y){
                     terminalGUI.drawCharacter(x, y, ' ', Color.BLACK, Color.BLACK);
                 }
             }
@@ -125,7 +123,6 @@ public class TerminalArenaView extends ArenaView {
             long min = time.getSeconds()/60;
             String sSec = String.format("%02d", sec);
             String sMin = String.format("%d", min);
-            String timerString = sMin + ":" + sSec;
             textModelTimer.setText(sMin + ":" + sSec);
             textModelTimer.setPosition(new Position(terminalGUI.getW()/2, 1+coinSprite.getH()-textViewCoin.getStringHeight(textModelTimer.getText())));
             textViewTimer.draw();
@@ -339,17 +336,16 @@ public class TerminalArenaView extends ArenaView {
     }
     
     private class ElementViewFactory {
-        private Position heroPos;
-        private WallView wallView;
-        private HeroView heroView;
-        private GhostView ghostView;
-        private OgreView ogreView;
-        private CoinView coinView;
-        private HealthPotionView healthPotionView;
-        private SwordView swordView;
-        private BulletView bulletView;
-        private MummyView mummyView;
-        private GuardView guardView;
+        private final WallView wallView;
+        private final HeroView heroView;
+        private final GhostView ghostView;
+        private final OgreView ogreView;
+        private final CoinView coinView;
+        private final HealthPotionView healthPotionView;
+        private final SwordView swordView;
+        private final BulletView bulletView;
+        private final MummyView mummyView;
+        private final GuardView guardView;
 
         public ElementViewFactory() throws FileNotFoundException{
             wallView = new WallView();
@@ -365,7 +361,6 @@ public class TerminalArenaView extends ArenaView {
         }
 
         public void setHeroPos(Position heroPos) {
-            this.heroPos = heroPos;
             wallView.setHeroPos(heroPos);
             heroView.setHeroPos(heroPos);
             ghostView.setHeroPos(heroPos);
@@ -407,10 +402,10 @@ public class TerminalArenaView extends ArenaView {
             Bullet.class, 0
     );
     
-    private TerminalGUI terminalGUI;
-    private ElementViewFactory elementViewFactory;
-    private InfoBar infoBar;
-    private TerminalFont font;
+    private final TerminalGUI terminalGUI;
+    private final ElementViewFactory elementViewFactory;
+    private final InfoBar infoBar;
+    private final TerminalFont font;
     
     public TerminalArenaView(TerminalGUI terminalGUI, TerminalFont font) throws FileNotFoundException{
         super(terminalGUI);

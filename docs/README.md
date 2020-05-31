@@ -400,6 +400,9 @@ The updatePos function in the DynamicElement class is a bit too long and could b
 ### A smell
 On [this commit](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/17394b793d1e3a9e62708e2761d981fa3c6311b0/src/main/java/com/pacman/g60/View/Views/TerminalArenaView.java#L52-L53), TerminalArenaView has the responsibility of tracking time since the beginning of the game, but this responsibility should be of the ArenaController.
 
+### Another smell
+Repeated code in TerminalArenaView. This can be fixed by using TerminalSpriteView.
+
 Moved responsibility to ArenaController
 
 ### Some dependency problem

@@ -1,7 +1,6 @@
 package com.pacman.g60.View.Views;
 
 import com.pacman.g60.View.GUI.GUI;
-import com.pacman.g60.View.Views.GUIView;
 
 import java.util.ArrayList;
 import java.util.List;

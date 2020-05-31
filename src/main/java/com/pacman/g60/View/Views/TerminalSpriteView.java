@@ -6,7 +6,7 @@ import com.pacman.g60.View.Sprite.TerminalSprite;
 
 public class TerminalSpriteView extends SpriteView {
     
-    private TerminalGUI terminalGUI;
+    private final TerminalGUI terminalGUI;
     
     public TerminalSpriteView(TerminalSpriteView terminalSpriteView){
         super(terminalSpriteView.terminalGUI);
@@ -22,7 +22,6 @@ public class TerminalSpriteView extends SpriteView {
     public void draw() {
         SpriteModel model = getSpriteModel();
         TerminalSprite sprite = model.getSprite();
-        if(model == null) return;
         int x0, y0;
         if(model.getUnit() == SpriteModel.UNIT.ABSOLUTE) {
             x0 = (int) model.getPosition().getX();

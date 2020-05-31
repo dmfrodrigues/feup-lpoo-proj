@@ -5,9 +5,9 @@ import com.pacman.g60.View.Color;
 
 public class TerminalSprite {
     private final Integer W, H;
-    private char[][] chars = null;
-    private Color[][] back = null;
-    private Color[][] fore = null;
+    private final char[][] chars;
+    private final Color[][] back;
+    private final Color[][] fore;
     public TerminalSprite(Integer W, Integer H){
         this.W = W;
         this.H = H;
