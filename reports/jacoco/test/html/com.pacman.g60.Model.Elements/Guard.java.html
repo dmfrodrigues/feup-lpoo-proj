@@ -7,55 +7,31 @@ import com.pacman.g60.Model.Position;
 
 public class Guard extends Enemy implements MeleeAttackerElement {
     private GuardMovementStrategy movement;
-<span class="fc" id="L10">    public enum MovementType</span>
-    {
-<span class="fc" id="L12">        HORIZONTAL,</span>
-<span class="fc" id="L13">        VERTICAL</span>
-    }
-    private MovementType moveType;
+
 
     public Guard(Position pos)
     {
-<span class="nc" id="L19">        super(pos,new DamageEffect(1),10);</span>
-<span class="nc" id="L20">        this.moveType = MovementType.HORIZONTAL;</span>
-<span class="nc" id="L21">        initMovement(pos);</span>
-<span class="nc" id="L22">    }</span>
+<span class="nc" id="L14">        super(pos,new DamageEffect(1),10);</span>
+<span class="nc" id="L15">        this.movement = new HorizontalGuardMovementStrategy(pos);</span>
+<span class="nc" id="L16">    }</span>
 
-    public Guard(Position pos, MovementType moveType)
+    public Guard(Position pos, GuardMovementStrategy movementStrategy)
     {
-<span class="fc" id="L26">        super(new Position(100,100),new DamageEffect(1),10);</span>
-<span class="fc" id="L27">        this.moveType = moveType;</span>
-<span class="fc" id="L28">        initMovement(pos);</span>
-<span class="fc" id="L29">    }</span>
+<span class="fc" id="L20">        super(new Position(100,100),new DamageEffect(1),10);</span>
+<span class="fc" id="L21">        this.movement = movementStrategy;</span>
+<span class="fc" id="L22">    }</span>
 
-    private void initMovement(Position position)
-    {
-<span class="pc bpc" id="L33" title="1 of 2 branches missed.">        if (moveType == MovementType.HORIZONTAL) this.movement = new HorizontalGuardMovementStrategy(position);</span>
-<span class="pc bpc" id="L34" title="1 of 2 branches missed.">        if (moveType == MovementType.VERTICAL  ) this.movement = new VerticalGuardMovementStrategy(position);</span>
-<span class="fc" id="L35">    }</span>
-
-    public MovementType getMoveType()
-    {
-<span class="fc" id="L39">        return this.moveType;</span>
-    }
-
-    public Position tryGetNextPos()
-    {
-<span class="fc" id="L44">        return movement.tryMove();</span>
-    }
-
-    public Position getNextPos()
-    {
-<span class="nc" id="L49">        return movement.move();</span>
-    }
+   public GuardMovementStrategy getMovement()
+   {
+<span class="fc" id="L26">       return this.movement;</span>
+   }
 
     @Override
     public Object clone()
     {
-<span class="nc" id="L55">        Guard guard = (Guard) super.clone();</span>
-<span class="nc" id="L56">        guard.moveType = this.moveType;</span>
-<span class="nc" id="L57">        guard.movement = this.movement;</span>
-<span class="nc" id="L58">        return guard;</span>
+<span class="nc" id="L32">        Guard guard = (Guard) super.clone();</span>
+<span class="nc" id="L33">        guard.movement = this.movement;</span>
+<span class="nc" id="L34">        return guard;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

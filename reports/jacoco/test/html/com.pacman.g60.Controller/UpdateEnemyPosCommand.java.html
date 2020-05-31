@@ -29,7 +29,7 @@ public class UpdateEnemyPosCommand implements Command {
 <span class="fc" id="L29">            arenaModel.updateMapKey(oldPos,newPos,element);</span>
 <span class="fc" id="L30">            ((DynamicElement) element).updatePos(newPos);</span>
 
-<span class="pc bpc" id="L32" title="1 of 2 branches missed.">            if (element instanceof Guard) ((Guard) element).getNextPos();</span>
+<span class="pc bpc" id="L32" title="1 of 2 branches missed.">            if (element instanceof Guard) ((Guard) element).getMovement().move();</span>
         }
 
 <span class="fc" id="L35">    }</span>

@@ -21,8 +21,8 @@ public class ArenaModelLoaderStream implements ArenaModel.Loader {
 <span class="nc" id="L21">                case 'S': return new Sword(pos);</span>
 <span class="nc" id="L22">                case 'B': return new Bullet(pos);</span>
 <span class="nc" id="L23">                case 'M': return new Mummy(pos);</span>
-<span class="nc" id="L24">                case 'V': return new Guard(pos, Guard.MovementType.VERTICAL);</span>
-<span class="nc" id="L25">                case 'R': return new Guard(pos, Guard.MovementType.HORIZONTAL);</span>
+<span class="nc" id="L24">                case 'V': return new Guard(pos, new VerticalGuardMovementStrategy(pos));</span>
+<span class="nc" id="L25">                case 'R': return new Guard(pos, new HorizontalGuardMovementStrategy(pos));</span>
 <span class="fc" id="L26">                case ' ': return null;</span>
 <span class="fc" id="L27">                default: throw new IllegalArgumentException(&quot;Unknown character '&quot; + c + &quot;'&quot;);</span>
             }
