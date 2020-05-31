@@ -2,14 +2,14 @@ package com.pacman.g60.Controller;
 
 public class UpdateRateController {
     private static final Integer SECONDS_TO_MILLIS = 1000;
-    private Integer fps;
+    private Integer updatesPerSecond;
     public UpdateRateController(){ this(60); }
-    public UpdateRateController(Integer fps){ this.fps = fps; }
-    public void setFPS(Integer fps){ 
-        this.fps = fps;
+    public UpdateRateController(Integer updatesPerSecond){ this.updatesPerSecond = updatesPerSecond; }
+    public void setUpdatesPerSecond(Integer updatesPerSecond){ 
+        this.updatesPerSecond = updatesPerSecond;
     }
     private Integer getMillisPerFrame(){
-        return SECONDS_TO_MILLIS/fps;
+        return SECONDS_TO_MILLIS/ updatesPerSecond;
     }
     private long previous = 0;
     private long lag = 0;
