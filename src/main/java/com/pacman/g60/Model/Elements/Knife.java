@@ -5,13 +5,8 @@ import com.pacman.g60.Model.Effect.Effect;
 import com.pacman.g60.Model.Position;
 
 public class Knife extends Weapon {
-
     public Knife()
     {
         super(null, new DamageEffect(1));
-    }
-
-    public Knife(Position pos, Effect effect) {
-        super(pos, effect);
     }
 }

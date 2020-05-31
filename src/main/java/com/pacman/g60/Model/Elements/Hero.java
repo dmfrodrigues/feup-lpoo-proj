@@ -8,7 +8,7 @@ import com.pacman.g60.Model.Position;
 
 
 public class Hero extends DynamicElement implements ControlledByPlayer, LivingElement, MeleeAttackerElement, RangedAttackerElement, OrientedElement {
-    private Integer health,coins,ammo;
+    private Integer coins,ammo;
     private Weapon weapon;
     static final private Integer maxHealth = 10;
 
@@ -31,14 +31,6 @@ public class Hero extends DynamicElement implements ControlledByPlayer, LivingEl
         this.weapon = new Knife();
     }
 
-    public Integer getHealth() {
-        return health;
-    }
-
-    public void setHealth(Integer health) {
-        this.health = health;
-    }
-
     public Integer getCoins() {
         return coins;
     }
@@ -58,6 +50,16 @@ public class Hero extends DynamicElement implements ControlledByPlayer, LivingEl
         if (this.ammo < 0) this.ammo = 0;
     }
 
+    public void setCoins(Integer coins)
+    {
+        this.coins = coins;
+    }
+
+    public void setAmmo(Integer ammo)
+    {
+        this.ammo = ammo;
+    }
+
     public void setWeapon(Weapon weapon)
     {
         this.weapon = weapon;
@@ -66,10 +68,6 @@ public class Hero extends DynamicElement implements ControlledByPlayer, LivingEl
     public Weapon getWeapon()
     {
         return this.weapon;
-    }
-
-    public void setCoins(Integer coins) {
-        this.coins = coins;
     }
 
     public Integer getMaxHealth()
@@ -82,10 +80,5 @@ public class Hero extends DynamicElement implements ControlledByPlayer, LivingEl
 
         this.health += diff;
         if (this.health > maxHealth) this.health = maxHealth;
-    }
-
-    @Override
-    public boolean isAlive() {
-        return health > 0;
     }
 }
