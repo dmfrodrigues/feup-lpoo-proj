@@ -1,6 +1,7 @@
 package com.pacman.g60.View.Views;
 
 
+import com.googlecode.lanterna.terminal.Terminal;
 import com.pacman.g60.Model.*;
 import com.pacman.g60.Model.Elements.*;
 
@@ -30,46 +31,95 @@ public class TerminalArenaView extends ArenaView {
 
     private class InfoBar {
         private final Integer Wmargin = 2;
-        private final TextModel textModelCoin;
-        private final TerminalTextView textViewCoin;
-        private final TextModel textModelTimer;
-        private final SpriteModel coinModel;
+        
         private Duration time = Duration.ZERO;
         private final GUIViewComposite view;
         
-        TerminalSprite heartSprite;
-        TerminalSprite heartDeadSprite;
-        TerminalSprite coinSprite;
+        private final TerminalSprite heartSprite;
+        private final TerminalSprite heartDeadSprite;
+
+        private final TextModel textModelTimer;
+
+        private final TerminalSprite damageSprite;
+        private final SpriteModel damageModel;
+        private final TextModel textModelDamage;
+        private final TerminalTextView textViewDamage;
+
+        private final TerminalSprite bulletSprite;
+        private final SpriteModel bulletModel;
+        private final TextModel textModelBullet;
+        private final TerminalTextView textViewBullet;
+        
+        private final TerminalSprite coinSprite;
+        private final SpriteModel coinModel;
+        private final TextModel textModelCoin;
+        private final TerminalTextView textViewCoin;
         
         public InfoBar() throws FileNotFoundException{
             TerminalSprite.Loader loader;
+            // Hearts
             loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/heart-6-3.lan"));
             heartSprite = loader.getTerminalSprite();
             loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/heart-dead-6-3.lan"));
             heartDeadSprite = loader.getTerminalSprite();
-            
-            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/coin-6-3.lan"));
-            coinSprite = loader.getTerminalSprite();
-            SpriteView coinView = new TerminalSpriteView(terminalGUI);
-            coinModel = new SpriteModel(coinSprite);
-            coinView.setSpriteModel(coinModel);
-            
-            textModelCoin = new TextModel("");
-            textModelCoin.setVerticalAlign(Alignable.VerticalAlign.TOP);
-            textModelCoin.setHorizontalAlign(Alignable.HorizontalAlign.LEFT);
-            textViewCoin = new TerminalTextView(terminalGUI, font);
-            textViewCoin.setTextModel(textModelCoin);
-            
+            // Timer
             textModelTimer = new TextModel("");
             textModelTimer.setVerticalAlign(Alignable.VerticalAlign.TOP);
             textModelTimer.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);
             TerminalTextView textViewTimer = new TerminalTextView(terminalGUI, font);
             textViewTimer.setTextModel(textModelTimer);
-            
+
+            // Damage
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/sword-6-3.lan"));
+            damageSprite = loader.getTerminalSprite();
+            SpriteView damageView = new TerminalSpriteView(terminalGUI);
+            damageModel = new SpriteModel(damageSprite);
+            damageModel.setVerticalAlign(Alignable.VerticalAlign.TOP);
+            damageModel.setHorizontalAlign(Alignable.HorizontalAlign.RIGHT);
+            damageView.setSpriteModel(damageModel);
+
+            textModelDamage = new TextModel("");
+            textModelDamage.setVerticalAlign(Alignable.VerticalAlign.TOP);
+            textModelDamage.setHorizontalAlign(Alignable.HorizontalAlign.LEFT);
+            textViewDamage = new TerminalTextView(terminalGUI, font);
+            textViewDamage.setTextModel(textModelDamage);
+            // Bullet
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/bullet-6-3.lan"));
+            bulletSprite = loader.getTerminalSprite();
+            SpriteView bulletView = new TerminalSpriteView(terminalGUI);
+            bulletModel = new SpriteModel(bulletSprite);
+            bulletModel.setVerticalAlign(Alignable.VerticalAlign.TOP);
+            bulletModel.setHorizontalAlign(Alignable.HorizontalAlign.RIGHT);
+            bulletView.setSpriteModel(bulletModel);
+
+            textModelBullet = new TextModel("");
+            textModelBullet.setVerticalAlign(Alignable.VerticalAlign.TOP);
+            textModelBullet.setHorizontalAlign(Alignable.HorizontalAlign.LEFT);
+            textViewBullet = new TerminalTextView(terminalGUI, font);
+            textViewBullet.setTextModel(textModelBullet);
+            // Coin
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/coin-6-3.lan"));
+            coinSprite = loader.getTerminalSprite();
+            SpriteView coinView = new TerminalSpriteView(terminalGUI);
+            coinModel = new SpriteModel(coinSprite);
+            coinModel.setVerticalAlign(Alignable.VerticalAlign.TOP);
+            coinModel.setHorizontalAlign(Alignable.HorizontalAlign.RIGHT);
+            coinView.setSpriteModel(coinModel);
+
+            textModelCoin = new TextModel("");
+            textModelCoin.setVerticalAlign(Alignable.VerticalAlign.TOP);
+            textModelCoin.setHorizontalAlign(Alignable.HorizontalAlign.RIGHT);
+            textViewCoin = new TerminalTextView(terminalGUI, font);
+            textViewCoin.setTextModel(textModelCoin);
+            // View
             view = new GUIViewComposite(terminalGUI);
+            view.addView(textViewTimer);
+            view.addView(textViewBullet);
+            view.addView(textViewDamage);
+            view.addView(damageView);
+            view.addView(bulletView);
             view.addView(textViewCoin);
             view.addView(coinView);
-            view.addView(textViewTimer);
         }
         
         public void setTime(Duration time) { this.time = time; }
@@ -104,25 +154,40 @@ public class TerminalArenaView extends ArenaView {
                 }
             }
         }
-        private void updateCoins(int coins, int totalCoins){
-            String coinsStr = String.format("%d/%d", coins, totalCoins);
-            int coinsStrX = terminalGUI.getW()-Wmargin-textViewCoin.getStringWidth(coinsStr);
-            textModelCoin.setText(coinsStr);
-            textModelCoin.setPosition(new Position(coinsStrX, 1+coinSprite.getH()-textViewCoin.getStringHeight(textModelCoin.getText())));
-            int coinsSpriteX = coinsStrX - coinSprite.getW() -1;
-            coinModel.setPosition(new Position(coinsSpriteX, 1));
-        }
         private void updateTimer(){
             long sec = time.getSeconds()%60;
             long min = time.getSeconds()/60;
             textModelTimer.setText(String.format("%2d:%02d", min, sec));
             textModelTimer.setPosition(new Position(terminalGUI.getW()/2, 1+coinSprite.getH()-textViewCoin.getStringHeight(textModelTimer.getText())));
         }
+        private void updateDamage(Integer damage){
+            textModelDamage.setText(damage.toString());
+            Position pos = new Position((int)(0.75*terminalGUI.getW()), 1);
+            textModelDamage.setPosition(pos);
+            damageModel.setPosition(pos);
+        }
+        private void updateBullet(Integer ammo){
+            textModelBullet.setText(ammo.toString());
+            Position pos = new Position((int) (0.85*terminalGUI.getW()), 1);
+            textModelBullet.setPosition(pos);
+            bulletModel.setPosition(pos);
+        }
+        private void updateCoins(int coins, int totalCoins){
+            textModelCoin.setText(String.format("%d/%d", coins, totalCoins));
+            textModelCoin.setPosition(new Position(terminalGUI.getW()-1, 1));
+            coinModel.setPosition(new Position(
+                    terminalGUI.getW()-1-textViewCoin.getStringWidth(textModelCoin.getText()),
+                    1
+            ));
+        }
+
         public void draw(ArenaModel arenaModel){
             drawFrame();
             drawHealth(arenaModel.getHero().getHealth(), arenaModel.getHero().getMaxHealth());
-            updateCoins(arenaModel.getHero().getCoins(), arenaModel.getNumCoins() + arenaModel.getHero().getCoins());
             updateTimer();
+            updateBullet(arenaModel.getHero().getAmmo());
+            updateDamage(arenaModel.getHero().getWeapon().getEffect().getDamage());
+            updateCoins(arenaModel.getHero().getCoins(), arenaModel.getNumCoins() + arenaModel.getHero().getCoins());
             view.draw();
         }
     }
