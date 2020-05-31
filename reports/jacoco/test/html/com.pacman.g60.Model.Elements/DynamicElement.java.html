@@ -80,19 +80,19 @@ public abstract class DynamicElement extends Element implements MovableElement, 
     @Override
     public void updateHealth(Integer diff)
     {
-<span class="nc" id="L83">        this.health += diff;</span>
-<span class="nc" id="L84">    }</span>
+<span class="fc" id="L83">        this.health += diff;</span>
+<span class="fc" id="L84">    }</span>
 
     @Override
     public boolean isAlive()
     {
-<span class="nc bnc" id="L89" title="All 2 branches missed.">        return health &gt; 0;</span>
+<span class="pc bpc" id="L89" title="1 of 2 branches missed.">        return health &gt; 0;</span>
     }
 
     @Override
     public boolean beCollected(ArenaModel arenaModel)
     {
-<span class="nc" id="L95">        return false;</span>
+<span class="fc" id="L95">        return false;</span>
     }
 
 }
