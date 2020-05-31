@@ -23,4 +23,16 @@ public class DamageEffect implements Effect{
             ((LivingElement) target).updateHealth(-damage);
         }
     }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (o == null) return false;
+        if (o == this) return true;
+        if (o.getClass() != this.getClass()) return false;
+
+        DamageEffect effect = (DamageEffect) o;
+
+        return this.damage == effect.damage;
+    }
 }
