@@ -23,6 +23,7 @@ This project was developed for LPOO <sup>2019</sup>⁄<sub>20</sub> by:
     5. [Menus and games](#state-game)
     6. [ArenaController is the *God of Dynamics*](#command-composite-arenacontroller)
     7. [Movement strategies](#strategy-movement)
+    8. [Composite Views](#composite-view)
 5. [Code smells and refactoring suggestions](#code-smells)
 6. [Testing](#testing)
 7. [Self-evaluation](#self-evaluation)
@@ -56,6 +57,7 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
 - In game:
     - `⬅`/`⬆️`/`➡`/`⬇️` to move hero west/north/east/south.
     - `⎵` (Space bar) to use melee attack.
+    - `F` to shoot a bullet.
     - `ESC`/`P` to pause the game.
 
 <a name="media"><a/>
@@ -72,12 +74,22 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
 |------------|
 | ![](images/2020-05-28_20-12-43.png) |
 
+##### Elements
+
+| Wall | Coin | Sword | Potion | Hero | Ghost | Ogre | Mummy | Guard |
+|------|------|-------|---------------|------|-------|------|-------|-------|
+| ![wall](images/wall.png) | ![coin](images/coin.png) | ![sword](images/sword.png) | ![potion](images/potion.png) | ![hero](images/hero.png) | ![ghost](images/ghost.png) | ![ogre](images/ogre.png) | ![mummy](images/mummy.png) | ![guard](images/guard.png) |
+
 <a name="animations"><a/>
 #### Animations
 
 | 2020-04-28 | 2020-05-02 |
 |------------|------------|
 |![2020-04-28-animation](images/pacman-20200428-202310.gif)|![2020-04-26-image](images/pacman-20200502-042816.gif)|
+
+| 2020-05-31 | 2020-05-31 |
+|------------|------------|
+| ![2020-04-26-image](images/pacman-20200531-192912.gif) | ![2020-04-26-image](images/pacman-20200531-193722.gif) |
 
 <a name="implemented-features"><a/>
 ## Implemented features
@@ -105,10 +117,6 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
     - [x] Ogre (strong melee)
     - [x] Guard (walks a small path over and over)
     - [x] Mummy
-- [x] Main menu
-    - [x] Level selector
-    - [x] Scoreboard
-    - [x] Load and save game
 - [x] Weaponize enemies
 - [x] Weaponize hero
 - [x] Collectibles
@@ -116,6 +124,15 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
     - [x] Health potion
     - [x] Sword
     - [x] Bullet
+
+![2020-04-26-image](images/pacman-20200531-192912.gif)
+
+- [x] Main menu
+    - [x] Level selector
+    - [x] Scoreboard
+    - [x] Load and save game
+
+![2020-04-26-image](images/pacman-20200531-193722.gif)
 
 <a name="planned-features"><a/>
 ## Planned features
@@ -332,10 +349,31 @@ This use of the Strategy pattern has the benefits of:
 - Allowing reuse of an algorithm for different elements.
 - Implement different algorithms and then choose whichever seems better.
 
+<a name="composite-view"><a/>
+
+### [Composite](https://refactoring.guru/design-patterns/composite) Views
+
+#### Problem in context
+
+We were having trouble making menu views with titles, so first we decided to create a [draw] function in MenuView, so MenuView could then be overloaded and the missing titles added.
+
+#### The pattern
+
+We applied the [Composite](https://refactoring.guru/design-patterns/composite), which allows a program to ignore the distinction between a simple and a composite object, as long as they can perform the same operations the composite is equivalent to the siimple object.
+
+#### Implementation
+
+The following figure shows how the pattern's roles were mapped to the application classes.
+
+![](images/composite-views.svg)
+
+#### Consequences
+
+This use of the Composite pattern has allowed us to:
+- Work with more complex view structures
+- Easily introduce new views as needed, without breaking the existing code, and also easily integrate with what was already implemented
+
 <a name="code-smells"><a/>
-
-### Composite in Views
-
 ## Code smells and refactoring suggestions
 
 ### [Shotgun surgery](https://refactoring.guru/smells/shotgun-surgery)
@@ -389,17 +427,19 @@ This smell is present in the constructor of the UpdateEnemyPosCommand class and 
 
 The updatePos function in the DynamicElement class is a bit too long and could be divided into smaller pieces using [Extract Method](https://refactoring.guru/extract-method).
 
-### A smell
-On [this commit](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/17394b793d1e3a9e62708e2761d981fa3c6311b0/src/main/java/com/pacman/g60/View/Views/TerminalArenaView.java#L52-L53), TerminalArenaView has the responsibility of tracking time since the beginning of the game, but this responsibility should be of the ArenaController.
+### SRP/[Large class](https://refactoring.guru/smells/large-class) and time-tracking
+The class [TerminalArenaView](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/17394b793d1e3a9e62708e2761d981fa3c6311b0/src/main/java/com/pacman/g60/View/Views/TerminalArenaView.java#L52-L53) violated the Single Responsibility Principle by keeping track of time when it should only know how to draw an ArenaModel; so we moved that responsibily to ArenaController. Evetually we realized ArenaController was also becoming a [Large Class](https://refactoring.guru/smells/large-class), so we applied (Extract Class)[https://refactoring.guru/extract-class], having extracted the simple class [Stopwatch](../src/main/java/com/pacman/g60/Controller/Stopwatch.java) to keep track of time.
 
-### Duplicate code in TerminalArenaView
-There was duplicate code in [TerminalArenaView](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/2277651ca00c31e2b380eaf761bc7817e6698122/src/main/java/com/pacman/g60/View/Views/TerminalArenaView.java#L38-L47) and [TerminalSpriteView](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/2277651ca00c31e2b380eaf761bc7817e6698122/src/main/java/com/pacman/g60/View/Views/TerminalSpriteView.java#L43-L50).
+### [Duplicate code](https://refactoring.guru/smells/duplicate-code) in TerminalArenaView
+There was [duplicate code](https://refactoring.guru/smells/duplicate-code) in [TerminalArenaView](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/2277651ca00c31e2b380eaf761bc7817e6698122/src/main/java/com/pacman/g60/View/Views/TerminalArenaView.java#L38-L47) and [TerminalSpriteView](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/2277651ca00c31e2b380eaf761bc7817e6698122/src/main/java/com/pacman/g60/View/Views/TerminalSpriteView.java#L43-L50).
 Class [TerminalSpriteView](../src/main/java/com/pacman/g60/View/Views/TerminalSpriteView.java) was actually an effort to solve anticipated duplicate code smells, so it basically consists of the result of applying [Extract Class](https://refactoring.guru/extract-class).
 
-We have not solved this smell completely, since there is still [repeated code](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/398c47f6952d28ed05ad5c9741d325915e85d972/src/main/java/com/pacman/g60/View/Views/TerminalArenaView.java#L101-L115), but in this case we decided not to fix it since it allows drawing "half hearts" in case hero health is not an integer (e.g., 9.5).
+We have not solved this smell completely, since there is still [duplicate code](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/398c47f6952d28ed05ad5c9741d325915e85d972/src/main/java/com/pacman/g60/View/Views/TerminalArenaView.java#L101-L115), but in this case we decided not to fix it since it allows drawing "half hearts" in case hero health is not an integer (e.g., 9.5).
 
-### Some dependency problem
+### Some excessive knowledge problem
 There is a problem with [Game](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/97e24afb5f05fbb3dc49aee784a37b6c63cd7115/src/main/java/com/pacman/g60/Controller/Game.java#L1-L413) using terminal-specific [hearts](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/97e24afb5f05fbb3dc49aee784a37b6c63cd7115/src/main/java/com/pacman/g60/Controller/Game.java#L238-L239) and [coins](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/97e24afb5f05fbb3dc49aee784a37b6c63cd7115/src/main/java/com/pacman/g60/Controller/Game.java#L251-L252), which stems from the fact [SpriteModel](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/97e24afb5f05fbb3dc49aee784a37b6c63cd7115/src/main/java/com/pacman/g60/Model/Models/SpriteModel.java#L1-L22) knows too much about how to draw itself by having a [TerminalSprite member](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/97e24afb5f05fbb3dc49aee784a37b6c63cd7115/src/main/java/com/pacman/g60/Model/Models/SpriteModel.java#L11).
+
+We could solve this smell by storing in SpriteModel an *intention* to be drawn as a certain type of sprite (e.g., instead of containing an actual TerminalSprite for drawing a coin, it might contain an `enum` with value `COIN`), and then apply the [Abstract Factory](https://refactoring.guru/design-patterns/abstract-factory) pattern, and the factory would sort out which Sprite to be returned based on the value of the SpriteModel's `enum` variable.
 
 <a name="testing"><a/>
 

@@ -45,6 +45,36 @@ public class Bullet extends Collectable implements OrientedElement {
         return this.moving;
     }
 
+    public Position getNextPos()
+    {
+        Position nextPos = null;
+        Position currentPos = this.getPos();
+        switch(this.dir)
+        {
+            case UP:
+            {
+                nextPos = new Position(currentPos.getX(),currentPos.getY() - 1);
+                break;
+            }
+            case DOWN:
+            {
+                nextPos = new Position(currentPos.getX(),currentPos.getY() + 1);
+                break;
+            }
+            case LEFT:
+            {
+                nextPos = new Position(currentPos.getX() - 1,currentPos.getY());
+                break;
+            }
+            case RIGHT:
+            {
+                nextPos = new Position(currentPos.getX() + 1,currentPos.getY());
+                break;
+            }
+        }
+        return nextPos;
+    }
+
     @Override
     public Application.Direction getDirection() {
         return dir;

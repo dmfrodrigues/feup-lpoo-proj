@@ -42,5 +42,4 @@ public abstract class Element implements Cloneable{
     }
 
     public abstract boolean beCollected(ArenaModel arenaModel);
-
 }
