@@ -299,7 +299,7 @@ We will use the [Command](https://refactoring.guru/design-patterns/command) patt
 
 #### Implementation
 
-Our implementation will follow the diagram shown below.
+Our implementation follows the diagram shown below.
 
 ![](images/command-diagram.svg)
 
