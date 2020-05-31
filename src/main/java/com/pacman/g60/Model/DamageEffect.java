@@ -34,4 +34,8 @@ public class DamageEffect implements Cloneable{
 
         return this.damage == effect.damage;
     }
+
+    public Integer getDamage() {
+        return damage;
+    }
 }
