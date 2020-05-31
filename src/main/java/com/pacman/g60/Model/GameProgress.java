@@ -1,15 +1,16 @@
 package com.pacman.g60.Model;
 
+import java.time.Duration;
 import java.util.*;
 
 public class GameProgress {
     public static class LevelProgress implements Comparable {
         private Integer level;
         private Integer coins;
-        private Integer time;
+        private Duration time;
         private Date when;
         
-        public LevelProgress(Integer level, Integer coins, Integer time, Date when){
+        public LevelProgress(Integer level, Integer coins, Duration time, Date when){
             this.level = level;
             this.coins = coins;
             this.time  = time ;
@@ -18,7 +19,7 @@ public class GameProgress {
         
         public Integer getLevel() { return level; }
         public Integer getCoins() { return coins; }
-        public Integer getTime () { return time ; }
+        public Duration getTime () { return time ; }
         public Date    getWhen () { return when ; }
 
         @Override
@@ -26,7 +27,7 @@ public class GameProgress {
             LevelProgress p = (LevelProgress)o;
             if(level != p.level) throw new IllegalArgumentException();
             if(!coins.equals(p.coins)) return (coins-p.coins);
-            if(!time .equals(p.time )) return (time -p.time );
+            if(!time .equals(p.time )) return (time.compareTo(p.time));
             return 0;
         }
     }

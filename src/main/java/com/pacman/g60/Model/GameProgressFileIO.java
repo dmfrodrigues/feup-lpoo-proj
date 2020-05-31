@@ -1,6 +1,7 @@
 package com.pacman.g60.Model;
 
 import java.io.*;
+import java.time.Duration;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.Set;
@@ -17,7 +18,7 @@ public class GameProgressFileIO {
             res.addProgress(new GameProgress.LevelProgress(
                     Integer.parseInt(line[0]),
                     Integer.parseInt(line[1]),
-                    Integer.parseInt(line[2]),
+                    Duration.ZERO.plusNanos(Integer.parseInt(line[2])),
                     new Date(Integer.parseInt(line[3]))
             ));
         }
@@ -33,7 +34,7 @@ public class GameProgressFileIO {
             String data =
                     level.getLevel() + " " +
                     level.getCoins() + " " +
-                    level.getTime() + " " +
+                    level.getTime().toNanos() + " " +
                     level.getWhen().getTime() + "\n";
             fr.write(data);
         }
