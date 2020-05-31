@@ -29,7 +29,7 @@ public class UpdateEnemyPosCommand implements Command {
             arenaModel.updateMapKey(oldPos,newPos,element);
             ((DynamicElement) element).updatePos(newPos);
 
-            if (element instanceof Guard) ((Guard) element).getNextPos();
+            if (element instanceof Guard) ((Guard) element).getMovement().move();
         }
 
     }

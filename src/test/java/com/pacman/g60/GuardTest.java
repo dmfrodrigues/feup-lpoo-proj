@@ -21,6 +21,6 @@ public class GuardTest {
     public void tryGetNextPos()
     {
         Guard guard = new Guard(pos,new HorizontalGuardMovementStrategy(pos));
-        assertEquals(new Position(5,5),guard.tryGetNextPos());
+        assertEquals(new Position(5,5),guard.getMovement().tryMove());
     }
 }
