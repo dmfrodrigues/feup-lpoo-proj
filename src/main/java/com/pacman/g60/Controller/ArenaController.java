@@ -38,7 +38,7 @@ public class ArenaController extends Controller {
             long numberUpdates = rateController.numberUpdatesInThisFrame();
             for(long i = 0; i < numberUpdates; ++i) {
                 executeCommand(new UpdateAllEnemyPosCommand(this.arenaModel));
-                executeCommand(new CheckHeroAdjacencyCommand(this.arenaModel));
+                executeCommand(new ApplyAllEffectCommand(this.arenaModel,false));
                 executeCommand(new CheckForDeathCommand(this.arenaModel));
                 executeCommand(new UpdateAllProjectilePosCommand(this.arenaModel));
             }
@@ -62,7 +62,7 @@ public class ArenaController extends Controller {
                         executeCommand(new MoveHeroRightCommand(this.arenaModel));
                         break;
                     case SPACEBAR:
-                        executeCommand(new AttackCommand(this.arenaModel)); break;
+                        executeCommand(new ApplyAllEffectCommand(this.arenaModel,true)); break;
                     case FIRE:
                         executeCommand(new FireBulletCommand(this.arenaModel)); break;
 

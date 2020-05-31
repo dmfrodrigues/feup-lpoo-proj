@@ -1,23 +1,25 @@
 package com.pacman.g60.Controller;
 
-import com.pacman.g60.Model.Models.ArenaModel;
 import com.pacman.g60.Model.Effect.Effect;
 import com.pacman.g60.Model.Elements.Element;
 import com.pacman.g60.Model.Elements.Enemy;
 import com.pacman.g60.Model.Elements.Hero;
+import com.pacman.g60.Model.Models.ArenaModel;
 import com.pacman.g60.Model.Position;
 
 import java.util.List;
 
-public class AttackCommand implements Command{
+public class ApplyAllEffectCommand extends CompositeCommand {
     private ArenaModel arenaModel;
+    private boolean isThisAHeroAttack;
 
-    public AttackCommand(ArenaModel arenaModel) {
+    public ApplyAllEffectCommand(ArenaModel arenaModel, boolean isThisAHeroAttack) {
         this.arenaModel = arenaModel;
+        this.isThisAHeroAttack = isThisAHeroAttack;
     }
 
-    @Override
-    public void execute() {
+    private void setupExecution()
+    {
         Hero hero = arenaModel.getHero();
         Position heroPos = hero.getPos();
         Integer heroPosX = heroPos.getX(), heroPosY = heroPos.getY();
@@ -32,13 +34,30 @@ public class AttackCommand implements Command{
                 {
                     if (elem instanceof Enemy)
                     {
-                        Effect effect = hero.getWeapon().getEffect();
-                        Command command = new ApplyEffectCommand(effect,elem);
-                        command.execute();
+                        Effect effect;
+                        Element target;
+                        if (isThisAHeroAttack)
+                        {
+                            effect = hero.getWeapon().getEffect();
+                            target = elem;
+                        }
+                        else
+                        {
+                            effect = ((Enemy)elem).getEffect();
+                            target = hero;
+                        }
+                        Command command = new ApplyEffectCommand(effect,target);
+                        addCommand(command);
                     }
                 }
 
             }
         }
+    }
+
+    @Override
+    public void execute() {
+        setupExecution();
+        super.execute();
     }
 }
