@@ -18,39 +18,39 @@ import com.pacman.g60.View.Sprite.TerminalSpriteOrientable;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class TerminalArenaView extends ArenaView {
 
-<span class="fc" id="L27">    private static final Integer MILLIS_TO_SECONDS = 1000;</span>
+<span class="fc" id="L28">    private static final Integer MILLIS_TO_SECONDS = 1000;</span>
     
-<span class="fc" id="L29">    private static final Integer HInfoBar = 5;</span>
+<span class="fc" id="L30">    private static final Integer HInfoBar = 5;</span>
 
     private class InfoBar {
-<span class="fc" id="L32">        private final Integer Wmargin = 2;</span>
+<span class="fc" id="L33">        private final Integer Wmargin = 2;</span>
         private TextModel textModelCoin;
         private TerminalTextView textViewCoin;
         private TextModel textModelTimer;
         private TerminalTextView textViewTimer;
+<span class="fc" id="L38">        private Duration time = Duration.ZERO;</span>
 
         private void drawSprite(TerminalSprite sprite, int x0, int y0){
-<span class="fc bfc" id="L39" title="All 2 branches covered.">            for(int x = 0; x &lt; sprite.getW(); ++x) {</span>
-<span class="fc bfc" id="L40" title="All 2 branches covered.">                for (int y = 0; y &lt; sprite.getH(); ++y) {</span>
-<span class="fc" id="L41">                    terminalGUI.drawCharacter(x0 + x, y0 + y,</span>
-<span class="fc" id="L42">                            sprite.getChar(x, y),</span>
-<span class="fc" id="L43">                            sprite.getForegroundColor(x, y),</span>
-<span class="fc" id="L44">                            sprite.getBackgroundColor(x, y));</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">            for(int x = 0; x &lt; sprite.getW(); ++x) {</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">                for (int y = 0; y &lt; sprite.getH(); ++y) {</span>
+<span class="fc" id="L43">                    terminalGUI.drawCharacter(x0 + x, y0 + y,</span>
+<span class="fc" id="L44">                            sprite.getChar(x, y),</span>
+<span class="fc" id="L45">                            sprite.getForegroundColor(x, y),</span>
+<span class="fc" id="L46">                            sprite.getBackgroundColor(x, y));</span>
                 }
             }
-<span class="fc" id="L47">        }</span>
+<span class="fc" id="L49">        }</span>
         TerminalSprite heartSprite;
         TerminalSprite heartDeadSprite;
         TerminalSprite coinSprite;
         
-        long startTime;
-<span class="fc" id="L53">        public void startTime(){ startTime = System.currentTimeMillis(); }</span>
 <span class="fc" id="L54">        public InfoBar() throws FileNotFoundException{</span>
             TerminalSprite.Loader loader;
 <span class="fc" id="L56">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/heart-6-3.lan&quot;));</span>
@@ -71,58 +71,58 @@ public class TerminalArenaView extends ArenaView {
 <span class="fc" id="L71">            textModelTimer.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);</span>
 <span class="fc" id="L72">            textViewTimer = new TerminalTextView(terminalGUI, font);</span>
 <span class="fc" id="L73">            textViewTimer.setTextModel(textModelTimer);</span>
-
-<span class="fc" id="L75">            startTime();</span>
-<span class="fc" id="L76">        }</span>
+<span class="fc" id="L74">        }</span>
+        
+<span class="nc" id="L76">        public void setTime(Duration time) { this.time = time; }</span>
+        
         private void drawFrame(){
-<span class="pc bpc" id="L78" title="1 of 2 branches missed.">            for(Integer x = 1; x &lt; terminalGUI.getW()-1; ++x){</span>
-<span class="nc" id="L79">                terminalGUI.drawCharacter(x, 0, '▀', Color.GREY, Color.BLACK);</span>
-<span class="nc" id="L80">                terminalGUI.drawCharacter(x, HInfoBar-1, '▄', Color.GREY, Color.BLACK);</span>
+<span class="pc bpc" id="L79" title="1 of 2 branches missed.">            for(Integer x = 1; x &lt; terminalGUI.getW()-1; ++x){</span>
+<span class="nc" id="L80">                terminalGUI.drawCharacter(x, 0, '▀', Color.GREY, Color.BLACK);</span>
+<span class="nc" id="L81">                terminalGUI.drawCharacter(x, HInfoBar-1, '▄', Color.GREY, Color.BLACK);</span>
             }
-<span class="fc bfc" id="L82" title="All 2 branches covered.">            for(Integer y = 1; y &lt; HInfoBar-1; ++y){</span>
-<span class="fc" id="L83">                terminalGUI.drawCharacter(0, y, '█', Color.GREY, Color.BLACK);</span>
-<span class="fc" id="L84">                terminalGUI.drawCharacter(terminalGUI.getW()-1, y, '█', Color.GREY, Color.BLACK);</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">            for(Integer y = 1; y &lt; HInfoBar-1; ++y){</span>
+<span class="fc" id="L84">                terminalGUI.drawCharacter(0, y, '█', Color.GREY, Color.BLACK);</span>
+<span class="fc" id="L85">                terminalGUI.drawCharacter(terminalGUI.getW()-1, y, '█', Color.GREY, Color.BLACK);</span>
             }
-<span class="pc bpc" id="L86" title="1 of 2 branches missed.">            for(Integer x = 1; x &lt; terminalGUI.getW()-1; ++x){</span>
-<span class="nc bnc" id="L87" title="All 2 branches missed.">                for(Integer y = 1; y &lt; HInfoBar-1; ++y){</span>
-<span class="nc" id="L88">                    terminalGUI.drawCharacter(x, y, ' ', Color.BLACK, Color.BLACK);</span>
+<span class="pc bpc" id="L87" title="1 of 2 branches missed.">            for(Integer x = 1; x &lt; terminalGUI.getW()-1; ++x){</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">                for(Integer y = 1; y &lt; HInfoBar-1; ++y){</span>
+<span class="nc" id="L89">                    terminalGUI.drawCharacter(x, y, ' ', Color.BLACK, Color.BLACK);</span>
                 }
             }
-<span class="fc" id="L91">            terminalGUI.drawCharacter(0, 0, '█', Color.GREY, Color.BLACK); terminalGUI.drawCharacter(terminalGUI.getW()-1, 0, '█', Color.GREY, Color.BLACK);</span>
-<span class="fc" id="L92">            terminalGUI.drawCharacter(0, HInfoBar-1, '█', Color.GREY, Color.BLACK); terminalGUI.drawCharacter(terminalGUI.getW()-1, HInfoBar-1, '█', Color.GREY, Color.BLACK);</span>
-<span class="fc" id="L93">        }</span>
+<span class="fc" id="L92">            terminalGUI.drawCharacter(0, 0, '█', Color.GREY, Color.BLACK); terminalGUI.drawCharacter(terminalGUI.getW()-1, 0, '█', Color.GREY, Color.BLACK);</span>
+<span class="fc" id="L93">            terminalGUI.drawCharacter(0, HInfoBar-1, '█', Color.GREY, Color.BLACK); terminalGUI.drawCharacter(terminalGUI.getW()-1, HInfoBar-1, '█', Color.GREY, Color.BLACK);</span>
+<span class="fc" id="L94">        }</span>
         private void drawHealth(double health, double maxHealth){
-<span class="fc" id="L95">            int x0 = 2;</span>
-<span class="fc" id="L96">            int y0 = 1;</span>
-<span class="fc bfc" id="L97" title="All 2 branches covered.">            for(int x = 0; x &lt; maxHealth*heartSprite.getW(); ++x) {</span>
-<span class="fc bfc" id="L98" title="All 2 branches covered.">                for (int y = 0; y &lt; heartSprite.getH(); ++y) {</span>
-<span class="pc bpc" id="L99" title="1 of 2 branches missed.">                    if(x &lt; health*heartSprite.getW()) {</span>
-<span class="fc" id="L100">                        terminalGUI.drawCharacter(x0 + x, y0 + y,</span>
-<span class="fc" id="L101">                                heartSprite.getChar(x % heartSprite.getW(), y),</span>
-<span class="fc" id="L102">                                heartSprite.getForegroundColor(x % heartSprite.getW(), y),</span>
-<span class="fc" id="L103">                                heartSprite.getBackgroundColor(x % heartSprite.getW(), y));</span>
+<span class="fc" id="L96">            int x0 = 2;</span>
+<span class="fc" id="L97">            int y0 = 1;</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">            for(int x = 0; x &lt; maxHealth*heartSprite.getW(); ++x) {</span>
+<span class="fc bfc" id="L99" title="All 2 branches covered.">                for (int y = 0; y &lt; heartSprite.getH(); ++y) {</span>
+<span class="pc bpc" id="L100" title="1 of 2 branches missed.">                    if(x &lt; health*heartSprite.getW()) {</span>
+<span class="fc" id="L101">                        terminalGUI.drawCharacter(x0 + x, y0 + y,</span>
+<span class="fc" id="L102">                                heartSprite.getChar(x % heartSprite.getW(), y),</span>
+<span class="fc" id="L103">                                heartSprite.getForegroundColor(x % heartSprite.getW(), y),</span>
+<span class="fc" id="L104">                                heartSprite.getBackgroundColor(x % heartSprite.getW(), y));</span>
                     } else {
-<span class="nc" id="L105">                        terminalGUI.drawCharacter(x0 + x, y0 + y,</span>
-<span class="nc" id="L106">                                heartDeadSprite.getChar(x % heartDeadSprite.getW(), y),</span>
-<span class="nc" id="L107">                                heartDeadSprite.getForegroundColor(x % heartDeadSprite.getW(), y),</span>
-<span class="nc" id="L108">                                heartDeadSprite.getBackgroundColor(x % heartDeadSprite.getW(), y));</span>
+<span class="nc" id="L106">                        terminalGUI.drawCharacter(x0 + x, y0 + y,</span>
+<span class="nc" id="L107">                                heartDeadSprite.getChar(x % heartDeadSprite.getW(), y),</span>
+<span class="nc" id="L108">                                heartDeadSprite.getForegroundColor(x % heartDeadSprite.getW(), y),</span>
+<span class="nc" id="L109">                                heartDeadSprite.getBackgroundColor(x % heartDeadSprite.getW(), y));</span>
                     }
                 }
             }
-<span class="fc" id="L112">        }</span>
+<span class="fc" id="L113">        }</span>
         private void drawCoins(int coins, int totalCoins){
-<span class="fc" id="L114">            String coinsStr = String.format(&quot;%d/%d&quot;, coins, totalCoins);</span>
-<span class="fc" id="L115">            int coinsStrX = terminalGUI.getW()-Wmargin-textViewCoin.getStringWidth(coinsStr);</span>
-<span class="fc" id="L116">            textModelCoin.setText(coinsStr);</span>
-<span class="fc" id="L117">            textModelCoin.setPosition(new Position(coinsStrX, 1+coinSprite.getH()-textViewCoin.getStringHeight(textModelCoin.getText())));</span>
-<span class="fc" id="L118">            textViewCoin.draw();</span>
-<span class="fc" id="L119">            int coinsSpriteX = coinsStrX - coinSprite.getW() -1;</span>
-<span class="fc" id="L120">            drawSprite(coinSprite, coinsSpriteX, 1);</span>
-<span class="fc" id="L121">        }</span>
+<span class="fc" id="L115">            String coinsStr = String.format(&quot;%d/%d&quot;, coins, totalCoins);</span>
+<span class="fc" id="L116">            int coinsStrX = terminalGUI.getW()-Wmargin-textViewCoin.getStringWidth(coinsStr);</span>
+<span class="fc" id="L117">            textModelCoin.setText(coinsStr);</span>
+<span class="fc" id="L118">            textModelCoin.setPosition(new Position(coinsStrX, 1+coinSprite.getH()-textViewCoin.getStringHeight(textModelCoin.getText())));</span>
+<span class="fc" id="L119">            textViewCoin.draw();</span>
+<span class="fc" id="L120">            int coinsSpriteX = coinsStrX - coinSprite.getW() -1;</span>
+<span class="fc" id="L121">            drawSprite(coinSprite, coinsSpriteX, 1);</span>
+<span class="fc" id="L122">        }</span>
         private void drawTimer(){
-<span class="fc" id="L123">            long time = (System.currentTimeMillis() - startTime)/MILLIS_TO_SECONDS;</span>
-<span class="fc" id="L124">            long sec = time%60;</span>
-<span class="fc" id="L125">            long min = time/60;</span>
+<span class="fc" id="L124">            long sec = time.getSeconds()%60;</span>
+<span class="fc" id="L125">            long min = time.getSeconds()/60;</span>
 <span class="fc" id="L126">            String sSec = String.format(&quot;%02d&quot;, sec);</span>
 <span class="fc" id="L127">            String sMin = String.format(&quot;%d&quot;, min);</span>
 <span class="fc" id="L128">            String timerString = sMin + &quot;:&quot; + sSec;</span>
@@ -421,8 +421,8 @@ public class TerminalArenaView extends ArenaView {
 <span class="fc" id="L421">    }</span>
 
     @Override
-    public void start() {
-<span class="nc" id="L425">        infoBar.startTime();</span>
+    public void setTime(Duration time) {
+<span class="nc" id="L425">        infoBar.setTime(time);</span>
 <span class="nc" id="L426">    }</span>
     
     @Override

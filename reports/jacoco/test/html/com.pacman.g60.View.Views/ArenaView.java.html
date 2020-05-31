@@ -5,16 +5,18 @@
 import com.pacman.g60.Model.Models.ArenaModel;
 import com.pacman.g60.View.GUI.GUI;
 
+import java.time.Duration;
+
 public abstract class ArenaView extends GUIView {
-<span class="fc" id="L9">    ArenaModel arenaModel = null;</span>
+<span class="fc" id="L11">    ArenaModel arenaModel = null;</span>
     
     public ArenaView(GUI gui){
-<span class="fc" id="L12">        super(gui);</span>
-<span class="fc" id="L13">    }</span>
+<span class="fc" id="L14">        super(gui);</span>
+<span class="fc" id="L15">    }</span>
     
-<span class="fc" id="L15">    public void setArenaModel(ArenaModel arenaModel){ this.arenaModel = arenaModel; }</span>
-<span class="fc" id="L16">    protected ArenaModel getArenaModel(){ return arenaModel; }</span>
-    
-    public abstract void start();
+<span class="fc" id="L17">    public void setArenaModel(ArenaModel arenaModel){ this.arenaModel = arenaModel; }</span>
+<span class="fc" id="L18">    protected ArenaModel getArenaModel(){ return arenaModel; }</span>
+
+    public abstract void setTime(Duration time);
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

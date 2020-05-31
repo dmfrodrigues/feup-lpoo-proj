@@ -3,12 +3,15 @@
 import com.pacman.g60.Model.Models.ArenaModel;
 
 public class LevelModel {
+    Integer level;
     ArenaModel arenaModel;
-<span class="nc" id="L7">    public LevelModel(ArenaModel arenaModel){</span>
-<span class="nc" id="L8">        this.arenaModel = new ArenaModel(arenaModel);</span>
-<span class="nc" id="L9">    }</span>
+<span class="nc" id="L8">    public LevelModel(Integer level, ArenaModel arenaModel){ </span>
+<span class="nc" id="L9">        this.level = level;</span>
+<span class="nc" id="L10">        this.arenaModel = new ArenaModel(arenaModel);</span>
+<span class="nc" id="L11">    }</span>
     public ArenaModel getArenaModelClone(){
-<span class="nc" id="L11">        return new ArenaModel(arenaModel);</span>
+<span class="nc" id="L13">        return new ArenaModel(arenaModel);</span>
     }
+<span class="nc" id="L15">    public Integer getLevel() { return level; }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
