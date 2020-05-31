@@ -394,16 +394,17 @@ A slight smell of feature envy can be identified in [LanternaGUI](../src/main/ja
 
 We will not refactor this class, since `LanternaGUI` is a facade for the Lanterna framework, and as such it is understandable that it often uses features of the Lanterna framework.
 
-### [Duplicate code](https://refactoring.guru/smells/duplicate-code)
-In [TerminalArenaView](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/355eabbe3d893e2c97e3a915dbd3ab023d953ed2/src/main/java/com/pacman/g60/View/TerminalArenaView.java), members [TextView.drawChar](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/355eabbe3d893e2c97e3a915dbd3ab023d953ed2/src/main/java/com/pacman/g60/View/TerminalArenaView.java#L28-L32), [InfoBar.drawSprite](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/355eabbe3d893e2c97e3a915dbd3ab023d953ed2/src/main/java/com/pacman/g60/View/TerminalArenaView.java#L46-L53) and [TerminalArenaView.ElementView.draw](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/355eabbe3d893e2c97e3a915dbd3ab023d953ed2/src/main/java/com/pacman/g60/View/TerminalArenaView.java#L143-L150) have duplicate code to draw sprites.
+### [Duplicate code](https://refactoring.guru/smells/duplicate-code) in TerminalArenaView
+There was [duplicate code](https://refactoring.guru/smells/duplicate-code) in [TerminalArenaView](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/2277651ca00c31e2b380eaf761bc7817e6698122/src/main/java/com/pacman/g60/View/Views/TerminalArenaView.java#L38-L47) and [TerminalSpriteView](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/2277651ca00c31e2b380eaf761bc7817e6698122/src/main/java/com/pacman/g60/View/Views/TerminalSpriteView.java#L43-L50).
+Class [TerminalSpriteView](../src/main/java/com/pacman/g60/View/Views/TerminalSpriteView.java) was actually an effort to solve anticipated duplicate code smells, so it basically consists of the result of applying [Extract Class](https://refactoring.guru/extract-class).
 
-We will refactor this class by applying [Extract Method](https://refactoring.guru/extract-method) to extract a sprite-drawing routine, and call it from all places where sprites are drawn.
+We have not solved this smell completely, since there is still [duplicate code](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/398c47f6952d28ed05ad5c9741d325915e85d972/src/main/java/com/pacman/g60/View/Views/TerminalArenaView.java#L101-L115), but in this case we decided not to fix it since it allows drawing "half hearts" in case hero health is not an integer (e.g., 9.5).
 
 #### In TerminalSpriteLoaderStream
 
 The [main cycle](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/ddfd734be4099c6e1620befe1de3c61017e60275/src/main/java/com/pacman/g60/View/TerminalSpriteLoaderStream.java#L9-L33) of [TerminalSpriteLoaderStream](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/ddfd734be4099c6e1620befe1de3c61017e60275/src/main/java/com/pacman/g60/View/TerminalSpriteLoaderStream.java) 's constructor not only makes it a long method, but also has duplicate code for importing color matrices.
 
-We will refactor this class by applying [Extract Method](https://refactoring.guru/extract-method) to extract a color-importing routine, and call it from all places where color matrices are imported.
+We could refactor this class by applying [Extract Method](https://refactoring.guru/extract-method) to extract a color-importing routine, and call it from all places where color matrices are imported. However, as both cycles immediately write the read data to the TerminalSprite to be returned, and given time is short, we decided not to refactor this class.
 
 ### [Switch Statements](https://refactoring.guru/smells/switch-statements)
 
@@ -432,18 +433,14 @@ This smell is present in the constructor of the UpdateEnemyPosCommand class and 
 The updatePos function in the DynamicElement class is a bit too long and could be divided into smaller pieces using [Extract Method](https://refactoring.guru/extract-method).
 
 ### SRP/[Large class](https://refactoring.guru/smells/large-class) and time-tracking
-The class [TerminalArenaView](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/17394b793d1e3a9e62708e2761d981fa3c6311b0/src/main/java/com/pacman/g60/View/Views/TerminalArenaView.java#L52-L53) violated the Single Responsibility Principle by keeping track of time when it should only know how to draw an ArenaModel; so we moved that responsibily to ArenaController. Evetually we realized ArenaController was also becoming a [Large Class](https://refactoring.guru/smells/large-class), so we applied (Extract Class)[https://refactoring.guru/extract-class], having extracted the simple class [Stopwatch](../src/main/java/com/pacman/g60/Controller/Stopwatch.java) to keep track of time.
-
-### [Duplicate code](https://refactoring.guru/smells/duplicate-code) in TerminalArenaView
-There was [duplicate code](https://refactoring.guru/smells/duplicate-code) in [TerminalArenaView](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/2277651ca00c31e2b380eaf761bc7817e6698122/src/main/java/com/pacman/g60/View/Views/TerminalArenaView.java#L38-L47) and [TerminalSpriteView](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/2277651ca00c31e2b380eaf761bc7817e6698122/src/main/java/com/pacman/g60/View/Views/TerminalSpriteView.java#L43-L50).
-Class [TerminalSpriteView](../src/main/java/com/pacman/g60/View/Views/TerminalSpriteView.java) was actually an effort to solve anticipated duplicate code smells, so it basically consists of the result of applying [Extract Class](https://refactoring.guru/extract-class).
-
-We have not solved this smell completely, since there is still [duplicate code](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/398c47f6952d28ed05ad5c9741d325915e85d972/src/main/java/com/pacman/g60/View/Views/TerminalArenaView.java#L101-L115), but in this case we decided not to fix it since it allows drawing "half hearts" in case hero health is not an integer (e.g., 9.5).
+The class [TerminalArenaView](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/17394b793d1e3a9e62708e2761d981fa3c6311b0/src/main/java/com/pacman/g60/View/Views/TerminalArenaView.java#L52-L53) violated the Single Responsibility Principle by keeping track of time when it should only know how to draw an ArenaModel; so we moved that responsibily to ArenaController. Evetually we realized ArenaController was also becoming a [Large Class](https://refactoring.guru/smells/large-class), so we applied [Extract Class](https://refactoring.guru/extract-class), having extracted the simple class [Stopwatch](../src/main/java/com/pacman/g60/Controller/Stopwatch.java) to keep track of time.
 
 ### Some excessive knowledge problem
 There is a problem with [Game](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/97e24afb5f05fbb3dc49aee784a37b6c63cd7115/src/main/java/com/pacman/g60/Controller/Game.java#L1-L413) using terminal-specific [hearts](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/97e24afb5f05fbb3dc49aee784a37b6c63cd7115/src/main/java/com/pacman/g60/Controller/Game.java#L238-L239) and [coins](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/97e24afb5f05fbb3dc49aee784a37b6c63cd7115/src/main/java/com/pacman/g60/Controller/Game.java#L251-L252), which stems from the fact [SpriteModel](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/97e24afb5f05fbb3dc49aee784a37b6c63cd7115/src/main/java/com/pacman/g60/Model/Models/SpriteModel.java#L1-L22) knows too much about how to draw itself by having a [TerminalSprite member](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/97e24afb5f05fbb3dc49aee784a37b6c63cd7115/src/main/java/com/pacman/g60/Model/Models/SpriteModel.java#L11).
 
 We could solve this smell by storing in SpriteModel an *intention* to be drawn as a certain type of sprite (e.g., instead of containing an actual TerminalSprite for drawing a coin, it might contain an `enum` with value `COIN`), and then apply the [Abstract Factory](https://refactoring.guru/design-patterns/abstract-factory) pattern, and the factory would sort out which Sprite to be returned based on the value of the SpriteModel's `enum` variable.
+
+We have not corrected this problem, since it would take a considerable amount of time to go over other refactor options, plus having to implement it would be a quite laborious task. Also, it would create another problem, since everytime we would add a different sprite we would have to change the `enum`, thus making it poorly extensible.
 
 <a name="testing"><a/>
 
