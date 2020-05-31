@@ -7,12 +7,6 @@ import com.pacman.g60.Model.Position;
 public abstract class Weapon extends Collectable {
     private Effect effect;
 
-    public Weapon(Position pos)
-    {
-        super(pos);
-        this.effect = null;
-    }
-
     @Override
     public boolean beCollected(ArenaModel arenaModel) {
         Hero hero = arenaModel.getHero();
@@ -28,5 +22,17 @@ public abstract class Weapon extends Collectable {
     public Effect getEffect()
     {
         return this.effect;
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (o == null) return false;
+        if (o == this) return true;
+        if (o.getClass() != this.getClass()) return false;
+
+        Weapon weapon = (Weapon) o;
+
+        return weapon.effect == this.effect;
     }
 }
