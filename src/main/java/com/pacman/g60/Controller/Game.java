@@ -1,10 +1,8 @@
 package com.pacman.g60.Controller;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import com.pacman.g60.Model.*;
 import com.pacman.g60.Model.Models.*;
@@ -132,9 +130,61 @@ public class Game {
     }
     
     private class StateScoreboard implements State {
+        MenuModel menuModel;
+        MenuView menuView;
+        TextModel text;
+        GUIViewComposite view;
+        
+        public StateScoreboard(MenuView menuView, TextView textView){
+            this.menuView = menuView;
+
+            view = new GUIViewComposite(menuView.getGUI());
+            view.addView(textView);
+            view.addView(menuView);
+
+            menuModel = new MenuModel();
+            menuModel.setRelativePosition(new PositionReal(0.5, 0.85));
+            menuModel.setVerticalAlign(MenuModel.VerticalAlign.CENTER);
+            menuModel.setHorizontalAlign(MenuModel.HorizontalAlign.CENTER);
+            menuModel.append(new MenuModel.NormalItem(menuModel, 0, "Back to main menu"));
+            
+            text = new TextModel("");
+            text.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);
+            text.setVerticalAlign(Alignable.VerticalAlign.TOP);
+            text.setPosition(new PositionReal(0.5, 0.25));
+            text.setLineHeight(1.33);
+            textView.setTextModel(text);
+        }
+        
         @Override
-        public State run() {
-            return stateMainMenu;
+        public State run() throws IOException {
+            String data =
+                    "Level    │ Time  │ Coins │ Date of record     \n" +
+                    "─────────┼───────┼───────┼────────────────────\n" ;
+            List<Integer> levels = new ArrayList<>(progress.getLevels());
+            Collections.sort(levels);
+            for(final Integer l: levels){
+                GameProgress.LevelProgress level = progress.getProgress(l);
+                long s = level.getTime().getSeconds();
+                data += String.format("Level %2d │ %s │ %5d │ %s\n",
+                        level.getLevel(),
+                        String.format("%2d:%02d", s/60, s%60),
+                        level.getCoins(),
+                        (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(level.getWhen())
+                );
+            }
+            text.setText(data);
+            
+            MenuModel menuModel_ = new MenuModel(menuModel);
+            menuView.setMenuModel(menuModel_);
+            MenuController menuController = new MenuController(menuModel_, view);
+            int r = menuController.run();
+            switch(r){
+                case -1:
+                case 0:
+                    return stateMainMenu;
+                default: throw new IndexOutOfBoundsException();
+            }
         }
     }
 
@@ -472,7 +522,7 @@ public class Game {
         GameProgressFileIO io = new GameProgressFileIO();
         stateMainMenu       = new StateMainMenu(viewFactory.createMenuView(), viewFactory.createTextView());
         stateControls       = new StateControls(viewFactory.createMenuView(), viewFactory.createTextView());
-        stateScoreboard     = new StateScoreboard();
+        stateScoreboard     = new StateScoreboard(viewFactory.createMenuView(), viewFactory.createTextView());
         stateSave           = new StateSave(io);
         stateLoad           = new StateLoad(io);
         stateLevelSelect    = new StateLevelSelector(viewFactory.createMenuView(), viewFactory.createTextView());
