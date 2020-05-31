@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GUIViewComposite extends GUIView {
-<span class="nc" id="L9">    List&lt;GUIView&gt; views = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L10">    public GUIViewComposite(GUI gui){ super(gui); }</span>
+<span class="fc" id="L9">    List&lt;GUIView&gt; views = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L10">    public GUIViewComposite(GUI gui){ super(gui); }</span>
     
-<span class="nc" id="L12">    public void addView(GUIView view){ views.add(view); }</span>
+<span class="fc" id="L12">    public void addView(GUIView view){ views.add(view); }</span>
     
     @Override
     public void draw() {
-<span class="nc bnc" id="L16" title="All 2 branches missed.">        for(final GUIView view: views) view.draw();</span>
-<span class="nc" id="L17">    }</span>
+<span class="fc bfc" id="L16" title="All 2 branches covered.">        for(final GUIView view: views) view.draw();</span>
+<span class="fc" id="L17">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

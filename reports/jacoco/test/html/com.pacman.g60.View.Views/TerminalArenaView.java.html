@@ -7,6 +7,7 @@ import com.pacman.g60.Model.Elements.*;
 import com.pacman.g60.Model.Elements.Hierarchy.OrientedElement;
 import com.pacman.g60.Model.Models.Alignable;
 import com.pacman.g60.Model.Models.ArenaModel;
+import com.pacman.g60.Model.Models.SpriteModel;
 import com.pacman.g60.Model.Models.TextModel;
 import com.pacman.g60.View.*;
 import com.pacman.g60.View.Font.TerminalFont;
@@ -25,114 +26,105 @@ import java.util.Map;
 
 public class TerminalArenaView extends ArenaView {
 
-<span class="fc" id="L28">    private static final Integer HInfoBar = 5;</span>
+<span class="fc" id="L29">    private static final Integer HInfoBar = 5;</span>
 
     private class InfoBar {
-<span class="fc" id="L31">        private final Integer Wmargin = 2;</span>
+<span class="fc" id="L32">        private final Integer Wmargin = 2;</span>
         private final TextModel textModelCoin;
         private final TerminalTextView textViewCoin;
         private final TextModel textModelTimer;
-        private final TerminalTextView textViewTimer;
-<span class="fc" id="L36">        private Duration time = Duration.ZERO;</span>
-
-        private void drawSprite(TerminalSprite sprite, int x0, int y0){
-<span class="fc bfc" id="L39" title="All 2 branches covered.">            for(int x = 0; x &lt; sprite.getW(); ++x) {</span>
-<span class="fc bfc" id="L40" title="All 2 branches covered.">                for (int y = 0; y &lt; sprite.getH(); ++y) {</span>
-<span class="fc" id="L41">                    terminalGUI.drawCharacter(x0 + x, y0 + y,</span>
-<span class="fc" id="L42">                            sprite.getChar(x, y),</span>
-<span class="fc" id="L43">                            sprite.getForegroundColor(x, y),</span>
-<span class="fc" id="L44">                            sprite.getBackgroundColor(x, y));</span>
-                }
-            }
-<span class="fc" id="L47">        }</span>
+        private final SpriteModel coinModel;
+<span class="fc" id="L37">        private Duration time = Duration.ZERO;</span>
+        private final GUIViewComposite view;
+        
         TerminalSprite heartSprite;
         TerminalSprite heartDeadSprite;
         TerminalSprite coinSprite;
         
-<span class="fc" id="L52">        public InfoBar() throws FileNotFoundException{</span>
+<span class="fc" id="L44">        public InfoBar() throws FileNotFoundException{</span>
             TerminalSprite.Loader loader;
-<span class="fc" id="L54">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/heart-6-3.lan&quot;));</span>
-<span class="fc" id="L55">            heartSprite = loader.getTerminalSprite();</span>
-<span class="fc" id="L56">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/heart-dead-6-3.lan&quot;));</span>
-<span class="fc" id="L57">            heartDeadSprite = loader.getTerminalSprite();</span>
-<span class="fc" id="L58">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/coin-6-3.lan&quot;));</span>
-<span class="fc" id="L59">            coinSprite = loader.getTerminalSprite();</span>
+<span class="fc" id="L46">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/heart-6-3.lan&quot;));</span>
+<span class="fc" id="L47">            heartSprite = loader.getTerminalSprite();</span>
+<span class="fc" id="L48">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/heart-dead-6-3.lan&quot;));</span>
+<span class="fc" id="L49">            heartDeadSprite = loader.getTerminalSprite();</span>
             
-<span class="fc" id="L61">            textModelCoin = new TextModel(&quot;&quot;);</span>
-<span class="fc" id="L62">            textModelCoin.setVerticalAlign(Alignable.VerticalAlign.TOP);</span>
-<span class="fc" id="L63">            textModelCoin.setHorizontalAlign(Alignable.HorizontalAlign.LEFT);</span>
-<span class="fc" id="L64">            textViewCoin = new TerminalTextView(terminalGUI, font);</span>
-<span class="fc" id="L65">            textViewCoin.setTextModel(textModelCoin);</span>
+<span class="fc" id="L51">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/coin-6-3.lan&quot;));</span>
+<span class="fc" id="L52">            coinSprite = loader.getTerminalSprite();</span>
+<span class="fc" id="L53">            SpriteView coinView = new TerminalSpriteView(terminalGUI);</span>
+<span class="fc" id="L54">            coinModel = new SpriteModel(coinSprite);</span>
+<span class="fc" id="L55">            coinView.setSpriteModel(coinModel);</span>
             
-<span class="fc" id="L67">            textModelTimer = new TextModel(&quot;&quot;);</span>
-<span class="fc" id="L68">            textModelTimer.setVerticalAlign(Alignable.VerticalAlign.TOP);</span>
-<span class="fc" id="L69">            textModelTimer.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);</span>
-<span class="fc" id="L70">            textViewTimer = new TerminalTextView(terminalGUI, font);</span>
-<span class="fc" id="L71">            textViewTimer.setTextModel(textModelTimer);</span>
-<span class="fc" id="L72">        }</span>
+<span class="fc" id="L57">            textModelCoin = new TextModel(&quot;&quot;);</span>
+<span class="fc" id="L58">            textModelCoin.setVerticalAlign(Alignable.VerticalAlign.TOP);</span>
+<span class="fc" id="L59">            textModelCoin.setHorizontalAlign(Alignable.HorizontalAlign.LEFT);</span>
+<span class="fc" id="L60">            textViewCoin = new TerminalTextView(terminalGUI, font);</span>
+<span class="fc" id="L61">            textViewCoin.setTextModel(textModelCoin);</span>
+            
+<span class="fc" id="L63">            textModelTimer = new TextModel(&quot;&quot;);</span>
+<span class="fc" id="L64">            textModelTimer.setVerticalAlign(Alignable.VerticalAlign.TOP);</span>
+<span class="fc" id="L65">            textModelTimer.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);</span>
+<span class="fc" id="L66">            TerminalTextView textViewTimer = new TerminalTextView(terminalGUI, font);</span>
+<span class="fc" id="L67">            textViewTimer.setTextModel(textModelTimer);</span>
+            
+<span class="fc" id="L69">            view = new GUIViewComposite(terminalGUI);</span>
+<span class="fc" id="L70">            view.addView(textViewCoin);</span>
+<span class="fc" id="L71">            view.addView(coinView);</span>
+<span class="fc" id="L72">            view.addView(textViewTimer);</span>
+<span class="fc" id="L73">        }</span>
         
-<span class="nc" id="L74">        public void setTime(Duration time) { this.time = time; }</span>
+<span class="nc" id="L75">        public void setTime(Duration time) { this.time = time; }</span>
         
         private void drawFrame(){
-<span class="pc bpc" id="L77" title="1 of 2 branches missed.">            for(int x = 1; x &lt; terminalGUI.getW()-1; ++x){</span>
-<span class="nc" id="L78">                terminalGUI.drawCharacter(x, 0, '▀', Color.GREY, Color.BLACK);</span>
-<span class="nc" id="L79">                terminalGUI.drawCharacter(x, HInfoBar-1, '▄', Color.GREY, Color.BLACK);</span>
+<span class="pc bpc" id="L78" title="1 of 2 branches missed.">            for(int x = 1; x &lt; terminalGUI.getW()-1; ++x){</span>
+<span class="nc" id="L79">                terminalGUI.drawCharacter(x, 0, '▀', Color.GREY, Color.BLACK);</span>
+<span class="nc" id="L80">                terminalGUI.drawCharacter(x, HInfoBar-1, '▄', Color.GREY, Color.BLACK);</span>
             }
-<span class="fc bfc" id="L81" title="All 2 branches covered.">            for(int y = 1; y &lt; HInfoBar-1; ++y){</span>
-<span class="fc" id="L82">                terminalGUI.drawCharacter(0, y, '█', Color.GREY, Color.BLACK);</span>
-<span class="fc" id="L83">                terminalGUI.drawCharacter(terminalGUI.getW()-1, y, '█', Color.GREY, Color.BLACK);</span>
+<span class="fc bfc" id="L82" title="All 2 branches covered.">            for(int y = 1; y &lt; HInfoBar-1; ++y){</span>
+<span class="fc" id="L83">                terminalGUI.drawCharacter(0, y, '█', Color.GREY, Color.BLACK);</span>
+<span class="fc" id="L84">                terminalGUI.drawCharacter(terminalGUI.getW()-1, y, '█', Color.GREY, Color.BLACK);</span>
             }
-<span class="pc bpc" id="L85" title="1 of 2 branches missed.">            for(int x = 1; x &lt; terminalGUI.getW()-1; ++x){</span>
-<span class="nc bnc" id="L86" title="All 2 branches missed.">                for(int y = 1; y &lt; HInfoBar-1; ++y){</span>
-<span class="nc" id="L87">                    terminalGUI.drawCharacter(x, y, ' ', Color.BLACK, Color.BLACK);</span>
+<span class="pc bpc" id="L86" title="1 of 2 branches missed.">            for(int x = 1; x &lt; terminalGUI.getW()-1; ++x){</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">                for(int y = 1; y &lt; HInfoBar-1; ++y){</span>
+<span class="nc" id="L88">                    terminalGUI.drawCharacter(x, y, ' ', Color.BLACK, Color.BLACK);</span>
                 }
             }
-<span class="fc" id="L90">            terminalGUI.drawCharacter(0, 0, '█', Color.GREY, Color.BLACK); terminalGUI.drawCharacter(terminalGUI.getW()-1, 0, '█', Color.GREY, Color.BLACK);</span>
-<span class="fc" id="L91">            terminalGUI.drawCharacter(0, HInfoBar-1, '█', Color.GREY, Color.BLACK); terminalGUI.drawCharacter(terminalGUI.getW()-1, HInfoBar-1, '█', Color.GREY, Color.BLACK);</span>
-<span class="fc" id="L92">        }</span>
+<span class="fc" id="L91">            terminalGUI.drawCharacter(0, 0, '█', Color.GREY, Color.BLACK); terminalGUI.drawCharacter(terminalGUI.getW()-1, 0, '█', Color.GREY, Color.BLACK);</span>
+<span class="fc" id="L92">            terminalGUI.drawCharacter(0, HInfoBar-1, '█', Color.GREY, Color.BLACK); terminalGUI.drawCharacter(terminalGUI.getW()-1, HInfoBar-1, '█', Color.GREY, Color.BLACK);</span>
+<span class="fc" id="L93">        }</span>
         private void drawHealth(double health, double maxHealth){
-<span class="fc" id="L94">            int x0 = 2;</span>
-<span class="fc" id="L95">            int y0 = 1;</span>
-<span class="fc bfc" id="L96" title="All 2 branches covered.">            for(int x = 0; x &lt; maxHealth*heartSprite.getW(); ++x) {</span>
-<span class="fc bfc" id="L97" title="All 2 branches covered.">                for (int y = 0; y &lt; heartSprite.getH(); ++y) {</span>
-<span class="pc bpc" id="L98" title="1 of 2 branches missed.">                    if(x &lt; health*heartSprite.getW()) {</span>
-<span class="fc" id="L99">                        terminalGUI.drawCharacter(x0 + x, y0 + y,</span>
-<span class="fc" id="L100">                                heartSprite.getChar(x % heartSprite.getW(), y),</span>
-<span class="fc" id="L101">                                heartSprite.getForegroundColor(x % heartSprite.getW(), y),</span>
-<span class="fc" id="L102">                                heartSprite.getBackgroundColor(x % heartSprite.getW(), y));</span>
-                    } else {
-<span class="nc" id="L104">                        terminalGUI.drawCharacter(x0 + x, y0 + y,</span>
-<span class="nc" id="L105">                                heartDeadSprite.getChar(x % heartDeadSprite.getW(), y),</span>
-<span class="nc" id="L106">                                heartDeadSprite.getForegroundColor(x % heartDeadSprite.getW(), y),</span>
-<span class="nc" id="L107">                                heartDeadSprite.getBackgroundColor(x % heartDeadSprite.getW(), y));</span>
-                    }
+<span class="fc" id="L95">            int x0 = 2;</span>
+<span class="fc" id="L96">            int y0 = 1;</span>
+<span class="fc bfc" id="L97" title="All 2 branches covered.">            for(int x = 0; x &lt; maxHealth*heartSprite.getW(); ++x) {</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">                for (int y = 0; y &lt; heartSprite.getH(); ++y) {</span>
+<span class="pc bpc" id="L99" title="1 of 2 branches missed.">                    TerminalSprite sprite = (x &lt; health*heartSprite.getW() ? heartSprite : heartDeadSprite);</span>
+<span class="fc" id="L100">                    terminalGUI.drawCharacter(x0 + x, y0 + y,</span>
+<span class="fc" id="L101">                            sprite.getChar(x % sprite.getW(), y),</span>
+<span class="fc" id="L102">                            sprite.getForegroundColor(x % sprite.getW(), y),</span>
+<span class="fc" id="L103">                            sprite.getBackgroundColor(x % sprite.getW(), y));</span>
                 }
             }
-<span class="fc" id="L111">        }</span>
-        private void drawCoins(int coins, int totalCoins){
-<span class="fc" id="L113">            String coinsStr = String.format(&quot;%d/%d&quot;, coins, totalCoins);</span>
-<span class="fc" id="L114">            int coinsStrX = terminalGUI.getW()-Wmargin-textViewCoin.getStringWidth(coinsStr);</span>
-<span class="fc" id="L115">            textModelCoin.setText(coinsStr);</span>
-<span class="fc" id="L116">            textModelCoin.setPosition(new Position(coinsStrX, 1+coinSprite.getH()-textViewCoin.getStringHeight(textModelCoin.getText())));</span>
-<span class="fc" id="L117">            textViewCoin.draw();</span>
-<span class="fc" id="L118">            int coinsSpriteX = coinsStrX - coinSprite.getW() -1;</span>
-<span class="fc" id="L119">            drawSprite(coinSprite, coinsSpriteX, 1);</span>
+<span class="fc" id="L106">        }</span>
+        private void updateCoins(int coins, int totalCoins){
+<span class="fc" id="L108">            String coinsStr = String.format(&quot;%d/%d&quot;, coins, totalCoins);</span>
+<span class="fc" id="L109">            int coinsStrX = terminalGUI.getW()-Wmargin-textViewCoin.getStringWidth(coinsStr);</span>
+<span class="fc" id="L110">            textModelCoin.setText(coinsStr);</span>
+<span class="fc" id="L111">            textModelCoin.setPosition(new Position(coinsStrX, 1+coinSprite.getH()-textViewCoin.getStringHeight(textModelCoin.getText())));</span>
+<span class="fc" id="L112">            int coinsSpriteX = coinsStrX - coinSprite.getW() -1;</span>
+<span class="fc" id="L113">            coinModel.setPosition(new Position(coinsSpriteX, 1));</span>
+<span class="fc" id="L114">        }</span>
+        private void updateTimer(){
+<span class="fc" id="L116">            long sec = time.getSeconds()%60;</span>
+<span class="fc" id="L117">            long min = time.getSeconds()/60;</span>
+<span class="fc" id="L118">            textModelTimer.setText(String.format(&quot;%2d:%02d&quot;, min, sec));</span>
+<span class="fc" id="L119">            textModelTimer.setPosition(new Position(terminalGUI.getW()/2, 1+coinSprite.getH()-textViewCoin.getStringHeight(textModelTimer.getText())));</span>
 <span class="fc" id="L120">        }</span>
-        private void drawTimer(){
-<span class="fc" id="L122">            long sec = time.getSeconds()%60;</span>
-<span class="fc" id="L123">            long min = time.getSeconds()/60;</span>
-<span class="fc" id="L124">            String sSec = String.format(&quot;%02d&quot;, sec);</span>
-<span class="fc" id="L125">            String sMin = String.format(&quot;%d&quot;, min);</span>
-<span class="fc" id="L126">            textModelTimer.setText(sMin + &quot;:&quot; + sSec);</span>
-<span class="fc" id="L127">            textModelTimer.setPosition(new Position(terminalGUI.getW()/2, 1+coinSprite.getH()-textViewCoin.getStringHeight(textModelTimer.getText())));</span>
-<span class="fc" id="L128">            textViewTimer.draw();</span>
-<span class="fc" id="L129">        }</span>
         public void draw(ArenaModel arenaModel){
-<span class="fc" id="L131">            drawFrame();</span>
-<span class="fc" id="L132">            drawHealth(arenaModel.getHero().getHealth(), arenaModel.getHero().getMaxHealth());</span>
-<span class="fc" id="L133">            drawCoins(arenaModel.getHero().getCoins(), arenaModel.getNumCoins() + arenaModel.getHero().getCoins());</span>
-<span class="fc" id="L134">            drawTimer();</span>
-<span class="fc" id="L135">        }</span>
+<span class="fc" id="L122">            drawFrame();</span>
+<span class="fc" id="L123">            drawHealth(arenaModel.getHero().getHealth(), arenaModel.getHero().getMaxHealth());</span>
+<span class="fc" id="L124">            updateCoins(arenaModel.getHero().getCoins(), arenaModel.getNumCoins() + arenaModel.getHero().getCoins());</span>
+<span class="fc" id="L125">            updateTimer();</span>
+<span class="fc" id="L126">            view.draw();</span>
+<span class="fc" id="L127">        }</span>
     }
     
     private abstract class ElementView {
@@ -140,141 +132,141 @@ public class TerminalArenaView extends ArenaView {
         private final static int Htile = 4;
         
         private Position heroPos;
-<span class="fc" id="L143">        public ElementView(){}</span>
-<span class="fc" id="L144">        public final void setHeroPos(Position heroPos) { this.heroPos = heroPos; }</span>
+<span class="fc" id="L135">        public ElementView(){}</span>
+<span class="fc" id="L136">        public final void setHeroPos(Position heroPos) { this.heroPos = heroPos; }</span>
         protected abstract TerminalSprite getSprite(Element e);
         public final void draw(Element e){
-<span class="fc" id="L147">            TerminalSprite sprite = getSprite(e);</span>
-<span class="fc" id="L148">            int x0 = (e.getPos().getX()-heroPos.getX())*Wtile + terminalGUI.getW()/2 - Wtile/2;</span>
-<span class="fc" id="L149">            int y0 = (e.getPos().getY()-heroPos.getY())*Htile + (terminalGUI.getH()-HInfoBar)/2 - Htile/2 + HInfoBar;</span>
-<span class="fc bfc" id="L150" title="All 2 branches covered.">            for(int x = 0; x &lt; sprite.getW(); ++x) {</span>
-<span class="fc bfc" id="L151" title="All 2 branches covered.">                for (int y = 0; y &lt; sprite.getH(); ++y) {</span>
-<span class="fc" id="L152">                    terminalGUI.drawCharacter(x0 + x, y0 + y,</span>
-<span class="fc" id="L153">                            sprite.getChar(x, y),</span>
-<span class="fc" id="L154">                            sprite.getForegroundColor(x, y),</span>
-<span class="fc" id="L155">                            sprite.getBackgroundColor(x, y));</span>
+<span class="fc" id="L139">            TerminalSprite sprite = getSprite(e);</span>
+<span class="fc" id="L140">            int x0 = (e.getPos().getX()-heroPos.getX())*Wtile + terminalGUI.getW()/2 - Wtile/2;</span>
+<span class="fc" id="L141">            int y0 = (e.getPos().getY()-heroPos.getY())*Htile + (terminalGUI.getH()-HInfoBar)/2 - Htile/2 + HInfoBar;</span>
+<span class="fc bfc" id="L142" title="All 2 branches covered.">            for(int x = 0; x &lt; sprite.getW(); ++x) {</span>
+<span class="fc bfc" id="L143" title="All 2 branches covered.">                for (int y = 0; y &lt; sprite.getH(); ++y) {</span>
+<span class="fc" id="L144">                    terminalGUI.drawCharacter(x0 + x, y0 + y,</span>
+<span class="fc" id="L145">                            sprite.getChar(x, y),</span>
+<span class="fc" id="L146">                            sprite.getForegroundColor(x, y),</span>
+<span class="fc" id="L147">                            sprite.getBackgroundColor(x, y));</span>
                 }
             }
-<span class="fc" id="L158">        }</span>
+<span class="fc" id="L150">        }</span>
     }
     private class WallView extends ElementView {
         TerminalSprite sprite;
         
-<span class="fc" id="L163">        public WallView() throws FileNotFoundException{</span>
-<span class="fc" id="L164">            TerminalSprite.Loader loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/wall-8-4.lan&quot;));</span>
-<span class="fc" id="L165">            sprite = loader.getTerminalSprite();</span>
-<span class="fc" id="L166">        }</span>
+<span class="fc" id="L155">        public WallView() throws FileNotFoundException{</span>
+<span class="fc" id="L156">            TerminalSprite.Loader loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/wall-8-4.lan&quot;));</span>
+<span class="fc" id="L157">            sprite = loader.getTerminalSprite();</span>
+<span class="fc" id="L158">        }</span>
         
         @Override
         protected TerminalSprite getSprite(Element e) {
-<span class="nc" id="L170">            return sprite;</span>
+<span class="nc" id="L162">            return sprite;</span>
         }
     }
     private class HeroView extends ElementView {
         TerminalSpriteOrientable spriteOrientable;
         
-<span class="fc" id="L176">        public HeroView() throws FileNotFoundException {</span>
+<span class="fc" id="L168">        public HeroView() throws FileNotFoundException {</span>
             TerminalSprite.Loader loader;
-<span class="fc" id="L178">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/hero-8-4-right.lan&quot;));</span>
-<span class="fc" id="L179">            spriteOrientable = new TerminalSpriteOrientable(loader.getTerminalSprite());</span>
-<span class="fc" id="L180">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/hero-8-4-left.lan&quot;));</span>
-<span class="fc" id="L181">            spriteOrientable.setSpriteLeft(loader.getTerminalSprite());</span>
-<span class="fc" id="L182">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/hero-8-4-up.lan&quot;));</span>
-<span class="fc" id="L183">            spriteOrientable.setSpriteUp(loader.getTerminalSprite());</span>
-<span class="fc" id="L184">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/hero-8-4-down.lan&quot;));</span>
-<span class="fc" id="L185">            spriteOrientable.setSpriteDown(loader.getTerminalSprite());</span>
-<span class="fc" id="L186">        }</span>
+<span class="fc" id="L170">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/hero-8-4-right.lan&quot;));</span>
+<span class="fc" id="L171">            spriteOrientable = new TerminalSpriteOrientable(loader.getTerminalSprite());</span>
+<span class="fc" id="L172">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/hero-8-4-left.lan&quot;));</span>
+<span class="fc" id="L173">            spriteOrientable.setSpriteLeft(loader.getTerminalSprite());</span>
+<span class="fc" id="L174">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/hero-8-4-up.lan&quot;));</span>
+<span class="fc" id="L175">            spriteOrientable.setSpriteUp(loader.getTerminalSprite());</span>
+<span class="fc" id="L176">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/hero-8-4-down.lan&quot;));</span>
+<span class="fc" id="L177">            spriteOrientable.setSpriteDown(loader.getTerminalSprite());</span>
+<span class="fc" id="L178">        }</span>
 
         @Override
         protected TerminalSprite getSprite(Element e) {
-<span class="fc" id="L190">            return spriteOrientable.getSprite(((DynamicElement) e).getDirection());</span>
+<span class="fc" id="L182">            return spriteOrientable.getSprite(((DynamicElement) e).getDirection());</span>
         }
     }
     private class GhostView extends ElementView {
         TerminalSpriteOrientable spriteOrientable;
 
-<span class="fc" id="L196">        public GhostView() throws FileNotFoundException {</span>
+<span class="fc" id="L188">        public GhostView() throws FileNotFoundException {</span>
             TerminalSprite.Loader loader;
-<span class="fc" id="L198">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/ghost-8-4-right.lan&quot;));</span>
-<span class="fc" id="L199">            spriteOrientable = new TerminalSpriteOrientable(loader.getTerminalSprite());</span>
-<span class="fc" id="L200">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/ghost-8-4-left.lan&quot;));</span>
-<span class="fc" id="L201">            spriteOrientable.setSpriteLeft(loader.getTerminalSprite());</span>
-<span class="fc" id="L202">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/ghost-8-4-up.lan&quot;));</span>
-<span class="fc" id="L203">            spriteOrientable.setSpriteUp(loader.getTerminalSprite());</span>
-<span class="fc" id="L204">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/ghost-8-4-down.lan&quot;));</span>
-<span class="fc" id="L205">            spriteOrientable.setSpriteDown(loader.getTerminalSprite());</span>
-<span class="fc" id="L206">        }</span>
+<span class="fc" id="L190">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/ghost-8-4-right.lan&quot;));</span>
+<span class="fc" id="L191">            spriteOrientable = new TerminalSpriteOrientable(loader.getTerminalSprite());</span>
+<span class="fc" id="L192">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/ghost-8-4-left.lan&quot;));</span>
+<span class="fc" id="L193">            spriteOrientable.setSpriteLeft(loader.getTerminalSprite());</span>
+<span class="fc" id="L194">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/ghost-8-4-up.lan&quot;));</span>
+<span class="fc" id="L195">            spriteOrientable.setSpriteUp(loader.getTerminalSprite());</span>
+<span class="fc" id="L196">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/ghost-8-4-down.lan&quot;));</span>
+<span class="fc" id="L197">            spriteOrientable.setSpriteDown(loader.getTerminalSprite());</span>
+<span class="fc" id="L198">        }</span>
 
         @Override
         protected TerminalSprite getSprite(Element e) {
-<span class="nc" id="L210">            return spriteOrientable.getSprite(((DynamicElement) e).getDirection());</span>
+<span class="nc" id="L202">            return spriteOrientable.getSprite(((DynamicElement) e).getDirection());</span>
         }
     }
     private class OgreView extends ElementView {
         TerminalSpriteOrientable spriteOrientable;
 
-<span class="fc" id="L216">        public OgreView() throws FileNotFoundException {</span>
+<span class="fc" id="L208">        public OgreView() throws FileNotFoundException {</span>
             TerminalSprite.Loader loader;
-<span class="fc" id="L218">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/ogre-8-4-right.lan&quot;));</span>
-<span class="fc" id="L219">            spriteOrientable = new TerminalSpriteOrientable(loader.getTerminalSprite());</span>
-<span class="fc" id="L220">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/ogre-8-4-left.lan&quot;));</span>
-<span class="fc" id="L221">            spriteOrientable.setSpriteLeft(loader.getTerminalSprite());</span>
-<span class="fc" id="L222">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/ogre-8-4-up.lan&quot;));</span>
-<span class="fc" id="L223">            spriteOrientable.setSpriteUp(loader.getTerminalSprite());</span>
-<span class="fc" id="L224">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/ogre-8-4-down.lan&quot;));</span>
-<span class="fc" id="L225">            spriteOrientable.setSpriteDown(loader.getTerminalSprite());</span>
-<span class="fc" id="L226">        }</span>
+<span class="fc" id="L210">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/ogre-8-4-right.lan&quot;));</span>
+<span class="fc" id="L211">            spriteOrientable = new TerminalSpriteOrientable(loader.getTerminalSprite());</span>
+<span class="fc" id="L212">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/ogre-8-4-left.lan&quot;));</span>
+<span class="fc" id="L213">            spriteOrientable.setSpriteLeft(loader.getTerminalSprite());</span>
+<span class="fc" id="L214">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/ogre-8-4-up.lan&quot;));</span>
+<span class="fc" id="L215">            spriteOrientable.setSpriteUp(loader.getTerminalSprite());</span>
+<span class="fc" id="L216">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/ogre-8-4-down.lan&quot;));</span>
+<span class="fc" id="L217">            spriteOrientable.setSpriteDown(loader.getTerminalSprite());</span>
+<span class="fc" id="L218">        }</span>
 
         @Override
         protected TerminalSprite getSprite(Element e) {
-<span class="nc" id="L230">            return spriteOrientable.getSprite(((DynamicElement) e).getDirection());</span>
+<span class="nc" id="L222">            return spriteOrientable.getSprite(((DynamicElement) e).getDirection());</span>
         }
     }
 
     private class BulletView extends ElementView {
         TerminalSpriteOrientable spriteOrientable;
 
-<span class="fc" id="L237">        public BulletView() throws FileNotFoundException {</span>
+<span class="fc" id="L229">        public BulletView() throws FileNotFoundException {</span>
             TerminalSprite.Loader loader;
-<span class="fc" id="L239">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/bullet-8-4-right.lan&quot;));</span>
-<span class="fc" id="L240">            spriteOrientable = new TerminalSpriteOrientable(loader.getTerminalSprite());</span>
-<span class="fc" id="L241">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/bullet-8-4-left.lan&quot;));</span>
-<span class="fc" id="L242">            spriteOrientable.setSpriteLeft(loader.getTerminalSprite());</span>
-<span class="fc" id="L243">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/bullet-8-4-up.lan&quot;));</span>
-<span class="fc" id="L244">            spriteOrientable.setSpriteUp(loader.getTerminalSprite());</span>
-<span class="fc" id="L245">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/bullet-8-4-down.lan&quot;));</span>
-<span class="fc" id="L246">            spriteOrientable.setSpriteDown(loader.getTerminalSprite());</span>
-<span class="fc" id="L247">        }</span>
+<span class="fc" id="L231">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/bullet-8-4-right.lan&quot;));</span>
+<span class="fc" id="L232">            spriteOrientable = new TerminalSpriteOrientable(loader.getTerminalSprite());</span>
+<span class="fc" id="L233">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/bullet-8-4-left.lan&quot;));</span>
+<span class="fc" id="L234">            spriteOrientable.setSpriteLeft(loader.getTerminalSprite());</span>
+<span class="fc" id="L235">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/bullet-8-4-up.lan&quot;));</span>
+<span class="fc" id="L236">            spriteOrientable.setSpriteUp(loader.getTerminalSprite());</span>
+<span class="fc" id="L237">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/bullet-8-4-down.lan&quot;));</span>
+<span class="fc" id="L238">            spriteOrientable.setSpriteDown(loader.getTerminalSprite());</span>
+<span class="fc" id="L239">        }</span>
 
         @Override
         protected TerminalSprite getSprite(Element e) {
-<span class="nc" id="L251">            return spriteOrientable.getSprite(((OrientedElement) e).getDirection());</span>
+<span class="nc" id="L243">            return spriteOrientable.getSprite(((OrientedElement) e).getDirection());</span>
         }
     }
     private class CoinView extends ElementView {
         TerminalSprite sprite;
 
-<span class="fc" id="L257">        public CoinView() throws FileNotFoundException{</span>
-<span class="fc" id="L258">            TerminalSprite.Loader loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/coin-8-4.lan&quot;));</span>
-<span class="fc" id="L259">            sprite = loader.getTerminalSprite();</span>
-<span class="fc" id="L260">        }</span>
+<span class="fc" id="L249">        public CoinView() throws FileNotFoundException{</span>
+<span class="fc" id="L250">            TerminalSprite.Loader loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/coin-8-4.lan&quot;));</span>
+<span class="fc" id="L251">            sprite = loader.getTerminalSprite();</span>
+<span class="fc" id="L252">        }</span>
 
         @Override
         protected TerminalSprite getSprite(Element e) {
-<span class="nc" id="L264">            return sprite;</span>
+<span class="nc" id="L256">            return sprite;</span>
         }
     }
     private class HealthPotionView extends ElementView {
         TerminalSprite sprite;
 
-<span class="fc" id="L270">        public HealthPotionView() throws FileNotFoundException{</span>
-<span class="fc" id="L271">            TerminalSprite.Loader loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/healthpotion-8-4.lan&quot;));</span>
-<span class="fc" id="L272">            sprite = loader.getTerminalSprite();</span>
-<span class="fc" id="L273">        }</span>
+<span class="fc" id="L262">        public HealthPotionView() throws FileNotFoundException{</span>
+<span class="fc" id="L263">            TerminalSprite.Loader loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/healthpotion-8-4.lan&quot;));</span>
+<span class="fc" id="L264">            sprite = loader.getTerminalSprite();</span>
+<span class="fc" id="L265">        }</span>
 
         @Override
         protected TerminalSprite getSprite(Element e) {
-<span class="nc" id="L277">            return sprite;</span>
+<span class="nc" id="L269">            return sprite;</span>
         }
     }
 
@@ -283,15 +275,15 @@ public class TerminalArenaView extends ArenaView {
     {
         TerminalSprite sprite;
 
-<span class="fc" id="L286">        public SwordView() throws FileNotFoundException {</span>
-<span class="fc" id="L287">            TerminalSprite.Loader loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/sword-8-4.lan&quot;));</span>
-<span class="fc" id="L288">            sprite = loader.getTerminalSprite();</span>
-<span class="fc" id="L289">        }</span>
+<span class="fc" id="L278">        public SwordView() throws FileNotFoundException {</span>
+<span class="fc" id="L279">            TerminalSprite.Loader loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/sword-8-4.lan&quot;));</span>
+<span class="fc" id="L280">            sprite = loader.getTerminalSprite();</span>
+<span class="fc" id="L281">        }</span>
 
         @Override
         protected TerminalSprite getSprite(Element e)
         {
-<span class="nc" id="L294">            return sprite;</span>
+<span class="nc" id="L286">            return sprite;</span>
         }
 
     }
@@ -301,21 +293,21 @@ public class TerminalArenaView extends ArenaView {
         TerminalSpriteOrientable spriteOrientable;
 
         public MummyView() throws FileNotFoundException
-<span class="fc" id="L304">        {</span>
+<span class="fc" id="L296">        {</span>
             TerminalSprite.Loader loader;
-<span class="fc" id="L306">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/mummy-8-4-right.lan&quot;));</span>
-<span class="fc" id="L307">            spriteOrientable = new TerminalSpriteOrientable(loader.getTerminalSprite());</span>
-<span class="fc" id="L308">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/mummy-8-4-left.lan&quot;));</span>
-<span class="fc" id="L309">            spriteOrientable.setSpriteLeft(loader.getTerminalSprite());</span>
-<span class="fc" id="L310">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/mummy-8-4-up.lan&quot;));</span>
-<span class="fc" id="L311">            spriteOrientable.setSpriteUp(loader.getTerminalSprite());</span>
-<span class="fc" id="L312">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/mummy-8-4-down.lan&quot;));</span>
-<span class="fc" id="L313">            spriteOrientable.setSpriteDown(loader.getTerminalSprite());</span>
-<span class="fc" id="L314">        }</span>
+<span class="fc" id="L298">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/mummy-8-4-right.lan&quot;));</span>
+<span class="fc" id="L299">            spriteOrientable = new TerminalSpriteOrientable(loader.getTerminalSprite());</span>
+<span class="fc" id="L300">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/mummy-8-4-left.lan&quot;));</span>
+<span class="fc" id="L301">            spriteOrientable.setSpriteLeft(loader.getTerminalSprite());</span>
+<span class="fc" id="L302">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/mummy-8-4-up.lan&quot;));</span>
+<span class="fc" id="L303">            spriteOrientable.setSpriteUp(loader.getTerminalSprite());</span>
+<span class="fc" id="L304">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/mummy-8-4-down.lan&quot;));</span>
+<span class="fc" id="L305">            spriteOrientable.setSpriteDown(loader.getTerminalSprite());</span>
+<span class="fc" id="L306">        }</span>
 
         @Override
         protected TerminalSprite getSprite(Element e) {
-<span class="nc" id="L318">            return spriteOrientable.getSprite(((DynamicElement) e).getDirection());</span>
+<span class="nc" id="L310">            return spriteOrientable.getSprite(((DynamicElement) e).getDirection());</span>
         }
     }
 
@@ -324,21 +316,21 @@ public class TerminalArenaView extends ArenaView {
         TerminalSpriteOrientable spriteOrientable;
 
         public GuardView() throws FileNotFoundException
-<span class="fc" id="L327">        {</span>
+<span class="fc" id="L319">        {</span>
             TerminalSprite.Loader loader;
-<span class="fc" id="L329">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/guard-8-4-right.lan&quot;));</span>
-<span class="fc" id="L330">            spriteOrientable = new TerminalSpriteOrientable(loader.getTerminalSprite());</span>
-<span class="fc" id="L331">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/guard-8-4-left.lan&quot;));</span>
-<span class="fc" id="L332">            spriteOrientable.setSpriteLeft(loader.getTerminalSprite());</span>
-<span class="fc" id="L333">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/guard-8-4-up.lan&quot;));</span>
-<span class="fc" id="L334">            spriteOrientable.setSpriteUp(loader.getTerminalSprite());</span>
-<span class="fc" id="L335">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/guard-8-4-down.lan&quot;));</span>
-<span class="fc" id="L336">            spriteOrientable.setSpriteDown(loader.getTerminalSprite());</span>
-<span class="fc" id="L337">        }</span>
+<span class="fc" id="L321">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/guard-8-4-right.lan&quot;));</span>
+<span class="fc" id="L322">            spriteOrientable = new TerminalSpriteOrientable(loader.getTerminalSprite());</span>
+<span class="fc" id="L323">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/guard-8-4-left.lan&quot;));</span>
+<span class="fc" id="L324">            spriteOrientable.setSpriteLeft(loader.getTerminalSprite());</span>
+<span class="fc" id="L325">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/guard-8-4-up.lan&quot;));</span>
+<span class="fc" id="L326">            spriteOrientable.setSpriteUp(loader.getTerminalSprite());</span>
+<span class="fc" id="L327">            loader = new TerminalSpriteLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/guard-8-4-down.lan&quot;));</span>
+<span class="fc" id="L328">            spriteOrientable.setSpriteDown(loader.getTerminalSprite());</span>
+<span class="fc" id="L329">        }</span>
 
         @Override
         protected TerminalSprite getSprite(Element e) {
-<span class="nc" id="L341">            return spriteOrientable.getSprite(((DynamicElement) e).getDirection());</span>
+<span class="nc" id="L333">            return spriteOrientable.getSprite(((DynamicElement) e).getDirection());</span>
         }
     }
     
@@ -354,59 +346,59 @@ public class TerminalArenaView extends ArenaView {
         private final MummyView mummyView;
         private final GuardView guardView;
 
-<span class="fc" id="L357">        public ElementViewFactory() throws FileNotFoundException{</span>
-<span class="fc" id="L358">            wallView = new WallView();</span>
-<span class="fc" id="L359">            heroView = new HeroView();</span>
-<span class="fc" id="L360">            ghostView = new GhostView();</span>
-<span class="fc" id="L361">            ogreView = new OgreView();</span>
-<span class="fc" id="L362">            coinView = new CoinView();</span>
-<span class="fc" id="L363">            healthPotionView = new HealthPotionView();</span>
-<span class="fc" id="L364">            swordView = new SwordView();</span>
-<span class="fc" id="L365">            bulletView = new BulletView();</span>
-<span class="fc" id="L366">            mummyView = new MummyView();</span>
-<span class="fc" id="L367">            guardView = new GuardView();</span>
-<span class="fc" id="L368">        }</span>
+<span class="fc" id="L349">        public ElementViewFactory() throws FileNotFoundException{</span>
+<span class="fc" id="L350">            wallView = new WallView();</span>
+<span class="fc" id="L351">            heroView = new HeroView();</span>
+<span class="fc" id="L352">            ghostView = new GhostView();</span>
+<span class="fc" id="L353">            ogreView = new OgreView();</span>
+<span class="fc" id="L354">            coinView = new CoinView();</span>
+<span class="fc" id="L355">            healthPotionView = new HealthPotionView();</span>
+<span class="fc" id="L356">            swordView = new SwordView();</span>
+<span class="fc" id="L357">            bulletView = new BulletView();</span>
+<span class="fc" id="L358">            mummyView = new MummyView();</span>
+<span class="fc" id="L359">            guardView = new GuardView();</span>
+<span class="fc" id="L360">        }</span>
 
         public void setHeroPos(Position heroPos) {
-<span class="fc" id="L371">            wallView.setHeroPos(heroPos);</span>
-<span class="fc" id="L372">            heroView.setHeroPos(heroPos);</span>
-<span class="fc" id="L373">            ghostView.setHeroPos(heroPos);</span>
-<span class="fc" id="L374">            ogreView.setHeroPos(heroPos);</span>
-<span class="fc" id="L375">            coinView.setHeroPos(heroPos);</span>
-<span class="fc" id="L376">            healthPotionView.setHeroPos(heroPos);</span>
-<span class="fc" id="L377">            swordView.setHeroPos(heroPos);</span>
-<span class="fc" id="L378">            bulletView.setHeroPos(heroPos);</span>
-<span class="fc" id="L379">            mummyView.setHeroPos(heroPos);</span>
-<span class="fc" id="L380">            guardView.setHeroPos(heroPos);</span>
-<span class="fc" id="L381">        }</span>
+<span class="fc" id="L363">            wallView.setHeroPos(heroPos);</span>
+<span class="fc" id="L364">            heroView.setHeroPos(heroPos);</span>
+<span class="fc" id="L365">            ghostView.setHeroPos(heroPos);</span>
+<span class="fc" id="L366">            ogreView.setHeroPos(heroPos);</span>
+<span class="fc" id="L367">            coinView.setHeroPos(heroPos);</span>
+<span class="fc" id="L368">            healthPotionView.setHeroPos(heroPos);</span>
+<span class="fc" id="L369">            swordView.setHeroPos(heroPos);</span>
+<span class="fc" id="L370">            bulletView.setHeroPos(heroPos);</span>
+<span class="fc" id="L371">            mummyView.setHeroPos(heroPos);</span>
+<span class="fc" id="L372">            guardView.setHeroPos(heroPos);</span>
+<span class="fc" id="L373">        }</span>
 
         public ElementView factoryMethod(Element e){
-<span class="fc" id="L384">            ElementView res = null;</span>
-<span class="pc bpc" id="L385" title="1 of 2 branches missed.">            if     (e instanceof Wall) res = wallView;</span>
-<span class="pc bpc" id="L386" title="1 of 2 branches missed.">            else if(e instanceof Hero) res = heroView;</span>
-<span class="nc bnc" id="L387" title="All 2 branches missed.">            else if(e instanceof Ghost) res = ghostView;</span>
-<span class="nc bnc" id="L388" title="All 2 branches missed.">            else if(e instanceof Ogre) res = ogreView;</span>
-<span class="nc bnc" id="L389" title="All 2 branches missed.">            else if(e instanceof Coin) res = coinView;</span>
-<span class="nc bnc" id="L390" title="All 2 branches missed.">            else if(e instanceof HealthPotion) res = healthPotionView;</span>
-<span class="nc bnc" id="L391" title="All 2 branches missed.">            else if(e instanceof Sword) res = swordView;</span>
-<span class="nc bnc" id="L392" title="All 2 branches missed.">            else if(e instanceof Bullet) res = bulletView;</span>
-<span class="nc bnc" id="L393" title="All 2 branches missed.">            else if(e instanceof Mummy) res = mummyView;</span>
-<span class="nc bnc" id="L394" title="All 2 branches missed.">            else if(e instanceof Guard) res = guardView;</span>
-<span class="fc" id="L395">            return res;</span>
+<span class="fc" id="L376">            ElementView res = null;</span>
+<span class="pc bpc" id="L377" title="1 of 2 branches missed.">            if     (e instanceof Wall) res = wallView;</span>
+<span class="pc bpc" id="L378" title="1 of 2 branches missed.">            else if(e instanceof Hero) res = heroView;</span>
+<span class="nc bnc" id="L379" title="All 2 branches missed.">            else if(e instanceof Ghost) res = ghostView;</span>
+<span class="nc bnc" id="L380" title="All 2 branches missed.">            else if(e instanceof Ogre) res = ogreView;</span>
+<span class="nc bnc" id="L381" title="All 2 branches missed.">            else if(e instanceof Coin) res = coinView;</span>
+<span class="nc bnc" id="L382" title="All 2 branches missed.">            else if(e instanceof HealthPotion) res = healthPotionView;</span>
+<span class="nc bnc" id="L383" title="All 2 branches missed.">            else if(e instanceof Sword) res = swordView;</span>
+<span class="nc bnc" id="L384" title="All 2 branches missed.">            else if(e instanceof Bullet) res = bulletView;</span>
+<span class="nc bnc" id="L385" title="All 2 branches missed.">            else if(e instanceof Mummy) res = mummyView;</span>
+<span class="nc bnc" id="L386" title="All 2 branches missed.">            else if(e instanceof Guard) res = guardView;</span>
+<span class="fc" id="L387">            return res;</span>
         }
     }
     
-<span class="fc" id="L399">    final Map&lt;Class, Integer&gt; drawPriority = Map.of(</span>
-<span class="fc" id="L400">            Hero .class, 5,</span>
-<span class="fc" id="L401">            Ogre.class , 4,</span>
-<span class="fc" id="L402">            Mummy.class, 4,</span>
-<span class="fc" id="L403">            Guard.class, 4,</span>
-<span class="fc" id="L404">            Ghost.class, 2,</span>
-<span class="fc" id="L405">            Wall .class, 1,</span>
-<span class="fc" id="L406">            HealthPotion.class, 0,</span>
-<span class="fc" id="L407">            Coin .class, 0,</span>
-<span class="fc" id="L408">            Sword.class, 0,</span>
-<span class="fc" id="L409">            Bullet.class, 0</span>
+<span class="fc" id="L391">    final Map&lt;Class, Integer&gt; drawPriority = Map.of(</span>
+<span class="fc" id="L392">            Hero .class, 5,</span>
+<span class="fc" id="L393">            Ogre.class , 4,</span>
+<span class="fc" id="L394">            Mummy.class, 4,</span>
+<span class="fc" id="L395">            Guard.class, 4,</span>
+<span class="fc" id="L396">            Ghost.class, 2,</span>
+<span class="fc" id="L397">            Wall .class, 1,</span>
+<span class="fc" id="L398">            HealthPotion.class, 0,</span>
+<span class="fc" id="L399">            Coin .class, 0,</span>
+<span class="fc" id="L400">            Sword.class, 0,</span>
+<span class="fc" id="L401">            Bullet.class, 0</span>
     );
     
     private final TerminalGUI terminalGUI;
@@ -415,37 +407,37 @@ public class TerminalArenaView extends ArenaView {
     private final TerminalFont font;
     
     public TerminalArenaView(TerminalGUI terminalGUI, TerminalFont font) throws FileNotFoundException{
-<span class="fc" id="L418">        super(terminalGUI);</span>
-<span class="fc" id="L419">        this.terminalGUI = terminalGUI;</span>
-<span class="fc" id="L420">        this.font = font;</span>
-<span class="fc" id="L421">        elementViewFactory = new ElementViewFactory();</span>
-<span class="fc" id="L422">        infoBar = new InfoBar();</span>
-<span class="fc" id="L423">    }</span>
+<span class="fc" id="L410">        super(terminalGUI);</span>
+<span class="fc" id="L411">        this.terminalGUI = terminalGUI;</span>
+<span class="fc" id="L412">        this.font = font;</span>
+<span class="fc" id="L413">        elementViewFactory = new ElementViewFactory();</span>
+<span class="fc" id="L414">        infoBar = new InfoBar();</span>
+<span class="fc" id="L415">    }</span>
 
     @Override
     public void setTime(Duration time) {
-<span class="nc" id="L427">        infoBar.setTime(time);</span>
-<span class="nc" id="L428">    }</span>
+<span class="nc" id="L419">        infoBar.setTime(time);</span>
+<span class="nc" id="L420">    }</span>
     
     @Override
     public void draw() {
-<span class="fc" id="L432">        ArenaModel arena = getArenaModel();</span>
+<span class="fc" id="L424">        ArenaModel arena = getArenaModel();</span>
         
-<span class="fc" id="L434">        List&lt;Element&gt; listElements = arena.getElements();</span>
+<span class="fc" id="L426">        List&lt;Element&gt; listElements = arena.getElements();</span>
         
-<span class="fc" id="L436">        Map&lt;Position, Element&gt; drawBuffer = new HashMap&lt;&gt;();</span>
-<span class="fc bfc" id="L437" title="All 2 branches covered.">        for(final Element e : listElements){</span>
-<span class="fc" id="L438">            final Element e_ = drawBuffer.get(e.getPos());</span>
-<span class="pc bpc" id="L439" title="3 of 4 branches missed.">            if(e_ == null || drawPriority.get(e.getClass()) &gt; drawPriority.get(e_.getClass())) drawBuffer.put(e.getPos(), e);</span>
-<span class="fc" id="L440">        }</span>
+<span class="fc" id="L428">        Map&lt;Position, Element&gt; drawBuffer = new HashMap&lt;&gt;();</span>
+<span class="fc bfc" id="L429" title="All 2 branches covered.">        for(final Element e : listElements){</span>
+<span class="fc" id="L430">            final Element e_ = drawBuffer.get(e.getPos());</span>
+<span class="pc bpc" id="L431" title="3 of 4 branches missed.">            if(e_ == null || drawPriority.get(e.getClass()) &gt; drawPriority.get(e_.getClass())) drawBuffer.put(e.getPos(), e);</span>
+<span class="fc" id="L432">        }</span>
 
-<span class="fc" id="L442">        elementViewFactory.setHeroPos(arena.getHero().getPos());</span>
-<span class="fc bfc" id="L443" title="All 2 branches covered.">        for(final Element e : drawBuffer.values()){</span>
-<span class="fc" id="L444">            ElementView elementView = elementViewFactory.factoryMethod(e);</span>
-<span class="pc bpc" id="L445" title="1 of 2 branches missed.">            if(elementView != null) elementView.draw(e);</span>
-<span class="fc" id="L446">        }</span>
+<span class="fc" id="L434">        elementViewFactory.setHeroPos(arena.getHero().getPos());</span>
+<span class="fc bfc" id="L435" title="All 2 branches covered.">        for(final Element e : drawBuffer.values()){</span>
+<span class="fc" id="L436">            ElementView elementView = elementViewFactory.factoryMethod(e);</span>
+<span class="pc bpc" id="L437" title="1 of 2 branches missed.">            if(elementView != null) elementView.draw(e);</span>
+<span class="fc" id="L438">        }</span>
         
-<span class="fc" id="L448">        infoBar.draw(arena);</span>
-<span class="fc" id="L449">    }</span>
+<span class="fc" id="L440">        infoBar.draw(arena);</span>
+<span class="fc" id="L441">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
