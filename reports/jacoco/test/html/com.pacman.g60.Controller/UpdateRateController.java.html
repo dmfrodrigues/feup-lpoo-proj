@@ -2,14 +2,14 @@
 
 public class UpdateRateController {
 <span class="nc" id="L4">    private static final Integer SECONDS_TO_MILLIS = 1000;</span>
-    private Integer fps;
+    private Integer updatesPerSecond;
 <span class="nc" id="L6">    public UpdateRateController(){ this(60); }</span>
-<span class="nc" id="L7">    public UpdateRateController(Integer fps){ this.fps = fps; }</span>
-    public void setFPS(Integer fps){ 
-<span class="nc" id="L9">        this.fps = fps;</span>
+<span class="nc" id="L7">    public UpdateRateController(Integer updatesPerSecond){ this.updatesPerSecond = updatesPerSecond; }</span>
+    public void setUpdatesPerSecond(Integer updatesPerSecond){ 
+<span class="nc" id="L9">        this.updatesPerSecond = updatesPerSecond;</span>
 <span class="nc" id="L10">    }</span>
     private Integer getMillisPerFrame(){
-<span class="nc" id="L12">        return SECONDS_TO_MILLIS/fps;</span>
+<span class="nc" id="L12">        return SECONDS_TO_MILLIS/ updatesPerSecond;</span>
     }
 <span class="nc" id="L14">    private long previous = 0;</span>
 <span class="nc" id="L15">    private long lag = 0;</span>
