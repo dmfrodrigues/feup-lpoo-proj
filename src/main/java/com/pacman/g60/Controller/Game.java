@@ -290,6 +290,10 @@ public class Game {
                 reachableLevels.add(l);
                 reachableLevels.add(l+1);
             }
+            for (final MenuModel.Item item : menuModel.getItems())
+            {
+                item.setEnabled(reachableLevels.contains(item.getId()));
+            }
         }
         @Override
         public State run() throws IOException {
