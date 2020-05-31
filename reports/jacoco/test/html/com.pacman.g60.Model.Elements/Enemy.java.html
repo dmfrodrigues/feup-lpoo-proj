@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Enemy.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.Model.Elements</a> &gt; <span class="el_source">Enemy.java</span></div><h1>Enemy.java</h1><pre class="source lang-java linenums">package com.pacman.g60.Model.Elements;
 
 
-import com.pacman.g60.Model.Effect.Effect;
+import com.pacman.g60.Model.DamageEffect;
 import com.pacman.g60.Model.Elements.Hierarchy.AttackerElement;
 import com.pacman.g60.Model.Elements.Hierarchy.LivingElement;
 import com.pacman.g60.Model.Position;
 
 public abstract class Enemy extends DynamicElement implements LivingElement, AttackerElement {
-    protected Effect effect;
+    protected DamageEffect effect;
 
 
     @Override
     public Object clone() {
 <span class="nc" id="L15">        Enemy res = (Enemy)super.clone();</span>
-<span class="nc" id="L16">        res.effect = (Effect)effect.clone();</span>
+<span class="nc" id="L16">        res.effect = (DamageEffect) effect.clone();</span>
 <span class="nc" id="L17">        res.health = Integer.valueOf(health);</span>
 <span class="nc" id="L18">        return res;</span>
     }
 
-    public Enemy(Position pos, Effect effect, Integer health) {
+    public Enemy(Position pos, DamageEffect effect, Integer health) {
 <span class="fc" id="L22">        super(pos);</span>
 <span class="fc" id="L23">        this.effect = effect;</span>
 <span class="fc" id="L24">        this.health = health;</span>
 <span class="fc" id="L25">    }</span>
 
-    public Effect getEffect() {
+    public DamageEffect getEffect() {
 <span class="fc" id="L28">        return effect;</span>
     }
 }

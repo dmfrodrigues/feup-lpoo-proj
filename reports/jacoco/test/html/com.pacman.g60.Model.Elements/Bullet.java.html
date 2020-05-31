@@ -1,54 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Bullet.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.Model.Elements</a> &gt; <span class="el_source">Bullet.java</span></div><h1>Bullet.java</h1><pre class="source lang-java linenums">package com.pacman.g60.Model.Elements;
 
 import com.pacman.g60.Application;
-import com.pacman.g60.Model.Effect.DamageEffect;
-import com.pacman.g60.Model.Effect.Effect;
+import com.pacman.g60.Model.DamageEffect;
 import com.pacman.g60.Model.Elements.Hierarchy.OrientedElement;
 import com.pacman.g60.Model.Models.ArenaModel;
 import com.pacman.g60.Model.Position;
 
 public class Bullet extends Collectable implements OrientedElement {
-    private Effect effect;
+    private DamageEffect effect;
     private Application.Direction dir;
     private boolean moving;
 
     public Bullet(Position pos) {
-<span class="fc" id="L16">        super(pos);</span>
-<span class="fc" id="L17">        this.effect = new DamageEffect(5);</span>
-<span class="fc" id="L18">        this.dir = Application.Direction.UP;</span>
-<span class="fc" id="L19">        this.moving = false;</span>
-<span class="fc" id="L20">    }</span>
+<span class="fc" id="L15">        super(pos);</span>
+<span class="fc" id="L16">        this.effect = new DamageEffect(5);</span>
+<span class="fc" id="L17">        this.dir = Application.Direction.UP;</span>
+<span class="fc" id="L18">        this.moving = false;</span>
+<span class="fc" id="L19">    }</span>
 
     @Override
     public boolean beCollected(ArenaModel arenaModel) {
-<span class="fc" id="L24">        Hero hero = arenaModel.getHero();</span>
-<span class="fc" id="L25">        hero.incAmmo();</span>
-<span class="fc" id="L26">        return true;</span>
+<span class="fc" id="L23">        Hero hero = arenaModel.getHero();</span>
+<span class="fc" id="L24">        hero.incAmmo();</span>
+<span class="fc" id="L25">        return true;</span>
     }
 
     public void setDir(Application.Direction newDir)
     {
-<span class="nc" id="L31">        this.dir = newDir;</span>
-<span class="nc" id="L32">    }</span>
+<span class="nc" id="L30">        this.dir = newDir;</span>
+<span class="nc" id="L31">    }</span>
 
     public void setMoving(boolean moving)
     {
-<span class="nc" id="L36">        this.moving = moving;</span>
-<span class="nc" id="L37">    }</span>
+<span class="nc" id="L35">        this.moving = moving;</span>
+<span class="nc" id="L36">    }</span>
 
-    public Effect getEffect()
+    public DamageEffect getEffect()
     {
-<span class="nc" id="L41">        return this.effect;</span>
+<span class="nc" id="L40">        return this.effect;</span>
     }
 
     public boolean getMoving()
     {
-<span class="nc" id="L46">        return this.moving;</span>
+<span class="nc" id="L45">        return this.moving;</span>
     }
 
     @Override
     public Application.Direction getDirection() {
-<span class="nc" id="L51">        return dir;</span>
+<span class="nc" id="L50">        return dir;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
