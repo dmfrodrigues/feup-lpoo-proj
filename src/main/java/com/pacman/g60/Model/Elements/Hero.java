@@ -3,13 +3,12 @@ package com.pacman.g60.Model.Elements;
 
 
 import com.pacman.g60.Model.Elements.Hierarchy.*;
-import com.pacman.g60.Model.Models.ArenaModel;
 import com.pacman.g60.Model.Position;
 
 
 
 public class Hero extends DynamicElement implements ControlledByPlayer, LivingElement, MeleeAttackerElement, RangedAttackerElement, OrientedElement {
-    private Integer health,coins,ammo;
+    private Integer coins,ammo;
     private Weapon weapon;
     static final private Integer maxHealth = 10;
 
@@ -30,19 +29,6 @@ public class Hero extends DynamicElement implements ControlledByPlayer, LivingEl
         this.coins = 0;
         this.ammo = 0;
         this.weapon = new Knife();
-    }
-
-    @Override
-    public boolean beCollected(ArenaModel arenaModel) {
-        return false;
-    }
-
-    public Integer getHealth() {
-        return health;
-    }
-
-    public void setHealth(Integer health) {
-        this.health = health;
     }
 
     public Integer getCoins() {
@@ -74,10 +60,6 @@ public class Hero extends DynamicElement implements ControlledByPlayer, LivingEl
         return this.weapon;
     }
 
-    public void setCoins(Integer coins) {
-        this.coins = coins;
-    }
-
     public Integer getMaxHealth()
     {
         return this.maxHealth;
@@ -88,10 +70,5 @@ public class Hero extends DynamicElement implements ControlledByPlayer, LivingEl
 
         this.health += diff;
         if (this.health > maxHealth) this.health = maxHealth;
-    }
-
-    @Override
-    public boolean isAlive() {
-        return health > 0;
     }
 }

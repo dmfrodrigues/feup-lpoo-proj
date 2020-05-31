@@ -3,12 +3,15 @@ package com.pacman.g60.Model.Elements;
 
 
 import com.pacman.g60.Application;
+import com.pacman.g60.Model.Elements.Hierarchy.LivingElement;
 import com.pacman.g60.Model.Elements.Hierarchy.MovableElement;
 import com.pacman.g60.Model.Elements.Hierarchy.OrientedElement;
+import com.pacman.g60.Model.Models.ArenaModel;
 import com.pacman.g60.Model.Position;
 
-public abstract class DynamicElement extends Element implements MovableElement, OrientedElement {
+public abstract class DynamicElement extends Element implements MovableElement, OrientedElement, LivingElement {
     protected Application.Direction dir;
+    protected Integer health;
 
     @Override
     public Object clone() {
@@ -62,6 +65,34 @@ public abstract class DynamicElement extends Element implements MovableElement, 
     {
         updateDir(newPos);
         this.setPos(newPos);
+    }
+
+    public void setHealth(Integer health)
+    {
+        this.health = health;
+    }
+
+    public Integer getHealth()
+    {
+        return this.health;
+    }
+
+    @Override
+    public void updateHealth(Integer diff)
+    {
+        this.health += diff;
+    }
+
+    @Override
+    public boolean isAlive()
+    {
+        return health > 0;
+    }
+
+    @Override
+    public boolean beCollected(ArenaModel arenaModel)
+    {
+        return false;
     }
 
 }
