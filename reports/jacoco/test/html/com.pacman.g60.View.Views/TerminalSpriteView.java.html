@@ -6,7 +6,7 @@ import com.pacman.g60.View.Sprite.TerminalSprite;
 
 public class TerminalSpriteView extends SpriteView {
     
-    private TerminalGUI terminalGUI;
+    private final TerminalGUI terminalGUI;
     
     public TerminalSpriteView(TerminalSpriteView terminalSpriteView){
 <span class="nc" id="L12">        super(terminalSpriteView.terminalGUI);</span>
@@ -22,36 +22,35 @@ public class TerminalSpriteView extends SpriteView {
     public void draw() {
 <span class="nc" id="L23">        SpriteModel model = getSpriteModel();</span>
 <span class="nc" id="L24">        TerminalSprite sprite = model.getSprite();</span>
-<span class="nc bnc" id="L25" title="All 2 branches missed.">        if(model == null) return;</span>
         int x0, y0;
-<span class="nc bnc" id="L27" title="All 2 branches missed.">        if(model.getUnit() == SpriteModel.UNIT.ABSOLUTE) {</span>
-<span class="nc" id="L28">            x0 = (int) model.getPosition().getX();</span>
-<span class="nc" id="L29">            y0 = (int) model.getPosition().getY();</span>
+<span class="nc bnc" id="L26" title="All 2 branches missed.">        if(model.getUnit() == SpriteModel.UNIT.ABSOLUTE) {</span>
+<span class="nc" id="L27">            x0 = (int) model.getPosition().getX();</span>
+<span class="nc" id="L28">            y0 = (int) model.getPosition().getY();</span>
         } else {
-<span class="nc" id="L31">            x0 = (int)(model.getPosition().getX() * terminalGUI.getW());</span>
-<span class="nc" id="L32">            y0 = (int)(model.getPosition().getY() * terminalGUI.getH());</span>
+<span class="nc" id="L30">            x0 = (int)(model.getPosition().getX() * terminalGUI.getW());</span>
+<span class="nc" id="L31">            y0 = (int)(model.getPosition().getY() * terminalGUI.getH());</span>
         }
-<span class="nc bnc" id="L34" title="All 4 branches missed.">        switch(model.getHorizontalAlign()){</span>
-<span class="nc" id="L35">            case LEFT  : break;</span>
-<span class="nc" id="L36">            case CENTER: x0 -= sprite.getW()/2; break;</span>
-<span class="nc" id="L37">            case RIGHT : x0 -= sprite.getW()  ; break;</span>
+<span class="nc bnc" id="L33" title="All 4 branches missed.">        switch(model.getHorizontalAlign()){</span>
+<span class="nc" id="L34">            case LEFT  : break;</span>
+<span class="nc" id="L35">            case CENTER: x0 -= sprite.getW()/2; break;</span>
+<span class="nc" id="L36">            case RIGHT : x0 -= sprite.getW()  ; break;</span>
         }
-<span class="nc bnc" id="L39" title="All 4 branches missed.">        switch(model.getVerticalAlign()){</span>
-<span class="nc" id="L40">            case TOP   : break;</span>
-<span class="nc" id="L41">            case CENTER: y0 -= sprite.getH()/2; break;</span>
-<span class="nc" id="L42">            case BOTTOM: y0 -= sprite.getH()  ; break;</span>
+<span class="nc bnc" id="L38" title="All 4 branches missed.">        switch(model.getVerticalAlign()){</span>
+<span class="nc" id="L39">            case TOP   : break;</span>
+<span class="nc" id="L40">            case CENTER: y0 -= sprite.getH()/2; break;</span>
+<span class="nc" id="L41">            case BOTTOM: y0 -= sprite.getH()  ; break;</span>
         }
-<span class="nc bnc" id="L44" title="All 2 branches missed.">        for(int x = 0; x &lt; sprite.getW(); ++x) {</span>
-<span class="nc bnc" id="L45" title="All 2 branches missed.">            for (int y = 0; y &lt; sprite.getH(); ++y) {</span>
-<span class="nc" id="L46">                terminalGUI.drawCharacter(x0 + x, y0 + y,</span>
-<span class="nc" id="L47">                        sprite.getChar(x, y),</span>
-<span class="nc" id="L48">                        sprite.getForegroundColor(x, y),</span>
-<span class="nc" id="L49">                        sprite.getBackgroundColor(x, y));</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        for(int x = 0; x &lt; sprite.getW(); ++x) {</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            for (int y = 0; y &lt; sprite.getH(); ++y) {</span>
+<span class="nc" id="L45">                terminalGUI.drawCharacter(x0 + x, y0 + y,</span>
+<span class="nc" id="L46">                        sprite.getChar(x, y),</span>
+<span class="nc" id="L47">                        sprite.getForegroundColor(x, y),</span>
+<span class="nc" id="L48">                        sprite.getBackgroundColor(x, y));</span>
             }
         }
-<span class="nc" id="L52">    }</span>
+<span class="nc" id="L51">    }</span>
 
     @Override
-<span class="nc" id="L55">    public TerminalSpriteView clone() { return new TerminalSpriteView(this); }</span>
+<span class="nc" id="L54">    public TerminalSpriteView clone() { return new TerminalSpriteView(this); }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -3,35 +3,34 @@
 import com.pacman.g60.View.Font.TerminalFont;
 import com.pacman.g60.View.Font.TerminalFontLoaderStream;
 import com.pacman.g60.View.GUI.TerminalGUI;
-import com.pacman.g60.View.Views.*;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class TerminalFactory implements ViewFactory {
-    private TerminalGUI terminalGUI;
-    private TerminalFont font;
+    private final TerminalGUI terminalGUI;
+    private final TerminalFont font;
     
-<span class="fc" id="L15">    public TerminalFactory(TerminalGUI terminalGUI) throws FileNotFoundException {</span>
-<span class="fc" id="L16">        this.terminalGUI = terminalGUI;</span>
-<span class="fc" id="L17">        TerminalFont.Loader loader = new TerminalFontLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/monospace-4-3.font&quot;));</span>
-<span class="fc" id="L18">        font = loader.getTerminalFont();</span>
-<span class="fc" id="L19">    }</span>
+<span class="fc" id="L14">    public TerminalFactory(TerminalGUI terminalGUI) throws FileNotFoundException {</span>
+<span class="fc" id="L15">        this.terminalGUI = terminalGUI;</span>
+<span class="fc" id="L16">        TerminalFont.Loader loader = new TerminalFontLoaderStream(new FileInputStream(&quot;src/main/resources/lanterna-sprites/monospace-4-3.font&quot;));</span>
+<span class="fc" id="L17">        font = loader.getTerminalFont();</span>
+<span class="fc" id="L18">    }</span>
     
     @Override
-<span class="fc" id="L22">    public TerminalArenaView createArenaView() throws FileNotFoundException { return new TerminalArenaView(terminalGUI, font); }</span>
+<span class="fc" id="L21">    public TerminalArenaView createArenaView() throws FileNotFoundException { return new TerminalArenaView(terminalGUI, font); }</span>
 
     @Override
     public MenuView createMenuView() {
-<span class="nc" id="L26">        return new TerminalMenuView(terminalGUI, font);</span>
+<span class="nc" id="L25">        return new TerminalMenuView(terminalGUI, font);</span>
     }
 
     @Override
     public TextView createTextView() {
-<span class="nc" id="L31">        return new TerminalTextView(terminalGUI, font);</span>
+<span class="nc" id="L30">        return new TerminalTextView(terminalGUI, font);</span>
     }
 
     @Override
-<span class="nc" id="L35">    public SpriteView createSpriteView() { return new TerminalSpriteView(terminalGUI); }</span>
+<span class="nc" id="L34">    public SpriteView createSpriteView() { return new TerminalSpriteView(terminalGUI); }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

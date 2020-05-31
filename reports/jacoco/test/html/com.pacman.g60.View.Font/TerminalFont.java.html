@@ -6,7 +6,7 @@ import java.util.Map;
 public class TerminalFont {
     public static class TerminalCharacter {
         private final Integer W, H;
-<span class="fc" id="L9">        private char[][] chars = null;</span>
+        private final char[][] chars;
 <span class="fc" id="L10">        public TerminalCharacter(Integer W, Integer H) {</span>
 <span class="fc" id="L11">            this.W = W;</span>
 <span class="fc" id="L12">            this.H = H;</span>
@@ -19,7 +19,7 @@ public class TerminalFont {
         
     }
     private final Integer W, H;
-    private Map&lt;Character, TerminalCharacter&gt; chars;
+    private final Map&lt;Character, TerminalCharacter&gt; chars;
 <span class="fc" id="L23">    public TerminalFont(Integer W, Integer H){</span>
 <span class="fc" id="L24">        this.W = W;</span>
 <span class="fc" id="L25">        this.H = H;</span>
