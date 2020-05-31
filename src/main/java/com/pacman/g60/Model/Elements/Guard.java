@@ -36,6 +36,11 @@ public class Guard extends Enemy implements MeleeAttackerElement {
         if (moveType == MovementType.VERTICAL  ) this.movement = new VerticalGuardMovementStrategy(position);
     }
 
+    public MovementType getMoveType()
+    {
+        return this.moveType;
+    }
+
     public Position tryGetNextPos()
     {
         return movement.tryMove();
