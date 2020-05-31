@@ -42,7 +42,7 @@ public class ArenaController extends Controller {
 <span class="nc" id="L42">            long numberUpdates = rateController.numberUpdatesInThisFrame();</span>
 <span class="nc bnc" id="L43" title="All 2 branches missed.">            for(long i = 0; i &lt; numberUpdates; ++i) {</span>
 <span class="nc" id="L44">                executeCommand(new UpdateAllEnemyPosCommand(this.arenaModel));</span>
-<span class="nc" id="L45">                executeCommand(new CheckHeroAdjacencyCommand(this.arenaModel));</span>
+<span class="nc" id="L45">                executeCommand(new ApplyAllEffectCommand(this.arenaModel,false));</span>
 <span class="nc" id="L46">                executeCommand(new CheckForDeathCommand(this.arenaModel));</span>
 <span class="nc" id="L47">                executeCommand(new UpdateAllProjectilePosCommand(this.arenaModel));</span>
             }
@@ -54,19 +54,19 @@ public class ArenaController extends Controller {
                     case P:
 <span class="nc" id="L55">                        good = false; break;</span>
                     case UP:
-<span class="nc" id="L57">                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.UP));</span>
+<span class="nc" id="L57">                        executeCommand(new MoveHeroUpCommand(this.arenaModel));</span>
 <span class="nc" id="L58">                        break;</span>
                     case DOWN:
-<span class="nc" id="L60">                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.DOWN));</span>
+<span class="nc" id="L60">                        executeCommand(new MoveHeroDownCommand(this.arenaModel));</span>
 <span class="nc" id="L61">                        break;</span>
                     case LEFT:
-<span class="nc" id="L63">                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.LEFT));</span>
+<span class="nc" id="L63">                        executeCommand(new MoveHeroLeftCommand(this.arenaModel));</span>
 <span class="nc" id="L64">                        break;</span>
                     case RIGHT:
-<span class="nc" id="L66">                        executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.RIGHT));</span>
+<span class="nc" id="L66">                        executeCommand(new MoveHeroRightCommand(this.arenaModel));</span>
 <span class="nc" id="L67">                        break;</span>
                     case SPACEBAR:
-<span class="nc" id="L69">                        executeCommand(new AttackCommand(this.arenaModel)); break;</span>
+<span class="nc" id="L69">                        executeCommand(new ApplyAllEffectCommand(this.arenaModel,true)); break;</span>
                     case FIRE:
 <span class="nc" id="L71">                        executeCommand(new FireBulletCommand(this.arenaModel)); break;</span>
 

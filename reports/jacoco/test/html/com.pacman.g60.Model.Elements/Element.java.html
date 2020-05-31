@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Element.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.Model.Elements</a> &gt; <span class="el_source">Element.java</span></div><h1>Element.java</h1><pre class="source lang-java linenums">package com.pacman.g60.Model.Elements;
 
 
+import com.pacman.g60.Model.Models.ArenaModel;
 import com.pacman.g60.Model.Position;
 
 import java.lang.reflect.InvocationTargetException;
@@ -12,22 +13,22 @@ public abstract class Element implements Cloneable{
     @Override
     public Object clone() {
         try {
-<span class="nc" id="L15">            return getClass().getDeclaredConstructor(Position.class).newInstance(pos);</span>
-<span class="nc" id="L16">        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {</span>
-<span class="nc" id="L17">            e.printStackTrace();</span>
+<span class="nc" id="L16">            return getClass().getDeclaredConstructor(Position.class).newInstance(pos);</span>
+<span class="nc" id="L17">        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {</span>
+<span class="nc" id="L18">            e.printStackTrace();</span>
         }
-<span class="nc" id="L19">        return null;</span>
+<span class="nc" id="L20">        return null;</span>
     }
 
-<span class="fc" id="L22">    public Element(Position pos){</span>
-<span class="fc" id="L23">        this.pos = pos;</span>
-<span class="fc" id="L24">    }</span>
+<span class="fc" id="L23">    public Element(Position pos){</span>
+<span class="fc" id="L24">        this.pos = pos;</span>
+<span class="fc" id="L25">    }</span>
 
     public Position getPos(){
-<span class="fc" id="L27">        return new Position(pos);</span>
+<span class="fc" id="L28">        return new Position(pos);</span>
     }
 
-<span class="fc" id="L30">    public void setPos(Position position) { this.pos = position; }</span>
+<span class="fc" id="L31">    public void setPos(Position position) { this.pos = position; }</span>
 
     /**
      * Override of equals. Also checks if they are the same class.
@@ -36,9 +37,11 @@ public abstract class Element implements Cloneable{
      */
     @Override
     public boolean equals(Object obj) {
-<span class="fc bfc" id="L39" title="All 2 branches covered.">        return (getClass().equals(obj.getClass()) &amp;&amp;</span>
-<span class="fc bfc" id="L40" title="All 2 branches covered.">                pos.equals(((Element)obj).pos));</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        return (getClass().equals(obj.getClass()) &amp;&amp;</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">                pos.equals(((Element)obj).pos));</span>
     }
+
+    public abstract boolean beCollected(ArenaModel arenaModel);
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

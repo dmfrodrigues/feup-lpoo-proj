@@ -8,7 +8,7 @@ import com.pacman.g60.Model.Position;
 
 
 public class Hero extends DynamicElement implements ControlledByPlayer, LivingElement, MeleeAttackerElement, RangedAttackerElement, OrientedElement {
-    private Integer health,coins,ammo;
+    private Integer coins,ammo;
     private Weapon weapon;
 <span class="fc" id="L13">    static final private Integer maxHealth = 10;</span>
 
@@ -31,62 +31,55 @@ public class Hero extends DynamicElement implements ControlledByPlayer, LivingEl
 <span class="fc" id="L31">        this.weapon = new Knife();</span>
 <span class="fc" id="L32">    }</span>
 
-    public Integer getHealth() {
-<span class="fc" id="L35">        return health;</span>
-    }
-
-    public void setHealth(Integer health) {
-<span class="fc" id="L39">        this.health = health;</span>
-<span class="fc" id="L40">    }</span>
-
     public Integer getCoins() {
-<span class="fc" id="L43">        return coins;</span>
+<span class="fc" id="L35">        return coins;</span>
     }
 
-<span class="nc" id="L46">    public void incCoins(){this.coins++;}</span>
+<span class="fc" id="L38">    public void incCoins(){this.coins++;}</span>
 
-<span class="nc" id="L48">    public void incAmmo(){this.ammo++;}</span>
+<span class="fc" id="L40">    public void incAmmo(){this.ammo++;}</span>
 
     public Integer getAmmo()
     {
-<span class="nc" id="L52">        return this.ammo;</span>
+<span class="fc" id="L44">        return this.ammo;</span>
     }
 
     public void decAmmo()
     {
-<span class="nc" id="L57">        this.ammo--;</span>
-<span class="nc bnc" id="L58" title="All 2 branches missed.">        if (this.ammo &lt; 0) this.ammo = 0;</span>
-<span class="nc" id="L59">    }</span>
+<span class="nc" id="L49">        this.ammo--;</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">        if (this.ammo &lt; 0) this.ammo = 0;</span>
+<span class="nc" id="L51">    }</span>
+
+    public void setCoins(Integer coins)
+    {
+<span class="fc" id="L55">        this.coins = coins;</span>
+<span class="fc" id="L56">    }</span>
+
+    public void setAmmo(Integer ammo)
+    {
+<span class="fc" id="L60">        this.ammo = ammo;</span>
+<span class="fc" id="L61">    }</span>
 
     public void setWeapon(Weapon weapon)
     {
-<span class="nc" id="L63">        this.weapon = weapon;</span>
-<span class="nc" id="L64">    }</span>
+<span class="nc" id="L65">        this.weapon = weapon;</span>
+<span class="nc" id="L66">    }</span>
 
     public Weapon getWeapon()
     {
-<span class="nc" id="L68">        return this.weapon;</span>
+<span class="nc" id="L70">        return this.weapon;</span>
     }
-
-    public void setCoins(Integer coins) {
-<span class="nc" id="L72">        this.coins = coins;</span>
-<span class="nc" id="L73">    }</span>
 
     public Integer getMaxHealth()
     {
-<span class="fc" id="L77">        return this.maxHealth;</span>
+<span class="fc" id="L75">        return this.maxHealth;</span>
     }
 
     @Override
     public void updateHealth(Integer diff) {
 
-<span class="nc" id="L83">        this.health += diff;</span>
-<span class="nc bnc" id="L84" title="All 2 branches missed.">        if (this.health &gt; maxHealth) this.health = maxHealth;</span>
-<span class="nc" id="L85">    }</span>
-
-    @Override
-    public boolean isAlive() {
-<span class="nc bnc" id="L89" title="All 2 branches missed.">        return health &gt; 0;</span>
-    }
+<span class="fc" id="L81">        this.health += diff;</span>
+<span class="pc bpc" id="L82" title="1 of 2 branches missed.">        if (this.health &gt; maxHealth) this.health = maxHealth;</span>
+<span class="fc" id="L83">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

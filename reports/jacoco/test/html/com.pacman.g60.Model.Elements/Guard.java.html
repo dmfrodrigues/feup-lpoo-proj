@@ -3,55 +3,61 @@
 import com.pacman.g60.Model.Effect.DamageEffect;
 import com.pacman.g60.Model.Effect.Effect;
 import com.pacman.g60.Model.Elements.Hierarchy.MeleeAttackerElement;
+import com.pacman.g60.Model.Models.ArenaModel;
 import com.pacman.g60.Model.Position;
 
 
 public class Guard extends Enemy implements MeleeAttackerElement {
     private GuardMovementStrategy movement;
-<span class="nc" id="L11">    public enum MovementType</span>
+<span class="fc" id="L12">    public enum MovementType</span>
     {
-<span class="nc" id="L13">        HORIZONTAL,</span>
-<span class="nc" id="L14">        VERTICAL</span>
+<span class="fc" id="L14">        HORIZONTAL,</span>
+<span class="fc" id="L15">        VERTICAL</span>
     }
     private MovementType moveType;
 
     public Guard(Position pos)
     {
-<span class="nc" id="L20">        super(pos,new DamageEffect(1),10);</span>
-<span class="nc" id="L21">        this.moveType = MovementType.HORIZONTAL;</span>
-<span class="nc" id="L22">        initMovement(pos);</span>
-<span class="nc" id="L23">    }</span>
+<span class="nc" id="L21">        super(pos,new DamageEffect(1),10);</span>
+<span class="nc" id="L22">        this.moveType = MovementType.HORIZONTAL;</span>
+<span class="nc" id="L23">        initMovement(pos);</span>
+<span class="nc" id="L24">    }</span>
 
     public Guard(Position pos, MovementType moveType)
     {
-<span class="nc" id="L27">        super(new Position(100,100),new DamageEffect(1),10);</span>
-<span class="nc" id="L28">        this.moveType = moveType;</span>
-<span class="nc" id="L29">        initMovement(pos);</span>
-<span class="nc" id="L30">    }</span>
+<span class="fc" id="L28">        super(new Position(100,100),new DamageEffect(1),10);</span>
+<span class="fc" id="L29">        this.moveType = moveType;</span>
+<span class="fc" id="L30">        initMovement(pos);</span>
+<span class="fc" id="L31">    }</span>
 
     private void initMovement(Position position)
     {
-<span class="nc bnc" id="L34" title="All 2 branches missed.">        if (moveType == MovementType.HORIZONTAL) this.movement = new HorizontalGuardMovementStrategy(position);</span>
-<span class="nc bnc" id="L35" title="All 2 branches missed.">        if (moveType == MovementType.VERTICAL  ) this.movement = new VerticalGuardMovementStrategy(position);</span>
-<span class="nc" id="L36">    }</span>
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">        if (moveType == MovementType.HORIZONTAL) this.movement = new HorizontalGuardMovementStrategy(position);</span>
+<span class="pc bpc" id="L36" title="1 of 2 branches missed.">        if (moveType == MovementType.VERTICAL  ) this.movement = new VerticalGuardMovementStrategy(position);</span>
+<span class="fc" id="L37">    }</span>
+
+    public MovementType getMoveType()
+    {
+<span class="fc" id="L41">        return this.moveType;</span>
+    }
 
     public Position tryGetNextPos()
     {
-<span class="nc" id="L40">        return movement.tryMove();</span>
+<span class="fc" id="L46">        return movement.tryMove();</span>
     }
 
     public Position getNextPos()
     {
-<span class="nc" id="L45">        return movement.move();</span>
+<span class="nc" id="L51">        return movement.move();</span>
     }
 
     @Override
     public Object clone()
     {
-<span class="nc" id="L51">        Guard guard = (Guard) super.clone();</span>
-<span class="nc" id="L52">        guard.moveType = this.moveType;</span>
-<span class="nc" id="L53">        guard.movement = this.movement;</span>
-<span class="nc" id="L54">        return guard;</span>
+<span class="nc" id="L57">        Guard guard = (Guard) super.clone();</span>
+<span class="nc" id="L58">        guard.moveType = this.moveType;</span>
+<span class="nc" id="L59">        guard.movement = this.movement;</span>
+<span class="nc" id="L60">        return guard;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

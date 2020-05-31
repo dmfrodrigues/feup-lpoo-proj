@@ -4,12 +4,18 @@
 import com.pacman.g60.Model.Elements.Hierarchy.CanSharePosition;
 import com.pacman.g60.Model.Elements.Hierarchy.LivingElement;
 import com.pacman.g60.Model.Elements.StaticElement;
+import com.pacman.g60.Model.Models.ArenaModel;
 import com.pacman.g60.Model.Position;
 
 public class Wall extends StaticElement  {
     public Wall(Position pos){
-<span class="fc" id="L11">        super(pos);</span>
+<span class="fc" id="L12">        super(pos);</span>
 
-<span class="fc" id="L13">    }</span>
+<span class="fc" id="L14">    }</span>
+
+    @Override
+    public boolean beCollected(ArenaModel arenaModel) {
+<span class="nc" id="L18">        return false;</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

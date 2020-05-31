@@ -7,25 +7,25 @@ import java.util.LinkedList;
 public class HorizontalGuardMovementStrategy extends GuardMovementStrategy {
 
     public HorizontalGuardMovementStrategy(Position initialPos)
-<span class="nc" id="L10">    {</span>
-<span class="nc" id="L11">        this.positions = new LinkedList&lt;&gt;();</span>
-<span class="nc" id="L12">        initPos(initialPos);</span>
-<span class="nc" id="L13">    }</span>
+<span class="fc" id="L10">    {</span>
+<span class="fc" id="L11">        this.positions = new LinkedList&lt;&gt;();</span>
+<span class="fc" id="L12">        initPos(initialPos);</span>
+<span class="fc" id="L13">    }</span>
 
     private void initPos(Position initialPos)
     {
-<span class="nc" id="L17">        Position pos1 = initialPos;</span>
-<span class="nc" id="L18">        int initialX = initialPos.getX();</span>
-<span class="nc" id="L19">        int initialY = initialPos.getY();</span>
+<span class="fc" id="L17">        Position pos1 = initialPos;</span>
+<span class="fc" id="L18">        int initialX = initialPos.getX();</span>
+<span class="fc" id="L19">        int initialY = initialPos.getY();</span>
 
-<span class="nc" id="L21">        Position pos2 = new Position(initialX - 1,initialY);</span>
-<span class="nc" id="L22">        Position pos3 = new Position(initialX - 2,initialY);</span>
-<span class="nc" id="L23">        Position pos4 = new Position(initialX - 1,initialY);</span>
+<span class="fc" id="L21">        Position pos2 = new Position(initialX - 1,initialY);</span>
+<span class="fc" id="L22">        Position pos3 = new Position(initialX - 2,initialY);</span>
+<span class="fc" id="L23">        Position pos4 = new Position(initialX - 1,initialY);</span>
 
-<span class="nc" id="L25">        this.positions.add(pos1);</span>
-<span class="nc" id="L26">        this.positions.add(pos2);</span>
-<span class="nc" id="L27">        this.positions.add(pos3);</span>
-<span class="nc" id="L28">        this.positions.add(pos4);</span>
-<span class="nc" id="L29">    }</span>
+<span class="fc" id="L25">        this.positions.add(pos1);</span>
+<span class="fc" id="L26">        this.positions.add(pos2);</span>
+<span class="fc" id="L27">        this.positions.add(pos3);</span>
+<span class="fc" id="L28">        this.positions.add(pos4);</span>
+<span class="fc" id="L29">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

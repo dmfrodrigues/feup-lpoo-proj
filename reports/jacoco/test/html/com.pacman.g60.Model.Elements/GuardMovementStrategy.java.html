@@ -4,19 +4,24 @@ import com.pacman.g60.Model.Position;
 
 import java.util.Queue;
 
-<span class="nc" id="L7">public abstract class GuardMovementStrategy {</span>
+<span class="fc" id="L7">public abstract class GuardMovementStrategy {</span>
     protected Queue&lt;Position&gt; positions;
 
     public Position tryMove()
     {
-<span class="nc" id="L12">        return positions.peek();</span>
+<span class="fc" id="L12">        return positions.peek();</span>
     }
 
     public Position move()
     {
-<span class="nc" id="L17">        Position result = positions.poll();</span>
-<span class="nc" id="L18">        positions.add(result);</span>
-<span class="nc" id="L19">        return result;</span>
+<span class="fc" id="L17">        Position result = positions.poll();</span>
+<span class="fc" id="L18">        positions.add(result);</span>
+<span class="fc" id="L19">        return result;</span>
+    }
+
+    public Queue&lt;Position&gt; getPositions()
+    {
+<span class="fc" id="L24">        return this.positions;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -4,6 +4,7 @@ import com.pacman.g60.Application;
 import com.pacman.g60.Model.Effect.DamageEffect;
 import com.pacman.g60.Model.Effect.Effect;
 import com.pacman.g60.Model.Elements.Hierarchy.OrientedElement;
+import com.pacman.g60.Model.Models.ArenaModel;
 import com.pacman.g60.Model.Position;
 
 public class Bullet extends Collectable implements OrientedElement {
@@ -12,35 +13,42 @@ public class Bullet extends Collectable implements OrientedElement {
     private boolean moving;
 
     public Bullet(Position pos) {
-<span class="nc" id="L15">        super(pos);</span>
-<span class="nc" id="L16">        this.effect = new DamageEffect(1);</span>
-<span class="nc" id="L17">        this.dir = Application.Direction.UP;</span>
-<span class="nc" id="L18">        this.moving = false;</span>
-<span class="nc" id="L19">    }</span>
+<span class="fc" id="L16">        super(pos);</span>
+<span class="fc" id="L17">        this.effect = new DamageEffect(1);</span>
+<span class="fc" id="L18">        this.dir = Application.Direction.UP;</span>
+<span class="fc" id="L19">        this.moving = false;</span>
+<span class="fc" id="L20">    }</span>
+
+    @Override
+    public boolean beCollected(ArenaModel arenaModel) {
+<span class="fc" id="L24">        Hero hero = arenaModel.getHero();</span>
+<span class="fc" id="L25">        hero.incAmmo();</span>
+<span class="fc" id="L26">        return true;</span>
+    }
 
     public void setDir(Application.Direction newDir)
     {
-<span class="nc" id="L23">        this.dir = newDir;</span>
-<span class="nc" id="L24">    }</span>
+<span class="nc" id="L31">        this.dir = newDir;</span>
+<span class="nc" id="L32">    }</span>
 
     public void setMoving(boolean moving)
     {
-<span class="nc" id="L28">        this.moving = moving;</span>
-<span class="nc" id="L29">    }</span>
+<span class="nc" id="L36">        this.moving = moving;</span>
+<span class="nc" id="L37">    }</span>
 
     public Effect getEffect()
     {
-<span class="nc" id="L33">        return this.effect;</span>
+<span class="nc" id="L41">        return this.effect;</span>
     }
 
     public boolean getMoving()
     {
-<span class="nc" id="L38">        return this.moving;</span>
+<span class="nc" id="L46">        return this.moving;</span>
     }
 
     @Override
     public Application.Direction getDirection() {
-<span class="nc" id="L43">        return dir;</span>
+<span class="nc" id="L51">        return dir;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
