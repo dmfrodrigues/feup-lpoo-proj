@@ -3,7 +3,7 @@ package com.pacman.g60.Model;
 import java.util.*;
 
 public class GameProgress {
-    public class LevelProgress implements Comparable {
+    public static class LevelProgress implements Comparable {
         private Integer level;
         private Integer coins;
         private Integer time;
@@ -42,7 +42,7 @@ public class GameProgress {
         if(p == null || p.compareTo(progress) < 0) progressMap.put(progress.getLevel(), progress);
     }
     
-    public LevelProgress getProgress(Integer level){
-        return progressMap.get(level);
-    }    
+    public LevelProgress getProgress(Integer level){ return progressMap.get(level); }
+    
+    public Set<Integer> getLevels(){ return progressMap.keySet(); }
 }

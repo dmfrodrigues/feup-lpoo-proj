@@ -11,6 +11,8 @@ import com.pacman.g60.View.Sprite.TerminalSprite;
 import com.pacman.g60.View.Sprite.TerminalSpriteLoaderStream;
 import com.pacman.g60.View.Views.*;
 
+import javax.swing.*;
+
 public class Game {
 
     private interface State {
@@ -136,15 +138,45 @@ public class Game {
     }
 
     private class StateSave implements State {
+        GameProgressFileIO io;
+        public StateSave(GameProgressFileIO io){ this.io = io; }
         @Override
         public State run() {
+            JFrame parentFrame = new JFrame();
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Specify progress file to save");
+            int result = fileChooser.showSaveDialog(parentFrame);
+            if(result == JFileChooser.APPROVE_OPTION){
+                File file = fileChooser.getSelectedFile();
+                try {
+                    io.write(file, progress);
+                    System.out.println("Saved progress to file '" + file.getAbsolutePath() + "'");
+                } catch(IOException e){
+                    System.err.println("Failed to save progress to file '" + file.getAbsolutePath() + "'");
+                }
+            }
             return stateMainMenu;
         }
     }
 
     private class StateLoad implements State {
+        GameProgressFileIO io;
+        public StateLoad(GameProgressFileIO io){ this.io = io; }
         @Override
         public State run() {
+            JFrame parentFrame = new JFrame();
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Specify progress file to load");
+            int result = fileChooser.showOpenDialog(parentFrame);
+            if(result == JFileChooser.APPROVE_OPTION){
+                File file = fileChooser.getSelectedFile();
+                try {
+                    progress = io.read(file);
+                    System.out.println("Loaded progress from file '" + file.getAbsolutePath() + "'");
+                } catch (FileNotFoundException e) {
+                    System.err.println("Failed to load progress from file '" + file.getAbsolutePath() + "'");
+                }
+            }
             return stateMainMenu;
         }
     }
@@ -416,13 +448,15 @@ public class Game {
     }
     
     private State state;
+    private GameProgress progress = new GameProgress();
 
     public Game(ViewFactory viewFactory) throws Exception {
+        GameProgressFileIO io = new GameProgressFileIO();
         stateMainMenu       = new StateMainMenu(viewFactory.createMenuView(), viewFactory.createTextView());
         stateControls       = new StateControls(viewFactory.createMenuView(), viewFactory.createTextView());
         stateScoreboard     = new StateScoreboard();
-        stateSave           = new StateSave();
-        stateLoad           = new StateLoad();
+        stateSave           = new StateSave(io);
+        stateLoad           = new StateLoad(io);
         stateLevelSelect    = new StateLevelSelector(viewFactory.createMenuView(), viewFactory.createTextView());
         stateArena          = new StateArena(viewFactory.createArenaView());
         stateWin            = new StateWin(viewFactory.createMenuView(), viewFactory.createTextView(), viewFactory.createSpriteView());
