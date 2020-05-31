@@ -7,6 +7,7 @@ import com.pacman.g60.Model.Elements.*;
 import com.pacman.g60.Model.Elements.Hierarchy.OrientedElement;
 import com.pacman.g60.Model.Models.Alignable;
 import com.pacman.g60.Model.Models.ArenaModel;
+import com.pacman.g60.Model.Models.SpriteModel;
 import com.pacman.g60.Model.Models.TextModel;
 import com.pacman.g60.View.*;
 import com.pacman.g60.View.Font.TerminalFont;
@@ -33,19 +34,10 @@ public class TerminalArenaView extends ArenaView {
         private final TerminalTextView textViewCoin;
         private final TextModel textModelTimer;
         private final TerminalTextView textViewTimer;
+        private final SpriteModel coinModel;
         private Duration time = Duration.ZERO;
-        private GUIViewComposite view;
+        private final GUIViewComposite view;
         
-        private void drawSprite(TerminalSprite sprite, int x0, int y0){
-            for(int x = 0; x < sprite.getW(); ++x) {
-                for (int y = 0; y < sprite.getH(); ++y) {
-                    terminalGUI.drawCharacter(x0 + x, y0 + y,
-                            sprite.getChar(x, y),
-                            sprite.getForegroundColor(x, y),
-                            sprite.getBackgroundColor(x, y));
-                }
-            }
-        }
         TerminalSprite heartSprite;
         TerminalSprite heartDeadSprite;
         TerminalSprite coinSprite;
@@ -56,8 +48,12 @@ public class TerminalArenaView extends ArenaView {
             heartSprite = loader.getTerminalSprite();
             loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/heart-dead-6-3.lan"));
             heartDeadSprite = loader.getTerminalSprite();
+            
             loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/coin-6-3.lan"));
             coinSprite = loader.getTerminalSprite();
+            SpriteView coinView = new TerminalSpriteView(terminalGUI);
+            coinModel = new SpriteModel(coinSprite);
+            coinView.setSpriteModel(coinModel);
             
             textModelCoin = new TextModel("");
             textModelCoin.setVerticalAlign(Alignable.VerticalAlign.TOP);
@@ -73,6 +69,7 @@ public class TerminalArenaView extends ArenaView {
             
             view = new GUIViewComposite(terminalGUI);
             view.addView(textViewCoin);
+            view.addView(coinView);
             view.addView(textViewTimer);
         }
         
@@ -120,7 +117,7 @@ public class TerminalArenaView extends ArenaView {
             textModelCoin.setText(coinsStr);
             textModelCoin.setPosition(new Position(coinsStrX, 1+coinSprite.getH()-textViewCoin.getStringHeight(textModelCoin.getText())));
             int coinsSpriteX = coinsStrX - coinSprite.getW() -1;
-            drawSprite(coinSprite, coinsSpriteX, 1);
+            coinModel.setPosition(new Position(coinsSpriteX, 1));
         }
         private void updateTimer(){
             long sec = time.getSeconds()%60;
