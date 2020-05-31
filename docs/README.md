@@ -269,16 +269,20 @@ It's all menus and games, until you reach the point you have to put everything t
 
 #### The pattern
 
-We will apply the [State](https://refactoring.guru/design-patterns/state) pattern, which consists of representing the general workings of the game as a deterministic finite automaton, where some states are only reachable from others, and with the added advantage that transitions between states are made explicit.
+We applied the [State](https://refactoring.guru/design-patterns/state) pattern, which consists of representing the general workings of the game as a deterministic finite automaton, where some states are only reachable from others, and with the added advantage that transitions between states are made explicit.
 
 #### Implementation
 
-We will use the following state diagram to guide our implementation.
+The following state diagram describes the transitions of our implementation.
 
 ![](images/state-diagram.svg)
 
+The following figure shows how the pattern's roles were mapped to the application classes.
+
+![](images/state-uml.svg)
+
 #### Consequences
-This use of the State pattern has the benefit of changing the behavior of `Game` in an orderly fashion, according to its current state (to have the appropriate input/output possibilities for a menu, a scoreboard, in-game, etc.)
+This use of the State pattern has the benefit of changing the behavior of `Game` in an orderly fashion, according to its current state (to have the appropriate input/output possibilities for a menu, a scoreboard, in-game, etc.).
 
 <a name="command-composite-arenacontroller"><a/>
 
