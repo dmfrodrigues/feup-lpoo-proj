@@ -407,7 +407,7 @@ We will refactor this class by applying [Extract Method](https://refactoring.gur
 
 ### [Switch Statements](https://refactoring.guru/smells/switch-statements)
 
-This is a smell found in the ArenaController and MoveHeroCommand classes. In the first case, it may not be possible to get rid of the smell since the player input needs to be translated to actions in the code and conditional statements are the only way to do this. For the other situation, a possible solution would be to use the refactoring technique [Replace Conditional with Polymorphism](https://refactoring.guru/replace-conditional-with-polymorphism), although this may be a bit excessive.
+This is a smell found in the ArenaController and MoveHeroCommand classes. In the first case, it may not be possible to get rid of the smell since the player input needs to be translated to actions in the code and conditional statements are the only way to do this. For the other situation, a possible solution would be to use the refactoring technique [Replace Conditional with Polymorphism](https://refactoring.guru/replace-conditional-with-polymorphism), although this may be a bit excessive. In the first case, the smell remains. In the second, the proposed refactoring was used.
 
 #### In factories
 
@@ -417,19 +417,19 @@ The loader [ArenaModelLoaderStream](https://github.com/FEUP-LPOO/lpoo-2020-g60/b
 
 ### [Comments](https://refactoring.guru/smells/comments)
 
-This smell can be found in the Game class and can be easily removed using the refactoring technique [Extract Method](https://refactoring.guru/extract-method) to place the sections separated by comments in other functions.
+This smell can be found in the Game class and can be easily removed using the refactoring technique [Extract Method](https://refactoring.guru/extract-method) to place the sections separated by comments in other functions. This smell ended up being removed by the [Extract Class](https://refactoring.guru/extract-class) technique.
 
 ### Hard to read code
 
-This isn't a particular smell and I guess it could be considered a nitpick but I believe the code in the UpdateAllEnemyPosCommand class is a bit hard to read. I think this situation could be improved using [Extract Method](https://refactoring.guru/extract-method) to separate parts of the setup function into smaller portions that are easier to understand. Also, some of the variables used could have better names.
+This isn't a particular smell and I guess it could be considered a nitpick but I believe the code in the UpdateAllEnemyPosCommand class is a bit hard to read. I think this situation could be improved using [Extract Method](https://refactoring.guru/extract-method) to separate parts of the setup function into smaller portions that are easier to understand. Also, some of the variables used could have better names. The proposed refactorings were applied in order to remove the "smell".
 
 ### [Long Parameter List](https://refactoring.guru/smells/long-parameter-list)
 
-This smell is present in the constructor of the UpdateEnemyPosCommand class and could be eliminated using [Introduce Parameter Object](https://refactoring.guru/introduce-parameter-object). However, it could also be argued that having four parameters isn't a big problem and applying this technique would be excessive.
+This smell is present in the constructor of the UpdateEnemyPosCommand class and could be eliminated using [Introduce Parameter Object](https://refactoring.guru/introduce-parameter-object). However, it could also be argued that having four parameters isn't a big problem and applying this technique would be excessive. It was concluded that this wasn't actually a smell.
 
 ### [Long Method](https://refactoring.guru/smells/long-method)
 
-The updatePos function in the DynamicElement class is a bit too long and could be divided into smaller pieces using [Extract Method](https://refactoring.guru/extract-method).
+The updatePos function in the DynamicElement class is a bit too long and could be divided into smaller pieces using [Extract Method](https://refactoring.guru/extract-method). This refactoring was used to remove this smell.
 
 ### SRP/[Large class](https://refactoring.guru/smells/large-class) and time-tracking
 The class [TerminalArenaView](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/17394b793d1e3a9e62708e2761d981fa3c6311b0/src/main/java/com/pacman/g60/View/Views/TerminalArenaView.java#L52-L53) violated the Single Responsibility Principle by keeping track of time when it should only know how to draw an ArenaModel; so we moved that responsibily to ArenaController. Evetually we realized ArenaController was also becoming a [Large Class](https://refactoring.guru/smells/large-class), so we applied (Extract Class)[https://refactoring.guru/extract-class], having extracted the simple class [Stopwatch](../src/main/java/com/pacman/g60/Controller/Stopwatch.java) to keep track of time.
