@@ -298,17 +298,24 @@ public class TerminalArenaView extends ArenaView {
 
     private class MummyView extends ElementView
     {
-        TerminalSprite sprite;
+        TerminalSpriteOrientable spriteOrientable;
 
         public MummyView() throws FileNotFoundException
         {
-            TerminalSprite.Loader loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/mummy.lan"));
-            sprite = loader.getTerminalSprite();
+            TerminalSprite.Loader loader;
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/mummy-8-4-right.lan"));
+            spriteOrientable = new TerminalSpriteOrientable(loader.getTerminalSprite());
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/mummy-8-4-left.lan"));
+            spriteOrientable.setSpriteLeft(loader.getTerminalSprite());
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/mummy-8-4-up.lan"));
+            spriteOrientable.setSpriteUp(loader.getTerminalSprite());
+            loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/mummy-8-4-down.lan"));
+            spriteOrientable.setSpriteDown(loader.getTerminalSprite());
         }
 
         @Override
         protected TerminalSprite getSprite(Element e) {
-            return sprite;
+            return spriteOrientable.getSprite(((DynamicElement) e).getDirection());
         }
     }
 
