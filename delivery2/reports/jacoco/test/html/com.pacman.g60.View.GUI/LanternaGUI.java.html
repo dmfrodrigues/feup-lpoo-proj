@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LanternaGUI.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.View.GUI</a> &gt; <span class="el_source">LanternaGUI.java</span></div><h1>LanternaGUI.java</h1><pre class="source lang-java linenums">package com.pacman.g60.View.GUI;
+
+
+import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.TextGraphics;
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
+import com.googlecode.lanterna.screen.Screen;
+import com.googlecode.lanterna.screen.TerminalScreen;
+import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
+import com.googlecode.lanterna.terminal.Terminal;
+import com.googlecode.lanterna.terminal.swing.SwingTerminalFontConfiguration;
+import com.pacman.g60.View.Color;
+
+import java.awt.*;
+import java.io.EOFException;
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class LanternaGUI implements TerminalGUI {
+    
+<span class="nc" id="L24">    private final static Integer SECONDS_TO_MILLIS = 1000;</span>
+    
+    private Screen screen;
+    private static final String LANTERNA_FONT = &quot;Monospaced&quot;;
+    private static final int LANTERNA_FONT_SIZE = 10;
+<span class="nc" id="L29">    public LanternaGUI(){</span>
+        // Initialize screen
+        try{
+<span class="nc" id="L32">            Font font = new Font(LANTERNA_FONT, Font.PLAIN, LANTERNA_FONT_SIZE);</span>
+<span class="nc" id="L33">            SwingTerminalFontConfiguration cfg = SwingTerminalFontConfiguration.newInstance(font);</span>
+
+<span class="nc" id="L35">            DefaultTerminalFactory factory = new DefaultTerminalFactory();</span>
+<span class="nc" id="L36">            factory.setInitialTerminalSize(new TerminalSize(320, 86));</span>
+<span class="nc" id="L37">            factory.setTerminalEmulatorFontConfiguration(cfg);</span>
+<span class="nc" id="L38">            Terminal terminal = factory.createTerminal();</span>
+<span class="nc" id="L39">            screen = new TerminalScreen(terminal);</span>
+<span class="nc" id="L40">            screen.setCursorPosition(null);</span>
+<span class="nc" id="L41">            screen.startScreen();</span>
+<span class="nc" id="L42">            screen.doResizeIfNecessary();</span>
+<span class="nc" id="L43">        } catch (IOException e){</span>
+<span class="nc" id="L44">            e.printStackTrace();</span>
+<span class="nc" id="L45">        }</span>
+<span class="nc" id="L46">    }</span>
+
+    @Override
+    public void drawCharacter(Integer x, Integer y, Character c, Color f, Color b) {
+<span class="nc" id="L50">        TextGraphics graphics = screen.newTextGraphics();</span>
+<span class="nc" id="L51">        graphics.setForegroundColor(new TextColor.RGB(f.getR(), f.getG(), f.getB()));</span>
+<span class="nc" id="L52">        graphics.setBackgroundColor(new TextColor.RGB(b.getR(), b.getG(), b.getB()));</span>
+<span class="nc" id="L53">        graphics.putString(x, y, String.valueOf(c));</span>
+<span class="nc" id="L54">    }</span>
+
+    @Override
+    public void drawString(Integer x, Integer y, String s, Color f, Color b) {
+<span class="nc bnc" id="L58" title="All 2 branches missed.">        for(Integer xadd = 0; xadd &lt; s.length(); ++xadd){</span>
+<span class="nc" id="L59">            drawCharacter(x+xadd, y, s.charAt(xadd), f, b);</span>
+        }
+<span class="nc" id="L61">    }</span>
+
+<span class="nc" id="L63">    boolean shouldRefreshAll = false;</span>
+    
+    @Override
+    public void clear(){
+<span class="nc bnc" id="L67" title="All 2 branches missed.">        if(screen.doResizeIfNecessary() != null) shouldRefreshAll = true;</span>
+<span class="nc" id="L68">        screen.clear();</span>
+<span class="nc" id="L69">    }</span>
+    
+<span class="nc" id="L71">    boolean statistics = false;</span>
+<span class="nc" id="L72">    private static final Integer Dt = SECONDS_TO_MILLIS; // 1 second</span>
+<span class="nc" id="L73">    private final Queue&lt;Long&gt; times = new LinkedList&lt;&gt;();</span>
+<span class="nc" id="L74">    public void setStatistics(boolean statistics){ this.statistics = statistics; }</span>
+<span class="nc" id="L75">    public boolean getStatistics(){ return statistics; }</span>
+    
+    @Override
+    public void refresh() throws IOException {
+<span class="nc" id="L79">        long now = System.currentTimeMillis();</span>
+<span class="nc" id="L80">        times.add(now);</span>
+<span class="nc bnc" id="L81" title="All 4 branches missed.">        while(times.peek() != null &amp;&amp; times.peek() &lt; now-Dt) times.remove();</span>
+        
+<span class="nc bnc" id="L83" title="All 2 branches missed.">        if(statistics){</span>
+<span class="nc" id="L84">            drawString(0, getH()-1, &quot;FPS: &quot; + SECONDS_TO_MILLIS * times.size() / Dt, Color.WHITE, Color.BLACK);</span>
+        }
+        
+<span class="nc bnc" id="L87" title="All 2 branches missed.">        screen.refresh((shouldRefreshAll ? Screen.RefreshType.COMPLETE : Screen.RefreshType.DELTA));</span>
+<span class="nc" id="L88">        shouldRefreshAll = false;</span>
+<span class="nc" id="L89">    }</span>
+
+    @Override
+    public KeyStroke pollKey() throws IOException {
+<span class="nc" id="L93">        KeyStroke key = screen.pollInput();</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">        if(key != null) {</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">            if (key.getKeyType() == KeyType.EOF) throw new EOFException(&quot;&quot;);</span>
+<span class="nc bnc" id="L96" title="All 6 branches missed.">            if(key.getKeyType() == KeyType.Character &amp;&amp; Character.toUpperCase(key.getCharacter()) == 'D') setStatistics(!getStatistics());</span>
+        }
+        
+<span class="nc" id="L99">        return key;</span>
+    }
+
+    @Override
+    public void close() throws IOException{
+<span class="nc" id="L104">        screen.close();</span>
+<span class="nc" id="L105">    }</span>
+
+    @Override
+<span class="nc" id="L108">    public Integer getW() { return screen.getTerminalSize().getColumns(); }</span>
+
+    @Override
+<span class="nc" id="L111">    public Integer getH() { return screen.getTerminalSize().getRows(); }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

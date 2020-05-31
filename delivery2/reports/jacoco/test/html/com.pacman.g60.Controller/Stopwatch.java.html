@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Stopwatch.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.Controller</a> &gt; <span class="el_source">Stopwatch.java</span></div><h1>Stopwatch.java</h1><pre class="source lang-java linenums">package com.pacman.g60.Controller;
+
+import java.time.Duration;
+import java.time.Instant;
+
+<span class="fc" id="L6">public class Stopwatch {</span>
+    Instant start;
+<span class="fc" id="L8">    boolean running = false;</span>
+<span class="fc" id="L9">    private Duration time = Duration.ZERO;</span>
+    public void reset(){
+<span class="fc" id="L11">        time = Duration.ZERO;</span>
+<span class="fc" id="L12">        running = false;</span>
+<span class="fc" id="L13">    }</span>
+    public void resume(){
+<span class="pc bpc" id="L15" title="1 of 2 branches missed.">        if(!running){</span>
+<span class="fc" id="L16">            start = Instant.now();</span>
+<span class="fc" id="L17">            running = true;</span>
+        }
+<span class="fc" id="L19">    }</span>
+    public void start(){
+<span class="fc" id="L21">        reset();</span>
+<span class="fc" id="L22">        resume();</span>
+<span class="fc" id="L23">    }</span>
+    public void stop(){
+<span class="fc" id="L25">        time = poll();</span>
+<span class="fc" id="L26">        running = false;</span>
+<span class="fc" id="L27">    }</span>
+    public Duration poll() {
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        if(running){</span>
+<span class="fc" id="L30">            Instant now = Instant.now();</span>
+<span class="fc" id="L31">            return time.plus(Duration.between(start, now));</span>
+<span class="fc" id="L32">        } else return time;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

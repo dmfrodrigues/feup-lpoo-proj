@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Hero.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.Model.Elements</a> &gt; <span class="el_source">Hero.java</span></div><h1>Hero.java</h1><pre class="source lang-java linenums">package com.pacman.g60.Model.Elements;
+
+
+
+import com.pacman.g60.Model.Elements.Hierarchy.*;
+import com.pacman.g60.Model.Position;
+
+
+
+public class Hero extends DynamicElement implements ControlledByPlayer, LivingElement, MeleeAttackerElement, RangedAttackerElement, OrientedElement {
+    private Integer coins,ammo;
+    private Weapon weapon;
+<span class="fc" id="L13">    static final private Integer maxHealth = 10;</span>
+
+    @Override
+    public Object clone() {
+<span class="nc" id="L17">        Hero res = (Hero)super.clone();</span>
+<span class="nc" id="L18">        res.health = Integer.valueOf(health);</span>
+<span class="nc" id="L19">        res.coins = Integer.valueOf(coins);</span>
+<span class="nc" id="L20">        res.ammo = Integer.valueOf(ammo);</span>
+<span class="nc" id="L21">        res.weapon = this.weapon;</span>
+<span class="nc" id="L22">        return res;</span>
+    }
+
+    public Hero(Position pos)
+    {
+<span class="fc" id="L27">        super(pos);</span>
+<span class="fc" id="L28">        this.health = maxHealth;</span>
+<span class="fc" id="L29">        this.coins = 0;</span>
+<span class="fc" id="L30">        this.ammo = 0;</span>
+<span class="fc" id="L31">        this.weapon = new Knife();</span>
+<span class="fc" id="L32">    }</span>
+
+    public Integer getCoins() {
+<span class="fc" id="L35">        return coins;</span>
+    }
+
+<span class="fc" id="L38">    public void incCoins(){this.coins++;}</span>
+
+<span class="fc" id="L40">    public void incAmmo(){this.ammo++;}</span>
+
+    public Integer getAmmo()
+    {
+<span class="fc" id="L44">        return this.ammo;</span>
+    }
+
+    public void decAmmo()
+    {
+<span class="nc" id="L49">        this.ammo--;</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">        if (this.ammo &lt; 0) this.ammo = 0;</span>
+<span class="nc" id="L51">    }</span>
+
+    public void setCoins(Integer coins)
+    {
+<span class="fc" id="L55">        this.coins = coins;</span>
+<span class="fc" id="L56">    }</span>
+
+    public void setAmmo(Integer ammo)
+    {
+<span class="fc" id="L60">        this.ammo = ammo;</span>
+<span class="fc" id="L61">    }</span>
+
+    public void setWeapon(Weapon weapon)
+    {
+<span class="fc" id="L65">        this.weapon = weapon;</span>
+<span class="fc" id="L66">    }</span>
+
+    public Weapon getWeapon()
+    {
+<span class="fc" id="L70">        return this.weapon;</span>
+    }
+
+    public Integer getMaxHealth()
+    {
+<span class="fc" id="L75">        return this.maxHealth;</span>
+    }
+
+    @Override
+    public void updateHealth(Integer diff) {
+
+<span class="fc" id="L81">        this.health += diff;</span>
+<span class="pc bpc" id="L82" title="1 of 2 branches missed.">        if (this.health &gt; maxHealth) this.health = maxHealth;</span>
+<span class="fc" id="L83">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TerminalSpriteView.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.View.Views</a> &gt; <span class="el_source">TerminalSpriteView.java</span></div><h1>TerminalSpriteView.java</h1><pre class="source lang-java linenums">package com.pacman.g60.View.Views;
+
+import com.pacman.g60.Model.Models.SpriteModel;
+import com.pacman.g60.View.GUI.TerminalGUI;
+import com.pacman.g60.View.Sprite.TerminalSprite;
+
+public class TerminalSpriteView extends SpriteView {
+    
+    private final TerminalGUI terminalGUI;
+    
+    public TerminalSpriteView(TerminalSpriteView terminalSpriteView){
+<span class="nc" id="L12">        super(terminalSpriteView.terminalGUI);</span>
+<span class="nc" id="L13">        terminalGUI = terminalSpriteView.terminalGUI;</span>
+<span class="nc" id="L14">    }</span>
+    
+    public TerminalSpriteView(TerminalGUI terminalGUI){
+<span class="fc" id="L17">        super(terminalGUI);</span>
+<span class="fc" id="L18">        this.terminalGUI = terminalGUI;</span>
+<span class="fc" id="L19">    }</span>
+
+    @Override
+    public void draw() {
+<span class="fc" id="L23">        SpriteModel model = getSpriteModel();</span>
+<span class="fc" id="L24">        TerminalSprite sprite = model.getSprite();</span>
+        int x0, y0;
+<span class="pc bpc" id="L26" title="1 of 2 branches missed.">        if(model.getUnit() == SpriteModel.UNIT.ABSOLUTE) {</span>
+<span class="fc" id="L27">            x0 = (int) model.getPosition().getX();</span>
+<span class="fc" id="L28">            y0 = (int) model.getPosition().getY();</span>
+        } else {
+<span class="nc" id="L30">            x0 = (int)(model.getPosition().getX() * terminalGUI.getW());</span>
+<span class="nc" id="L31">            y0 = (int)(model.getPosition().getY() * terminalGUI.getH());</span>
+        }
+<span class="pc bpc" id="L33" title="3 of 4 branches missed.">        switch(model.getHorizontalAlign()){</span>
+<span class="nc" id="L34">            case LEFT  : break;</span>
+<span class="nc" id="L35">            case CENTER: x0 -= sprite.getW()/2; break;</span>
+<span class="fc" id="L36">            case RIGHT : x0 -= sprite.getW()  ; break;</span>
+        }
+<span class="pc bpc" id="L38" title="3 of 4 branches missed.">        switch(model.getVerticalAlign()){</span>
+<span class="fc" id="L39">            case TOP   : break;</span>
+<span class="nc" id="L40">            case CENTER: y0 -= sprite.getH()/2; break;</span>
+<span class="nc" id="L41">            case BOTTOM: y0 -= sprite.getH()  ; break;</span>
+        }
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        for(int x = 0; x &lt; sprite.getW(); ++x) {</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">            for (int y = 0; y &lt; sprite.getH(); ++y) {</span>
+<span class="fc" id="L45">                terminalGUI.drawCharacter(x0 + x, y0 + y,</span>
+<span class="fc" id="L46">                        sprite.getChar(x, y),</span>
+<span class="fc" id="L47">                        sprite.getForegroundColor(x, y),</span>
+<span class="fc" id="L48">                        sprite.getBackgroundColor(x, y));</span>
+            }
+        }
+<span class="fc" id="L51">    }</span>
+
+    @Override
+<span class="nc" id="L54">    public TerminalSpriteView clone() { return new TerminalSpriteView(this); }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

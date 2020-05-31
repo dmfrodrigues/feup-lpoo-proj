@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TerminalTextView.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.View.Views</a> &gt; <span class="el_source">TerminalTextView.java</span></div><h1>TerminalTextView.java</h1><pre class="source lang-java linenums">package com.pacman.g60.View.Views;
+
+import com.pacman.g60.Model.Models.TextModel;
+import com.pacman.g60.View.Color;
+import com.pacman.g60.View.Font.TerminalFont;
+import com.pacman.g60.View.GUI.TerminalGUI;
+
+public class TerminalTextView extends TextView {
+    TerminalGUI terminalGUI;
+    TerminalFont font;
+    
+    public TerminalTextView(TerminalTextView terminalTextView){
+<span class="nc" id="L13">        super(terminalTextView.terminalGUI);</span>
+<span class="nc" id="L14">        terminalGUI = terminalTextView.terminalGUI;</span>
+<span class="nc" id="L15">        font = terminalTextView.font;</span>
+<span class="nc" id="L16">    }</span>
+    
+    public TerminalTextView(TerminalGUI terminalGUI, TerminalFont font){
+<span class="fc" id="L19">        super(terminalGUI);</span>
+<span class="fc" id="L20">        this.terminalGUI = terminalGUI;</span>
+<span class="fc" id="L21">        this.font = font;</span>
+<span class="fc" id="L22">    }</span>
+    public Integer getStringWidth(String s){
+<span class="fc" id="L24">        int res = 0;</span>
+<span class="fc" id="L25">        int lineWidth = 0;</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">        for(int i = 0; i &lt; s.length(); ++i){</span>
+<span class="pc bpc" id="L27" title="1 of 2 branches missed.">            if(s.charAt(i) == '\n'){ res = Math.max(res, lineWidth); lineWidth = 0; }</span>
+<span class="fc" id="L28">            else ++lineWidth;</span>
+        }
+<span class="fc" id="L30">        res = Math.max(res, lineWidth);</span>
+<span class="fc" id="L31">        return res*font.getW();</span>
+    }
+    public Integer getStringHeight(String s){
+<span class="fc" id="L34">        Integer numLines = 1;</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        for(int i = 0; i &lt; s.length(); ++i){</span>
+<span class="pc bpc" id="L36" title="1 of 2 branches missed.">            if(s.charAt(i) == '\n') ++numLines;</span>
+        }
+<span class="fc" id="L38">        return numLines * font.getH();</span>
+    }
+    private void drawChar(int x0, int y0, Character c, Color f, Color b){
+<span class="fc" id="L41">        TerminalFont.TerminalCharacter tchar = font.getCharacter(c);</span>
+<span class="pc bpc" id="L42" title="1 of 2 branches missed.">        if(tchar == null) throw new NullPointerException(&quot;No char for '&quot; + c + &quot;'&quot;);</span>
+<span class="fc" id="L43">        Integer W = tchar.getW();</span>
+<span class="fc" id="L44">        Integer H = tchar.getH();</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        for(int x = 0; x &lt; W; ++x){</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">            for(int y = 0; y &lt; H; ++y){</span>
+<span class="fc" id="L47">                terminalGUI.drawCharacter(x0+x, y0+y, tchar.getChar(x, y), f, b);</span>
+            }
+        }
+<span class="fc" id="L50">    }</span>
+    public void draw(){
+<span class="fc" id="L52">        TextModel model = getTextModel();</span>
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">        if(model == null) return;</span>
+        int x0, y0;
+<span class="pc bpc" id="L55" title="1 of 2 branches missed.">        if(model.getUnit() == TextModel.UNIT.ABSOLUTE) {</span>
+<span class="fc" id="L56">            x0 = (int) model.getPosition().getX();</span>
+<span class="fc" id="L57">            y0 = (int) model.getPosition().getY();</span>
+        } else {
+<span class="nc" id="L59">            x0 = (int)(model.getPosition().getX() * terminalGUI.getW());</span>
+<span class="nc" id="L60">            y0 = (int)(model.getPosition().getY() * terminalGUI.getH());</span>
+        }
+<span class="pc bpc" id="L62" title="1 of 4 branches missed.">        switch(model.getHorizontalAlign()){</span>
+<span class="fc" id="L63">            case LEFT  : break;</span>
+<span class="fc" id="L64">            case CENTER: x0 -= getStringWidth(model.getText())/2; break;</span>
+<span class="fc" id="L65">            case RIGHT : x0 -= getStringWidth(model.getText())  ; break;</span>
+        }
+<span class="pc bpc" id="L67" title="3 of 4 branches missed.">        switch(model.getVerticalAlign()){</span>
+<span class="fc" id="L68">            case TOP   : break;</span>
+<span class="nc" id="L69">            case CENTER: y0 -= getStringHeight(model.getText())/2; break;</span>
+<span class="nc" id="L70">            case BOTTOM: y0 -= getStringHeight(model.getText())  ; break;</span>
+        }
+<span class="fc" id="L72">        int i_beginline = 0;</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">        for(int i = 0; i &lt; model.getText().length(); ++i){</span>
+<span class="fc" id="L74">            char c = model.getText().charAt(i);</span>
+<span class="pc bpc" id="L75" title="1 of 2 branches missed.">            if(c == '\n') {</span>
+<span class="nc" id="L76">                y0 += Math.round(font.getH() * model.getLineHeight());</span>
+<span class="nc" id="L77">                i_beginline = i+1;</span>
+<span class="fc" id="L78">            } else drawChar(x0+(i-i_beginline)*font.getW(), y0, model.getText().charAt(i), model.getForegroundColor(), model.getBackgroundColor());</span>
+        }
+<span class="fc" id="L80">    }</span>
+
+    @Override
+    public TerminalTextView clone() {
+<span class="nc" id="L84">        return new TerminalTextView(this);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
