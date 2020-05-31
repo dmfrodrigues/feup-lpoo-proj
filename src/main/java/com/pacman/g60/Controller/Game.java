@@ -201,10 +201,9 @@ public class Game {
         public StateSave(GameProgressFileIO io){ this.io = io; }
         @Override
         public State run() {
-            JFrame parentFrame = new JFrame();
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setDialogTitle("Specify progress file to save");
-            int result = fileChooser.showSaveDialog(parentFrame);
+            int result = fileChooser.showSaveDialog(null);
             if(result == JFileChooser.APPROVE_OPTION){
                 File file = fileChooser.getSelectedFile();
                 try {
@@ -223,10 +222,9 @@ public class Game {
         public StateLoad(GameProgressFileIO io){ this.io = io; }
         @Override
         public State run() {
-            JFrame parentFrame = new JFrame();
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setDialogTitle("Specify progress file to load");
-            int result = fileChooser.showOpenDialog(parentFrame);
+            int result = fileChooser.showOpenDialog(null);
             if(result == JFileChooser.APPROVE_OPTION){
                 File file = fileChooser.getSelectedFile();
                 try {
