@@ -73,6 +73,7 @@ public class TerminalArenaView extends ArenaView {
             
             view = new GUIViewComposite(terminalGUI);
             view.addView(textViewCoin);
+            view.addView(textViewTimer);
         }
         
         public void setTime(Duration time) { this.time = time; }
@@ -121,20 +122,17 @@ public class TerminalArenaView extends ArenaView {
             int coinsSpriteX = coinsStrX - coinSprite.getW() -1;
             drawSprite(coinSprite, coinsSpriteX, 1);
         }
-        private void drawTimer(){
+        private void updateTimer(){
             long sec = time.getSeconds()%60;
             long min = time.getSeconds()/60;
-            String sSec = String.format("%02d", sec);
-            String sMin = String.format("%d", min);
-            textModelTimer.setText(sMin + ":" + sSec);
+            textModelTimer.setText(String.format("%2d:%02d", min, sec));
             textModelTimer.setPosition(new Position(terminalGUI.getW()/2, 1+coinSprite.getH()-textViewCoin.getStringHeight(textModelTimer.getText())));
-            textViewTimer.draw();
         }
         public void draw(ArenaModel arenaModel){
             drawFrame();
             drawHealth(arenaModel.getHero().getHealth(), arenaModel.getHero().getMaxHealth());
             drawCoins(arenaModel.getHero().getCoins(), arenaModel.getNumCoins() + arenaModel.getHero().getCoins());
-            drawTimer();
+            updateTimer();
             view.draw();
         }
     }
