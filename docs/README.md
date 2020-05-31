@@ -371,11 +371,30 @@ The following figure shows how the pattern's roles were mapped to the applicatio
 
 ![](images/composite-views.svg)
 
-#### Consequences
-
+#### Consequences 
 This use of the Composite pattern has allowed us to:
 - Work with more complex view structures
 - Easily introduce new views as needed, without breaking the existing code, and also easily integrate with what was already implemented
+
+### Movement [Strategy](https://refactoring.guru/design-patterns/strategy) for Guard
+
+#### Problem in context
+
+The guard enemy needs to be able to move horizontally or vertically.
+
+#### The pattern
+
+We decided to use the Strategy pattern to deal with this requirement.
+
+#### Implementation
+
+Our implementation uses the following diagram.
+
+![](images/guard-strategy.svg)
+
+#### Consequences 
+
+This allows us to easily handle various movement strategies for the Guard class.
 
 <a name="code-smells"><a/>
 ## Code smells and refactoring suggestions
