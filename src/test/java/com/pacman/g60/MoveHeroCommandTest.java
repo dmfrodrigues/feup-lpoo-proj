@@ -1,7 +1,6 @@
 package com.pacman.g60;
 
-import com.pacman.g60.Controller.Command;
-import com.pacman.g60.Controller.MoveHeroCommand;
+import com.pacman.g60.Controller.*;
 import com.pacman.g60.Model.Models.ArenaModel;
 import com.pacman.g60.Model.Elements.Hero;
 import com.pacman.g60.Model.Position;
@@ -25,7 +24,7 @@ public class MoveHeroCommandTest {
     @Test
     public void moveUp()
     {
-        Command command = new MoveHeroCommand(this.arenaModel, Application.Direction.UP);
+        Command command = new MoveHeroUpCommand(this.arenaModel);
         command.execute();
         Position expected = new Position(5,4);
         assertEquals(expected,this.arenaModel.getHero().getPos());
@@ -34,7 +33,7 @@ public class MoveHeroCommandTest {
     @Test
     public void moveDown()
     {
-        Command command = new MoveHeroCommand(this.arenaModel, Application.Direction.DOWN);
+        Command command = new MoveHeroDownCommand(this.arenaModel);
         command.execute();
         Position expected = new Position(5,6);
         assertEquals(expected,this.arenaModel.getHero().getPos());
@@ -43,7 +42,7 @@ public class MoveHeroCommandTest {
     @Test
     public void moveLeft()
     {
-        Command command = new MoveHeroCommand(this.arenaModel, Application.Direction.LEFT);
+        Command command = new MoveHeroLeftCommand(this.arenaModel);
         command.execute();
         Position expected = new Position(4,5);
         assertEquals(expected,this.arenaModel.getHero().getPos());
@@ -52,7 +51,7 @@ public class MoveHeroCommandTest {
     @Test
     public void moveRight()
     {
-        Command command = new MoveHeroCommand(this.arenaModel, Application.Direction.RIGHT);
+        Command command = new MoveHeroRightCommand(this.arenaModel);
         command.execute();
         Position expected = new Position(6,5);
         assertEquals(expected,this.arenaModel.getHero().getPos());

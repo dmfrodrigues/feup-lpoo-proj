@@ -18,4 +18,9 @@ public abstract class GuardMovementStrategy {
         positions.add(result);
         return result;
     }
+
+    public Queue<Position> getPositions()
+    {
+        return this.positions;
+    }
 }
