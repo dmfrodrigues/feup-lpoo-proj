@@ -18,6 +18,7 @@ import com.pacman.g60.View.Sprite.TerminalSpriteOrientable;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +35,7 @@ public class TerminalArenaView extends ArenaView {
         private TerminalTextView textViewCoin;
         private TextModel textModelTimer;
         private TerminalTextView textViewTimer;
+        private Duration time = Duration.ZERO;
 
         private void drawSprite(TerminalSprite sprite, int x0, int y0){
             for(int x = 0; x < sprite.getW(); ++x) {
@@ -49,8 +51,6 @@ public class TerminalArenaView extends ArenaView {
         TerminalSprite heartDeadSprite;
         TerminalSprite coinSprite;
         
-        long startTime;
-        public void startTime(){ startTime = System.currentTimeMillis(); }
         public InfoBar() throws FileNotFoundException{
             TerminalSprite.Loader loader;
             loader = new TerminalSpriteLoaderStream(new FileInputStream("src/main/resources/lanterna-sprites/heart-6-3.lan"));
@@ -71,9 +71,10 @@ public class TerminalArenaView extends ArenaView {
             textModelTimer.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);
             textViewTimer = new TerminalTextView(terminalGUI, font);
             textViewTimer.setTextModel(textModelTimer);
-
-            startTime();
         }
+        
+        public void setTime(Duration time) { this.time = time; }
+        
         private void drawFrame(){
             for(Integer x = 1; x < terminalGUI.getW()-1; ++x){
                 terminalGUI.drawCharacter(x, 0, '▀', Color.GREY, Color.BLACK);
@@ -120,9 +121,8 @@ public class TerminalArenaView extends ArenaView {
             drawSprite(coinSprite, coinsSpriteX, 1);
         }
         private void drawTimer(){
-            long time = (System.currentTimeMillis() - startTime)/MILLIS_TO_SECONDS;
-            long sec = time%60;
-            long min = time/60;
+            long sec = time.getSeconds()%60;
+            long min = time.getSeconds()/60;
             String sSec = String.format("%02d", sec);
             String sMin = String.format("%d", min);
             String timerString = sMin + ":" + sSec;
@@ -421,8 +421,8 @@ public class TerminalArenaView extends ArenaView {
     }
 
     @Override
-    public void start() {
-        infoBar.startTime();
+    public void setTime(Duration time) {
+        infoBar.setTime(time);
     }
     
     @Override

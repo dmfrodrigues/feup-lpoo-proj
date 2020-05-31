@@ -6,6 +6,8 @@ import com.pacman.g60.Model.Models.ArenaModel;
 import com.pacman.g60.View.Views.ArenaView;
 
 import java.io.IOException;
+import java.time.Duration;
+import java.time.Instant;
 
 public class ArenaController extends Controller {
     private ArenaView arenaView;
@@ -14,6 +16,7 @@ public class ArenaController extends Controller {
     private boolean over;
     private boolean mustContinueRunning = false;
     private UpdateRateController rateController = new UpdateRateController(4);
+    private Duration time = Duration.ZERO;
 
     public ArenaController(ArenaModel arenaModel, ArenaView arenaView){
         this.arenaModel = arenaModel;
@@ -24,15 +27,16 @@ public class ArenaController extends Controller {
     private void start(){
         win = false;
         over = false;
-        arenaView.start();
     }
     
     public void run() throws IOException {
         arenaView.setArenaModel(arenaModel);
         
         rateController.start();
+        startTime();
         
-        while(true){
+        boolean good = true;
+        while(good){
             rateController.startFrame();
 
             long numberUpdates = rateController.numberUpdatesInThisFrame();
@@ -48,7 +52,7 @@ public class ArenaController extends Controller {
                 switch (cmd) {
                     case ESC:
                     case P:
-                        return;
+                        good = false; break;
                     case UP:
                         executeCommand(new MoveHeroCommand(this.arenaModel, Application.Direction.UP));
                         break;
@@ -68,13 +72,16 @@ public class ArenaController extends Controller {
 
                 }
             }
-            if (arenaModel.getHero().getHealth() <= 0) { lose(); return; }
-            if (!mustContinueRunning && !arenaModel.getShouldGameContinue()) { win();return; }
+            if (arenaModel.getHero().getHealth() <= 0) { lose(); good = false; }
+            if (!mustContinueRunning && !arenaModel.getShouldGameContinue()) { win(); good = false; }
             
+            arenaView.setTime(getTime());
             arenaView.clear();
             arenaView.draw();
             arenaView.refresh();
         }
+        
+        stopTime();
     }
     
     private void lose(){
@@ -99,5 +106,22 @@ public class ArenaController extends Controller {
 
     public void continueRunning() {
         mustContinueRunning = true;
+    }
+
+    Instant start;
+    boolean timeRunning = false;
+    public void startTime(){
+        start = Instant.now();
+        timeRunning = true;
+    }
+    public void stopTime(){
+        time = getTime();
+        timeRunning = false;
+    }
+    public Duration getTime() {
+        if(timeRunning){
+            Instant now = Instant.now();
+            return time.plus(Duration.between(start, now));
+        } else return time;
     }
 }

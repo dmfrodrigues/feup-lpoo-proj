@@ -3,6 +3,7 @@ package com.pacman.g60.Controller;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import com.pacman.g60.Model.*;
@@ -10,6 +11,8 @@ import com.pacman.g60.Model.Models.*;
 import com.pacman.g60.View.Sprite.TerminalSprite;
 import com.pacman.g60.View.Sprite.TerminalSpriteLoaderStream;
 import com.pacman.g60.View.Views.*;
+
+import javax.swing.*;
 
 public class Game {
 
@@ -136,15 +139,45 @@ public class Game {
     }
 
     private class StateSave implements State {
+        GameProgressFileIO io;
+        public StateSave(GameProgressFileIO io){ this.io = io; }
         @Override
         public State run() {
+            JFrame parentFrame = new JFrame();
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Specify progress file to save");
+            int result = fileChooser.showSaveDialog(parentFrame);
+            if(result == JFileChooser.APPROVE_OPTION){
+                File file = fileChooser.getSelectedFile();
+                try {
+                    io.write(file, progress);
+                    System.out.println("Saved progress to file '" + file.getAbsolutePath() + "'");
+                } catch(IOException e){
+                    System.err.println("Failed to save progress to file '" + file.getAbsolutePath() + "'");
+                }
+            }
             return stateMainMenu;
         }
     }
 
     private class StateLoad implements State {
+        GameProgressFileIO io;
+        public StateLoad(GameProgressFileIO io){ this.io = io; }
         @Override
         public State run() {
+            JFrame parentFrame = new JFrame();
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Specify progress file to load");
+            int result = fileChooser.showOpenDialog(parentFrame);
+            if(result == JFileChooser.APPROVE_OPTION){
+                File file = fileChooser.getSelectedFile();
+                try {
+                    progress = io.read(file);
+                    System.out.println("Loaded progress from file '" + file.getAbsolutePath() + "'");
+                } catch (FileNotFoundException e) {
+                    System.err.println("Failed to load progress from file '" + file.getAbsolutePath() + "'");
+                }
+            }
             return stateMainMenu;
         }
     }
@@ -190,7 +223,7 @@ public class Game {
             for(Integer i = 0; i < levelPaths.size(); ++i){
                 InputStream inputStream = new FileInputStream(levelPaths.get(i));
                 ArenaModel.Loader arenaModelLoader = new ArenaModelLoaderStream(inputStream);
-                levelModels.add(new LevelModel(arenaModelLoader.getArenaModel()));
+                levelModels.add(new LevelModel(i, arenaModelLoader.getArenaModel()));
             }
         }
         @Override
@@ -200,7 +233,7 @@ public class Game {
             MenuController menuController = new MenuController(menuModel_, view);
             int r = menuController.run();
             if(r == -1) return stateMainMenu;
-            stateArena.setArenaModel(levelModels.get(r).getArenaModelClone());
+            stateArena.setLevelModel(levelModels.get(r));
             return stateArena;
         }
     }
@@ -210,6 +243,8 @@ public class Game {
         ArenaView arenaView;
         ArenaController arenaController = null;
         boolean mustContinueRunning = false;
+        private LevelModel levelModel;
+
         public StateArena(ArenaView arenaView){
             this.arenaView = arenaView;
         }
@@ -226,8 +261,9 @@ public class Game {
             else                        return stateLose;
         }
 
-        public void setArenaModel(ArenaModel arenaModel) {
-            this.arenaModel = arenaModel;
+        public void setLevelModel(LevelModel levelModel) {
+            this.levelModel = levelModel;
+            this.arenaModel = levelModel.getArenaModelClone();
             arenaController = null;
             mustContinueRunning = false;
         }
@@ -238,6 +274,12 @@ public class Game {
 
         public void continueRunning() {
             mustContinueRunning = true;
+        }
+
+        public ArenaController getArenaController() { return arenaController; }
+
+        public Integer getLevel() {
+            return levelModel.getLevel();
         }
     }
     
@@ -307,6 +349,14 @@ public class Game {
         @Override
         public State run() throws IOException {
             ArenaModel arenaModel = stateArena.getArenaModel();
+            
+            GameProgress.LevelProgress levelProgress = new GameProgress.LevelProgress(
+                    stateArena.getLevel(),
+                    arenaModel.getHero().getCoins(),
+                    stateArena.getArenaController().getTime(),
+                    new Date()
+            );
+            progress.addProgress(levelProgress);
             
             heartsTextModel.setText(" " + arenaModel.getHero().getHealth() + "/" + arenaModel.getHero().getMaxHealth());
             coinsTextModel .setText(" " + arenaModel.getHero().getCoins()  + "/" + (arenaModel.getNumCoins()+arenaModel.getHero().getCoins()));
@@ -416,13 +466,15 @@ public class Game {
     }
     
     private State state;
+    private GameProgress progress = new GameProgress();
 
     public Game(ViewFactory viewFactory) throws Exception {
+        GameProgressFileIO io = new GameProgressFileIO();
         stateMainMenu       = new StateMainMenu(viewFactory.createMenuView(), viewFactory.createTextView());
         stateControls       = new StateControls(viewFactory.createMenuView(), viewFactory.createTextView());
         stateScoreboard     = new StateScoreboard();
-        stateSave           = new StateSave();
-        stateLoad           = new StateLoad();
+        stateSave           = new StateSave(io);
+        stateLoad           = new StateLoad(io);
         stateLevelSelect    = new StateLevelSelector(viewFactory.createMenuView(), viewFactory.createTextView());
         stateArena          = new StateArena(viewFactory.createArenaView());
         stateWin            = new StateWin(viewFactory.createMenuView(), viewFactory.createTextView(), viewFactory.createSpriteView());
