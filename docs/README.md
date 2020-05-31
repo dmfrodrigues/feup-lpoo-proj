@@ -405,8 +405,8 @@ This smell is present in the constructor of the UpdateEnemyPosCommand class and 
 
 The updatePos function in the DynamicElement class is a bit too long and could be divided into smaller pieces using [Extract Method](https://refactoring.guru/extract-method).
 
-### A smell
-On [this commit](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/17394b793d1e3a9e62708e2761d981fa3c6311b0/src/main/java/com/pacman/g60/View/Views/TerminalArenaView.java#L52-L53), TerminalArenaView has the responsibility of tracking time since the beginning of the game, but this responsibility should be of the ArenaController.
+### SRP/[Large class](https://refactoring.guru/smells/large-class) and time-tracking
+The class [TerminalArenaView](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/17394b793d1e3a9e62708e2761d981fa3c6311b0/src/main/java/com/pacman/g60/View/Views/TerminalArenaView.java#L52-L53) violated the Single Responsibility Principle by keeping track of time when it should only know how to draw an ArenaModel; so we moved that responsibily to ArenaController. Evetually we realized ArenaController was also becoming a [Large Class](https://refactoring.guru/smells/large-class), so we applied (Extract Class)[https://refactoring.guru/extract-class], having extracted the simple class [Stopwatch](../src/main/java/com/pacman/g60/Controller/Stopwatch.java) to keep track of time.
 
 ### Duplicate code in TerminalArenaView
 There was duplicate code in [TerminalArenaView](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/2277651ca00c31e2b380eaf761bc7817e6698122/src/main/java/com/pacman/g60/View/Views/TerminalArenaView.java#L38-L47) and [TerminalSpriteView](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/2277651ca00c31e2b380eaf761bc7817e6698122/src/main/java/com/pacman/g60/View/Views/TerminalSpriteView.java#L43-L50).

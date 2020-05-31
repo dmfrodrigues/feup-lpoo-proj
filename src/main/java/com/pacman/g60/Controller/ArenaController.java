@@ -18,7 +18,7 @@ public class ArenaController extends Controller {
     private boolean mustContinueRunning = false;
     private final UpdateRateController rateController = new UpdateRateController(4);
     private final FrameRateController frameRateController  = new FrameRateController (60);
-    private Duration time = Duration.ZERO;
+    private Stopwatch watch = new Stopwatch();
 
     public ArenaController(ArenaModel arenaModel, ArenaView arenaView){
         this.arenaModel = arenaModel;
@@ -29,6 +29,7 @@ public class ArenaController extends Controller {
     private void start(){
         win = false;
         over = false;
+        watch.reset();
     }
     
     public void run() throws IOException {
@@ -36,7 +37,7 @@ public class ArenaController extends Controller {
         
         rateController.start();
         frameRateController.start();
-        startTime();
+        watch.resume();
         
         boolean good = true;
         while(good){
@@ -79,13 +80,13 @@ public class ArenaController extends Controller {
             if (arenaModel.getHero().getHealth() <= 0) { lose(); good = false; }
             if (!mustContinueRunning && !arenaModel.getShouldGameContinue()) { win(); good = false; }
             
-            arenaView.setTime(getTime());
+            arenaView.setTime(watch.poll());
             arenaView.clear();
             arenaView.draw();
             arenaView.refresh();
         }
         
-        stopTime();
+        watch.stop();
     }
     
     private void lose(){
@@ -112,20 +113,5 @@ public class ArenaController extends Controller {
         mustContinueRunning = true;
     }
 
-    Instant start;
-    boolean timeRunning = false;
-    public void startTime(){
-        start = Instant.now();
-        timeRunning = true;
-    }
-    public void stopTime(){
-        time = getTime();
-        timeRunning = false;
-    }
-    public Duration getTime() {
-        if(timeRunning){
-            Instant now = Instant.now();
-            return time.plus(Duration.between(start, now));
-        } else return time;
-    }
+    public Duration getTime() { return watch.poll(); }
 }
