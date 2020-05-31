@@ -96,17 +96,11 @@ public class TerminalArenaView extends ArenaView {
             int y0 = 1;
             for(int x = 0; x < maxHealth*heartSprite.getW(); ++x) {
                 for (int y = 0; y < heartSprite.getH(); ++y) {
-                    if(x < health*heartSprite.getW()) {
-                        terminalGUI.drawCharacter(x0 + x, y0 + y,
-                                heartSprite.getChar(x % heartSprite.getW(), y),
-                                heartSprite.getForegroundColor(x % heartSprite.getW(), y),
-                                heartSprite.getBackgroundColor(x % heartSprite.getW(), y));
-                    } else {
-                        terminalGUI.drawCharacter(x0 + x, y0 + y,
-                                heartDeadSprite.getChar(x % heartDeadSprite.getW(), y),
-                                heartDeadSprite.getForegroundColor(x % heartDeadSprite.getW(), y),
-                                heartDeadSprite.getBackgroundColor(x % heartDeadSprite.getW(), y));
-                    }
+                    TerminalSprite sprite = (x < health*heartSprite.getW() ? heartSprite : heartDeadSprite);
+                    terminalGUI.drawCharacter(x0 + x, y0 + y,
+                            sprite.getChar(x % sprite.getW(), y),
+                            sprite.getForegroundColor(x % sprite.getW(), y),
+                            sprite.getBackgroundColor(x % sprite.getW(), y));
                 }
             }
         }
