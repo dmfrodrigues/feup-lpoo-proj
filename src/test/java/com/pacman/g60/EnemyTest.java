@@ -5,6 +5,7 @@ import com.pacman.g60.Model.Effect.Effect;
 import com.pacman.g60.Model.Elements.Enemy;
 import com.pacman.g60.Model.Elements.Mummy;
 import com.pacman.g60.Model.Elements.Ogre;
+import com.pacman.g60.Model.Models.ArenaModel;
 import com.pacman.g60.Model.Position;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,7 +30,7 @@ public class EnemyTest {
         assertEquals(Integer.valueOf(8),enemy.getHealth());
 
         assertTrue(enemy.isAlive());
-        //assertFalse(enemy.beCollected());
+        assertFalse(enemy.beCollected(Mockito.mock(ArenaModel.class)));
     }
 
     @Test
@@ -47,6 +48,6 @@ public class EnemyTest {
         assertEquals(Integer.valueOf(8),enemy.getHealth());
 
         assertTrue(enemy.isAlive());
-        //assertFalse(enemy.beCollected());
+        assertFalse(enemy.beCollected(Mockito.mock(ArenaModel.class)));
     }
 }
