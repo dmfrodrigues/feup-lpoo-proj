@@ -33,7 +33,6 @@ public class TerminalArenaView extends ArenaView {
         private final TextModel textModelCoin;
         private final TerminalTextView textViewCoin;
         private final TextModel textModelTimer;
-        private final TerminalTextView textViewTimer;
         private final SpriteModel coinModel;
         private Duration time = Duration.ZERO;
         private final GUIViewComposite view;
@@ -64,7 +63,7 @@ public class TerminalArenaView extends ArenaView {
             textModelTimer = new TextModel("");
             textModelTimer.setVerticalAlign(Alignable.VerticalAlign.TOP);
             textModelTimer.setHorizontalAlign(Alignable.HorizontalAlign.CENTER);
-            textViewTimer = new TerminalTextView(terminalGUI, font);
+            TerminalTextView textViewTimer = new TerminalTextView(terminalGUI, font);
             textViewTimer.setTextModel(textModelTimer);
             
             view = new GUIViewComposite(terminalGUI);
@@ -111,7 +110,7 @@ public class TerminalArenaView extends ArenaView {
                 }
             }
         }
-        private void drawCoins(int coins, int totalCoins){
+        private void updateCoins(int coins, int totalCoins){
             String coinsStr = String.format("%d/%d", coins, totalCoins);
             int coinsStrX = terminalGUI.getW()-Wmargin-textViewCoin.getStringWidth(coinsStr);
             textModelCoin.setText(coinsStr);
@@ -128,7 +127,7 @@ public class TerminalArenaView extends ArenaView {
         public void draw(ArenaModel arenaModel){
             drawFrame();
             drawHealth(arenaModel.getHero().getHealth(), arenaModel.getHero().getMaxHealth());
-            drawCoins(arenaModel.getHero().getCoins(), arenaModel.getNumCoins() + arenaModel.getHero().getCoins());
+            updateCoins(arenaModel.getHero().getCoins(), arenaModel.getNumCoins() + arenaModel.getHero().getCoins());
             updateTimer();
             view.draw();
         }
