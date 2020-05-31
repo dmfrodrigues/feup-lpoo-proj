@@ -4,6 +4,7 @@
 import com.pacman.g60.Model.DamageEffect;
 import com.pacman.g60.Model.Elements.Hierarchy.AttackerElement;
 import com.pacman.g60.Model.Elements.Hierarchy.LivingElement;
+import com.pacman.g60.Model.Path_Calculation.ShortestPathStrategy;
 import com.pacman.g60.Model.Position;
 
 public abstract class Enemy extends DynamicElement implements LivingElement, AttackerElement {
@@ -12,20 +13,22 @@ public abstract class Enemy extends DynamicElement implements LivingElement, Att
 
     @Override
     public Object clone() {
-<span class="nc" id="L15">        Enemy res = (Enemy)super.clone();</span>
-<span class="nc" id="L16">        res.effect = (DamageEffect) effect.clone();</span>
-<span class="nc" id="L17">        res.health = Integer.valueOf(health);</span>
-<span class="nc" id="L18">        return res;</span>
+<span class="nc" id="L16">        Enemy res = (Enemy)super.clone();</span>
+<span class="nc" id="L17">        res.effect = (DamageEffect) effect.clone();</span>
+<span class="nc" id="L18">        res.health = Integer.valueOf(health);</span>
+<span class="nc" id="L19">        return res;</span>
     }
 
     public Enemy(Position pos, DamageEffect effect, Integer health) {
-<span class="fc" id="L22">        super(pos);</span>
-<span class="fc" id="L23">        this.effect = effect;</span>
-<span class="fc" id="L24">        this.health = health;</span>
-<span class="fc" id="L25">    }</span>
+<span class="fc" id="L23">        super(pos);</span>
+<span class="fc" id="L24">        this.effect = effect;</span>
+<span class="fc" id="L25">        this.health = health;</span>
+<span class="fc" id="L26">    }</span>
 
     public DamageEffect getEffect() {
-<span class="fc" id="L28">        return effect;</span>
+<span class="fc" id="L29">        return effect;</span>
     }
+
+    public abstract Position beMoved(ShortestPathStrategy&lt;Position&gt; shortestPathStrategy);
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

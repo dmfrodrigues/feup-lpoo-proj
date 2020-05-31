@@ -4,11 +4,17 @@ import com.pacman.g60.Model.DamageEffect;
 import com.pacman.g60.Model.Elements.Hierarchy.FollowHeroElement;
 import com.pacman.g60.Model.Elements.Hierarchy.MeleeAttackerElement;
 import com.pacman.g60.Model.Elements.Hierarchy.OrientedElement;
+import com.pacman.g60.Model.Path_Calculation.ShortestPathStrategy;
 import com.pacman.g60.Model.Position;
 
 public class Ogre extends Enemy implements FollowHeroElement, MeleeAttackerElement, OrientedElement {
     public Ogre(Position pos){
-<span class="fc" id="L11">        super(pos, new DamageEffect(2),8);</span>
-<span class="fc" id="L12">    }</span>
+<span class="fc" id="L12">        super(pos, new DamageEffect(2),8);</span>
+<span class="fc" id="L13">    }</span>
+
+    @Override
+    public Position beMoved(ShortestPathStrategy&lt;Position&gt; shortestPathStrategy) {
+<span class="nc" id="L17">        return shortestPathStrategy.getPrev(this.getPos());</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

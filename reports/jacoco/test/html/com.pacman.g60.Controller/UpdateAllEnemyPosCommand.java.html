@@ -38,26 +38,23 @@ public class UpdateAllEnemyPosCommand extends CompositeCommand {
 <span class="nc bnc" id="L38" title="All 2 branches missed.">        for (final Element element : elements) {</span>
 <span class="nc bnc" id="L39" title="All 2 branches missed.">            if (element instanceof Enemy)</span>
             {
-<span class="nc" id="L41">                Position newPos = null;</span>
-<span class="nc bnc" id="L42" title="All 2 branches missed.">                if (element instanceof FollowHeroElement) newPos = shortestPathStrategy.getPrev(element.getPos());</span>
-<span class="nc bnc" id="L43" title="All 2 branches missed.">                if (element instanceof Guard) newPos = ((Guard) element).getMovement().tryMove();</span>
-
-<span class="nc" id="L45">                this.addCommand(new UpdateEnemyPosCommand(this.arenaModel, element,element.getPos(),newPos));</span>
+<span class="nc" id="L41">                Position newPos = ((Enemy)element).beMoved(shortestPathStrategy);</span>
+<span class="nc" id="L42">                this.addCommand(new UpdateEnemyPosCommand(this.arenaModel, element,element.getPos(),newPos));</span>
             }
-<span class="nc" id="L47">        }</span>
-<span class="nc" id="L48">    }</span>
+<span class="nc" id="L44">        }</span>
+<span class="nc" id="L45">    }</span>
 
     public void setupExecution()
     {
-<span class="nc" id="L52">        ShortestPathStrategy&lt;Position&gt; shortestPathStrategy = calcPath();</span>
-<span class="nc" id="L53">        setupCommands(shortestPathStrategy);</span>
-<span class="nc" id="L54">    }</span>
+<span class="nc" id="L49">        ShortestPathStrategy&lt;Position&gt; shortestPathStrategy = calcPath();</span>
+<span class="nc" id="L50">        setupCommands(shortestPathStrategy);</span>
+<span class="nc" id="L51">    }</span>
 
     @Override
     public void execute()
     {
-<span class="nc" id="L59">        setupExecution();</span>
-<span class="nc" id="L60">        super.execute();</span>
-<span class="nc" id="L61">    }</span>
+<span class="nc" id="L56">        setupExecution();</span>
+<span class="nc" id="L57">        super.execute();</span>
+<span class="nc" id="L58">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

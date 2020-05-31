@@ -3,6 +3,7 @@
 
 import com.pacman.g60.Application;
 import com.pacman.g60.Model.Elements.Bullet;
+import com.pacman.g60.Model.Elements.DirectionalCalculator;
 import com.pacman.g60.Model.Elements.Element;
 import com.pacman.g60.Model.Elements.Hierarchy.LivingElement;
 import com.pacman.g60.Model.Models.ArenaModel;
@@ -15,59 +16,35 @@ public class UpdateProjectilePosCommand implements Command {
     private ArenaModel arenaModel;
 
     public UpdateProjectilePosCommand(Bullet bullet, ArenaModel arenaModel)
-<span class="nc" id="L18">    {</span>
-<span class="nc" id="L19">        this.bullet = bullet;</span>
-<span class="nc" id="L20">        this.arenaModel = arenaModel;</span>
-<span class="nc" id="L21">    }</span>
-
+<span class="nc" id="L19">    {</span>
+<span class="nc" id="L20">        this.bullet = bullet;</span>
+<span class="nc" id="L21">        this.arenaModel = arenaModel;</span>
+<span class="nc" id="L22">    }</span>
 
     @Override
     public void execute() {
 <span class="nc" id="L26">        Application.Direction bulletDir = bullet.getDirection();</span>
 <span class="nc" id="L27">        Position currentPos = bullet.getPos();</span>
-<span class="nc" id="L28">        Position desiredPos = null;</span>
-<span class="nc bnc" id="L29" title="All 5 branches missed.">        switch(bulletDir)</span>
-        {
-            case UP:
-            {
-<span class="nc" id="L33">                desiredPos = new Position(currentPos.getX(),currentPos.getY() - 1);</span>
-<span class="nc" id="L34">                break;</span>
-            }
-            case DOWN:
-            {
-<span class="nc" id="L38">                desiredPos = new Position(currentPos.getX(),currentPos.getY() + 1);</span>
-<span class="nc" id="L39">                break;</span>
-            }
-            case LEFT:
-            {
-<span class="nc" id="L43">                desiredPos = new Position(currentPos.getX() - 1,currentPos.getY());</span>
-<span class="nc" id="L44">                break;</span>
-            }
-            case RIGHT:
-            {
-<span class="nc" id="L48">                desiredPos = new Position(currentPos.getX() + 1,currentPos.getY());</span>
-                break;
-            }
-        }
+<span class="nc" id="L28">        Position desiredPos = new DirectionalCalculator(bulletDir,currentPos).calcNextPos();</span>
 
-<span class="nc bnc" id="L53" title="All 2 branches missed.">        if (arenaModel.isPositionAvailable(desiredPos,bullet))</span>
+<span class="nc bnc" id="L30" title="All 2 branches missed.">        if (arenaModel.isPositionAvailable(desiredPos,bullet))</span>
         {
-<span class="nc" id="L55">            bullet.setPos(desiredPos);</span>
-<span class="nc" id="L56">            arenaModel.updateMapKey(currentPos,desiredPos,bullet);</span>
+<span class="nc" id="L32">            bullet.setPos(desiredPos);</span>
+<span class="nc" id="L33">            arenaModel.updateMapKey(currentPos,desiredPos,bullet);</span>
         }
         else
         {
-<span class="nc" id="L60">            List&lt;Element&gt; elemsInDesiredPos = arenaModel.getElemFromPos(desiredPos);</span>
-<span class="nc bnc" id="L61" title="All 2 branches missed.">            for (Element elem : elemsInDesiredPos)</span>
+<span class="nc" id="L37">            List&lt;Element&gt; elemsInDesiredPos = arenaModel.getElemFromPos(desiredPos);</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">            for (Element elem : elemsInDesiredPos)</span>
             {
-<span class="nc bnc" id="L63" title="All 2 branches missed.">                if (elem instanceof LivingElement)</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">                if (elem instanceof LivingElement)</span>
                 {
-<span class="nc" id="L65">                    Command command = new ApplyEffectCommand(bullet.getEffect(),elem);</span>
-<span class="nc" id="L66">                    command.execute();</span>
+<span class="nc" id="L42">                    Command command = new ApplyEffectCommand(bullet.getEffect(),elem);</span>
+<span class="nc" id="L43">                    command.execute();</span>
                 }
-<span class="nc" id="L68">            }</span>
-<span class="nc" id="L69">            arenaModel.removeElement(bullet);</span>
+<span class="nc" id="L45">            }</span>
+<span class="nc" id="L46">            arenaModel.removeElement(bullet);</span>
         }
-<span class="nc" id="L71">    }</span>
+<span class="nc" id="L48">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

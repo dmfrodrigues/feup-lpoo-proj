@@ -2,6 +2,7 @@
 
 import com.pacman.g60.Model.DamageEffect;
 import com.pacman.g60.Model.Elements.Hierarchy.MeleeAttackerElement;
+import com.pacman.g60.Model.Path_Calculation.ShortestPathStrategy;
 import com.pacman.g60.Model.Position;
 
 
@@ -11,27 +12,32 @@ public class Guard extends Enemy implements MeleeAttackerElement {
 
     public Guard(Position pos)
     {
-<span class="nc" id="L14">        super(pos,new DamageEffect(1),10);</span>
-<span class="nc" id="L15">        this.movement = new HorizontalGuardMovementStrategy(pos);</span>
-<span class="nc" id="L16">    }</span>
+<span class="nc" id="L15">        super(pos,new DamageEffect(1),10);</span>
+<span class="nc" id="L16">        this.movement = new HorizontalGuardMovementStrategy(pos);</span>
+<span class="nc" id="L17">    }</span>
 
     public Guard(Position pos, GuardMovementStrategy movementStrategy)
     {
-<span class="fc" id="L20">        super(new Position(100,100),new DamageEffect(1),10);</span>
-<span class="fc" id="L21">        this.movement = movementStrategy;</span>
-<span class="fc" id="L22">    }</span>
+<span class="fc" id="L21">        super(new Position(100,100),new DamageEffect(1),10);</span>
+<span class="fc" id="L22">        this.movement = movementStrategy;</span>
+<span class="fc" id="L23">    }</span>
 
    public GuardMovementStrategy getMovement()
    {
-<span class="fc" id="L26">       return this.movement;</span>
+<span class="fc" id="L27">       return this.movement;</span>
    }
 
     @Override
     public Object clone()
     {
-<span class="nc" id="L32">        Guard guard = (Guard) super.clone();</span>
-<span class="nc" id="L33">        guard.movement = this.movement;</span>
-<span class="nc" id="L34">        return guard;</span>
+<span class="nc" id="L33">        Guard guard = (Guard) super.clone();</span>
+<span class="nc" id="L34">        guard.movement = this.movement;</span>
+<span class="nc" id="L35">        return guard;</span>
+    }
+
+    @Override
+    public Position beMoved(ShortestPathStrategy&lt;Position&gt; shortestPathStrategy) {
+<span class="nc" id="L40">        return this.movement.tryMove();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
