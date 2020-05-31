@@ -282,8 +282,23 @@ public class Game {
                 levelModels.add(new LevelModel(i, arenaModelLoader.getArenaModel()));
             }
         }
+        private void updateActiveLevels(){
+            Set<Integer> levels = progress.getLevels();
+            Set<Integer> reachableLevels = new HashSet<>();
+            reachableLevels.add(0);
+            for(final Integer l: levels){
+                reachableLevels.add(l);
+                reachableLevels.add(l+1);
+            }
+            for(final MenuModel.Item item: menuModel.getItems()){
+                item.setEnabled(reachableLevels.contains(item.getId()));
+                System.out.println(item.getId() + " " + item.getEnabled());
+            }
+        }
         @Override
         public State run() throws IOException {
+            updateActiveLevels();
+            
             MenuModel menuModel_ = new MenuModel(menuModel);
             menuView.setMenuModel(menuModel_);
             MenuController menuController = new MenuController(menuModel_, view);

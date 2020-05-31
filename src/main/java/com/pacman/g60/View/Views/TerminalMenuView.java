@@ -96,13 +96,14 @@ public class TerminalMenuView extends MenuView {
             for (int x = x1 + font.getW(); x < x1 + (Wbutton_chars - 1) * font.getW(); ++x) {
                 for (int y = y1 + font.getH(); y < y1 + (Hbutton_chars - 1) * font.getH(); ++y) {
                     if(ymin <= y && y <= ymax)
-                        terminalGUI.drawCharacter(x, y, ' ', Color.WHITE, Color.GREY);
+                        terminalGUI.drawCharacter(x, y, ' ', Color.WHITE, Color.DARK_GREY);
                 }
             }
-            textModel.setBackgroundColor(Color.GREY);
+            textModel.setBackgroundColor(Color.DARK_GREY);
         }
         textModel.setPosition(new Position(x2, y2));
         textModel.setText(item.getText());
+        textModel.setForegroundColor((item.getEnabled() ? Color.WHITE : Color.GREY));
         if(ymin <= textModel.getPosition().getY() && textModel.getPosition().getY() <= ymax) textView.draw();
     }
     

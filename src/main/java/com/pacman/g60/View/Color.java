@@ -34,4 +34,6 @@ public class Color {
     public static Color BLACK = new Color(0, 0, 0);
     public static Color WHITE = new Color(255, 255, 255);
     public static Color GREY  = new Color(127, 127, 127);
+    public static Color LIGHT_GREY = new Color(191, 191, 191);
+    public static Color DARK_GREY = new Color(64, 64, 64);
 }

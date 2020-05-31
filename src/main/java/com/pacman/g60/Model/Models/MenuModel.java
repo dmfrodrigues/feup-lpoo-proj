@@ -12,11 +12,14 @@ public class MenuModel extends Alignable {
         private MenuModel parent;
         private String text;
         private Integer id;
+        private boolean enabled = true;
         
         @Override
         public Object clone() {
             try {
-                return getClass().getDeclaredConstructor(MenuModel.class, Integer.class, String.class).newInstance(parent, id, text);
+                Item res = getClass().getDeclaredConstructor(MenuModel.class, Integer.class, String.class).newInstance(parent, id, text);
+                res.setEnabled(getEnabled());
+                return res;
             } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
                 e.printStackTrace();
             }
@@ -42,7 +45,9 @@ public class MenuModel extends Alignable {
         public boolean isSelected() {
             return (id.equals(parent.getSelectedItem().getId()));
         }
-        
+
+        public void setEnabled(boolean enabled){ this.enabled = enabled; }
+        public boolean getEnabled(){ return enabled; }
     }
     
     public static class NormalItem extends Item {
