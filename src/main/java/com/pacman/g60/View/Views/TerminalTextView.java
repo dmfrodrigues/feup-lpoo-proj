@@ -21,8 +21,8 @@ public class TerminalTextView extends TextView {
         this.font = font;
     }
     public Integer getStringWidth(String s){
-        Integer res = 0;
-        Integer lineWidth = 0;
+        int res = 0;
+        int lineWidth = 0;
         for(int i = 0; i < s.length(); ++i){
             if(s.charAt(i) == '\n'){ res = Math.max(res, lineWidth); lineWidth = 0; }
             else ++lineWidth;
@@ -71,7 +71,7 @@ public class TerminalTextView extends TextView {
         }
         int i_beginline = 0;
         for(int i = 0; i < model.getText().length(); ++i){
-            Character c = model.getText().charAt(i);
+            char c = model.getText().charAt(i);
             if(c == '\n') {
                 y0 += Math.round(font.getH() * model.getLineHeight());
                 i_beginline = i+1;

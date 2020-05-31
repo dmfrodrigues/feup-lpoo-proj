@@ -101,35 +101,27 @@ The catacombs are full of treasures from ancient times, as well as weapons from 
 ![2020-04-26-image](images/pacman-20200502-042816.gif)
 
 - [x] Enemies
-    - [x] Ghost (weak melee)
+    - [x] Ghost (weak melee, not vulnerable to bullets)
     - [x] Ogre (strong melee)
+    - [x] Guard (walks a small path over and over)
+    - [x] Mummy
 - [x] Main menu
+    - [x] Level selector
+    - [x] Scoreboard
+    - [x] Load and save game
 - [x] Weaponize enemies
 - [x] Weaponize hero
 - [x] Collectibles
     - [x] Coin
     - [x] Health potion
+    - [x] Sword
+    - [x] Bullet
 
 <a name="planned-features"><a/>
 ## Planned features
 
-- [ ] Main menu
-    - [ ] Scoreboard
-    - [ ] Level selector
-    - [ ] Level editor (?)
-- [ ] Score system
-- [ ] Current game state can be saved and loaded
-- [ ] Information bar:
-    - [ ] Level number
-    - [ ] Restart level
-    - [ ] Go to main menu
 - [ ] Enemies
-    - [ ] Guard
-    - [ ] Spider
-    - [ ] Mummy
-- [ ] Collectibles
-    - [ ] Sword
-    - [ ] Bullet
+    - [ ] Mummy (not throwing anything yet)
 - [ ] Swing compatibility
 
 <a name="design"><a/>
@@ -396,6 +388,14 @@ This smell is present in the constructor of the UpdateEnemyPosCommand class and 
 ### [Long Method](https://refactoring.guru/smells/long-method)
 
 The updatePos function in the DynamicElement class is a bit too long and could be divided into smaller pieces using [Extract Method](https://refactoring.guru/extract-method).
+
+### A smell
+On [this commit](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/17394b793d1e3a9e62708e2761d981fa3c6311b0/src/main/java/com/pacman/g60/View/Views/TerminalArenaView.java#L52-L53), TerminalArenaView has the responsibility of tracking time since the beginning of the game, but this responsibility should be of the ArenaController.
+
+### Another smell
+Repeated code in TerminalArenaView. This can be fixed by using TerminalSpriteView.
+
+Moved responsibility to ArenaController
 
 ### Some dependency problem
 There is a problem with [Game](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/97e24afb5f05fbb3dc49aee784a37b6c63cd7115/src/main/java/com/pacman/g60/Controller/Game.java#L1-L413) using terminal-specific [hearts](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/97e24afb5f05fbb3dc49aee784a37b6c63cd7115/src/main/java/com/pacman/g60/Controller/Game.java#L238-L239) and [coins](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/97e24afb5f05fbb3dc49aee784a37b6c63cd7115/src/main/java/com/pacman/g60/Controller/Game.java#L251-L252), which stems from the fact [SpriteModel](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/97e24afb5f05fbb3dc49aee784a37b6c63cd7115/src/main/java/com/pacman/g60/Model/Models/SpriteModel.java#L1-L22) knows too much about how to draw itself by having a [TerminalSprite member](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/97e24afb5f05fbb3dc49aee784a37b6c63cd7115/src/main/java/com/pacman/g60/Model/Models/SpriteModel.java#L11).

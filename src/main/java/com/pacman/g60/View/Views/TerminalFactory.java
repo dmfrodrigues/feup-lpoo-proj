@@ -3,14 +3,13 @@ package com.pacman.g60.View.Views;
 import com.pacman.g60.View.Font.TerminalFont;
 import com.pacman.g60.View.Font.TerminalFontLoaderStream;
 import com.pacman.g60.View.GUI.TerminalGUI;
-import com.pacman.g60.View.Views.*;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class TerminalFactory implements ViewFactory {
-    private TerminalGUI terminalGUI;
-    private TerminalFont font;
+    private final TerminalGUI terminalGUI;
+    private final TerminalFont font;
     
     public TerminalFactory(TerminalGUI terminalGUI) throws FileNotFoundException {
         this.terminalGUI = terminalGUI;

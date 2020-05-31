@@ -11,7 +11,7 @@ import java.util.List;
 
 public class TerminalMenuView extends MenuView {
     
-    private TerminalGUI terminalGUI;
+    private final TerminalGUI terminalGUI;
     TerminalFont font;
     TerminalTextView textView;
     
@@ -30,7 +30,7 @@ public class TerminalMenuView extends MenuView {
     final int Hbutton_margin = 0;
     final int Hframe_margin = 3;
     
-    private void drawFrame(int x0, int y0, MenuModel menu){
+    private void drawFrame(int x0, int y0){
         
         int Wtotal = Wbutton + 2*font.getW() + 2*Wframe_margin;
         int Wtotal_chars = Wtotal/font.getW();
@@ -147,18 +147,19 @@ public class TerminalMenuView extends MenuView {
         final int ymin = (frame ? y0+font.getH() : y0 );
         final int ymax = (frame ? y0+Htotal-font.getH()-1 : terminalGUI.getH()-1);
         
-        Integer i_selected = 0;
-        for(i_selected = 0; !items.get(i_selected).isSelected(); ++i_selected){}
-        Integer y_selected = y0 + i_selected*(Hbutton+Hbutton_margin) + (frame ? font.getH() + Hframe_margin : 0 );
-        Integer y_selected_bottom = y_selected + Hbutton - 1;
-        Integer delta_y = Math.max(0, y_selected_bottom - ymax);
+        int i_selected;
+        i_selected = 0;
+        while (!items.get(i_selected).isSelected()) ++i_selected;
+        int y_selected = y0 + i_selected*(Hbutton+Hbutton_margin) + (frame ? font.getH() + Hframe_margin : 0 );
+        int y_selected_bottom = y_selected + Hbutton - 1;
+        int delta_y = Math.max(0, y_selected_bottom - ymax);
         
         for(int i = 0; i < items.size(); ++i){
             drawItem(x0, y0-delta_y, ymin, ymax, items.get(i), i);
         }
 
         if(frame) {
-            drawFrame(x0, y0, menu);
+            drawFrame(x0, y0);
         }
     }
 }
