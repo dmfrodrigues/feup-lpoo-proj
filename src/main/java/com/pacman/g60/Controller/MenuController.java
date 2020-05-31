@@ -16,6 +16,7 @@ public class MenuController {
     }
     
     public int run() throws IOException {
+        frameRateController.start();
         while(true){
             frameRateController.startFrame();
             

@@ -3,6 +3,7 @@ package com.pacman.g60.Controller;
 
 import com.pacman.g60.Application;
 import com.pacman.g60.Model.Models.ArenaModel;
+import com.pacman.g60.View.FrameRateController;
 import com.pacman.g60.View.Views.ArenaView;
 
 import java.io.IOException;
@@ -10,12 +11,13 @@ import java.time.Duration;
 import java.time.Instant;
 
 public class ArenaController extends Controller {
-    private ArenaView arenaView;
-    private ArenaModel arenaModel;
+    private final ArenaView arenaView;
+    private final ArenaModel arenaModel;
     private boolean win;
     private boolean over;
     private boolean mustContinueRunning = false;
-    private UpdateRateController rateController = new UpdateRateController(4);
+    private final UpdateRateController rateController = new UpdateRateController(4);
+    private final FrameRateController frameRateController  = new FrameRateController (60);
     private Duration time = Duration.ZERO;
 
     public ArenaController(ArenaModel arenaModel, ArenaView arenaView){
@@ -33,11 +35,13 @@ public class ArenaController extends Controller {
         arenaView.setArenaModel(arenaModel);
         
         rateController.start();
+        frameRateController.start();
         startTime();
         
         boolean good = true;
         while(good){
             rateController.startFrame();
+            frameRateController.startFrame();
 
             long numberUpdates = rateController.numberUpdatesInThisFrame();
             for(long i = 0; i < numberUpdates; ++i) {

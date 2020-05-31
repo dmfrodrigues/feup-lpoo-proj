@@ -1,36 +1,34 @@
 package com.pacman.g60.View;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.time.Duration;
+import java.time.Instant;
 
 public class FrameRateController {
-    private static final long SECONDS_TO_MILLIS = 1000L;
     private static final long SECONDS_TO_NANOS = 1000000000L;
     private static final long MILLIS_TO_NANOS = 1000000L;
     private Integer framesPerSecond;
     public FrameRateController(){ this(60); }
     public FrameRateController(Integer framesPerSecond){ setFramesPerSecond(framesPerSecond); }
-    public void setFramesPerSecond(Integer framesPerSecond){ 
+    public void setFramesPerSecond(Integer framesPerSecond){
         this.framesPerSecond = framesPerSecond;
-        //nanosleep = getNanosPerFrame();
+        nanoSleepDelta = getFrameDuration().toNanos();
     }
-    private long getNanosPerFrame(){
-        return SECONDS_TO_NANOS/ framesPerSecond;
+    private Duration getFrameDuration(){
+        return Duration.ZERO.plusNanos(SECONDS_TO_NANOS/framesPerSecond);
     }
-    private Queue<Long> times = new LinkedList<>();
-    private final static long Dt = SECONDS_TO_MILLIS; //one second
-    private long nanosleep = 0;
-    private long correctionFactor = 200;
+    private Instant previous = Instant.now();
+    private long nanoSleep = 0;
+    private long nanoSleepDelta = 100000;
+    public void start(){ previous = Instant.now(); }
     public void startFrame() {
-        long now = System.currentTimeMillis();
-        times.add(now);
-        while(times.peek() != null && times.peek() < now-Dt) times.poll();
-        long nanoelapsed = Dt*MILLIS_TO_NANOS / times.size();
-        long nanosleepcorrection = getNanosPerFrame() - nanoelapsed;
-        nanosleep += nanosleepcorrection/correctionFactor;
-        nanosleep = Math.max(nanosleep, 0);
+        Instant current = Instant.now();
+        Duration elapsed = Duration.between(previous, current);
+        previous = current;
+        int cmp = elapsed.compareTo(getFrameDuration());
+        if(cmp < 0) nanoSleep += nanoSleepDelta;
+        else if(cmp > 0) nanoSleep = Math.max(0, nanoSleep-nanoSleepDelta);
         try {
-            Thread.sleep(nanosleep/MILLIS_TO_NANOS, (int) (nanosleep % MILLIS_TO_NANOS));
+            Thread.sleep(nanoSleep/MILLIS_TO_NANOS, (int) (nanoSleep%MILLIS_TO_NANOS));
         } catch (InterruptedException e) {
             System.err.println("Interrupted: " + e.getMessage());
             e.printStackTrace();
