@@ -1,14 +1,11 @@
 package com.pacman.g60;
 
 import com.pacman.g60.Controller.ApplyEffectCommand;
-import com.pacman.g60.Model.Effect.DamageEffect;
+import com.pacman.g60.Model.DamageEffect;
 import com.pacman.g60.Model.Elements.Hero;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Matchers;
 import org.mockito.Mockito;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
 
 import static org.junit.Assert.assertEquals;
 

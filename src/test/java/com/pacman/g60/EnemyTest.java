@@ -1,13 +1,11 @@
 package com.pacman.g60;
 
-import com.pacman.g60.Model.Effect.DamageEffect;
-import com.pacman.g60.Model.Effect.Effect;
+import com.pacman.g60.Model.DamageEffect;
 import com.pacman.g60.Model.Elements.Enemy;
 import com.pacman.g60.Model.Elements.Mummy;
 import com.pacman.g60.Model.Elements.Ogre;
 import com.pacman.g60.Model.Models.ArenaModel;
 import com.pacman.g60.Model.Position;
-import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 

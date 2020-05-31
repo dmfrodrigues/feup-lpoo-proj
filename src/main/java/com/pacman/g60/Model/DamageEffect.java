@@ -1,9 +1,9 @@
-package com.pacman.g60.Model.Effect;
+package com.pacman.g60.Model;
 
 import com.pacman.g60.Model.Elements.Element;
 import com.pacman.g60.Model.Elements.Hierarchy.LivingElement;
 
-public class DamageEffect implements Effect{
+public class DamageEffect implements Cloneable{
     private Integer damage;
 
     @Override
@@ -15,8 +15,7 @@ public class DamageEffect implements Effect{
         this.damage = damage;
     }
     public DamageEffect(DamageEffect damageEffect){ this(damageEffect.damage); }
-    
-    @Override
+
     public void apply(Element target) {
         if (target instanceof LivingElement)
         {
