@@ -11,7 +11,7 @@ public abstract class GUIView implements Cloneable {
     
     public enum COMMAND{ UP, DOWN, LEFT, RIGHT, ESC, SPACEBAR, P, ENTER, FIRE }
     
-    GUI gui;
+    private GUI gui;
     
     public GUIView(GUIView guiView){
         gui = guiView.gui;
