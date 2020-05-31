@@ -1,6 +1,7 @@
 package com.pacman.g60;
 
 import com.pacman.g60.Model.Position;
+import com.pacman.g60.Model.PositionReal;
 import org.junit.Test;
 
 import java.util.Set;
@@ -114,5 +115,12 @@ public class PositionTest {
         assertTrue((new Position(1, 2)).compareTo(new Position(0, 2)) > 0);
         assertTrue((new Position(1, 2)).compareTo(new Position(1, 1)) > 0);
         assertTrue((new Position(1, 2)).compareTo(new Position(1, 3)) < 0);
+    }
+    
+    @Test
+    public void ctor_real(){
+        assertEquals(new Position(4, 7), new Position(new PositionReal(4.0, 7.0)));
+        assertEquals(new Position(7, 4), new Position(new PositionReal(7.0, 4.0)));
+        assertEquals(new Position(1, 9), new Position(new PositionReal(1.0, 9.0)));
     }
 }
