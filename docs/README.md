@@ -479,7 +479,15 @@ Test report for the first delivery is available [here](https://feup-lpoo.github.
 
 Coverage test report for the first delivery is available [here](https://feup-lpoo.github.io/lpoo-2020-g60/delivery1/reports/jacoco/test/html/index.html).
 
-Mutation test report for the first delivery is available [here](https://feup-lpoo.github.io/lpoo-2020-g60/reports/pitest/index.html).
+Mutation test report for the first delivery is available [here](https://feup-lpoo.github.io/lpoo-2020-g60/delivery1/reports/pitest/index.html).
+
+### Second delivery
+
+Test report for the second delivery is available [here](https://feup-lpoo.github.io/lpoo-2020-g60/delivery2/reports/tests/test/index.html)
+
+Coverage test report for the second delivery is available [here](https://feup-lpoo.github.io/lpoo-2020-g60/delivery2/reports/jacoco/test/html/index.html).
+
+Mutation test report for the second delivery is available [here](https://feup-lpoo.github.io/lpoo-2020-g60/delivery2/reports/pitest/index.html).
 
 <a name="self-evaluation"><a/>
 
