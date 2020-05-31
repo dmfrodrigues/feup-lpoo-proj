@@ -59,10 +59,10 @@ public class TerminalTextView extends TextView {
 <span class="nc" id="L59">            x0 = (int)(model.getPosition().getX() * terminalGUI.getW());</span>
 <span class="nc" id="L60">            y0 = (int)(model.getPosition().getY() * terminalGUI.getH());</span>
         }
-<span class="pc bpc" id="L62" title="2 of 4 branches missed.">        switch(model.getHorizontalAlign()){</span>
+<span class="pc bpc" id="L62" title="1 of 4 branches missed.">        switch(model.getHorizontalAlign()){</span>
 <span class="fc" id="L63">            case LEFT  : break;</span>
 <span class="fc" id="L64">            case CENTER: x0 -= getStringWidth(model.getText())/2; break;</span>
-<span class="nc" id="L65">            case RIGHT : x0 -= getStringWidth(model.getText())  ; break;</span>
+<span class="fc" id="L65">            case RIGHT : x0 -= getStringWidth(model.getText())  ; break;</span>
         }
 <span class="pc bpc" id="L67" title="3 of 4 branches missed.">        switch(model.getVerticalAlign()){</span>
 <span class="fc" id="L68">            case TOP   : break;</span>
