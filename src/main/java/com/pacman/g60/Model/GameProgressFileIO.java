@@ -18,8 +18,8 @@ public class GameProgressFileIO {
             res.addProgress(new GameProgress.LevelProgress(
                     Integer.parseInt(line[0]),
                     Integer.parseInt(line[1]),
-                    Duration.ZERO.plusNanos(Integer.parseInt(line[2])),
-                    new Date(Integer.parseInt(line[3]))
+                    Duration.ZERO.plusNanos(Long.parseLong(line[2])),
+                    new Date(Long.parseLong(line[3]))
             ));
         }
         
