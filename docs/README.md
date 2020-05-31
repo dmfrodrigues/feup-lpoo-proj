@@ -392,10 +392,11 @@ The updatePos function in the DynamicElement class is a bit too long and could b
 ### A smell
 On [this commit](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/17394b793d1e3a9e62708e2761d981fa3c6311b0/src/main/java/com/pacman/g60/View/Views/TerminalArenaView.java#L52-L53), TerminalArenaView has the responsibility of tracking time since the beginning of the game, but this responsibility should be of the ArenaController.
 
-### Another smell
-Repeated code in TerminalArenaView. This can be fixed by using TerminalSpriteView.
+### Duplicate code in TerminalArenaView
+There was duplicate code in [TerminalArenaView](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/2277651ca00c31e2b380eaf761bc7817e6698122/src/main/java/com/pacman/g60/View/Views/TerminalArenaView.java#L38-L47) and [TerminalSpriteView](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/2277651ca00c31e2b380eaf761bc7817e6698122/src/main/java/com/pacman/g60/View/Views/TerminalSpriteView.java#L43-L50).
+Class [TerminalSpriteView](../src/main/java/com/pacman/g60/View/Views/TerminalSpriteView.java) was actually an effort to solve anticipated duplicate code smells, so it basically consists of the result of applying [Extract Class](https://refactoring.guru/extract-class).
 
-Moved responsibility to ArenaController
+We have not solved this smell completely, since there is still [repeated code](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/398c47f6952d28ed05ad5c9741d325915e85d972/src/main/java/com/pacman/g60/View/Views/TerminalArenaView.java#L101-L115), but in this case we decided not to fix it since it allows drawing "half hearts" in case hero health is not an integer (e.g., 9.5).
 
 ### Some dependency problem
 There is a problem with [Game](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/97e24afb5f05fbb3dc49aee784a37b6c63cd7115/src/main/java/com/pacman/g60/Controller/Game.java#L1-L413) using terminal-specific [hearts](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/97e24afb5f05fbb3dc49aee784a37b6c63cd7115/src/main/java/com/pacman/g60/Controller/Game.java#L238-L239) and [coins](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/97e24afb5f05fbb3dc49aee784a37b6c63cd7115/src/main/java/com/pacman/g60/Controller/Game.java#L251-L252), which stems from the fact [SpriteModel](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/97e24afb5f05fbb3dc49aee784a37b6c63cd7115/src/main/java/com/pacman/g60/Model/Models/SpriteModel.java#L1-L22) knows too much about how to draw itself by having a [TerminalSprite member](https://github.com/FEUP-LPOO/lpoo-2020-g60/blob/97e24afb5f05fbb3dc49aee784a37b6c63cd7115/src/main/java/com/pacman/g60/Model/Models/SpriteModel.java#L11).
