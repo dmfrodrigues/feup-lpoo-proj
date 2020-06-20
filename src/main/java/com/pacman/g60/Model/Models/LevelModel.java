@@ -1,6 +1,8 @@
-package com.pacman.g60.Model.Models;
+/**
+ * Copyright (C) 2020 Diogo Rodrigues, João Matos
+ */
 
-import com.pacman.g60.Model.Models.ArenaModel;
+package com.pacman.g60.Model.Models;
 
 public class LevelModel {
     Integer level;

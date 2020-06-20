@@ -1,8 +1,8 @@
-package com.pacman.g60.View.Views;
+/**
+ * Copyright (C) 2020 Diogo Rodrigues, João Matos
+ */
 
-import com.pacman.g60.View.Views.ArenaView;
-import com.pacman.g60.View.Views.MenuView;
-import com.pacman.g60.View.Views.TextView;
+package com.pacman.g60.View.Views;
 
 import java.io.FileNotFoundException;
 

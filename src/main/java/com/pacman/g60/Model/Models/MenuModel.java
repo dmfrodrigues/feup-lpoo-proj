@@ -1,3 +1,7 @@
+/**
+ * Copyright (C) 2020 Diogo Rodrigues, João Matos
+ */
+
 package com.pacman.g60.Model.Models;
 
 import com.pacman.g60.Model.PositionReal;

@@ -1,10 +1,12 @@
+/**
+ * Copyright (C) 2020 Diogo Rodrigues, João Matos
+ */
+
 package com.pacman.g60.Controller;
 
-import com.pacman.g60.Model.Models.ArenaModel;
 import com.pacman.g60.Model.Elements.Element;
 import com.pacman.g60.Model.Elements.Enemy;
-import com.pacman.g60.Model.Elements.Guard;
-import com.pacman.g60.Model.Elements.Hierarchy.FollowHeroElement;
+import com.pacman.g60.Model.Models.ArenaModel;
 import com.pacman.g60.Model.Path_Calculation.BFSShortestPathStrategy;
 import com.pacman.g60.Model.Path_Calculation.BFSTieBreakerDiag;
 import com.pacman.g60.Model.Path_Calculation.Graph;
