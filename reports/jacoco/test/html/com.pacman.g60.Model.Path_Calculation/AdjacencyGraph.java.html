@@ -1,4 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdjacencyGraph.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.Model.Path_Calculation</a> &gt; <span class="el_source">AdjacencyGraph.java</span></div><h1>AdjacencyGraph.java</h1><pre class="source lang-java linenums">package com.pacman.g60.Model.Path_Calculation;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdjacencyGraph.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.Model.Path_Calculation</a> &gt; <span class="el_source">AdjacencyGraph.java</span></div><h1>AdjacencyGraph.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2020 Diogo Rodrigues, João Matos
+ */
+
+package com.pacman.g60.Model.Path_Calculation;
 
 import java.util.*;
 
@@ -6,30 +10,30 @@ public class AdjacencyGraph&lt;T&gt; extends Graph&lt;T&gt; {
     Map&lt;T,Set&lt;T&gt;&gt; adj;
 
     public AdjacencyGraph()
-<span class="fc" id="L9">    {</span>
-<span class="fc" id="L10">        this.adj = new HashMap&lt;&gt;();</span>
-<span class="fc" id="L11">    }</span>
+<span class="fc" id="L13">    {</span>
+<span class="fc" id="L14">        this.adj = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L15">    }</span>
 
     @Override
     public void addNode(T node) throws IllegalArgumentException {
-<span class="fc bfc" id="L15" title="All 2 branches covered.">        if(adj.get(node) != null) throw new IllegalArgumentException(&quot;Node &quot; + node + &quot; already exists&quot;);</span>
-<span class="fc" id="L16">        adj.put(node,new HashSet&lt;&gt;());</span>
-<span class="fc" id="L17">    }</span>
+<span class="fc bfc" id="L19" title="All 2 branches covered.">        if(adj.get(node) != null) throw new IllegalArgumentException(&quot;Node &quot; + node + &quot; already exists&quot;);</span>
+<span class="fc" id="L20">        adj.put(node,new HashSet&lt;&gt;());</span>
+<span class="fc" id="L21">    }</span>
 
     @Override
     public void addEdge(T source, T dest) throws IllegalArgumentException {
-<span class="fc bfc" id="L21" title="All 2 branches covered.">        if  (!adj.containsKey(source)) throw new IllegalArgumentException(&quot;Node &quot; + source + &quot; does not exist&quot;);</span>
-<span class="fc bfc" id="L22" title="All 2 branches covered.">        if  (!adj.containsKey(dest)) throw new IllegalArgumentException(&quot;Node &quot; + dest + &quot; does not exist&quot;);</span>
-<span class="fc" id="L23">        adj.get(source).add(dest);</span>
-<span class="fc" id="L24">        adj.get(dest).add(source);</span>
-<span class="fc" id="L25">    }</span>
+<span class="fc bfc" id="L25" title="All 2 branches covered.">        if  (!adj.containsKey(source)) throw new IllegalArgumentException(&quot;Node &quot; + source + &quot; does not exist&quot;);</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">        if  (!adj.containsKey(dest)) throw new IllegalArgumentException(&quot;Node &quot; + dest + &quot; does not exist&quot;);</span>
+<span class="fc" id="L27">        adj.get(source).add(dest);</span>
+<span class="fc" id="L28">        adj.get(dest).add(source);</span>
+<span class="fc" id="L29">    }</span>
 
     @Override
     public Set&lt;T&gt; getAdj(T node) {
-<span class="fc" id="L29">        return adj.get(node);</span>
+<span class="fc" id="L33">        return adj.get(node);</span>
     }
 
     @Override
-<span class="fc" id="L33">    public Set&lt;T&gt; getNodes() { return adj.keySet(); }</span>
+<span class="fc" id="L37">    public Set&lt;T&gt; getNodes() { return adj.keySet(); }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

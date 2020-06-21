@@ -1,43 +1,46 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TerminalSpriteLoaderStream.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.View.Sprite</a> &gt; <span class="el_source">TerminalSpriteLoaderStream.java</span></div><h1>TerminalSpriteLoaderStream.java</h1><pre class="source lang-java linenums">package com.pacman.g60.View.Sprite;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TerminalSpriteLoaderStream.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.View.Sprite</a> &gt; <span class="el_source">TerminalSpriteLoaderStream.java</span></div><h1>TerminalSpriteLoaderStream.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2020 Diogo Rodrigues, João Matos
+ */
+
+package com.pacman.g60.View.Sprite;
 
 
 import com.pacman.g60.View.Color;
-import com.pacman.g60.View.Sprite.TerminalSprite;
 
 import java.io.InputStream;
 import java.util.Scanner;
 
 public class TerminalSpriteLoaderStream implements TerminalSprite.Loader{
     private final TerminalSprite terminalSprite;
-<span class="fc" id="L12">    public TerminalSpriteLoaderStream(InputStream inputStream){</span>
-<span class="fc" id="L13">        Scanner scanner = new Scanner(inputStream);</span>
-<span class="fc" id="L14">        String firstLine = scanner.nextLine();</span>
-<span class="fc" id="L15">        int W = Integer.parseInt(firstLine.split(&quot; &quot;)[0]);</span>
-<span class="fc" id="L16">        int H = Integer.parseInt(firstLine.split(&quot; &quot;)[1]);</span>
-<span class="fc" id="L17">        terminalSprite = new TerminalSprite(W, H);</span>
-<span class="fc bfc" id="L18" title="All 2 branches covered.">        for(int y = 0; y &lt; H; ++y){</span>
-<span class="fc" id="L19">            String[] colors = scanner.nextLine().split(&quot; &quot;);</span>
-<span class="fc bfc" id="L20" title="All 2 branches covered.">            if(colors.length != W) throw new IllegalArgumentException(&quot;Invalid file content&quot;);</span>
-<span class="fc bfc" id="L21" title="All 2 branches covered.">            for(int x = 0; x &lt; W; ++x)</span>
-<span class="fc" id="L22">                terminalSprite.setBackgroundColor(x, y, new Color(colors[x]));</span>
+<span class="fc" id="L15">    public TerminalSpriteLoaderStream(InputStream inputStream){</span>
+<span class="fc" id="L16">        Scanner scanner = new Scanner(inputStream);</span>
+<span class="fc" id="L17">        String firstLine = scanner.nextLine();</span>
+<span class="fc" id="L18">        int W = Integer.parseInt(firstLine.split(&quot; &quot;)[0]);</span>
+<span class="fc" id="L19">        int H = Integer.parseInt(firstLine.split(&quot; &quot;)[1]);</span>
+<span class="fc" id="L20">        terminalSprite = new TerminalSprite(W, H);</span>
+<span class="fc bfc" id="L21" title="All 2 branches covered.">        for(int y = 0; y &lt; H; ++y){</span>
+<span class="fc" id="L22">            String[] colors = scanner.nextLine().split(&quot; &quot;);</span>
+<span class="fc bfc" id="L23" title="All 2 branches covered.">            if(colors.length != W) throw new IllegalArgumentException(&quot;Invalid file content&quot;);</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">            for(int x = 0; x &lt; W; ++x)</span>
+<span class="fc" id="L25">                terminalSprite.setBackgroundColor(x, y, new Color(colors[x]));</span>
         }
-<span class="fc bfc" id="L24" title="All 2 branches covered.">        for(int y = 0; y &lt; H; ++y){</span>
-<span class="fc" id="L25">            String line = scanner.nextLine();</span>
-<span class="fc bfc" id="L26" title="All 2 branches covered.">            if(line.length() != W) throw new IllegalArgumentException(&quot;Invalid file content&quot;);</span>
-<span class="fc bfc" id="L27" title="All 2 branches covered.">            for(int x = 0; x &lt; W; ++x)</span>
-<span class="fc" id="L28">                terminalSprite.setChar(x, y, line.charAt(x));</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">        for(int y = 0; y &lt; H; ++y){</span>
+<span class="fc" id="L28">            String line = scanner.nextLine();</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">            if(line.length() != W) throw new IllegalArgumentException(&quot;Invalid file content&quot;);</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">            for(int x = 0; x &lt; W; ++x)</span>
+<span class="fc" id="L31">                terminalSprite.setChar(x, y, line.charAt(x));</span>
         }
-<span class="fc bfc" id="L30" title="All 2 branches covered.">        for(int y = 0; y &lt; H; ++y){</span>
-<span class="fc" id="L31">            String[] colors = scanner.nextLine().split(&quot; &quot;);</span>
-<span class="fc bfc" id="L32" title="All 2 branches covered.">            if(colors.length != W) throw new IllegalArgumentException(&quot;Invalid file content&quot;);</span>
-<span class="fc bfc" id="L33" title="All 2 branches covered.">            for(int x = 0; x &lt; W; ++x)</span>
-<span class="fc" id="L34">                terminalSprite.setForegroundColor(x, y, new Color(colors[x]));</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        for(int y = 0; y &lt; H; ++y){</span>
+<span class="fc" id="L34">            String[] colors = scanner.nextLine().split(&quot; &quot;);</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">            if(colors.length != W) throw new IllegalArgumentException(&quot;Invalid file content&quot;);</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">            for(int x = 0; x &lt; W; ++x)</span>
+<span class="fc" id="L37">                terminalSprite.setForegroundColor(x, y, new Color(colors[x]));</span>
         }
-<span class="fc" id="L36">    }</span>
+<span class="fc" id="L39">    }</span>
 
     @Override
     public TerminalSprite getTerminalSprite() {
-<span class="fc" id="L40">        return terminalSprite;</span>
+<span class="fc" id="L43">        return terminalSprite;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

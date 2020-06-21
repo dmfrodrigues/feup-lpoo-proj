@@ -1,4 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DynamicElement.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.Model.Elements</a> &gt; <span class="el_source">DynamicElement.java</span></div><h1>DynamicElement.java</h1><pre class="source lang-java linenums">package com.pacman.g60.Model.Elements;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DynamicElement.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.Model.Elements</a> &gt; <span class="el_source">DynamicElement.java</span></div><h1>DynamicElement.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2020 Diogo Rodrigues, João Matos
+ */
+
+package com.pacman.g60.Model.Elements;
 
 
 
@@ -15,84 +19,84 @@ public abstract class DynamicElement extends Element implements MovableElement, 
 
     @Override
     public Object clone() {
-<span class="nc" id="L18">        DynamicElement res = (DynamicElement)super.clone();</span>
-<span class="nc" id="L19">        res.dir = dir;</span>
-<span class="nc" id="L20">        return res;</span>
+<span class="nc" id="L22">        DynamicElement res = (DynamicElement)super.clone();</span>
+<span class="nc" id="L23">        res.dir = dir;</span>
+<span class="nc" id="L24">        return res;</span>
     }
 
     public DynamicElement(Position pos){
-<span class="fc" id="L24">        super(pos);</span>
-<span class="fc" id="L25">        dir = Application.Direction.RIGHT;</span>
-<span class="fc" id="L26">    }</span>
+<span class="fc" id="L28">        super(pos);</span>
+<span class="fc" id="L29">        dir = Application.Direction.RIGHT;</span>
+<span class="fc" id="L30">    }</span>
 
     public Position moveUp(){
-<span class="fc" id="L29">        Position pos = getPos();</span>
-<span class="fc" id="L30">        pos.setY(pos.getY()-1);</span>
-<span class="fc" id="L31">        return pos;</span>
+<span class="fc" id="L33">        Position pos = getPos();</span>
+<span class="fc" id="L34">        pos.setY(pos.getY()-1);</span>
+<span class="fc" id="L35">        return pos;</span>
     }
     public Position moveDown(){
-<span class="fc" id="L34">        Position pos = getPos();</span>
-<span class="fc" id="L35">        pos.setY(pos.getY()+1);</span>
-<span class="fc" id="L36">        return pos;</span>
+<span class="fc" id="L38">        Position pos = getPos();</span>
+<span class="fc" id="L39">        pos.setY(pos.getY()+1);</span>
+<span class="fc" id="L40">        return pos;</span>
     }
     public Position moveLeft(){
-<span class="fc" id="L39">        Position pos = getPos();</span>
-<span class="fc" id="L40">        pos.setX(pos.getX()-1);</span>
-<span class="fc" id="L41">        return pos;</span>
+<span class="fc" id="L43">        Position pos = getPos();</span>
+<span class="fc" id="L44">        pos.setX(pos.getX()-1);</span>
+<span class="fc" id="L45">        return pos;</span>
     }
     public Position moveRight(){
-<span class="fc" id="L44">        Position pos = getPos();</span>
-<span class="fc" id="L45">        pos.setX(pos.getX()+1);</span>
-<span class="fc" id="L46">        return pos;</span>
+<span class="fc" id="L48">        Position pos = getPos();</span>
+<span class="fc" id="L49">        pos.setX(pos.getX()+1);</span>
+<span class="fc" id="L50">        return pos;</span>
     }
 
-<span class="fc" id="L49">    public Application.Direction getDirection() { return dir; }</span>
+<span class="fc" id="L53">    public Application.Direction getDirection() { return dir; }</span>
 
     private void updateDir(Position newPos)
     {
-<span class="fc" id="L53">        Position currentPos = this.getPos();</span>
+<span class="fc" id="L57">        Position currentPos = this.getPos();</span>
 
-<span class="fc" id="L55">        Integer diffY = newPos.getY() - currentPos.getY();</span>
-<span class="fc" id="L56">        Integer diffX = newPos.getX() - currentPos.getX();</span>
+<span class="fc" id="L59">        Integer diffY = newPos.getY() - currentPos.getY();</span>
+<span class="fc" id="L60">        Integer diffX = newPos.getX() - currentPos.getX();</span>
 
-<span class="fc bfc" id="L58" title="All 2 branches covered.">        if (diffY == 1) this.dir = Application.Direction.DOWN;</span>
-<span class="fc bfc" id="L59" title="All 2 branches covered.">        else if (diffY == -1 ) this.dir = Application.Direction.UP;</span>
-<span class="fc bfc" id="L60" title="All 2 branches covered.">        else if (diffX == 1) this.dir = Application.Direction.RIGHT;</span>
-<span class="fc bfc" id="L61" title="All 2 branches covered.">        else if (diffX == -1) this.dir = Application.Direction.LEFT;</span>
-<span class="fc" id="L62">    }</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">        if (diffY == 1) this.dir = Application.Direction.DOWN;</span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">        else if (diffY == -1 ) this.dir = Application.Direction.UP;</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        else if (diffX == 1) this.dir = Application.Direction.RIGHT;</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        else if (diffX == -1) this.dir = Application.Direction.LEFT;</span>
+<span class="fc" id="L66">    }</span>
     
     public void updatePos(Position newPos)
     {
-<span class="fc" id="L66">        updateDir(newPos);</span>
-<span class="fc" id="L67">        this.setPos(newPos);</span>
-<span class="fc" id="L68">    }</span>
+<span class="fc" id="L70">        updateDir(newPos);</span>
+<span class="fc" id="L71">        this.setPos(newPos);</span>
+<span class="fc" id="L72">    }</span>
 
     public void setHealth(Integer health)
     {
-<span class="fc" id="L72">        this.health = health;</span>
-<span class="fc" id="L73">    }</span>
+<span class="fc" id="L76">        this.health = health;</span>
+<span class="fc" id="L77">    }</span>
 
     public Integer getHealth()
     {
-<span class="fc" id="L77">        return this.health;</span>
+<span class="fc" id="L81">        return this.health;</span>
     }
 
     @Override
     public void updateHealth(Integer diff)
     {
-<span class="fc" id="L83">        this.health += diff;</span>
-<span class="fc" id="L84">    }</span>
+<span class="fc" id="L87">        this.health += diff;</span>
+<span class="fc" id="L88">    }</span>
 
     @Override
     public boolean isAlive()
     {
-<span class="pc bpc" id="L89" title="1 of 2 branches missed.">        return health &gt; 0;</span>
+<span class="pc bpc" id="L93" title="1 of 2 branches missed.">        return health &gt; 0;</span>
     }
 
     @Override
     public boolean beCollected(ArenaModel arenaModel)
     {
-<span class="fc" id="L95">        return false;</span>
+<span class="fc" id="L99">        return false;</span>
     }
 
 }

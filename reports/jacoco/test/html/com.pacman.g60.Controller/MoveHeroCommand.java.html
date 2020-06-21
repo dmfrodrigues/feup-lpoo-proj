@@ -1,4 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MoveHeroCommand.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.Controller</a> &gt; <span class="el_source">MoveHeroCommand.java</span></div><h1>MoveHeroCommand.java</h1><pre class="source lang-java linenums">package com.pacman.g60.Controller;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MoveHeroCommand.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.Controller</a> &gt; <span class="el_source">MoveHeroCommand.java</span></div><h1>MoveHeroCommand.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2020 Diogo Rodrigues, João Matos
+ */
+
+package com.pacman.g60.Controller;
 
 import com.pacman.g60.Model.Models.ArenaModel;
 import com.pacman.g60.Model.Elements.*;
@@ -11,36 +15,36 @@ import java.util.List;
 public abstract class MoveHeroCommand implements Command {
     protected ArenaModel arenaModel;
 
-<span class="fc" id="L14">    public MoveHeroCommand(ArenaModel arenaModel) {</span>
-<span class="fc" id="L15">        this.arenaModel = arenaModel;</span>
-<span class="fc" id="L16">    }</span>
+<span class="fc" id="L18">    public MoveHeroCommand(ArenaModel arenaModel) {</span>
+<span class="fc" id="L19">        this.arenaModel = arenaModel;</span>
+<span class="fc" id="L20">    }</span>
 
     public void processMovementConsequences(Position newPos)
     {
-<span class="fc" id="L20">        Hero hero = arenaModel.getHero();</span>
+<span class="fc" id="L24">        Hero hero = arenaModel.getHero();</span>
 
-<span class="pc bpc" id="L22" title="1 of 2 branches missed.">        if (this.arenaModel.isPositionAvailable(newPos,hero))</span>
+<span class="pc bpc" id="L26" title="1 of 2 branches missed.">        if (this.arenaModel.isPositionAvailable(newPos,hero))</span>
         {
-<span class="fc" id="L24">            List&lt;Element&gt; toBeRemoved = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L28">            List&lt;Element&gt; toBeRemoved = new ArrayList&lt;&gt;();</span>
 
-<span class="fc" id="L26">            List&lt;Element&gt; elemsInNewPos = arenaModel.getElemFromPos(newPos);</span>
-<span class="pc bpc" id="L27" title="1 of 2 branches missed.">            if (elemsInNewPos != null)</span>
+<span class="fc" id="L30">            List&lt;Element&gt; elemsInNewPos = arenaModel.getElemFromPos(newPos);</span>
+<span class="pc bpc" id="L31" title="1 of 2 branches missed.">            if (elemsInNewPos != null)</span>
             {
-<span class="nc bnc" id="L29" title="All 2 branches missed.">                for (Element elemInNewPos : elemsInNewPos)</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">                for (Element elemInNewPos : elemsInNewPos)</span>
                 {
-<span class="nc bnc" id="L31" title="All 2 branches missed.">                    if(elemInNewPos.beCollected(this.arenaModel)) toBeRemoved.add(elemInNewPos);</span>
-<span class="nc" id="L32">                }</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">                    if(elemInNewPos.beCollected(this.arenaModel)) toBeRemoved.add(elemInNewPos);</span>
+<span class="nc" id="L36">                }</span>
 
-<span class="nc bnc" id="L34" title="All 2 branches missed.">                for (Element elem : toBeRemoved)</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">                for (Element elem : toBeRemoved)</span>
                 {
-<span class="nc" id="L36">                    arenaModel.removeElement(elem);</span>
-<span class="nc" id="L37">                }</span>
+<span class="nc" id="L40">                    arenaModel.removeElement(elem);</span>
+<span class="nc" id="L41">                }</span>
             }
 
-<span class="fc" id="L40">            Position currentHeroPos = hero.getPos();</span>
-<span class="fc" id="L41">            this.arenaModel.updateMapKey(currentHeroPos,newPos,hero);</span>
-<span class="fc" id="L42">            this.arenaModel.getHero().updatePos(newPos);</span>
+<span class="fc" id="L44">            Position currentHeroPos = hero.getPos();</span>
+<span class="fc" id="L45">            this.arenaModel.updateMapKey(currentHeroPos,newPos,hero);</span>
+<span class="fc" id="L46">            this.arenaModel.getHero().updatePos(newPos);</span>
         }
-<span class="fc" id="L44">    }</span>
+<span class="fc" id="L48">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

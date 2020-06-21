@@ -1,4 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CompositeCommand.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.Controller</a> &gt; <span class="el_source">CompositeCommand.java</span></div><h1>CompositeCommand.java</h1><pre class="source lang-java linenums">package com.pacman.g60.Controller;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CompositeCommand.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.Controller</a> &gt; <span class="el_source">CompositeCommand.java</span></div><h1>CompositeCommand.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2020 Diogo Rodrigues, João Matos
+ */
+
+package com.pacman.g60.Controller;
 
 import com.pacman.g60.Model.Elements.Element;
 
@@ -9,34 +13,34 @@ public abstract class CompositeCommand implements Command {
     private List&lt;Command&gt; commandList;
 
     public CompositeCommand()
-<span class="fc" id="L12">    {</span>
-<span class="fc" id="L13">        this.commandList = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L14">    }</span>
+<span class="fc" id="L16">    {</span>
+<span class="fc" id="L17">        this.commandList = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L18">    }</span>
 
-<span class="nc" id="L16">    public CompositeCommand(List&lt;Command&gt; commandList) {</span>
-<span class="nc" id="L17">        this.commandList = commandList;</span>
-<span class="nc" id="L18">    }</span>
+<span class="nc" id="L20">    public CompositeCommand(List&lt;Command&gt; commandList) {</span>
+<span class="nc" id="L21">        this.commandList = commandList;</span>
+<span class="nc" id="L22">    }</span>
 
     public void addCommand(Command command)
     {
-<span class="fc" id="L22">        this.commandList.add(command);</span>
-<span class="fc" id="L23">    }</span>
+<span class="fc" id="L26">        this.commandList.add(command);</span>
+<span class="fc" id="L27">    }</span>
 
     public List&lt;Command&gt; getCommandList() {
-<span class="fc" id="L26">        return commandList;</span>
+<span class="fc" id="L30">        return commandList;</span>
     }
 
     public void setCommandList(List&lt;Command&gt; commandList)
     {
-<span class="fc" id="L31">        this.commandList = commandList;</span>
-<span class="fc" id="L32">    }</span>
+<span class="fc" id="L35">        this.commandList = commandList;</span>
+<span class="fc" id="L36">    }</span>
 
     @Override
     public void execute() {
-<span class="fc bfc" id="L36" title="All 2 branches covered.">        for (Command command : commandList)</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        for (Command command : commandList)</span>
         {
-<span class="fc" id="L38">            command.execute();</span>
-<span class="fc" id="L39">        }</span>
-<span class="fc" id="L40">    }</span>
+<span class="fc" id="L42">            command.execute();</span>
+<span class="fc" id="L43">        }</span>
+<span class="fc" id="L44">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

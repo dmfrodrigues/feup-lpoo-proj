@@ -1,32 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UpdateRateController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.Controller</a> &gt; <span class="el_source">UpdateRateController.java</span></div><h1>UpdateRateController.java</h1><pre class="source lang-java linenums">package com.pacman.g60.Controller;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UpdateRateController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.Controller</a> &gt; <span class="el_source">UpdateRateController.java</span></div><h1>UpdateRateController.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2020 Diogo Rodrigues, João Matos
+ */
+
+package com.pacman.g60.Controller;
 
 public class UpdateRateController {
-<span class="nc" id="L4">    private static final Integer SECONDS_TO_MILLIS = 1000;</span>
+<span class="nc" id="L8">    private static final Integer SECONDS_TO_MILLIS = 1000;</span>
     private Integer updatesPerSecond;
-<span class="nc" id="L6">    public UpdateRateController(){ this(60); }</span>
-<span class="nc" id="L7">    public UpdateRateController(Integer updatesPerSecond){ this.updatesPerSecond = updatesPerSecond; }</span>
+<span class="nc" id="L10">    public UpdateRateController(){ this(60); }</span>
+<span class="nc" id="L11">    public UpdateRateController(Integer updatesPerSecond){ this.updatesPerSecond = updatesPerSecond; }</span>
     public void setUpdatesPerSecond(Integer updatesPerSecond){ 
-<span class="nc" id="L9">        this.updatesPerSecond = updatesPerSecond;</span>
-<span class="nc" id="L10">    }</span>
+<span class="nc" id="L13">        this.updatesPerSecond = updatesPerSecond;</span>
+<span class="nc" id="L14">    }</span>
     private Integer getMillisPerFrame(){
-<span class="nc" id="L12">        return SECONDS_TO_MILLIS/ updatesPerSecond;</span>
+<span class="nc" id="L16">        return SECONDS_TO_MILLIS/ updatesPerSecond;</span>
     }
-<span class="nc" id="L14">    private long previous = 0;</span>
-<span class="nc" id="L15">    private long lag = 0;</span>
+<span class="nc" id="L18">    private long previous = 0;</span>
+<span class="nc" id="L19">    private long lag = 0;</span>
     public void start(){
-<span class="nc" id="L17">        previous = System.currentTimeMillis();</span>
-<span class="nc" id="L18">    }</span>
+<span class="nc" id="L21">        previous = System.currentTimeMillis();</span>
+<span class="nc" id="L22">    }</span>
     public void startFrame(){
-<span class="nc" id="L20">        long current = System.currentTimeMillis();</span>
-<span class="nc" id="L21">        long elapsed = current - previous;</span>
-<span class="nc" id="L22">        previous = current;</span>
-<span class="nc" id="L23">        lag += elapsed;</span>
-<span class="nc" id="L24">    }</span>
+<span class="nc" id="L24">        long current = System.currentTimeMillis();</span>
+<span class="nc" id="L25">        long elapsed = current - previous;</span>
+<span class="nc" id="L26">        previous = current;</span>
+<span class="nc" id="L27">        lag += elapsed;</span>
+<span class="nc" id="L28">    }</span>
     public long numberUpdatesInThisFrame(){
-<span class="nc" id="L26">        long res = (lag/getMillisPerFrame());</span>
+<span class="nc" id="L30">        long res = (lag/getMillisPerFrame());</span>
         
-<span class="nc" id="L28">        lag -= getMillisPerFrame()*res;</span>
-<span class="nc" id="L29">        return res;</span>
+<span class="nc" id="L32">        lag -= getMillisPerFrame()*res;</span>
+<span class="nc" id="L33">        return res;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

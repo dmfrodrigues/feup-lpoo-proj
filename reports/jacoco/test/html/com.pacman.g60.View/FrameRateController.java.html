@@ -1,4 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FrameRateController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.View</a> &gt; <span class="el_source">FrameRateController.java</span></div><h1>FrameRateController.java</h1><pre class="source lang-java linenums">package com.pacman.g60.View;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FrameRateController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.View</a> &gt; <span class="el_source">FrameRateController.java</span></div><h1>FrameRateController.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2020 Diogo Rodrigues, João Matos
+ */
+
+package com.pacman.g60.View;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -7,32 +11,32 @@ public class FrameRateController {
     private static final long SECONDS_TO_NANOS = 1000000000L;
     private static final long MILLIS_TO_NANOS = 1000000L;
     private Integer framesPerSecond;
-<span class="nc" id="L10">    public FrameRateController(){ this(60); }</span>
-<span class="nc" id="L11">    public FrameRateController(Integer framesPerSecond){ setFramesPerSecond(framesPerSecond); }</span>
+<span class="nc" id="L14">    public FrameRateController(){ this(60); }</span>
+<span class="nc" id="L15">    public FrameRateController(Integer framesPerSecond){ setFramesPerSecond(framesPerSecond); }</span>
     public void setFramesPerSecond(Integer framesPerSecond){
-<span class="nc" id="L13">        this.framesPerSecond = framesPerSecond;</span>
-<span class="nc" id="L14">        nanoSleepDelta = getFrameDuration().toNanos();</span>
-<span class="nc" id="L15">    }</span>
+<span class="nc" id="L17">        this.framesPerSecond = framesPerSecond;</span>
+<span class="nc" id="L18">        nanoSleepDelta = getFrameDuration().toNanos();</span>
+<span class="nc" id="L19">    }</span>
     private Duration getFrameDuration(){
-<span class="nc" id="L17">        return Duration.ZERO.plusNanos(SECONDS_TO_NANOS/framesPerSecond);</span>
+<span class="nc" id="L21">        return Duration.ZERO.plusNanos(SECONDS_TO_NANOS/framesPerSecond);</span>
     }
-<span class="nc" id="L19">    private Instant previous = Instant.now();</span>
-<span class="nc" id="L20">    private long nanoSleep = 0;</span>
-<span class="nc" id="L21">    private long nanoSleepDelta = 100000;</span>
-<span class="nc" id="L22">    public void start(){ previous = Instant.now(); }</span>
+<span class="nc" id="L23">    private Instant previous = Instant.now();</span>
+<span class="nc" id="L24">    private long nanoSleep = 0;</span>
+<span class="nc" id="L25">    private long nanoSleepDelta = 100000;</span>
+<span class="nc" id="L26">    public void start(){ previous = Instant.now(); }</span>
     public void startFrame() {
-<span class="nc" id="L24">        Instant current = Instant.now();</span>
-<span class="nc" id="L25">        Duration elapsed = Duration.between(previous, current);</span>
-<span class="nc" id="L26">        previous = current;</span>
-<span class="nc" id="L27">        int cmp = elapsed.compareTo(getFrameDuration());</span>
-<span class="nc bnc" id="L28" title="All 2 branches missed.">        if(cmp &lt; 0) nanoSleep += nanoSleepDelta;</span>
-<span class="nc bnc" id="L29" title="All 2 branches missed.">        else if(cmp &gt; 0) nanoSleep = Math.max(0, nanoSleep-nanoSleepDelta);</span>
+<span class="nc" id="L28">        Instant current = Instant.now();</span>
+<span class="nc" id="L29">        Duration elapsed = Duration.between(previous, current);</span>
+<span class="nc" id="L30">        previous = current;</span>
+<span class="nc" id="L31">        int cmp = elapsed.compareTo(getFrameDuration());</span>
+<span class="nc bnc" id="L32" title="All 2 branches missed.">        if(cmp &lt; 0) nanoSleep += nanoSleepDelta;</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">        else if(cmp &gt; 0) nanoSleep = Math.max(0, nanoSleep-nanoSleepDelta);</span>
         try {
-<span class="nc" id="L31">            Thread.sleep(nanoSleep/MILLIS_TO_NANOS, (int) (nanoSleep%MILLIS_TO_NANOS));</span>
-<span class="nc" id="L32">        } catch (InterruptedException e) {</span>
-<span class="nc" id="L33">            System.err.println(&quot;Interrupted: &quot; + e.getMessage());</span>
-<span class="nc" id="L34">            e.printStackTrace();</span>
-<span class="nc" id="L35">        }</span>
-<span class="nc" id="L36">    }</span>
+<span class="nc" id="L35">            Thread.sleep(nanoSleep/MILLIS_TO_NANOS, (int) (nanoSleep%MILLIS_TO_NANOS));</span>
+<span class="nc" id="L36">        } catch (InterruptedException e) {</span>
+<span class="nc" id="L37">            System.err.println(&quot;Interrupted: &quot; + e.getMessage());</span>
+<span class="nc" id="L38">            e.printStackTrace();</span>
+<span class="nc" id="L39">        }</span>
+<span class="nc" id="L40">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

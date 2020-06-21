@@ -1,4 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ArenaModel.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.Model.Models</a> &gt; <span class="el_source">ArenaModel.java</span></div><h1>ArenaModel.java</h1><pre class="source lang-java linenums">package com.pacman.g60.Model.Models;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ArenaModel.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pacman</a> &gt; <a href="index.source.html" class="el_package">com.pacman.g60.Model.Models</a> &gt; <span class="el_source">ArenaModel.java</span></div><h1>ArenaModel.java</h1><pre class="source lang-java linenums">/**
+ * Copyright (C) 2020 Diogo Rodrigues, João Matos
+ */
+
+package com.pacman.g60.Model.Models;
 
 import com.pacman.g60.Model.Elements.*;
 import com.pacman.g60.Model.Elements.Hierarchy.CanSharePosition;
@@ -14,143 +18,143 @@ import java.util.Map;
 public class ArenaModel {
     private int W, H;
     private Integer numCoins, numEnemies;
-<span class="fc" id="L17">    private Hero hero = null;</span>
+<span class="fc" id="L21">    private Hero hero = null;</span>
     private boolean shouldGameContinue;
     private ArrayList&lt;Element&gt; listElements;
     private Map&lt;Position, List&lt;Element&gt;&gt; availablePositions;
 
-<span class="fc" id="L22">    public ArenaModel(int W, int H){</span>
-<span class="fc" id="L23">        this.W = W;</span>
-<span class="fc" id="L24">        this.H = H;</span>
-<span class="fc" id="L25">        listElements = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L26">        this.numCoins = 0;</span>
-<span class="fc" id="L27">        this.numEnemies = 0;</span>
-<span class="fc" id="L28">        this.shouldGameContinue = true;</span>
-<span class="fc" id="L29">        this.availablePositions = new HashMap&lt;&gt;();</span>
-<span class="fc" id="L30">    }</span>
+<span class="fc" id="L26">    public ArenaModel(int W, int H){</span>
+<span class="fc" id="L27">        this.W = W;</span>
+<span class="fc" id="L28">        this.H = H;</span>
+<span class="fc" id="L29">        listElements = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L30">        this.numCoins = 0;</span>
+<span class="fc" id="L31">        this.numEnemies = 0;</span>
+<span class="fc" id="L32">        this.shouldGameContinue = true;</span>
+<span class="fc" id="L33">        this.availablePositions = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L34">    }</span>
 
     public ArenaModel(ArenaModel arenaModel) {
-<span class="nc" id="L33">        this(arenaModel.W, arenaModel.H);</span>
-<span class="nc bnc" id="L34" title="All 2 branches missed.">        for(Element e: arenaModel.listElements)</span>
-<span class="nc" id="L35">            addElement((Element)e.clone());</span>
-<span class="nc" id="L36">    }</span>
+<span class="nc" id="L37">        this(arenaModel.W, arenaModel.H);</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">        for(Element e: arenaModel.listElements)</span>
+<span class="nc" id="L39">            addElement((Element)e.clone());</span>
+<span class="nc" id="L40">    }</span>
 
     public void addElement(Element element){
-<span class="fc" id="L39">        listElements.add(element);</span>
-<span class="fc bfc" id="L40" title="All 2 branches covered.">        if(element instanceof Hero) hero = (Hero)element;</span>
-<span class="pc bpc" id="L41" title="1 of 2 branches missed.">        else if (element instanceof Coin) numCoins++;</span>
-<span class="fc bfc" id="L42" title="All 2 branches covered.">        else if (element instanceof Enemy) numEnemies++;</span>
+<span class="fc" id="L43">        listElements.add(element);</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        if(element instanceof Hero) hero = (Hero)element;</span>
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">        else if (element instanceof Coin) numCoins++;</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        else if (element instanceof Enemy) numEnemies++;</span>
 
-<span class="fc" id="L44">        List&lt;Element&gt; elemsInPos = this.availablePositions.get(element.getPos());</span>
-<span class="pc bpc" id="L45" title="1 of 2 branches missed.">        if (elemsInPos == null)</span>
+<span class="fc" id="L48">        List&lt;Element&gt; elemsInPos = this.availablePositions.get(element.getPos());</span>
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">        if (elemsInPos == null)</span>
         {
-<span class="fc" id="L47">            List&lt;Element&gt; elems = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L48">            elems.add(element);</span>
-<span class="fc" id="L49">            this.availablePositions.put(element.getPos(),elems);</span>
-<span class="fc" id="L50">        }</span>
+<span class="fc" id="L51">            List&lt;Element&gt; elems = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L52">            elems.add(element);</span>
+<span class="fc" id="L53">            this.availablePositions.put(element.getPos(),elems);</span>
+<span class="fc" id="L54">        }</span>
         else
         {
-<span class="nc" id="L53">            elemsInPos.add(element);</span>
+<span class="nc" id="L57">            elemsInPos.add(element);</span>
         }
-<span class="fc" id="L55">    }</span>
+<span class="fc" id="L59">    }</span>
 
     public ArrayList&lt;Element&gt; getElements(){
-<span class="fc" id="L58">        return listElements;</span>
+<span class="fc" id="L62">        return listElements;</span>
     }
 
     public Graph&lt;Position&gt; getGraph()
     {
-<span class="fc" id="L63">        boolean[][] obstacle = new boolean[W][H];</span>
-<span class="fc bfc" id="L64" title="All 2 branches covered.">        for (final Element e : listElements)</span>
+<span class="fc" id="L67">        boolean[][] obstacle = new boolean[W][H];</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">        for (final Element e : listElements)</span>
         {
-<span class="fc bfc" id="L66" title="All 2 branches covered.">            if (e instanceof Wall) obstacle[e.getPos().getX()][e.getPos().getY()] = true;</span>
-<span class="fc" id="L67">        }</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">            if (e instanceof Wall) obstacle[e.getPos().getX()][e.getPos().getY()] = true;</span>
+<span class="fc" id="L71">        }</span>
 
-<span class="fc" id="L69">        Graph&lt;Position&gt; G = new AdjacencyGraph&lt;&gt;();</span>
-<span class="fc bfc" id="L70" title="All 2 branches covered.">        for (int x = 0; x &lt; W; ++x)</span>
+<span class="fc" id="L73">        Graph&lt;Position&gt; G = new AdjacencyGraph&lt;&gt;();</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">        for (int x = 0; x &lt; W; ++x)</span>
         {
-<span class="fc bfc" id="L72" title="All 2 branches covered.">            for (int y = 0; y &lt; H; ++y)</span>
+<span class="fc bfc" id="L76" title="All 2 branches covered.">            for (int y = 0; y &lt; H; ++y)</span>
             {
-<span class="fc bfc" id="L74" title="All 2 branches covered.">                if (!obstacle[x][y]) G.addNode(new Position(x,y));</span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">                if (!obstacle[x][y]) G.addNode(new Position(x,y));</span>
             }
         }
-<span class="fc bfc" id="L77" title="All 2 branches covered.">        for (int x = 0; x &lt; W; ++x)</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">        for (int x = 0; x &lt; W; ++x)</span>
         {
-<span class="fc bfc" id="L79" title="All 2 branches covered.">            for (int y = 0; y &lt; H; ++y)</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">            for (int y = 0; y &lt; H; ++y)</span>
             {
-<span class="fc bfc" id="L81" title="All 2 branches covered.">                if (obstacle[x][y]) continue;</span>
-<span class="fc bfc" id="L82" title="All 4 branches covered.">                if (x &lt; W-1 &amp;&amp; !obstacle[x+1][y]) G.addEdge(new Position(x,y),new Position(x+1,y));</span>
-<span class="fc bfc" id="L83" title="All 4 branches covered.">                if (y &lt; H-1 &amp;&amp; !obstacle[x][y+1]) G.addEdge(new Position(x,y),new Position(x,y+1));</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">                if (obstacle[x][y]) continue;</span>
+<span class="fc bfc" id="L86" title="All 4 branches covered.">                if (x &lt; W-1 &amp;&amp; !obstacle[x+1][y]) G.addEdge(new Position(x,y),new Position(x+1,y));</span>
+<span class="fc bfc" id="L87" title="All 4 branches covered.">                if (y &lt; H-1 &amp;&amp; !obstacle[x][y+1]) G.addEdge(new Position(x,y),new Position(x,y+1));</span>
             }
         }
-<span class="fc" id="L86">        return G;</span>
+<span class="fc" id="L90">        return G;</span>
     }
 
-<span class="fc" id="L89">    public Integer getNumCoins() {return numCoins;}</span>
+<span class="fc" id="L93">    public Integer getNumCoins() {return numCoins;}</span>
 
     public int getW() {
-<span class="fc" id="L92">        return W;</span>
+<span class="fc" id="L96">        return W;</span>
     }
 
     public int getH() {
-<span class="fc" id="L96">        return H;</span>
+<span class="fc" id="L100">        return H;</span>
     }
 
-<span class="fc" id="L99">    public Hero getHero() { return hero; }</span>
+<span class="fc" id="L103">    public Hero getHero() { return hero; }</span>
 
     public boolean isPositionAvailable(Position position, Element elemWhichWantsToBeMoved)
     {
-<span class="fc" id="L103">        List&lt;Element&gt; elemsInDesiredPos = this.availablePositions.get(position);</span>
-<span class="fc" id="L104">        boolean isMovementPossible = false;</span>
-<span class="pc bpc" id="L105" title="3 of 4 branches missed.">        if (elemsInDesiredPos == null || elemsInDesiredPos.size() == 0) return true;</span>
+<span class="fc" id="L107">        List&lt;Element&gt; elemsInDesiredPos = this.availablePositions.get(position);</span>
+<span class="fc" id="L108">        boolean isMovementPossible = false;</span>
+<span class="pc bpc" id="L109" title="3 of 4 branches missed.">        if (elemsInDesiredPos == null || elemsInDesiredPos.size() == 0) return true;</span>
         else
         {
-<span class="nc bnc" id="L108" title="All 2 branches missed.">            for (Element elem : elemsInDesiredPos)</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">            for (Element elem : elemsInDesiredPos)</span>
             {
-<span class="nc bnc" id="L110" title="All 2 branches missed.">                if (!(elem instanceof CanSharePosition)) return false;</span>
-<span class="nc bnc" id="L111" title="All 2 branches missed.">                if (elem instanceof CanSharePosition) isMovementPossible = true;</span>
-<span class="nc" id="L112">            }</span>
+<span class="nc bnc" id="L114" title="All 2 branches missed.">                if (!(elem instanceof CanSharePosition)) return false;</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">                if (elem instanceof CanSharePosition) isMovementPossible = true;</span>
+<span class="nc" id="L116">            }</span>
         }
-<span class="nc" id="L114">        return isMovementPossible;</span>
+<span class="nc" id="L118">        return isMovementPossible;</span>
    }
 
     public void updateMapKey(Position oldKey, Position newKey, Element elemBeingMoved)
     {
-<span class="fc" id="L119">        List&lt;Element&gt; elemsInOldPos = this.availablePositions.get(oldKey);</span>
-<span class="pc bpc" id="L120" title="1 of 2 branches missed.">        if (elemsInOldPos != null) elemsInOldPos.remove(elemBeingMoved);</span>
+<span class="fc" id="L123">        List&lt;Element&gt; elemsInOldPos = this.availablePositions.get(oldKey);</span>
+<span class="pc bpc" id="L124" title="1 of 2 branches missed.">        if (elemsInOldPos != null) elemsInOldPos.remove(elemBeingMoved);</span>
 
-<span class="fc" id="L122">        List&lt;Element&gt; elemsInNewPos = this.availablePositions.get(newKey);</span>
-<span class="pc bpc" id="L123" title="1 of 2 branches missed.">        if (elemsInNewPos == null)</span>
+<span class="fc" id="L126">        List&lt;Element&gt; elemsInNewPos = this.availablePositions.get(newKey);</span>
+<span class="pc bpc" id="L127" title="1 of 2 branches missed.">        if (elemsInNewPos == null)</span>
         {
-<span class="fc" id="L125">            List&lt;Element&gt; newElemList = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L126">            newElemList.add(elemBeingMoved);</span>
-<span class="fc" id="L127">            this.availablePositions.put(newKey,newElemList);</span>
-<span class="fc" id="L128">        }</span>
+<span class="fc" id="L129">            List&lt;Element&gt; newElemList = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L130">            newElemList.add(elemBeingMoved);</span>
+<span class="fc" id="L131">            this.availablePositions.put(newKey,newElemList);</span>
+<span class="fc" id="L132">        }</span>
         else
         {
-<span class="nc" id="L131">            elemsInNewPos.add(elemBeingMoved);</span>
+<span class="nc" id="L135">            elemsInNewPos.add(elemBeingMoved);</span>
         }
-<span class="fc" id="L133">    }</span>
+<span class="fc" id="L137">    }</span>
 
     public List&lt;Element&gt; getElemFromPos(Position position)
     {
-<span class="fc" id="L137">        return availablePositions.get(position);</span>
+<span class="fc" id="L141">        return availablePositions.get(position);</span>
     }
 
     public void removeElement(Element element)
     {
-<span class="nc bnc" id="L142" title="All 2 branches missed.">        if (element instanceof Coin) numCoins--;</span>
-<span class="nc bnc" id="L143" title="All 2 branches missed.">        else if (element instanceof Enemy) numEnemies--;</span>
-<span class="nc bnc" id="L144" title="All 2 branches missed.">        if (numEnemies == 0) shouldGameContinue = false;</span>
-<span class="nc" id="L145">        listElements.remove(element);</span>
+<span class="nc bnc" id="L146" title="All 2 branches missed.">        if (element instanceof Coin) numCoins--;</span>
+<span class="nc bnc" id="L147" title="All 2 branches missed.">        else if (element instanceof Enemy) numEnemies--;</span>
+<span class="nc bnc" id="L148" title="All 2 branches missed.">        if (numEnemies == 0) shouldGameContinue = false;</span>
+<span class="nc" id="L149">        listElements.remove(element);</span>
 
-<span class="nc" id="L147">        List&lt;Element&gt; elemsInPos = getElemFromPos(element.getPos());</span>
-<span class="nc" id="L148">        elemsInPos.remove(element);</span>
-<span class="nc" id="L149">    }</span>
+<span class="nc" id="L151">        List&lt;Element&gt; elemsInPos = getElemFromPos(element.getPos());</span>
+<span class="nc" id="L152">        elemsInPos.remove(element);</span>
+<span class="nc" id="L153">    }</span>
 
     public boolean getShouldGameContinue()
     {
-<span class="nc" id="L153">        return this.shouldGameContinue;</span>
+<span class="nc" id="L157">        return this.shouldGameContinue;</span>
     }
 
     public interface Loader {
