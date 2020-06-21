@@ -1,22 +1,23 @@
+/**
+ * Copyright (C) 2020 Diogo Rodrigues, João Matos
+ */
+
 package com.pacman.g60.View.Views;
 
 
-import com.googlecode.lanterna.terminal.Terminal;
-import com.pacman.g60.Model.*;
 import com.pacman.g60.Model.Elements.*;
-
 import com.pacman.g60.Model.Elements.Hierarchy.OrientedElement;
 import com.pacman.g60.Model.Models.Alignable;
 import com.pacman.g60.Model.Models.ArenaModel;
 import com.pacman.g60.Model.Models.SpriteModel;
 import com.pacman.g60.Model.Models.TextModel;
-import com.pacman.g60.View.*;
+import com.pacman.g60.Model.Position;
+import com.pacman.g60.View.Color;
 import com.pacman.g60.View.Font.TerminalFont;
 import com.pacman.g60.View.GUI.TerminalGUI;
 import com.pacman.g60.View.Sprite.TerminalSprite;
 import com.pacman.g60.View.Sprite.TerminalSpriteLoaderStream;
 import com.pacman.g60.View.Sprite.TerminalSpriteOrientable;
-
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

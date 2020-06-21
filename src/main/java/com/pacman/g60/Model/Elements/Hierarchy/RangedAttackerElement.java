@@ -1,6 +1,8 @@
-package com.pacman.g60.Model.Elements.Hierarchy;
+/**
+ * Copyright (C) 2020 Diogo Rodrigues, João Matos
+ */
 
-import com.pacman.g60.Model.Elements.Hierarchy.AttackerElement;
+package com.pacman.g60.Model.Elements.Hierarchy;
 
 public interface RangedAttackerElement extends AttackerElement {
 }

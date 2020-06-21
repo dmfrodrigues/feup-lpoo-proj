@@ -1,3 +1,7 @@
+/**
+ * Copyright (C) 2020 Diogo Rodrigues, João Matos
+ */
+
 package com.pacman.g60.View.Views;
 
 import com.pacman.g60.View.GUI.GUI;

@@ -1,9 +1,9 @@
+/**
+ * Copyright (C) 2020 Diogo Rodrigues, João Matos
+ */
+
 package com.pacman.g60.Model.Path_Calculation;
 
-import com.pacman.g60.Model.Position;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 public abstract class Graph<T> {

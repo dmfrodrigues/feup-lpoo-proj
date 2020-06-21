@@ -1,8 +1,11 @@
+/**
+ * Copyright (C) 2020 Diogo Rodrigues, João Matos
+ */
+
 package com.pacman.g60.View.Sprite;
 
 
 import com.pacman.g60.View.Color;
-import com.pacman.g60.View.Sprite.TerminalSprite;
 
 import java.io.InputStream;
 import java.util.Scanner;
